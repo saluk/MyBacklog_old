@@ -457,7 +457,7 @@ class Form(QWidget):
         self.import_gog_html()
 
     def import_gog_html(self):
-        games = gogapi.import_gog()
+        games = gogapi.import_gog(self.games.multipack)
         self.games.add_games(games)
         self.update_gamelist_widget()
         self.games.save("games.json")

@@ -277,7 +277,8 @@ class Games:
         load_data = json.loads(d)
         for k in load_data["games"]:
             self.games[k] = Game(**load_data["games"][k])
-        self.multipack = load_data.get("multipack",{})
+        if not self.multipack:
+            self.multipack = load_data.get("multipack",{})
         self.actions = load_data.get("actions",[])
     def import_packages(self):
         for gkey in list(self.games.keys()):

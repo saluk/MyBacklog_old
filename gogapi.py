@@ -51,7 +51,6 @@ def get_gog_games_from_web():
     f.write(r.text)
     f.close()
 
-multipack = json.loads(open("gog_packages.json").read())
 """
 <div class="shelf_game" data-gameindex="dracula_trilogy" data-gameid="1207659251" data-orderid="3LKULVG353S" data-background="/upload/images/2013/07/50f3b525242c1a0129eabcbf5a6951c2e3f42194.jpg" data-title="dracula trilogy anuman interactive anuman interactive adventure pointandclick horror">
 """
@@ -74,7 +73,7 @@ def get_gog_games_html(html):
             d["icon"] = image['src']
         gog_games[d["gameindex"]] = d
     return gog_games
-def import_gog():
+def import_gog(multipack={}):
     packs = {}
     games = []
     gog_games = get_gog_games_html("mygog_shelf.html")
