@@ -1,16 +1,16 @@
 #!python3
 import requests,re
 import data
-import vdf
+#import vdf
 
 MY_API_KEY = "98934075AAB5F4E1223BEC4C40E88AA8"
 MY_STEAM_ID = "76561197999655940"
 STEAM_GAMES_URL = "http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=%(apikey)s&steamid=%(steamid)s&format=json&include_appinfo=1&include_played_free_games=1=1"
 
-f = open("finished.txt",encoding="utf8")
-finished = f.read().split("\n")
+#f = open("finished.txt",encoding="utf8")
+#finished = f.read().split("\n")
 #finished = [x.decode("utf8") for x in finished]
-f.close()
+#f.close()
 
 
 def login_for_chat():
@@ -128,7 +128,8 @@ def match_finished_games(games,finished):
     return matched
     
 def import_steam(userid=MY_STEAM_ID):
-    apps = load_userdata()["UserLocalConfigStore"]["Software"]["Valve"]["Steam"]["apps"]
+    #apps = load_userdata()["UserLocalConfigStore"]["Software"]["Valve"]["Steam"]["apps"]
+    apps = {}
     games = get_games()
     is_finished = []#match_finished_games(games,finished)
     library = []
@@ -157,15 +158,15 @@ def import_steam(userid=MY_STEAM_ID):
     return library
     
 def load_userdata(path="C:\\Steam\\userdata\\39390212\\config\\localconfig.vdf"):
+    import vdf
     f = open(path)
     data = vdf.parse(f)
     f.close()
     return data
     
-import steam_shortcut_manager as ssm
-    
 def create_nonsteam_shortcuts(games):
     """Given a list of games create shortcuts in steam for them"""
+    import steam_shortcut_manager as ssm
     print ("Creating Steam Shortcuts")
     shortcuts = ssm.SteamShortcutManager("C:\\Steam\\userdata\\39390212\\config\\shortcuts.vdf")
     shortcuts.shortcuts = []
