@@ -225,10 +225,45 @@ class Game:
     def __repr__(self):
         return repr(self.dict())
 
+actions = {"add":{"type":"addgame","game":"","time":""},
+        "delete":{"type":"deletegame","game":"","time":""},
+        "update":{"type":"updategame","game":"","changes":{},"time":""},
+        "play":{"type":"playgame","game":"","time":""},
+        "stop":{"type":"stopgame","game":"","time":""}
+        }
+def changed(da,db):
+    """Helper for update action, returns difference of 2 dicts"""
+    d = {"_del_":[],"_add_":[],"_set_":[]}
+    for k in da:
+        if k not in db:
+            d["_del_"].append(k)
+        elif db[k] != da[k]:
+            d["_set_"].append({"k":k,"v":db[k]})
+    for k in db:
+        if k not in da:
+            d["_add_"].append({"k":k,"v":db[k]})
+    if not d["_del_"]:
+        del d["_del_"]
+    if not d["_add_"]:
+        del d["_add_"]
+    if not d["_set_"]:
+        del d["_set_"]
+    return d
+def add_action(t,**d):
+    a = actions[t].copy()
+    a.update(d)
+    a["time"] = now()
+    return a
+
 class Games:
     def __init__(self):
         self.games = {}
-        self.multipack = json.loads(open("gog_packages.json").read())
+        self.actions = []
+        self.multipack = {}
+        try:
+            self.multipack = json.loads(open("gog_packages.json").read())
+        except:
+            pass
     def load(self,file):
         if not os.path.exists(file):
             print("Warning, no save file to load:",file)
@@ -242,6 +277,8 @@ class Games:
         load_data = json.loads(d)
         for k in load_data["games"]:
             self.games[k] = Game(**load_data["games"][k])
+        self.multipack = load_data.get("multipack",{})
+        self.actions = load_data.get("actions",[])
     def import_packages(self):
         for gkey in list(self.games.keys()):
             game = self.games[gkey]
@@ -259,15 +296,13 @@ class Games:
         save_data = {"games":{}}
         for k in self.games:
             save_data["games"][k] = self.games[k].dict()
-        return {"games":json.dumps(save_data,sort_keys=True,indent=4),
-                "gog_packages":json.dumps(self.multipack,sort_keys=True,indent=4)}
+        save_data["actions"] = self.actions
+        save_data["multipack"] = self.multipack
+        return json.dumps(save_data,sort_keys=True,indent=4)
     def save(self,file):
         sd = self.save_data()
         f = open(file,"w")
-        f.write(sd["games"])
-        f.close()
-        f = open("gog_packages.json","w")
-        f.write(sd["gog_packages"])
+        f.write(sd)
         f.close()
     def add_games(self,game_list):
         for g in game_list:
@@ -276,8 +311,10 @@ class Games:
         assert(isinstance(game,Game))
         cur_game = self.games.get(gameid,None)
         if not cur_game or force:
+            self.actions.append(add_action("add",game=game.dict()))
             self.games[gameid] = game
             return
+        previous_data = cur_game.dict()
         if game.icon_url:
             cur_game.icon_url = game.icon_url
         if game.playtime > cur_game.playtime:
@@ -288,9 +325,13 @@ class Games:
             cur_game.lastplayed = game.lastplayed
         cur_game.is_package = game.is_package
         cur_game.packageid = game.packageid
+        diff = changed(previous_data,cur_game.dict())
+        if diff:
+            self.actions.append(add_action("update",game=game.dict(),changes=diff))
         return game
     def list(self):
         v = self.games.values()
         return sorted(v,key=lambda g:(g.finished,g.priority,-time.mktime(stot(g.lastplayed)),g.name))
     def delete(self, game):
+        self.actions.append(add_action("delete",game=game.dict()))
         del self.games[game.gameid]
