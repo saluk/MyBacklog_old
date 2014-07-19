@@ -473,6 +473,7 @@ class Form(QWidget):
         games = downloadrequest()
         self.games = data.Games()
         self.games.translate_json(games)
+        self.games.save("games.json")
         self.update_gamelist_widget()
 
     def cleanup_gamesdb(self):
