@@ -39,7 +39,7 @@ def stoprequest():
     #steamapi.set_username(steam_session,"saluk")
 def uploadrequest(games):
     try:
-        r = requests.post("http://dawnsoft.org:9600/users/saluk/upload_games",data=games.save_data())
+        r = requests.post("http://dawnsoft.org:9600/users/saluk/upload_games",data={"games":games.save_data()})
     except:
         pass
 def downloadrequest():
