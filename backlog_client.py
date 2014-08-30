@@ -176,14 +176,14 @@ class ListGamesForPack(QWidget):
             self.app.games.games[game.gameid] = game
             #Add or update row in list
         self.app.games.save("games.json")
-        self.app.get_row_for_game(self.game,self.row_widget)
+        self.app.update_gamelist_widget()
         self.deleteLater()
 
 
 class EditGame(QWidget):
     def __init__(self, game, row_widget, app, new=False):
         super(EditGame, self).__init__()
-        self.game = game
+        self.game = game.copy()
         self.app = app
         self.games = app.games
         
@@ -255,10 +255,11 @@ class EditGame(QWidget):
         print("save", newid, self.oldid)
         if newid!=self.oldid:
             if self.oldid in self.games.games:
+                self.games.games[newid] = self.games.games[self.oldid]
                 del self.games.games[self.oldid]
-            self.games.games[newid] = self.game
+        self.games.update_game(self.game.gameid,self.game,force=True)
         self.games.save("games.json")
-        self.app.get_row_for_game(self.game,self.row_widget)
+        self.app.update_gamelist_widget()
         self.deleteLater()
         self.parent().deleteLater()
 
@@ -314,10 +315,12 @@ class Form(QWidget):
         self.searchbarlayout.addWidget(self.search_platform)
         self.search_platform.textChanged.connect(self.dosearch)
         
-        self.games_list_widget = QWidget()
-        self.games_list_widget_layout = QGridLayout()
-        self.games_list_widget_layout.setSpacing(0)
-        self.games_list_widget.setLayout(self.games_list_widget_layout)
+        self.games_list_widget = QTableWidget()
+
+        #self.games_list_widget = QWidget()
+        #self.games_list_widget_layout = QGridLayout()
+        #self.games_list_widget_layout.setSpacing(0)
+        #self.games_list_widget.setLayout(self.games_list_widget_layout)
 
         self.game_scroller = QScrollArea()
         self.game_scroller.setWidgetResizable(True)
@@ -347,55 +350,44 @@ class Form(QWidget):
         self.setMinimumSize(800,600)
         self.adjustSize()
         
-    def get_row_for_game(self,game,w=None):
+    def get_row_for_game(self,game,w=[]):
+        if game.hidden:
+            return []
+        widgets = w[:]
         if not w:
-            w = QWidget()
-            box = QHBoxLayout()
-            w.setLayout(box)
+            source = QTableWidgetItem("source icon")
+            widgets.append(source)
             
-            label = QLabel("source icon")
-            label.setFixedWidth(24)
-            box.addWidget(label)
-            w.icon = label
+            label = QTableWidgetItem("")
+            widgets.append(label)
             
-            label = QLabel("")
-            label.setFixedWidth(24)
-            box.addWidget(label)
-            w.gicon = label
+            name = QTableWidgetItem("GAME NAME")
+            widgets.append(name)
             
-            label = QLabel("GAME NAME")
-            box.addWidget(label)
-            w.label = label
+            genre = QTableWidgetItem("GAME GENRE")
+            widgets.append(genre)
             
-            label = QLabel("GAME GENRE")
-            box.addWidget(label)
-            w.genre = label
+            hours = QTableWidgetItem("GAME HOURS")
+            widgets.append(hours)
             
-            label = QLabel("GAME HOURS")
-            label.setMaximumWidth(50)
-            box.addWidget(label)
-            w.hours = label
-            
-            label = QLabel("GAME LAST PLAYED")
-            label.setMaximumWidth(150)
-            box.addWidget(label)
-            w.last_played = label
+            lastplayed = QTableWidgetItem("GAME LAST PLAYED")
+            widgets.append(lastplayed)
 
             if not game.missing_steam_launch():
                 run = QPushButton("play")
             else:
                 run = QPushButton("playalone")
             run.setFixedWidth(50)
-            box.addWidget(run)
             run.clicked.connect(make_callback(self.run_game,game))
+            widgets.append(run)
             
-            run = QPushButton("edit")
-            run.setFixedWidth(50)
-            box.addWidget(run)
-            run.clicked.connect(make_callback(self.edit_game,game,w))
+            edit = QPushButton("edit")
+            edit.setFixedWidth(50)
+            edit.clicked.connect(make_callback(self.edit_game,game,w))
+            widgets.append(edit)
         
         if game.source in self.icons:
-            w.icon.setPixmap(self.icons[game.source])
+            widgets[0].setIcon(QIcon(self.icons[game.source]))
         if game.icon_url:
             fpath = "cache/icons/"+game.icon_url.replace("http","").replace(":","").replace("/","")
             if not os.path.exists(fpath):
@@ -405,36 +397,46 @@ class Form(QWidget):
                 f.close()
             if not fpath in self.gicons:
                 self.gicons[fpath] = QPixmap(fpath).scaled(24,24)
-            w.gicon.setPixmap(self.gicons[fpath])
-        w.setStyleSheet("QWidget {}")
-        if game.finished:
-            w.setStyleSheet("QWidget {background-color: rgb(100,200,150);}")
-        elif game.priority:
-            b = max(100,215-game.priority*40)
-            w.setStyleSheet("QWidget {background-color: rgb(%(bright)d,%(bright)d,%(bright)d);}"%{"bright":b})
-        w.label.setText(game.name)
-        w.hours.setText("%.2d:%.2d"%game.hours_minutes)
-        w.hours.setStyleSheet("QWidget {}")
-        if game.playtime < 500:
-            w.hours.setStyleSheet("QWidget {background-color: red}")
-        w.genre.setText(game.genre)
-        if game.hidden:
-            w.hide()
-        w.last_played.setText(game.last_played_nice)
-        return w
+            widgets[1].setIcon(QIcon(self.gicons[fpath]))
+        #w.setStyleSheet("QWidget {}")
+        #if game.finished:
+        #    w.setStyleSheet("QWidget {background-color: rgb(100,200,150);}")
+        #elif game.priority:
+        #    b = max(100,215-game.priority*40)
+        #    w.setStyleSheet("QWidget {background-color: rgb(%(bright)d,%(bright)d,%(bright)d);}"%{"bright":b})
+        widgets[2].setText(game.name)
+        widgets[4].setText("%.2d:%.2d"%game.hours_minutes)
+        #w.hours.setStyleSheet("QWidget {}")
+        #if game.playtime < 500:
+        #    w.hours.setStyleSheet("QWidget {background-color: red}")
+        widgets[3].setText(game.genre)
+        widgets[5].setText(game.last_played_nice)
+        return widgets
 
     def update_gamelist_widget(self):
         self.gamelist = [{"game":g,"widget":None,"hidden":g.hidden} for g in self.games.list()]
-        child = self.games_list_widget_layout.takeAt(0)
-        while child:
-            child.widget().deleteLater()
-            child = self.games_list_widget_layout.takeAt(0)
-        for g in self.gamelist:
-            w = self.get_row_for_game(g["game"])
-            g["widget"] = w
-            self.games_list_widget_layout.addWidget(w)
+        self.games_list_widget.clear()
+        self.games_list_widget.setHorizontalHeaderLabels(["source","icon","name","genre","playtime","lastplay","play","edit"])
+        self.games_list_widget.horizontalHeader().setVisible(True)
+        self.games_list_widget.verticalHeader().setVisible(False)
+        self.games_list_widget.setRowCount(len(self.gamelist))
+        self.games_list_widget.setColumnCount(8)
+        for i,g in enumerate(self.gamelist):
+            cols = self.get_row_for_game(g["game"])
+            g["widget"] = (i,cols)
+            for r,col in enumerate(cols):
+                if r>=6:
+                    pass
+                    self.games_list_widget.setCellWidget(i,r,col)
+                else:
+                    pass
+                    self.games_list_widget.setItem(i,r,col)
+            if not cols:
+                self.games_list_widget.setRowHidden(i,True)
         self.game_scroller.verticalScrollBar().setValue(0)
         self.update()
+        self.games_list_widget.setHorizontalHeaderLabels(["source","icon","name","genre","playtime","lastplay","play","edit"])
+        self.dosearch()
 
     def import_steam(self):
         games = steamapi.import_steam()
@@ -519,10 +521,12 @@ class Form(QWidget):
         self.runthread = RunGameThread()
         self.runthread.process = self.running
         self.runthread.finished.connect(make_callback(self.stop_playing,game))
+        self.games.play(game)
         playrequest(game)
         #self.runthread.start()
 
     def stop_playing(self,game):
+        self.games.stop(game)
         stoprequest()
         self.buttonLayout1.removeWidget(self.stop_playing_button)
         self.stop_playing_button.deleteLater()
@@ -534,9 +538,7 @@ class Form(QWidget):
         game.playtime += elapsed_time
         game.priority = -1
         self.games.save("games.json")
-        for g in self.gamelist:
-            if g["game"].gameid == game.gameid:
-                self.get_row_for_game(game,g["widget"])
+        self.update_gamelist_widget()
 
     def show_edit_widget(self,*args,**kwargs):
         self.egw = EditGame(*args,**kwargs)
@@ -552,10 +554,9 @@ class Form(QWidget):
         game = data.Game(source="none")
         row = self.get_row_for_game(game)
         self.gamelist.append({"game":game,"widget":row,"hidden":0})
-        self.games_list_widget_layout.addWidget(row)
         self.show_edit_widget(game,row,self,new=True)
 
-    def dosearch(self,text):
+    def dosearch(self,text=None):
         sn = self.search_name.text().lower()
         sg = self.search_genre.text().lower()
         sp = self.search_platform.text().lower()
@@ -565,11 +566,11 @@ class Form(QWidget):
             (not sp or sp in g["game"].source.lower()) and \
             not g["game"].hidden:
                 if g["hidden"]:
-                    g["widget"].show()
+                    self.games_list_widget.setRowHidden(g["widget"][0],False)
                     g["hidden"] = 0
             else:
                 if not g["hidden"]:
-                    g["widget"].hide()
+                    self.games_list_widget.setRowHidden(g["widget"][0],True)
                     g["hidden"] = 1
  
 if __name__ == '__main__':
