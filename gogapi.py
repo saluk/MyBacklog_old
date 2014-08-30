@@ -219,7 +219,7 @@ def better_get_shelf():
         f = open("cache/cookies","r")
         b.cookies = eval(f.read())
         f.close()
-        b.get("https://secure.gog.com/account/ajax",params={
+        b.get("https://www.gog.com/account/ajax",params={
             "a":"gamesShelfMore",
             "p":0,
             "s":"date_purchased",
@@ -236,12 +236,13 @@ def better_get_shelf():
     
     if not logged_in:
         b.get("https://www.gog.com/")
-        login_auth = re.findall("https\:\/\/auth\.gog\.com.*?\"",b.text)
+        login_auth = re.findall("(https\:\/\/auth\.gog\.com.*?)(\"|')",b.text)
         print(login_auth)
-        b.get(login_auth[0])
-        token = re.findall("<input.*?login\[\_token\].*?>",b.text)
+        b.get(login_auth[0][0])
+        token = re.findall("login\[\_token\].*?>",b.text)
+        print("token:",token)
         token_value = re.findall("value\=\"(.*?)\"",token[0])[0]
-        print(token_value)
+        print("token_value:",token_value)
         print("cur url:",b.url)
         b.post("https://login.gog.com/login_check",{
             "login[username]":"saluk64007@gmail.com",
@@ -253,9 +254,10 @@ def better_get_shelf():
             "login[login]":"",
             },
             )
-        print(b.url)
+        print("new url:",b.url)
         
         #Properly follow redirect!
+        #print(b.answer.history[1].content)
         print(b.answer.history[0].content)
         link = re.findall(b"content\=.*?https(.*?)\"",b.answer.history[0].content)
         print(link)
@@ -272,8 +274,10 @@ def better_get_shelf():
     count = 50
     page=1
     f = open("mygog_shelf.html","w")
+    #b.get("https://www.gog.com/account")
+    #f.write(b.text)
     while count:
-        b.get("https://secure.gog.com/account/ajax",params={
+        b.get("https://www.gog.com/account/ajax",params={
             "a":"gamesShelfMore",
             "p":page,
             "s":"date_purchased",
