@@ -58,9 +58,11 @@ class Source:
             if 1:#not os.path.exists("cache/batches/"+game.gameid+".bat"):
                 with open("cache/batches/"+game.gameid+".bat", "w") as f:
                     f.write('cd "%s"\n'%folder)
-                    f.write('"%s"\n'%game.install_path)
+                    f.write('"%s"\n'%(game.install_path.split("\\")[-1]))
             args = [game.gameid+".bat"]
             folder = os.path.abspath("cache\\batches\\")
+            #args = [game.install_path.split("\\")[-1]]
+            #folder = game.install_path.rsplit("\\",1)[0]
             if not self.missing_steam_launch(game):
             #HACKY - run game through steam
                 args = ["cache\\steamshortcuts\\%s.url"%game.shortcut_name]
@@ -238,7 +240,7 @@ def changed(da,db):
         if k not in db:
             d["_del_"].append(k)
         elif db[k] != da[k]:
-            d["_set_"].append({"k":k,"v":db[k]})
+            d["_set_"].append({"k":k,"v":db[k],"ov":da[k]})
     for k in db:
         if k not in da:
             d["_add_"].append({"k":k,"v":db[k]})
@@ -312,7 +314,12 @@ class Games:
         assert(isinstance(game,Game))
         cur_game = self.games.get(gameid,None)
         if not cur_game or force:
-            self.actions.append(add_action("add",game=game.dict()))
+            if cur_game:
+                diff = changed(cur_game.dict(),game.dict())
+                if diff:
+                    self.actions.append(add_action("update",game=game.dict(),changes=diff))
+            else:
+                self.actions.append(add_action("add",game=game.dict()))
             self.games[gameid] = game
             return
         previous_data = cur_game.dict()
@@ -336,3 +343,7 @@ class Games:
     def delete(self, game):
         self.actions.append(add_action("delete",game=game.dict()))
         del self.games[game.gameid]
+    def play(self, game):
+        self.actions.append(add_action("play",game=game.dict()))
+    def stop(self, game):
+        self.actions.append(add_action("stop",game=game.dict()))
