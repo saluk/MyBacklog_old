@@ -13,6 +13,7 @@ import steamapi
 import gogapi
 import humbleapi
 import thegamesdb
+import giantbomb
 os.environ["QT_QPA_PLATFORM_PLUGIN_PATH"] = "C:\\Python33\\Lib\\site-packages\\PyQt5\\plugins\\platforms"
 
 from PyQt5.QtCore import *
@@ -275,7 +276,7 @@ class MainWindow(QMainWindow):
         self.main_form = Form()
 
         menus = {}
-        for folder in ["file","import","cleanup","sync"]:
+        for folder in ["file","import","cleanup","sync","view"]:
             menus[folder] = self.menuBar().addMenu("&"+folder.capitalize())
             for x in dir(self.main_form):
                 if x.startswith(folder+"_"):
@@ -314,7 +315,8 @@ class Form(QWidget):
         self.search_platform = QLineEdit()
         self.searchbarlayout.addWidget(self.search_platform)
         self.search_platform.textChanged.connect(self.dosearch)
-        
+
+        self.sort = "priority"
         self.games_list_widget = QTableWidget()
 
         #self.games_list_widget = QWidget()
@@ -414,7 +416,7 @@ class Form(QWidget):
         return widgets
 
     def update_gamelist_widget(self):
-        self.gamelist = [{"game":g,"widget":None,"hidden":g.hidden} for g in self.games.list()]
+        self.gamelist = [{"game":g,"widget":None,"hidden":g.hidden} for g in self.games.list(self.sort)]
         self.games_list_widget.clear()
         self.games_list_widget.setHorizontalHeaderLabels(["source","icon","name","genre","playtime","lastplay","play","edit"])
         self.games_list_widget.horizontalHeader().setVisible(True)
@@ -483,15 +485,44 @@ class Form(QWidget):
             gdbg = thegamesdb.find_game(g.name)
             if gdbg:
                 data = thegamesdb.get_game_info(gdbg["id"])
-                #print(data)
-                if data and "Game" in data and "Genres" in data["Game"]:
-                    genre = data["Game"]["Genres"]["genre"]
+                if data and "Game" in data:
+                    print (data["Game"])
+                    genre = data["Game"].get("Genres",{}).get("genre","")
+                    coop = data["Game"].get("Co-op","No").lower().strip()=="yes"
                     if type(genre) not in [str,bytes]:
                         genre = [x for x in genre if type(x) in [str,bytes]][0]
-                    print(genre)
+                    print(genre,coop)
                     g.genre = genre.lower()
+                    if coop:
+                        g.genre = g.genre+"; co-op"
                     print(g.genre)
         self.games.save("games.json")
+
+    def cleanup_giantbomb(self):
+        for g in self.games.games.values():
+            gdbg = giantbomb.find_game(g.name)
+            if gdbg:
+                data = thegamesdb.get_game_info(gdbg["id"])
+                if data and "Game" in data:
+                    print (data["Game"])
+                    genre = data["Game"]["Genres"].get("genre","")
+                    coop = data["Game"]["Co-op"]
+                    if type(genre) not in [str,bytes]:
+                        genre = [x for x in genre if type(x) in [str,bytes]][0]
+                    print(genre,coop)
+                    g.genre = genre.lower()
+                    if coop:
+                        g.genre = g.genre+"; co-op"
+                    print(g.genre)
+        self.games.save("games.json")
+
+    def view_sort_by_added(self):
+        self.sort = "added"
+        self.update_gamelist_widget()
+
+    def view_sort_by_priority(self):
+        self.sort = "priority"
+        self.update_gamelist_widget()
 
     def run_game(self,game):
         if getattr(self,"stop_playing_button",None):

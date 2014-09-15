@@ -24,8 +24,12 @@ def find_game(name):
         if n2.startswith(n1):
             score += 0.1
         return score
-    print [(li["name"],match(name,li["name"])) for li in list]
+    print( [(li["name"],match(name,li["name"])) for li in list] )
     list.sort(key=lambda li: -match(name,li["name"]))
+    print( list[0] )
     return list[0]
 
-print json.dumps(get_game_info(find_game(sys.argv[1])["id"]),indent=4)
+if __name__=="__main__":
+    if len(sys.argv) < 2:
+        sys.argv = ["x","far cry 3"]
+    print (json.dumps(get_game_info(find_game(sys.argv[1])["id"]),indent=4))

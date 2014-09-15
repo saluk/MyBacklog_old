@@ -9717,6 +9717,3051 @@
             }, 
             "time": "01:13:47 2014-08-30", 
             "type": "stopgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "action; co-op", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/239070/323733faf2833c6e57879914ff15e05d07ace7d6.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "Hammerwatch", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0.0, 
+                "priority": 0, 
+                "source": "steam", 
+                "steamid": 239070, 
+                "website": ""
+            }, 
+            "time": "14:33:14 2014-08-30", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "action; co-op", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/239070/323733faf2833c6e57879914ff15e05d07ace7d6.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "Hammerwatch", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0.0, 
+                "priority": 0, 
+                "source": "steam", 
+                "steamid": 239070, 
+                "website": ""
+            }, 
+            "time": "14:52:22 2014-08-30", 
+            "type": "stopgame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "priority", 
+                        "ov": -1, 
+                        "v": 2
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "action; co-op", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/239070/323733faf2833c6e57879914ff15e05d07ace7d6.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "14:52:23 2014-08-30", 
+                "name": "Hammerwatch", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 1148.158791065216, 
+                "priority": 2, 
+                "source": "steam", 
+                "steamid": 239070, 
+                "website": ""
+            }, 
+            "time": "14:57:12 2014-08-30", 
+            "type": "updategame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/244810/9bca50d36a65aee72930ffbfb8445749a66fb134.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "Foul Play", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0.0, 
+                "priority": 0, 
+                "source": "steam", 
+                "steamid": 244810, 
+                "website": ""
+            }, 
+            "time": "14:57:22 2014-08-30", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/244810/9bca50d36a65aee72930ffbfb8445749a66fb134.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "Foul Play", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0.0, 
+                "priority": 0, 
+                "source": "steam", 
+                "steamid": 244810, 
+                "website": ""
+            }, 
+            "time": "15:11:26 2014-08-30", 
+            "type": "stopgame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "playtime", 
+                        "ov": 845.5941350460052, 
+                        "v": 0.0
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/244810/9bca50d36a65aee72930ffbfb8445749a66fb134.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "15:11:28 2014-08-30", 
+                "name": "Foul Play", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0.0, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 244810, 
+                "website": ""
+            }, 
+            "time": "15:11:42 2014-08-30", 
+            "type": "updategame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "role-playing; co-op", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/8980/eb45fb32b7f4e75564a30a52aa3c35a191253ea0.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "18:10:43 2014-04-25", 
+                "name": "Borderlands", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 59220.0, 
+                "priority": 0, 
+                "source": "steam", 
+                "steamid": 8980, 
+                "website": ""
+            }, 
+            "time": "15:12:25 2014-08-30", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "role-playing; co-op", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/8980/eb45fb32b7f4e75564a30a52aa3c35a191253ea0.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "18:10:43 2014-04-25", 
+                "name": "Borderlands", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 59220.0, 
+                "priority": 0, 
+                "source": "steam", 
+                "steamid": 8980, 
+                "website": ""
+            }, 
+            "time": "15:14:10 2014-08-30", 
+            "type": "stopgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/244810/9bca50d36a65aee72930ffbfb8445749a66fb134.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "15:11:28 2014-08-30", 
+                "name": "Foul Play", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0.0, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 244810, 
+                "website": ""
+            }, 
+            "time": "15:14:27 2014-08-30", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/244810/9bca50d36a65aee72930ffbfb8445749a66fb134.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "15:11:28 2014-08-30", 
+                "name": "Foul Play", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0.0, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 244810, 
+                "website": ""
+            }, 
+            "time": "15:15:07 2014-08-30", 
+            "type": "stopgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/244810/9bca50d36a65aee72930ffbfb8445749a66fb134.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "15:15:09 2014-08-30", 
+                "name": "Foul Play", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 40.64134097099304, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 244810, 
+                "website": ""
+            }, 
+            "time": "21:55:33 2014-08-30", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/244810/9bca50d36a65aee72930ffbfb8445749a66fb134.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "15:15:09 2014-08-30", 
+                "name": "Foul Play", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 40.64134097099304, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 244810, 
+                "website": ""
+            }, 
+            "time": "21:56:00 2014-08-30", 
+            "type": "stopgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/244810/9bca50d36a65aee72930ffbfb8445749a66fb134.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "21:56:01 2014-08-30", 
+                "name": "Foul Play", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 68.0569269657135, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 244810, 
+                "website": ""
+            }, 
+            "time": "21:56:02 2014-08-30", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/244810/9bca50d36a65aee72930ffbfb8445749a66fb134.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "21:56:01 2014-08-30", 
+                "name": "Foul Play", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 68.0569269657135, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 244810, 
+                "website": ""
+            }, 
+            "time": "22:10:07 2014-08-30", 
+            "type": "stopgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "action", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/12120/895e9391da2b8155989022d9dd95b12e09766375.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "20:02:26 2014-08-29", 
+                "name": "Grand Theft Auto: San Andreas", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 40627.136600255966, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 12120, 
+                "website": ""
+            }, 
+            "time": "23:18:01 2014-08-31", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "action", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/12120/895e9391da2b8155989022d9dd95b12e09766375.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "20:02:26 2014-08-29", 
+                "name": "Grand Theft Auto: San Andreas", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 40627.136600255966, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 12120, 
+                "website": ""
+            }, 
+            "time": "23:29:38 2014-08-31", 
+            "type": "stopgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "action", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/12120/895e9391da2b8155989022d9dd95b12e09766375.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "23:29:39 2014-08-31", 
+                "name": "Grand Theft Auto: San Andreas", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 41324.40469837189, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 12120, 
+                "website": ""
+            }, 
+            "time": "23:29:42 2014-08-31", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "action", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/12120/895e9391da2b8155989022d9dd95b12e09766375.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "23:29:39 2014-08-31", 
+                "name": "Grand Theft Auto: San Andreas", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 41324.40469837189, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 12120, 
+                "website": ""
+            }, 
+            "time": "00:54:26 2014-09-01", 
+            "type": "stopgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "action", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/12120/895e9391da2b8155989022d9dd95b12e09766375.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "00:54:27 2014-09-01", 
+                "name": "Grand Theft Auto: San Andreas", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 46409.087725400925, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 12120, 
+                "website": ""
+            }, 
+            "time": "15:10:09 2014-09-01", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "action", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/12120/895e9391da2b8155989022d9dd95b12e09766375.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "00:54:27 2014-09-01", 
+                "name": "Grand Theft Auto: San Andreas", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 46409.087725400925, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 12120, 
+                "website": ""
+            }, 
+            "time": "16:06:44 2014-09-01", 
+            "type": "stopgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "action", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/12120/895e9391da2b8155989022d9dd95b12e09766375.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "16:06:45 2014-09-01", 
+                "name": "Grand Theft Auto: San Andreas", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 49803.879712343216, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 12120, 
+                "website": ""
+            }, 
+            "time": "21:30:02 2014-09-01", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "action", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/12120/895e9391da2b8155989022d9dd95b12e09766375.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "16:06:45 2014-09-01", 
+                "name": "Grand Theft Auto: San Andreas", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 49803.879712343216, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 12120, 
+                "website": ""
+            }, 
+            "time": "23:25:00 2014-09-01", 
+            "type": "stopgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "action", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/12120/895e9391da2b8155989022d9dd95b12e09766375.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "23:25:01 2014-09-01", 
+                "name": "Grand Theft Auto: San Andreas", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 56701.64802026749, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 12120, 
+                "website": ""
+            }, 
+            "time": "18:06:50 2014-09-02", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "action", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/12120/895e9391da2b8155989022d9dd95b12e09766375.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "23:25:01 2014-09-01", 
+                "name": "Grand Theft Auto: San Andreas", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 56701.64802026749, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 12120, 
+                "website": ""
+            }, 
+            "time": "19:12:49 2014-09-02", 
+            "type": "stopgame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "priority", 
+                        "ov": -1, 
+                        "v": 1
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "shooter", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/19900/c73f0c967f77518128c6f2a3f0c4069ff49b1441.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "01:13:48 2014-08-30", 
+                "name": "Far Cry 2", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 70965.98555588722, 
+                "priority": 1, 
+                "source": "steam", 
+                "steamid": 19900, 
+                "website": ""
+            }, 
+            "time": "20:30:43 2014-09-02", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "priority", 
+                        "ov": -1, 
+                        "v": 1
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "role-playing; co-op", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/8980/eb45fb32b7f4e75564a30a52aa3c35a191253ea0.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "15:14:11 2014-08-30", 
+                "name": "Borderlands", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 59325.55848503113, 
+                "priority": 1, 
+                "source": "steam", 
+                "steamid": 8980, 
+                "website": ""
+            }, 
+            "time": "20:30:56 2014-09-02", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "priority", 
+                        "ov": -1, 
+                        "v": 2
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/244810/9bca50d36a65aee72930ffbfb8445749a66fb134.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "22:10:09 2014-08-30", 
+                "name": "Foul Play", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 913.692183971405, 
+                "priority": 2, 
+                "source": "steam", 
+                "steamid": 244810, 
+                "website": ""
+            }, 
+            "time": "20:31:02 2014-09-02", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "priority", 
+                        "ov": -1, 
+                        "v": 10
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "mmo", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "", 
+                "install_path": "C:\\games\\trion\\Glyph\\GlyphClient.exe", 
+                "is_package": 0, 
+                "lastplayed": "23:45:34 2014-08-14", 
+                "name": "Archeage", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 36113.331052303314, 
+                "priority": 10, 
+                "source": "none", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "20:31:17 2014-09-02", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "playtime", 
+                        "ov": 59325.55848503113, 
+                        "v": 59340.0
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/8980/eb45fb32b7f4e75564a30a52aa3c35a191253ea0.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "Borderlands", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 59340.0, 
+                "priority": 0, 
+                "source": "steam", 
+                "steamid": 8980, 
+                "website": ""
+            }, 
+            "time": "11:07:53 2014-09-05", 
+            "type": "updategame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/257830/fd322601b35aa6e5469a4b9a01d8e0359b5fadbc.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "Violett", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0.0, 
+                "priority": 0, 
+                "source": "steam", 
+                "steamid": 257830, 
+                "website": ""
+            }, 
+            "time": "11:07:53 2014-09-05", 
+            "type": "addgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/262850/1cf06abd7b867ea9efa49471577dac715b13fb3d.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "The Journey Down: Chapter Two", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0.0, 
+                "priority": 0, 
+                "source": "steam", 
+                "steamid": 262850, 
+                "website": ""
+            }, 
+            "time": "11:07:53 2014-09-05", 
+            "type": "addgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/270170/9944e83846676b71635cb5e9a4cfde6318bb35f7.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "Depression Quest", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0.0, 
+                "priority": 0, 
+                "source": "steam", 
+                "steamid": 270170, 
+                "website": ""
+            }, 
+            "time": "11:07:53 2014-09-05", 
+            "type": "addgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/279940/23f4284a0df55a8c9ec7889bb6bb59d8dd7a20be.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "The Book of Unwritten Tales 2", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0.0, 
+                "priority": 0, 
+                "source": "steam", 
+                "steamid": 279940, 
+                "website": ""
+            }, 
+            "time": "11:07:53 2014-09-05", 
+            "type": "addgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/286160/19f5b90e3c7084758f885ded843631b13929fa26.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "Tabletop Simulator", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0.0, 
+                "priority": 0, 
+                "source": "steam", 
+                "steamid": 286160, 
+                "website": ""
+            }, 
+            "time": "11:07:53 2014-09-05", 
+            "type": "addgame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "playtime", 
+                        "ov": 30822.81769299507, 
+                        "v": 30840.0
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/247080/d6b5298b33cb990dcbb3fae94db4b421b813a724.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "Crypt of the NecroDancer", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 30840.0, 
+                "priority": 0, 
+                "source": "steam", 
+                "steamid": 247080, 
+                "website": ""
+            }, 
+            "time": "11:07:53 2014-09-05", 
+            "type": "updategame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/279940/23f4284a0df55a8c9ec7889bb6bb59d8dd7a20be.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "The Book of Unwritten Tales 2", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0.0, 
+                "priority": 0, 
+                "source": "steam", 
+                "steamid": 279940, 
+                "website": ""
+            }, 
+            "time": "11:08:13 2014-09-05", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/279940/23f4284a0df55a8c9ec7889bb6bb59d8dd7a20be.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "The Book of Unwritten Tales 2", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0.0, 
+                "priority": 0, 
+                "source": "steam", 
+                "steamid": 279940, 
+                "website": ""
+            }, 
+            "time": "11:34:27 2014-09-05", 
+            "type": "stopgame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "priority", 
+                        "ov": 1, 
+                        "v": 0
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "role-playing; co-op", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/8980/eb45fb32b7f4e75564a30a52aa3c35a191253ea0.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "15:14:11 2014-08-30", 
+                "name": "Borderlands", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 59340.0, 
+                "priority": 0, 
+                "source": "steam", 
+                "steamid": 8980, 
+                "website": ""
+            }, 
+            "time": "11:52:02 2014-09-05", 
+            "type": "updategame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "role-playing; co-op", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/8980/eb45fb32b7f4e75564a30a52aa3c35a191253ea0.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "15:14:11 2014-08-30", 
+                "name": "Borderlands", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 59340.0, 
+                "priority": 0, 
+                "source": "steam", 
+                "steamid": 8980, 
+                "website": ""
+            }, 
+            "time": "11:52:26 2014-09-05", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "role-playing; co-op", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/8980/eb45fb32b7f4e75564a30a52aa3c35a191253ea0.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "15:14:11 2014-08-30", 
+                "name": "Borderlands", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 59340.0, 
+                "priority": 0, 
+                "source": "steam", 
+                "steamid": 8980, 
+                "website": ""
+            }, 
+            "time": "16:00:50 2014-09-05", 
+            "type": "stopgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "action", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/12120/895e9391da2b8155989022d9dd95b12e09766375.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "19:12:52 2014-09-02", 
+                "name": "Grand Theft Auto: San Andreas", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 60662.102647304535, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 12120, 
+                "website": ""
+            }, 
+            "time": "17:24:41 2014-09-05", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "action", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/12120/895e9391da2b8155989022d9dd95b12e09766375.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "19:12:52 2014-09-02", 
+                "name": "Grand Theft Auto: San Andreas", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 60662.102647304535, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 12120, 
+                "website": ""
+            }, 
+            "time": "17:34:32 2014-09-05", 
+            "type": "stopgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "action", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/12120/895e9391da2b8155989022d9dd95b12e09766375.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "17:34:33 2014-09-05", 
+                "name": "Grand Theft Auto: San Andreas", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 61254.05470824242, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 12120, 
+                "website": ""
+            }, 
+            "time": "17:34:35 2014-09-05", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "action", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/12120/895e9391da2b8155989022d9dd95b12e09766375.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "17:34:33 2014-09-05", 
+                "name": "Grand Theft Auto: San Andreas", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 61254.05470824242, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 12120, 
+                "website": ""
+            }, 
+            "time": "17:35:22 2014-09-05", 
+            "type": "stopgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "action", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/12120/895e9391da2b8155989022d9dd95b12e09766375.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "17:35:24 2014-09-05", 
+                "name": "Grand Theft Auto: San Andreas", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 61301.46180438995, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 12120, 
+                "website": ""
+            }, 
+            "time": "17:35:26 2014-09-05", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "action", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/12120/895e9391da2b8155989022d9dd95b12e09766375.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "17:35:24 2014-09-05", 
+                "name": "Grand Theft Auto: San Andreas", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 61301.46180438995, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 12120, 
+                "website": ""
+            }, 
+            "time": "19:07:21 2014-09-05", 
+            "type": "stopgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/279940/23f4284a0df55a8c9ec7889bb6bb59d8dd7a20be.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "11:34:29 2014-09-05", 
+                "name": "The Book of Unwritten Tales 2", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 1574.1285679340363, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 279940, 
+                "website": ""
+            }, 
+            "time": "13:19:39 2014-09-06", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/279940/23f4284a0df55a8c9ec7889bb6bb59d8dd7a20be.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "11:34:29 2014-09-05", 
+                "name": "The Book of Unwritten Tales 2", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 1574.1285679340363, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 279940, 
+                "website": ""
+            }, 
+            "time": "14:37:43 2014-09-06", 
+            "type": "stopgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "action", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "", 
+                "install_path": "C:\\games\\The Crew (Beta)\\TheCrew.exe", 
+                "is_package": 0, 
+                "lastplayed": "14:19:01 2014-08-29", 
+                "name": "The Crew", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 15983.944770812988, 
+                "priority": -1, 
+                "source": "none", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "22:14:49 2014-09-06", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "action", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "", 
+                "install_path": "C:\\games\\The Crew (Beta)\\TheCrew.exe", 
+                "is_package": 0, 
+                "lastplayed": "14:19:01 2014-08-29", 
+                "name": "The Crew", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 15983.944770812988, 
+                "priority": -1, 
+                "source": "none", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "22:17:23 2014-09-06", 
+            "type": "stopgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "action", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/12120/895e9391da2b8155989022d9dd95b12e09766375.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "19:07:23 2014-09-05", 
+                "name": "Grand Theft Auto: San Andreas", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 66817.79240250587, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 12120, 
+                "website": ""
+            }, 
+            "time": "22:17:40 2014-09-06", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "action", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/12120/895e9391da2b8155989022d9dd95b12e09766375.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "19:07:23 2014-09-05", 
+                "name": "Grand Theft Auto: San Andreas", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 66817.79240250587, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 12120, 
+                "website": ""
+            }, 
+            "time": "00:17:20 2014-09-07", 
+            "type": "stopgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "action", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/12120/895e9391da2b8155989022d9dd95b12e09766375.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "00:17:22 2014-09-07", 
+                "name": "Grand Theft Auto: San Andreas", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 73998.92266130447, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 12120, 
+                "website": ""
+            }, 
+            "time": "20:46:14 2014-09-07", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "action", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/12120/895e9391da2b8155989022d9dd95b12e09766375.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "00:17:22 2014-09-07", 
+                "name": "Grand Theft Auto: San Andreas", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 73998.92266130447, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 12120, 
+                "website": ""
+            }, 
+            "time": "22:37:15 2014-09-07", 
+            "type": "stopgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "action", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/12120/895e9391da2b8155989022d9dd95b12e09766375.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "22:37:17 2014-09-07", 
+                "name": "Grand Theft Auto: San Andreas", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 80660.98622536659, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 12120, 
+                "website": ""
+            }, 
+            "time": "19:44:05 2014-09-09", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "action", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/12120/895e9391da2b8155989022d9dd95b12e09766375.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "22:37:17 2014-09-07", 
+                "name": "Grand Theft Auto: San Andreas", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 80660.98622536659, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 12120, 
+                "website": ""
+            }, 
+            "time": "21:08:56 2014-09-09", 
+            "type": "stopgame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "is_package", 
+                        "ov": 0, 
+                        "v": 1
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "octodad_dadliestcatch", 
+                "humble_package": "2wAKM64hSE8G43FF", 
+                "icon_url": "", 
+                "install_path": "", 
+                "is_package": 1, 
+                "lastplayed": null, 
+                "name": "Octodad: Dadliest Catch", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "00:17:11 2014-09-11", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "is_package", 
+                        "ov": 1, 
+                        "v": 0
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "octodad_dadliestcatch", 
+                "humble_package": "2wAKM64hSE8G43FF", 
+                "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/71c4a7e34c0d18c78da55bc2808855150e08f7d7.png", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "Octodad: Dadliest Catch", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": "http://www.octodadgame.com"
+            }, 
+            "time": "00:17:11 2014-09-11", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "is_package", 
+                        "ov": 0, 
+                        "v": 1
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "elliotquest", 
+                "humble_package": "BNpA7Kp33D8pwHu8", 
+                "icon_url": "", 
+                "install_path": "", 
+                "is_package": 1, 
+                "lastplayed": null, 
+                "name": "Elliot Quest: Deluxe Edition", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "00:17:11 2014-09-11", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "is_package", 
+                        "ov": 1, 
+                        "v": 0
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "elliotquest", 
+                "humble_package": "BNpA7Kp33D8pwHu8", 
+                "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/a9dda399208c3362581eb71680fbdc1d7fc24902.png", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "Elliot Quest ", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": "http://elliotquest.com"
+            }, 
+            "time": "00:17:11 2014-09-11", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "is_package", 
+                        "ov": 0, 
+                        "v": 1
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "anodyne", 
+                "humble_package": "BrtqUecstsTD", 
+                "icon_url": "", 
+                "install_path": "", 
+                "is_package": 1, 
+                "lastplayed": null, 
+                "name": "Anodyne", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "00:17:11 2014-09-11", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "is_package", 
+                        "ov": 1, 
+                        "v": 0
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "anodyne", 
+                "humble_package": "BrtqUecstsTD", 
+                "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/040a0611e0b1d9f828c1b72d7760a89dce64f753.png", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "Anodyne", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": "http://www.anodynegame.com/"
+            }, 
+            "time": "00:17:11 2014-09-11", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "is_package", 
+                        "ov": 0, 
+                        "v": 1
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "theswapper", 
+                "humble_package": "VGny6E2VC8aT", 
+                "icon_url": "", 
+                "install_path": "", 
+                "is_package": 1, 
+                "lastplayed": null, 
+                "name": "The Swapper", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "00:17:11 2014-09-11", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "is_package", 
+                        "ov": 1, 
+                        "v": 0
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "theswapper", 
+                "humble_package": "VGny6E2VC8aT", 
+                "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/36440cf53faa21ed9f12de50b957e7c175b88551.png", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "The Swapper", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": "http://facepalmgames.com/the-swapper/"
+            }, 
+            "time": "00:17:11 2014-09-11", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "is_package", 
+                        "ov": 0, 
+                        "v": 1
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "spudsquest", 
+                "humble_package": "aq7vUF38uWdEAUta", 
+                "icon_url": "", 
+                "install_path": "", 
+                "is_package": 1, 
+                "lastplayed": null, 
+                "name": "Spud's Quest", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "00:17:11 2014-09-11", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "is_package", 
+                        "ov": 1, 
+                        "v": 0
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "spudsquest", 
+                "humble_package": "aq7vUF38uWdEAUta", 
+                "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/1c5cebd08f01aa0c9e0da0f57d8bb8e604a2ac02.png", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "Spud's Quest", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": "http://www.spudsquest.com"
+            }, 
+            "time": "00:17:11 2014-09-11", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "is_package", 
+                        "ov": 0, 
+                        "v": 1
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "banished", 
+                "humble_package": "c3tBRShUFPCcAKK2", 
+                "icon_url": "", 
+                "install_path": "", 
+                "is_package": 1, 
+                "lastplayed": null, 
+                "name": "Banished", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "00:17:11 2014-09-11", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "is_package", 
+                        "ov": 1, 
+                        "v": 0
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "banished", 
+                "humble_package": "c3tBRShUFPCcAKK2", 
+                "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/2c11d6597e1756c16fb66c3ae8f0038f6744e45d.png", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "Banished", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": "http://www.shiningrocksoftware.com"
+            }, 
+            "time": "00:17:11 2014-09-11", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "is_package", 
+                        "ov": 0, 
+                        "v": 1
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "unrest", 
+                "humble_package": "pUbc4SEvZDPtvEnT", 
+                "icon_url": "", 
+                "install_path": "", 
+                "is_package": 1, 
+                "lastplayed": null, 
+                "name": "Unrest", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "00:17:11 2014-09-11", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "is_package", 
+                        "ov": 1, 
+                        "v": 0
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "unrest", 
+                "humble_package": "pUbc4SEvZDPtvEnT", 
+                "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/3882d206d102126ed83eac1eb5f510f3cec4224a.png", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "Unrest", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": "http://pyrodactyl.com/"
+            }, 
+            "time": "00:17:11 2014-09-11", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "is_package", 
+                        "ov": 0, 
+                        "v": 1
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "legendofgrimrock", 
+                "humble_package": "sar4un3WeMbM", 
+                "icon_url": "", 
+                "install_path": "", 
+                "is_package": 1, 
+                "lastplayed": null, 
+                "name": "Legend of Grimrock", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "00:17:11 2014-09-11", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "is_package", 
+                        "ov": 1, 
+                        "v": 0
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "legendofgrimrock", 
+                "humble_package": "sar4un3WeMbM", 
+                "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/100a26cb319c7092b972e6c872eec0b7ef00db72.png", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "Legend of Grimrock", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": "http://www.grimrock.net/"
+            }, 
+            "time": "00:17:11 2014-09-11", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "is_package", 
+                        "ov": 0, 
+                        "v": 1
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "octodad_dadliestcatch", 
+                "humble_package": "2wAKM64hSE8G43FF", 
+                "icon_url": "", 
+                "install_path": "", 
+                "is_package": 1, 
+                "lastplayed": null, 
+                "name": "Octodad: Dadliest Catch", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "00:18:01 2014-09-11", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "is_package", 
+                        "ov": 1, 
+                        "v": 0
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "octodad_dadliestcatch", 
+                "humble_package": "2wAKM64hSE8G43FF", 
+                "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/71c4a7e34c0d18c78da55bc2808855150e08f7d7.png", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "Octodad: Dadliest Catch", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": "http://www.octodadgame.com"
+            }, 
+            "time": "00:18:01 2014-09-11", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "is_package", 
+                        "ov": 0, 
+                        "v": 1
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "elliotquest", 
+                "humble_package": "BNpA7Kp33D8pwHu8", 
+                "icon_url": "", 
+                "install_path": "", 
+                "is_package": 1, 
+                "lastplayed": null, 
+                "name": "Elliot Quest: Deluxe Edition", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "00:18:01 2014-09-11", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "is_package", 
+                        "ov": 1, 
+                        "v": 0
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "elliotquest", 
+                "humble_package": "BNpA7Kp33D8pwHu8", 
+                "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/a9dda399208c3362581eb71680fbdc1d7fc24902.png", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "Elliot Quest ", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": "http://elliotquest.com"
+            }, 
+            "time": "00:18:01 2014-09-11", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "is_package", 
+                        "ov": 0, 
+                        "v": 1
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "anodyne", 
+                "humble_package": "BrtqUecstsTD", 
+                "icon_url": "", 
+                "install_path": "", 
+                "is_package": 1, 
+                "lastplayed": null, 
+                "name": "Anodyne", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "00:18:01 2014-09-11", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "is_package", 
+                        "ov": 1, 
+                        "v": 0
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "anodyne", 
+                "humble_package": "BrtqUecstsTD", 
+                "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/040a0611e0b1d9f828c1b72d7760a89dce64f753.png", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "Anodyne", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": "http://www.anodynegame.com/"
+            }, 
+            "time": "00:18:01 2014-09-11", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "is_package", 
+                        "ov": 0, 
+                        "v": 1
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "theswapper", 
+                "humble_package": "VGny6E2VC8aT", 
+                "icon_url": "", 
+                "install_path": "", 
+                "is_package": 1, 
+                "lastplayed": null, 
+                "name": "The Swapper", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "00:18:01 2014-09-11", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "is_package", 
+                        "ov": 1, 
+                        "v": 0
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "theswapper", 
+                "humble_package": "VGny6E2VC8aT", 
+                "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/36440cf53faa21ed9f12de50b957e7c175b88551.png", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "The Swapper", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": "http://facepalmgames.com/the-swapper/"
+            }, 
+            "time": "00:18:01 2014-09-11", 
+            "type": "updategame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "thelongdark_kstier3", 
+                "humble_package": "XGxSbsnhCpphw2FG", 
+                "icon_url": "", 
+                "install_path": "", 
+                "is_package": 1, 
+                "lastplayed": null, 
+                "name": "The Long Dark ($40-$80 Tier Alpha Access)", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "00:18:01 2014-09-11", 
+            "type": "addgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "thelongdark", 
+                "humble_package": "XGxSbsnhCpphw2FG", 
+                "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/c10d6532d1f58147ac186505560aa94615598736.png", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "The Long Dark", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": "http://www.intothelongdark.com"
+            }, 
+            "time": "00:18:01 2014-09-11", 
+            "type": "addgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "thelongdark_artbook", 
+                "humble_package": "XGxSbsnhCpphw2FG", 
+                "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/c10d6532d1f58147ac186505560aa94615598736.png", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "The Long Dark Artbook", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": "http://www.intothelongdark.com"
+            }, 
+            "time": "00:18:01 2014-09-11", 
+            "type": "addgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "thelongdark_soundtrack", 
+                "humble_package": "XGxSbsnhCpphw2FG", 
+                "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/c10d6532d1f58147ac186505560aa94615598736.png", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "The Long Dark Soundtrack", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": "http://www.intothelongdark.com"
+            }, 
+            "time": "00:18:01 2014-09-11", 
+            "type": "addgame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "is_package", 
+                        "ov": 0, 
+                        "v": 1
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "spudsquest", 
+                "humble_package": "aq7vUF38uWdEAUta", 
+                "icon_url": "", 
+                "install_path": "", 
+                "is_package": 1, 
+                "lastplayed": null, 
+                "name": "Spud's Quest", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "00:18:01 2014-09-11", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "is_package", 
+                        "ov": 1, 
+                        "v": 0
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "spudsquest", 
+                "humble_package": "aq7vUF38uWdEAUta", 
+                "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/1c5cebd08f01aa0c9e0da0f57d8bb8e604a2ac02.png", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "Spud's Quest", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": "http://www.spudsquest.com"
+            }, 
+            "time": "00:18:01 2014-09-11", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "is_package", 
+                        "ov": 0, 
+                        "v": 1
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "banished", 
+                "humble_package": "c3tBRShUFPCcAKK2", 
+                "icon_url": "", 
+                "install_path": "", 
+                "is_package": 1, 
+                "lastplayed": null, 
+                "name": "Banished", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "00:18:01 2014-09-11", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "is_package", 
+                        "ov": 1, 
+                        "v": 0
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "banished", 
+                "humble_package": "c3tBRShUFPCcAKK2", 
+                "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/2c11d6597e1756c16fb66c3ae8f0038f6744e45d.png", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "Banished", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": "http://www.shiningrocksoftware.com"
+            }, 
+            "time": "00:18:01 2014-09-11", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "is_package", 
+                        "ov": 0, 
+                        "v": 1
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "unrest", 
+                "humble_package": "pUbc4SEvZDPtvEnT", 
+                "icon_url": "", 
+                "install_path": "", 
+                "is_package": 1, 
+                "lastplayed": null, 
+                "name": "Unrest", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "00:18:01 2014-09-11", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "is_package", 
+                        "ov": 1, 
+                        "v": 0
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "unrest", 
+                "humble_package": "pUbc4SEvZDPtvEnT", 
+                "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/3882d206d102126ed83eac1eb5f510f3cec4224a.png", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "Unrest", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": "http://pyrodactyl.com/"
+            }, 
+            "time": "00:18:01 2014-09-11", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "is_package", 
+                        "ov": 0, 
+                        "v": 1
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "legendofgrimrock", 
+                "humble_package": "sar4un3WeMbM", 
+                "icon_url": "", 
+                "install_path": "", 
+                "is_package": 1, 
+                "lastplayed": null, 
+                "name": "Legend of Grimrock", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "00:18:01 2014-09-11", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "is_package", 
+                        "ov": 1, 
+                        "v": 0
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "legendofgrimrock", 
+                "humble_package": "sar4un3WeMbM", 
+                "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/100a26cb319c7092b972e6c872eec0b7ef00db72.png", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "Legend of Grimrock", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": "http://www.grimrock.net/"
+            }, 
+            "time": "00:18:01 2014-09-11", 
+            "type": "updategame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/305620/980b1855fed25e7bb8e3670708f499d04f3684d0.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "The Long Dark -- Sandbox Alpha", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0.0, 
+                "priority": 0, 
+                "source": "steam", 
+                "steamid": 305620, 
+                "website": ""
+            }, 
+            "time": "00:18:20 2014-09-11", 
+            "type": "addgame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "icon_url", 
+                        "ov": "http://media.steampowered.com/steamcommunity/public/images/apps/240760/bf7708798ab2700978a44716be523e08f8b9f644.jpg", 
+                        "v": "http://media.steampowered.com/steamcommunity/public/images/apps/240760/b86ee8dadc97895c777934d27cdc4e06b2105a34.jpg"
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/240760/b86ee8dadc97895c777934d27cdc4e06b2105a34.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "Wasteland 2", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 1200.0, 
+                "priority": 0, 
+                "source": "steam", 
+                "steamid": 240760, 
+                "website": ""
+            }, 
+            "time": "00:18:20 2014-09-11", 
+            "type": "updategame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/305620/980b1855fed25e7bb8e3670708f499d04f3684d0.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "The Long Dark -- Sandbox Alpha", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0.0, 
+                "priority": 0, 
+                "source": "steam", 
+                "steamid": 305620, 
+                "website": ""
+            }, 
+            "time": "01:09:43 2014-09-11", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/305620/980b1855fed25e7bb8e3670708f499d04f3684d0.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "The Long Dark -- Sandbox Alpha", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0.0, 
+                "priority": 0, 
+                "source": "steam", 
+                "steamid": 305620, 
+                "website": ""
+            }, 
+            "time": "01:33:02 2014-09-11", 
+            "type": "stopgame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "playtime", 
+                        "ov": 74243.96299099922, 
+                        "v": 74340.0
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/8980/eb45fb32b7f4e75564a30a52aa3c35a191253ea0.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "Borderlands", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 74340.0, 
+                "priority": 0, 
+                "source": "steam", 
+                "steamid": 8980, 
+                "website": ""
+            }, 
+            "time": "23:54:34 2014-09-13", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "playtime", 
+                        "ov": 66960.0, 
+                        "v": 67740.0
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/220200/6dc8c1377c6b0ffedaeaec59c253f8c33fb3e62b.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "Kerbal Space Program", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 67740.0, 
+                "priority": 0, 
+                "source": "steam", 
+                "steamid": 220200, 
+                "website": ""
+            }, 
+            "time": "23:54:34 2014-09-13", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "playtime", 
+                        "ov": 0.0, 
+                        "v": 420.0
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/239200/3bf781ae80c6eeb8827819fb2ed92aa2353d3007.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "Amnesia: A Machine for Pigs", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 420.0, 
+                "priority": 0, 
+                "source": "steam", 
+                "steamid": 239200, 
+                "website": ""
+            }, 
+            "time": "23:54:34 2014-09-13", 
+            "type": "updategame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/215530/8de7b60f25cdfb36d541d6b0245b7fef52b77b32.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "The Incredible Adventures of Van Helsing", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0.0, 
+                "priority": 0, 
+                "source": "steam", 
+                "steamid": 215530, 
+                "website": ""
+            }, 
+            "time": "23:54:34 2014-09-13", 
+            "type": "addgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/272470/690f1791c4dea139b70989c550f476e13443ea37.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "The Incredible Adventures of Van Helsing II", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0.0, 
+                "priority": 0, 
+                "source": "steam", 
+                "steamid": 272470, 
+                "website": ""
+            }, 
+            "time": "23:54:34 2014-09-13", 
+            "type": "addgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "harvester", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://www.gog.com/upload/images/2014/02/8856645ba8324e49c3289f16afc5e8f82c2d6bca_bbC_20.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "Harvester", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "gog", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "00:07:10 2014-09-14", 
+            "type": "addgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "ether_one", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://www.gog.com/upload/images/2014/03/b66aebe35ac2e66e309adb2cc012106a85893cc1_bbC_20.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "Ether One", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "gog", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "00:07:10 2014-09-14", 
+            "type": "addgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "the_shivah", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://www.gog.com/upload/images/2013/11/b42709f1afde96f82ac99c8ec4822649bf6920aa_bbC_20.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "The Shivah", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "gog", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "00:07:10 2014-09-14", 
+            "type": "addgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "sword_of_the_samurai", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://www.gog.com/upload/images/2014/03/3dff0cf8c27721d10b7843d3c0ce8509d7adfa69_bbC_20.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "Sword Of The Samurai", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "gog", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "00:07:10 2014-09-14", 
+            "type": "addgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "bloodnet", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://www.gog.com/upload/images/2014/01/ac7b3e6c9b6319cbcb0de37b875c9823ecc9d0b0_bbC_20.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "Bloodnet", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "gog", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "00:07:10 2014-09-14", 
+            "type": "addgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "action", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/12120/895e9391da2b8155989022d9dd95b12e09766375.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "21:08:58 2014-09-09", 
+                "name": "Grand Theft Auto: San Andreas", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 85752.92448425293, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 12120, 
+                "website": ""
+            }, 
+            "time": "00:07:41 2014-09-14", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "action", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/12120/895e9391da2b8155989022d9dd95b12e09766375.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "21:08:58 2014-09-09", 
+                "name": "Grand Theft Auto: San Andreas", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 85752.92448425293, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 12120, 
+                "website": ""
+            }, 
+            "time": "00:47:33 2014-09-14", 
+            "type": "stopgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "action", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/12120/895e9391da2b8155989022d9dd95b12e09766375.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "00:47:36 2014-09-14", 
+                "name": "Grand Theft Auto: San Andreas", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 88146.78660321236, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 12120, 
+                "website": ""
+            }, 
+            "time": "21:22:25 2014-09-14", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "action", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/12120/895e9391da2b8155989022d9dd95b12e09766375.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "00:47:36 2014-09-14", 
+                "name": "Grand Theft Auto: San Andreas", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 88146.78660321236, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 12120, 
+                "website": ""
+            }, 
+            "time": "22:04:22 2014-09-14", 
+            "type": "stopgame"
         }
     ], 
     "games": {
@@ -9735,7 +12780,7 @@
             "notes": "", 
             "packageid": "", 
             "playtime": 36113.331052303314, 
-            "priority": -1, 
+            "priority": 10, 
             "source": "none", 
             "steamid": "", 
             "website": ""
@@ -10162,7 +13207,7 @@
         }, 
         "gog_arma_2_combined_operations": {
             "finished": 0, 
-            "genre": "action", 
+            "genre": "action; co-op", 
             "gogid": "arma_2_combined_operations", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -10202,7 +13247,7 @@
         }, 
         "gog_arma_gold_edition": {
             "finished": 0, 
-            "genre": "action", 
+            "genre": "action; co-op", 
             "gogid": "arma_gold_edition", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -10382,7 +13427,7 @@
         }, 
         "gog_baldurs_gate_2_complete": {
             "finished": 0, 
-            "genre": "role-playing", 
+            "genre": "role-playing; co-op", 
             "gogid": "baldurs_gate_2_complete", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -10402,7 +13447,7 @@
         }, 
         "gog_baldurs_gate_the_original_saga": {
             "finished": 0, 
-            "genre": "role-playing", 
+            "genre": "role-playing; co-op", 
             "gogid": "baldurs_gate_the_original_saga", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -10800,6 +13845,26 @@
             "steamid": "", 
             "website": ""
         }, 
+        "gog_bloodnet": {
+            "finished": 0, 
+            "genre": "", 
+            "gogid": "bloodnet", 
+            "hidden": 0, 
+            "humble_machinename": "", 
+            "humble_package": "", 
+            "icon_url": "http://www.gog.com/upload/images/2014/01/ac7b3e6c9b6319cbcb0de37b875c9823ecc9d0b0_bbC_20.jpg", 
+            "install_path": "", 
+            "is_package": 0, 
+            "lastplayed": null, 
+            "name": "Bloodnet", 
+            "notes": "", 
+            "packageid": "", 
+            "playtime": 0, 
+            "priority": 0, 
+            "source": "gog", 
+            "steamid": "", 
+            "website": ""
+        }, 
         "gog_botanicula": {
             "finished": 0, 
             "genre": "adventure", 
@@ -11122,7 +14187,7 @@
         }, 
         "gog_combat_mission_beyond_overlord": {
             "finished": 0, 
-            "genre": "action", 
+            "genre": "action; co-op", 
             "gogid": "combat_mission_beyond_overlord", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -11362,7 +14427,7 @@
         }, 
         "gog_crusader_no_regret": {
             "finished": 0, 
-            "genre": "action", 
+            "genre": "action; co-op", 
             "gogid": "crusader_no_regret", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -12182,7 +15247,7 @@
         }, 
         "gog_duke_nukem_12": {
             "finished": 0, 
-            "genre": "", 
+            "genre": "action", 
             "gogid": "duke_nukem_12", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -12480,6 +15545,26 @@
             "steamid": "", 
             "website": ""
         }, 
+        "gog_ether_one": {
+            "finished": 0, 
+            "genre": "", 
+            "gogid": "ether_one", 
+            "hidden": 0, 
+            "humble_machinename": "", 
+            "humble_package": "", 
+            "icon_url": "http://www.gog.com/upload/images/2014/03/b66aebe35ac2e66e309adb2cc012106a85893cc1_bbC_20.jpg", 
+            "install_path": "", 
+            "is_package": 0, 
+            "lastplayed": null, 
+            "name": "Ether One", 
+            "notes": "", 
+            "packageid": "", 
+            "playtime": 0, 
+            "priority": 0, 
+            "source": "gog", 
+            "steamid": "", 
+            "website": ""
+        }, 
         "gog_evoland": {
             "finished": 1, 
             "genre": "adventure", 
@@ -12622,7 +15707,7 @@
         }, 
         "gog_flatout_2": {
             "finished": 0, 
-            "genre": "", 
+            "genre": "racing", 
             "gogid": "flatout_2", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -12902,7 +15987,7 @@
         }, 
         "gog_gorky_17": {
             "finished": 0, 
-            "genre": "sports", 
+            "genre": "sports; co-op", 
             "gogid": "gorky_17", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -13002,7 +16087,7 @@
         }, 
         "gog_ground_control_2_operation_exodus": {
             "finished": 0, 
-            "genre": "strategy", 
+            "genre": "strategy; co-op", 
             "gogid": "ground_control_2_operation_exodus", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -13042,7 +16127,7 @@
         }, 
         "gog_guacamelee_gold_edition": {
             "finished": 0, 
-            "genre": "action", 
+            "genre": "action; co-op", 
             "gogid": "guacamelee_gold_edition", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -13062,7 +16147,7 @@
         }, 
         "gog_guilty_gear_x2_reload": {
             "finished": 0, 
-            "genre": "fighting", 
+            "genre": "fighting; co-op", 
             "gogid": "guilty_gear_x2_reload", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -13072,6 +16157,26 @@
             "is_package": 0, 
             "lastplayed": null, 
             "name": "Guilty Gear X2 Reload", 
+            "notes": "", 
+            "packageid": "", 
+            "playtime": 0, 
+            "priority": 0, 
+            "source": "gog", 
+            "steamid": "", 
+            "website": ""
+        }, 
+        "gog_harvester": {
+            "finished": 0, 
+            "genre": "", 
+            "gogid": "harvester", 
+            "hidden": 0, 
+            "humble_machinename": "", 
+            "humble_package": "", 
+            "icon_url": "http://www.gog.com/upload/images/2014/02/8856645ba8324e49c3289f16afc5e8f82c2d6bca_bbC_20.jpg", 
+            "install_path": "", 
+            "is_package": 0, 
+            "lastplayed": null, 
+            "name": "Harvester", 
             "notes": "", 
             "packageid": "", 
             "playtime": 0, 
@@ -13162,7 +16267,7 @@
         }, 
         "gog_heroes_of_might_and_magic_2_gold_edition": {
             "finished": 0, 
-            "genre": "adventure", 
+            "genre": "adventure; co-op", 
             "gogid": "heroes_of_might_and_magic_2_gold_edition", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -13182,7 +16287,7 @@
         }, 
         "gog_heroes_of_might_and_magic_3_complete_edition": {
             "finished": 0, 
-            "genre": "adventure", 
+            "genre": "adventure; co-op", 
             "gogid": "heroes_of_might_and_magic_3_complete_edition", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -13702,7 +16807,7 @@
         }, 
         "gog_journeyman_project_1_pegasus_prime_the": {
             "finished": 1, 
-            "genre": "action", 
+            "genre": "action; co-op", 
             "gogid": "journeyman_project_1_pegasus_prime_the", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -15462,7 +18567,7 @@
         }, 
         "gog_painkiller": {
             "finished": 0, 
-            "genre": "", 
+            "genre": "; co-op", 
             "gogid": "painkiller", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -15722,7 +18827,7 @@
         }, 
         "gog_pid": {
             "finished": 0, 
-            "genre": "action", 
+            "genre": "action; co-op", 
             "gogid": "pid", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -15762,7 +18867,7 @@
         }, 
         "gog_pod_gold": {
             "finished": 0, 
-            "genre": "action", 
+            "genre": "action; co-op", 
             "gogid": "pod_gold", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -16462,7 +19567,7 @@
         }, 
         "gog_realms_of_chaos": {
             "finished": 0, 
-            "genre": "", 
+            "genre": "action", 
             "gogid": "realms_of_chaos", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -16842,7 +19947,7 @@
         }, 
         "gog_rune_classic": {
             "finished": 0, 
-            "genre": "action", 
+            "genre": "action; co-op", 
             "gogid": "rune_classic", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -16922,7 +20027,7 @@
         }, 
         "gog_secret_agent": {
             "finished": 0, 
-            "genre": "", 
+            "genre": "action", 
             "gogid": "secret_agent", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -16942,7 +20047,7 @@
         }, 
         "gog_sensible_world_of_soccer_9697": {
             "finished": 0, 
-            "genre": "", 
+            "genre": "sports", 
             "gogid": "sensible_world_of_soccer_9697", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -17582,7 +20687,7 @@
         }, 
         "gog_stick_it_to_the_man": {
             "finished": 0, 
-            "genre": "", 
+            "genre": "role-playing", 
             "gogid": "stick_it_to_the_man", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -17662,7 +20767,7 @@
         }, 
         "gog_story_about_my_uncle_a": {
             "finished": 0, 
-            "genre": "", 
+            "genre": "adventure", 
             "gogid": "story_about_my_uncle_a", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -17782,7 +20887,7 @@
         }, 
         "gog_summoner": {
             "finished": 0, 
-            "genre": "", 
+            "genre": "role-playing", 
             "gogid": "summoner", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -17812,6 +20917,26 @@
             "is_package": 0, 
             "lastplayed": null, 
             "name": "Superfrog", 
+            "notes": "", 
+            "packageid": "", 
+            "playtime": 0, 
+            "priority": 0, 
+            "source": "gog", 
+            "steamid": "", 
+            "website": ""
+        }, 
+        "gog_sword_of_the_samurai": {
+            "finished": 0, 
+            "genre": "", 
+            "gogid": "sword_of_the_samurai", 
+            "hidden": 0, 
+            "humble_machinename": "", 
+            "humble_package": "", 
+            "icon_url": "http://www.gog.com/upload/images/2014/03/3dff0cf8c27721d10b7843d3c0ce8509d7adfa69_bbC_20.jpg", 
+            "install_path": "", 
+            "is_package": 0, 
+            "lastplayed": null, 
+            "name": "Sword Of The Samurai", 
             "notes": "", 
             "packageid": "", 
             "playtime": 0, 
@@ -17862,7 +20987,7 @@
         }, 
         "gog_syndicate": {
             "finished": 0, 
-            "genre": "", 
+            "genre": "; co-op", 
             "gogid": "syndicate", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -18242,7 +21367,7 @@
         }, 
         "gog_the_guild_gold_edition": {
             "finished": 0, 
-            "genre": "action", 
+            "genre": "action; co-op", 
             "gogid": "the_guild_gold_edition", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -18532,6 +21657,26 @@
             "is_package": 0, 
             "lastplayed": null, 
             "name": "The Settlers 4 Gold Edition", 
+            "notes": "", 
+            "packageid": "", 
+            "playtime": 0, 
+            "priority": 0, 
+            "source": "gog", 
+            "steamid": "", 
+            "website": ""
+        }, 
+        "gog_the_shivah": {
+            "finished": 0, 
+            "genre": "", 
+            "gogid": "the_shivah", 
+            "hidden": 0, 
+            "humble_machinename": "", 
+            "humble_package": "", 
+            "icon_url": "http://www.gog.com/upload/images/2013/11/b42709f1afde96f82ac99c8ec4822649bf6920aa_bbC_20.jpg", 
+            "install_path": "", 
+            "is_package": 0, 
+            "lastplayed": null, 
+            "name": "The Shivah", 
             "notes": "", 
             "packageid": "", 
             "playtime": 0, 
@@ -19022,7 +22167,7 @@
         }, 
         "gog_two_worlds": {
             "finished": 0, 
-            "genre": "role-playing", 
+            "genre": "role-playing; co-op", 
             "gogid": "two_worlds", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -19062,7 +22207,7 @@
         }, 
         "gog_tyrian_2000": {
             "finished": 0, 
-            "genre": "shooter", 
+            "genre": "shooter; co-op", 
             "gogid": "tyrian_2000", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -19502,7 +22647,7 @@
         }, 
         "gog_wasteland_the_classic_original": {
             "finished": 0, 
-            "genre": "action", 
+            "genre": "action; co-op", 
             "gogid": "wasteland_the_classic_original", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -20262,7 +23407,7 @@
         }, 
         "humble_broforce_betaonline": {
             "finished": 0, 
-            "genre": "shooter", 
+            "genre": "shooter; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "broforce_betaonline", 
@@ -20762,7 +23907,7 @@
         }, 
         "humble_grimdawn_soundtrack": {
             "finished": 0, 
-            "genre": "action", 
+            "genre": "action; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "grimdawn_soundtrack", 
@@ -20922,7 +24067,7 @@
         }, 
         "humble_jamestown": {
             "finished": 0, 
-            "genre": "action", 
+            "genre": "action; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "jamestown", 
@@ -20962,7 +24107,7 @@
         }, 
         "humble_legendofdungeon-k2": {
             "finished": 0, 
-            "genre": "action", 
+            "genre": "action; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "legendofdungeon-k2", 
@@ -20982,7 +24127,7 @@
         }, 
         "humble_legendofdungeon_finalbuild": {
             "finished": 0, 
-            "genre": "action", 
+            "genre": "action; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "legendofdungeon_finalbuild", 
@@ -21002,7 +24147,7 @@
         }, 
         "humble_legendofdungeon_soundtrack": {
             "finished": 0, 
-            "genre": "action", 
+            "genre": "action; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "legendofdungeon_soundtrack", 
@@ -21062,7 +24207,7 @@
         }, 
         "humble_metalslug3_android": {
             "finished": 0, 
-            "genre": "action", 
+            "genre": "action; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "metalslug3_android", 
@@ -21162,7 +24307,7 @@
         }, 
         "humble_octodad_dadliestcatch": {
             "finished": 0, 
-            "genre": "adventure", 
+            "genre": "adventure; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "octodad_dadliestcatch", 
@@ -21222,7 +24367,7 @@
         }, 
         "humble_roadredemption": {
             "finished": 0, 
-            "genre": "shooter", 
+            "genre": "shooter; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "roadredemption", 
@@ -21242,7 +24387,7 @@
         }, 
         "humble_roadredemption_kstier1": {
             "finished": 0, 
-            "genre": "shooter", 
+            "genre": "shooter; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "roadredemption_kstier1", 
@@ -21262,7 +24407,7 @@
         }, 
         "humble_shadowgrounds": {
             "finished": 0, 
-            "genre": "shooter", 
+            "genre": "shooter; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "shadowgrounds", 
@@ -21282,7 +24427,7 @@
         }, 
         "humble_shadowgrounds_soundtrack": {
             "finished": 0, 
-            "genre": "shooter", 
+            "genre": "shooter; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "shadowgrounds_soundtrack", 
@@ -21302,7 +24447,7 @@
         }, 
         "humble_shadowgroundssurvivor": {
             "finished": 0, 
-            "genre": "shooter", 
+            "genre": "shooter; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "shadowgroundssurvivor", 
@@ -21322,7 +24467,7 @@
         }, 
         "humble_shadowgroundssurvivor_soundtrack": {
             "finished": 0, 
-            "genre": "shooter", 
+            "genre": "shooter; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "shadowgroundssurvivor_soundtrack", 
@@ -21540,6 +24685,86 @@
             "steamid": "", 
             "website": ""
         }, 
+        "humble_thelongdark": {
+            "finished": 0, 
+            "genre": "", 
+            "gogid": "", 
+            "hidden": 0, 
+            "humble_machinename": "thelongdark", 
+            "humble_package": "XGxSbsnhCpphw2FG", 
+            "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/c10d6532d1f58147ac186505560aa94615598736.png", 
+            "install_path": "", 
+            "is_package": 0, 
+            "lastplayed": null, 
+            "name": "The Long Dark", 
+            "notes": "", 
+            "packageid": "", 
+            "playtime": 0, 
+            "priority": 0, 
+            "source": "humble", 
+            "steamid": "", 
+            "website": "http://www.intothelongdark.com"
+        }, 
+        "humble_thelongdark_artbook": {
+            "finished": 0, 
+            "genre": "", 
+            "gogid": "", 
+            "hidden": 0, 
+            "humble_machinename": "thelongdark_artbook", 
+            "humble_package": "XGxSbsnhCpphw2FG", 
+            "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/c10d6532d1f58147ac186505560aa94615598736.png", 
+            "install_path": "", 
+            "is_package": 0, 
+            "lastplayed": null, 
+            "name": "The Long Dark Artbook", 
+            "notes": "", 
+            "packageid": "", 
+            "playtime": 0, 
+            "priority": 0, 
+            "source": "humble", 
+            "steamid": "", 
+            "website": "http://www.intothelongdark.com"
+        }, 
+        "humble_thelongdark_kstier3": {
+            "finished": 0, 
+            "genre": "", 
+            "gogid": "", 
+            "hidden": 0, 
+            "humble_machinename": "thelongdark_kstier3", 
+            "humble_package": "XGxSbsnhCpphw2FG", 
+            "icon_url": "", 
+            "install_path": "", 
+            "is_package": 1, 
+            "lastplayed": null, 
+            "name": "The Long Dark ($40-$80 Tier Alpha Access)", 
+            "notes": "", 
+            "packageid": "", 
+            "playtime": 0, 
+            "priority": 0, 
+            "source": "humble", 
+            "steamid": "", 
+            "website": ""
+        }, 
+        "humble_thelongdark_soundtrack": {
+            "finished": 0, 
+            "genre": "", 
+            "gogid": "", 
+            "hidden": 0, 
+            "humble_machinename": "thelongdark_soundtrack", 
+            "humble_package": "XGxSbsnhCpphw2FG", 
+            "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/c10d6532d1f58147ac186505560aa94615598736.png", 
+            "install_path": "", 
+            "is_package": 0, 
+            "lastplayed": null, 
+            "name": "The Long Dark Soundtrack", 
+            "notes": "", 
+            "packageid": "", 
+            "playtime": 0, 
+            "priority": 0, 
+            "source": "humble", 
+            "steamid": "", 
+            "website": "http://www.intothelongdark.com"
+        }, 
         "humble_theroom_android": {
             "finished": 0, 
             "genre": "action", 
@@ -21602,7 +24827,7 @@
         }, 
         "humble_trine": {
             "finished": 0, 
-            "genre": "platform", 
+            "genre": "platform; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "trine", 
@@ -21622,7 +24847,7 @@
         }, 
         "humble_trine_soundtrack": {
             "finished": 0, 
-            "genre": "platform", 
+            "genre": "platform; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "trine_soundtrack", 
@@ -21762,7 +24987,7 @@
         }, 
         "mother_1": {
             "finished": 0, 
-            "genre": "rpg", 
+            "genre": "", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -21802,7 +25027,7 @@
         }, 
         "steam_102500": {
             "finished": 0, 
-            "genre": "adventure", 
+            "genre": "adventure; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -21882,7 +25107,7 @@
         }, 
         "steam_105600": {
             "finished": 0, 
-            "genre": "action", 
+            "genre": "action; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -22002,7 +25227,7 @@
         }, 
         "steam_107410": {
             "finished": 0, 
-            "genre": "action", 
+            "genre": "action; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -22062,7 +25287,7 @@
         }, 
         "steam_109600": {
             "finished": 0, 
-            "genre": "", 
+            "genre": "action", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -22242,7 +25467,7 @@
         }, 
         "steam_11200": {
             "finished": 0, 
-            "genre": "shooter", 
+            "genre": "shooter; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -22490,11 +25715,11 @@
             "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/12120/895e9391da2b8155989022d9dd95b12e09766375.jpg", 
             "install_path": "", 
             "is_package": 0, 
-            "lastplayed": "20:02:26 2014-08-29", 
+            "lastplayed": "22:04:23 2014-09-14", 
             "name": "Grand Theft Auto: San Andreas", 
             "notes": "", 
             "packageid": "", 
-            "playtime": 40627.136600255966, 
+            "playtime": 90663.94101023674, 
             "priority": -1, 
             "source": "steam", 
             "steamid": 12120, 
@@ -22782,7 +26007,7 @@
         }, 
         "steam_12320": {
             "finished": 0, 
-            "genre": "action", 
+            "genre": "action; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -23002,7 +26227,7 @@
         }, 
         "steam_13510": {
             "finished": 0, 
-            "genre": "action", 
+            "genre": "action; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -23482,7 +26707,7 @@
         }, 
         "steam_18070": {
             "finished": 0, 
-            "genre": "action", 
+            "genre": "action; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -23555,14 +26780,14 @@
             "notes": "", 
             "packageid": "", 
             "playtime": 70965.98555588722, 
-            "priority": -1, 
+            "priority": 1, 
             "source": "steam", 
             "steamid": 19900, 
             "website": ""
         }, 
         "steam_200210": {
             "finished": 0, 
-            "genre": "mmo", 
+            "genre": "mmo; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -23622,7 +26847,7 @@
         }, 
         "steam_200710": {
             "finished": 0, 
-            "genre": "action", 
+            "genre": "action; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -24042,7 +27267,7 @@
         }, 
         "steam_204360": {
             "finished": 0, 
-            "genre": "action", 
+            "genre": "action; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -24222,7 +27447,7 @@
         }, 
         "steam_205790": {
             "finished": 0, 
-            "genre": "action", 
+            "genre": "action; co-op", 
             "gogid": "", 
             "hidden": 1, 
             "humble_machinename": "", 
@@ -24282,7 +27507,7 @@
         }, 
         "steam_206420": {
             "finished": 0, 
-            "genre": "action", 
+            "genre": "action; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -24802,7 +28027,7 @@
         }, 
         "steam_214770": {
             "finished": 0, 
-            "genre": "action", 
+            "genre": "action; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -24860,6 +28085,26 @@
             "steamid": 215160, 
             "website": ""
         }, 
+        "steam_215530": {
+            "finished": 0, 
+            "genre": "", 
+            "gogid": "", 
+            "hidden": 0, 
+            "humble_machinename": "", 
+            "humble_package": "", 
+            "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/215530/8de7b60f25cdfb36d541d6b0245b7fef52b77b32.jpg", 
+            "install_path": "", 
+            "is_package": 0, 
+            "lastplayed": null, 
+            "name": "The Incredible Adventures of Van Helsing", 
+            "notes": "", 
+            "packageid": "", 
+            "playtime": 0.0, 
+            "priority": 0, 
+            "source": "steam", 
+            "steamid": 215530, 
+            "website": ""
+        }, 
         "steam_215670": {
             "finished": 1, 
             "genre": "adventure", 
@@ -24902,7 +28147,7 @@
         }, 
         "steam_21690": {
             "finished": 0, 
-            "genre": "action", 
+            "genre": "action; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -25042,7 +28287,7 @@
         }, 
         "steam_219990": {
             "finished": 0, 
-            "genre": "action", 
+            "genre": "action; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -25114,7 +28359,7 @@
             "name": "Kerbal Space Program", 
             "notes": "", 
             "packageid": "", 
-            "playtime": 66960.0, 
+            "playtime": 67740.0, 
             "priority": 0, 
             "source": "steam", 
             "steamid": 220200, 
@@ -25122,7 +28367,7 @@
         }, 
         "steam_220240": {
             "finished": 1, 
-            "genre": "shooter", 
+            "genre": "shooter; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -25302,7 +28547,7 @@
         }, 
         "steam_221810": {
             "finished": 1, 
-            "genre": "adventure", 
+            "genre": "adventure; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -25402,7 +28647,7 @@
         }, 
         "steam_222980": {
             "finished": 0, 
-            "genre": "action", 
+            "genre": "action; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -25502,7 +28747,7 @@
         }, 
         "steam_223530": {
             "finished": 0, 
-            "genre": "action", 
+            "genre": "action; co-op", 
             "gogid": "", 
             "hidden": 1, 
             "humble_machinename": "", 
@@ -25622,7 +28867,7 @@
         }, 
         "steam_224480": {
             "finished": 0, 
-            "genre": "adventure", 
+            "genre": "adventure; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -25882,7 +29127,7 @@
         }, 
         "steam_228320": {
             "finished": 0, 
-            "genre": "action", 
+            "genre": "action; co-op", 
             "gogid": "", 
             "hidden": 1, 
             "humble_machinename": "", 
@@ -25942,7 +29187,7 @@
         }, 
         "steam_230410": {
             "finished": 0, 
-            "genre": "action", 
+            "genre": "action; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -26022,7 +29267,7 @@
         }, 
         "steam_231310": {
             "finished": 0, 
-            "genre": "", 
+            "genre": "adventure; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -26242,7 +29487,7 @@
         }, 
         "steam_234190": {
             "finished": 0, 
-            "genre": "", 
+            "genre": "shooter", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -26262,7 +29507,7 @@
         }, 
         "steam_234370": {
             "finished": 0, 
-            "genre": "action", 
+            "genre": "action; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -26462,7 +29707,7 @@
         }, 
         "steam_238070": {
             "finished": 0, 
-            "genre": "", 
+            "genre": "shooter", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -26482,7 +29727,7 @@
         }, 
         "steam_238280": {
             "finished": 0, 
-            "genre": "action", 
+            "genre": "action; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -26522,7 +29767,7 @@
         }, 
         "steam_238460": {
             "finished": 0, 
-            "genre": "", 
+            "genre": "action; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -26582,7 +29827,7 @@
         }, 
         "steam_239070": {
             "finished": 0, 
-            "genre": "action", 
+            "genre": "action; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -26590,12 +29835,12 @@
             "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/239070/323733faf2833c6e57879914ff15e05d07ace7d6.jpg", 
             "install_path": "", 
             "is_package": 0, 
-            "lastplayed": null, 
+            "lastplayed": "14:52:23 2014-08-30", 
             "name": "Hammerwatch", 
             "notes": "", 
             "packageid": "", 
-            "playtime": 0.0, 
-            "priority": 0, 
+            "playtime": 1148.158791065216, 
+            "priority": 2, 
             "source": "steam", 
             "steamid": 239070, 
             "website": ""
@@ -26614,7 +29859,7 @@
             "name": "Amnesia: A Machine for Pigs", 
             "notes": "", 
             "packageid": "", 
-            "playtime": 0.0, 
+            "playtime": 420.0, 
             "priority": 0, 
             "source": "steam", 
             "steamid": 239200, 
@@ -26667,7 +29912,7 @@
             "hidden": 0, 
             "humble_machinename": "", 
             "humble_package": "", 
-            "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/240760/bf7708798ab2700978a44716be523e08f8b9f644.jpg", 
+            "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/240760/b86ee8dadc97895c777934d27cdc4e06b2105a34.jpg", 
             "install_path": "", 
             "is_package": 0, 
             "lastplayed": "22:13:43 2014-06-20", 
@@ -26842,7 +30087,7 @@
         }, 
         "steam_243470": {
             "finished": 1, 
-            "genre": "action,open-world", 
+            "genre": "action", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -26930,19 +30175,19 @@
             "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/244810/9bca50d36a65aee72930ffbfb8445749a66fb134.jpg", 
             "install_path": "", 
             "is_package": 0, 
-            "lastplayed": null, 
+            "lastplayed": "22:10:09 2014-08-30", 
             "name": "Foul Play", 
             "notes": "", 
             "packageid": "", 
-            "playtime": 0.0, 
-            "priority": 0, 
+            "playtime": 913.692183971405, 
+            "priority": 2, 
             "source": "steam", 
             "steamid": 244810, 
             "website": ""
         }, 
         "steam_245280": {
             "finished": 0, 
-            "genre": "adventure", 
+            "genre": "adventure; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -26962,7 +30207,7 @@
         }, 
         "steam_247000": {
             "finished": 0, 
-            "genre": "", 
+            "genre": "shooter", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -26994,7 +30239,7 @@
             "name": "Crypt of the NecroDancer", 
             "notes": "", 
             "packageid": "", 
-            "playtime": 30822.81769299507, 
+            "playtime": 30840.0, 
             "priority": -1, 
             "source": "steam", 
             "steamid": 247080, 
@@ -27062,7 +30307,7 @@
         }, 
         "steam_248450": {
             "finished": 0, 
-            "genre": "", 
+            "genre": "adventure", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -27082,7 +30327,7 @@
         }, 
         "steam_248820": {
             "finished": 0, 
-            "genre": "action", 
+            "genre": "action; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -27142,7 +30387,7 @@
         }, 
         "steam_2500": {
             "finished": 0, 
-            "genre": "shooter", 
+            "genre": "shooter; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -27262,7 +30507,7 @@
         }, 
         "steam_255280": {
             "finished": 0, 
-            "genre": "", 
+            "genre": "action", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -27302,7 +30547,7 @@
         }, 
         "steam_25700": {
             "finished": 0, 
-            "genre": "action", 
+            "genre": "action; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -27338,6 +30583,26 @@
             "priority": 0, 
             "source": "steam", 
             "steamid": 257120, 
+            "website": ""
+        }, 
+        "steam_257830": {
+            "finished": 0, 
+            "genre": "", 
+            "gogid": "", 
+            "hidden": 0, 
+            "humble_machinename": "", 
+            "humble_package": "", 
+            "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/257830/fd322601b35aa6e5469a4b9a01d8e0359b5fadbc.jpg", 
+            "install_path": "", 
+            "is_package": 0, 
+            "lastplayed": null, 
+            "name": "Violett", 
+            "notes": "", 
+            "packageid": "", 
+            "playtime": 0.0, 
+            "priority": 0, 
+            "source": "steam", 
+            "steamid": 257830, 
             "website": ""
         }, 
         "steam_25890": {
@@ -27440,6 +30705,26 @@
             "steamid": 261030, 
             "website": ""
         }, 
+        "steam_262850": {
+            "finished": 0, 
+            "genre": "", 
+            "gogid": "", 
+            "hidden": 0, 
+            "humble_machinename": "", 
+            "humble_package": "", 
+            "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/262850/1cf06abd7b867ea9efa49471577dac715b13fb3d.jpg", 
+            "install_path": "", 
+            "is_package": 0, 
+            "lastplayed": null, 
+            "name": "The Journey Down: Chapter Two", 
+            "notes": "", 
+            "packageid": "", 
+            "playtime": 0.0, 
+            "priority": 0, 
+            "source": "steam", 
+            "steamid": 262850, 
+            "website": ""
+        }, 
         "steam_262940": {
             "finished": 1, 
             "genre": "adventure", 
@@ -27462,7 +30747,7 @@
         }, 
         "steam_263140": {
             "finished": 0, 
-            "genre": "", 
+            "genre": "strategy", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -27660,6 +30945,26 @@
             "steamid": 269030, 
             "website": ""
         }, 
+        "steam_270170": {
+            "finished": 0, 
+            "genre": "", 
+            "gogid": "", 
+            "hidden": 0, 
+            "humble_machinename": "", 
+            "humble_package": "", 
+            "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/270170/9944e83846676b71635cb5e9a4cfde6318bb35f7.jpg", 
+            "install_path": "", 
+            "is_package": 0, 
+            "lastplayed": null, 
+            "name": "Depression Quest", 
+            "notes": "", 
+            "packageid": "", 
+            "playtime": 0.0, 
+            "priority": 0, 
+            "source": "steam", 
+            "steamid": 270170, 
+            "website": ""
+        }, 
         "steam_27040": {
             "finished": 0, 
             "genre": "role-playing", 
@@ -27678,6 +30983,26 @@
             "priority": 0, 
             "source": "steam", 
             "steamid": 27040, 
+            "website": ""
+        }, 
+        "steam_272470": {
+            "finished": 0, 
+            "genre": "", 
+            "gogid": "", 
+            "hidden": 0, 
+            "humble_machinename": "", 
+            "humble_package": "", 
+            "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/272470/690f1791c4dea139b70989c550f476e13443ea37.jpg", 
+            "install_path": "", 
+            "is_package": 0, 
+            "lastplayed": null, 
+            "name": "The Incredible Adventures of Van Helsing II", 
+            "notes": "", 
+            "packageid": "", 
+            "playtime": 0.0, 
+            "priority": 0, 
+            "source": "steam", 
+            "steamid": 272470, 
             "website": ""
         }, 
         "steam_274190": {
@@ -27702,7 +31027,7 @@
         }, 
         "steam_274310": {
             "finished": 0, 
-            "genre": "", 
+            "genre": "adventure", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -27738,6 +31063,26 @@
             "priority": 0, 
             "source": "steam", 
             "steamid": 2760, 
+            "website": ""
+        }, 
+        "steam_279940": {
+            "finished": 0, 
+            "genre": "", 
+            "gogid": "", 
+            "hidden": 0, 
+            "humble_machinename": "", 
+            "humble_package": "", 
+            "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/279940/23f4284a0df55a8c9ec7889bb6bb59d8dd7a20be.jpg", 
+            "install_path": "", 
+            "is_package": 0, 
+            "lastplayed": "14:37:45 2014-09-06", 
+            "name": "The Book of Unwritten Tales 2", 
+            "notes": "", 
+            "packageid": "", 
+            "playtime": 6258.673540115356, 
+            "priority": -1, 
+            "source": "steam", 
+            "steamid": 279940, 
             "website": ""
         }, 
         "steam_280": {
@@ -27842,7 +31187,7 @@
         }, 
         "steam_283880": {
             "finished": 0, 
-            "genre": "", 
+            "genre": "adventure", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -27882,7 +31227,7 @@
         }, 
         "steam_2850": {
             "finished": 0, 
-            "genre": "", 
+            "genre": "construction and management simulation", 
             "gogid": "", 
             "hidden": 1, 
             "humble_machinename": "", 
@@ -27898,6 +31243,26 @@
             "priority": 0, 
             "source": "steam", 
             "steamid": 2850, 
+            "website": ""
+        }, 
+        "steam_286160": {
+            "finished": 0, 
+            "genre": "", 
+            "gogid": "", 
+            "hidden": 0, 
+            "humble_machinename": "", 
+            "humble_package": "", 
+            "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/286160/19f5b90e3c7084758f885ded843631b13929fa26.jpg", 
+            "install_path": "", 
+            "is_package": 0, 
+            "lastplayed": null, 
+            "name": "Tabletop Simulator", 
+            "notes": "", 
+            "packageid": "", 
+            "playtime": 0.0, 
+            "priority": 0, 
+            "source": "steam", 
+            "steamid": 286160, 
             "website": ""
         }, 
         "steam_290770": {
@@ -27962,7 +31327,7 @@
         }, 
         "steam_295770": {
             "finished": 0, 
-            "genre": "", 
+            "genre": "action", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -28038,6 +31403,26 @@
             "priority": -1, 
             "source": "steam", 
             "steamid": 298630, 
+            "website": ""
+        }, 
+        "steam_305620": {
+            "finished": 0, 
+            "genre": "", 
+            "gogid": "", 
+            "hidden": 0, 
+            "humble_machinename": "", 
+            "humble_package": "", 
+            "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/305620/980b1855fed25e7bb8e3670708f499d04f3684d0.jpg", 
+            "install_path": "", 
+            "is_package": 0, 
+            "lastplayed": "01:33:05 2014-09-11", 
+            "name": "The Long Dark -- Sandbox Alpha", 
+            "notes": "", 
+            "packageid": "", 
+            "playtime": 1400.4020690917969, 
+            "priority": -1, 
+            "source": "steam", 
+            "steamid": 305620, 
             "website": ""
         }, 
         "steam_305780": {
@@ -28462,7 +31847,7 @@
         }, 
         "steam_35130": {
             "finished": 0, 
-            "genre": "action", 
+            "genre": "action; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -28502,7 +31887,7 @@
         }, 
         "steam_35460": {
             "finished": 0, 
-            "genre": "puzzle", 
+            "genre": "puzzle; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -28522,7 +31907,7 @@
         }, 
         "steam_35700": {
             "finished": 0, 
-            "genre": "platform", 
+            "genre": "platform; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -28542,7 +31927,7 @@
         }, 
         "steam_35720": {
             "finished": 0, 
-            "genre": "platform", 
+            "genre": "platform; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -28682,7 +32067,7 @@
         }, 
         "steam_39530": {
             "finished": 0, 
-            "genre": "shooter", 
+            "genre": "shooter; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -29102,7 +32487,7 @@
         }, 
         "steam_440": {
             "finished": 0, 
-            "genre": "shooter", 
+            "genre": "shooter; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -29182,7 +32567,7 @@
         }, 
         "steam_46250": {
             "finished": 0, 
-            "genre": "shooter", 
+            "genre": "shooter; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -29362,7 +32747,7 @@
         }, 
         "steam_49600": {
             "finished": 0, 
-            "genre": "action", 
+            "genre": "action; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -29422,7 +32807,7 @@
         }, 
         "steam_500": {
             "finished": 0, 
-            "genre": "horror", 
+            "genre": "horror; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -29522,7 +32907,7 @@
         }, 
         "steam_550": {
             "finished": 0, 
-            "genre": "action", 
+            "genre": "action; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -29562,7 +32947,7 @@
         }, 
         "steam_55230": {
             "finished": 1, 
-            "genre": "action", 
+            "genre": "action; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -29582,7 +32967,7 @@
         }, 
         "steam_570": {
             "finished": 0, 
-            "genre": "action", 
+            "genre": "action; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -29742,7 +33127,7 @@
         }, 
         "steam_6020": {
             "finished": 0, 
-            "genre": "", 
+            "genre": "action", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -29822,7 +33207,7 @@
         }, 
         "steam_620": {
             "finished": 0, 
-            "genre": "puzzle", 
+            "genre": "puzzle; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -29882,7 +33267,7 @@
         }, 
         "steam_644": {
             "finished": 0, 
-            "genre": "puzzle", 
+            "genre": "puzzle; co-op", 
             "gogid": "", 
             "hidden": 1, 
             "humble_machinename": "", 
@@ -29902,7 +33287,7 @@
         }, 
         "steam_65560": {
             "finished": 0, 
-            "genre": "shooter", 
+            "genre": "shooter; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -30022,7 +33407,7 @@
         }, 
         "steam_6910": {
             "finished": 0, 
-            "genre": "action", 
+            "genre": "action; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -30162,7 +33547,7 @@
         }, 
         "steam_7020": {
             "finished": 0, 
-            "genre": "", 
+            "genre": "; co-op", 
             "gogid": "", 
             "hidden": 1, 
             "humble_machinename": "", 
@@ -30402,7 +33787,7 @@
         }, 
         "steam_7860": {
             "finished": 0, 
-            "genre": "shooter", 
+            "genre": "shooter; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -30482,7 +33867,7 @@
         }, 
         "steam_8100": {
             "finished": 0, 
-            "genre": "shooter", 
+            "genre": "shooter; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -30662,7 +34047,7 @@
         }, 
         "steam_8980": {
             "finished": 0, 
-            "genre": "role-playing", 
+            "genre": "role-playing; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -30670,19 +34055,19 @@
             "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/8980/eb45fb32b7f4e75564a30a52aa3c35a191253ea0.jpg", 
             "install_path": "", 
             "is_package": 0, 
-            "lastplayed": "18:10:43 2014-04-25", 
+            "lastplayed": "16:00:52 2014-09-05", 
             "name": "Borderlands", 
             "notes": "", 
             "packageid": "", 
-            "playtime": 59220.0, 
-            "priority": 0, 
+            "playtime": 74340.0, 
+            "priority": -1, 
             "source": "steam", 
             "steamid": 8980, 
             "website": ""
         }, 
         "steam_91310": {
             "finished": 0, 
-            "genre": "action", 
+            "genre": "action; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -30762,7 +34147,7 @@
         }, 
         "steam_94200": {
             "finished": 0, 
-            "genre": "action", 
+            "genre": "action; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -30802,7 +34187,7 @@
         }, 
         "steam_95300": {
             "finished": 0, 
-            "genre": "action", 
+            "genre": "action; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -30922,7 +34307,7 @@
         }, 
         "steam_99870": {
             "finished": 0, 
-            "genre": "shooter", 
+            "genre": "shooter; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -30962,7 +34347,7 @@
         }, 
         "the_crew": {
             "finished": 0, 
-            "genre": "racing", 
+            "genre": "action", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -30970,11 +34355,11 @@
             "icon_url": "", 
             "install_path": "C:\\games\\The Crew (Beta)\\TheCrew.exe", 
             "is_package": 0, 
-            "lastplayed": "14:19:01 2014-08-29", 
+            "lastplayed": "22:17:24 2014-09-06", 
             "name": "The Crew", 
             "notes": "", 
             "packageid": "", 
-            "playtime": 15983.944770812988, 
+            "playtime": 16138.77508187294, 
             "priority": -1, 
             "source": "none", 
             "steamid": "", 
@@ -31002,7 +34387,7 @@
         }, 
         "titanfall": {
             "finished": 0, 
-            "genre": "action", 
+            "genre": "action; co-op", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 

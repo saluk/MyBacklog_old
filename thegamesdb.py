@@ -78,3 +78,4 @@ def get_game_info(game_id):
 
 if __name__=="__main__":
     print (get_game_info(find_game("lands of lore ii")["id"]))
+    print (get_game_info(find_game("lands of lore 2")["id"]))

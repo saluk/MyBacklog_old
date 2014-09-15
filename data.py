@@ -337,9 +337,18 @@ class Games:
         if diff:
             self.actions.append(add_action("update",game=game.dict(),changes=diff))
         return game
-    def list(self):
+    def list(self,sort="priority"):
         v = self.games.values()
-        return sorted(v,key=lambda g:(g.finished,g.priority,-time.mktime(stot(g.lastplayed)),g.name))
+        if sort=="priority":
+            return sorted(v,key=lambda g:(g.finished,g.priority,-time.mktime(stot(g.lastplayed)),g.name))
+        elif sort=="added":
+            add_dates = {}
+            for a in self.actions:
+                if a["type"] == "addgame":
+                    g = Game(**a["game"])
+                    add_dates[g.gameid] = time.mktime(stot(a["time"]))
+            default = time.mktime(stot("23:39:03 1980-07-16"))
+            return sorted(v,key=lambda g:(-add_dates.get(g.gameid,default)))
     def delete(self, game):
         self.actions.append(add_action("delete",game=game.dict()))
         del self.games[game.gameid]
