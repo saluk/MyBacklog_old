@@ -115,6 +115,9 @@ class HumbleSource(Source):
             raise InvalidIdException()
         return "humble_%s"%game.humble_machinename
 sources["humble"] = HumbleSource()
+class ItchSource(Source):
+    pass
+sources["itch"] = ItchSource()
 class GBASource(Source):
     def get_run_args(self,game):
         args = ["c:\\emu\\gb\\vbam\\VisualBoyAdvance-M.exe",game.install_path]
