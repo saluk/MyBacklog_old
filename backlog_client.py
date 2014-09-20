@@ -400,12 +400,13 @@ class Form(QWidget):
             if not fpath in self.gicons:
                 self.gicons[fpath] = QPixmap(fpath).scaled(24,24)
             widgets[1].setIcon(QIcon(self.gicons[fpath]))
-        #w.setStyleSheet("QWidget {}")
-        #if game.finished:
-        #    w.setStyleSheet("QWidget {background-color: rgb(100,200,150);}")
-        #elif game.priority:
-        #    b = max(100,215-game.priority*40)
-        #    w.setStyleSheet("QWidget {background-color: rgb(%(bright)d,%(bright)d,%(bright)d);}"%{"bright":b})
+        def setbg(bg):
+            [w.setBackground(bg) for w in widgets if hasattr(w,"setBackground")]
+        if game.finished:
+            setbg(QColor(100,200,150))
+        else:
+            b = max(100,215-game.priority*40)
+            setbg(QColor(b,b,b))
         widgets[2].setText(game.name)
         widgets[4].setText("%.2d:%.2d"%game.hours_minutes)
         #w.hours.setStyleSheet("QWidget {}")
