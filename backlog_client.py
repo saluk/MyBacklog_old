@@ -14,6 +14,7 @@ import gogapi
 import humbleapi
 import thegamesdb
 import giantbomb
+import winicons
 os.environ["QT_QPA_PLATFORM_PLUGIN_PATH"] = "C:\\Python33\\Lib\\site-packages\\PyQt5\\plugins\\platforms"
 
 from PyQt5.QtCore import *
@@ -342,14 +343,15 @@ class Form(QWidget):
 
         self.setLayout(mainLayout)
         self.setWindowTitle("My Backlog")
-        
-        self.icons = {"steam":QPixmap("steam.bmp").scaled(24,24),
-                      "gog":QPixmap("gog.bmp").scaled(24,24),
-                      "humble":QPixmap("humble.bmp").scaled(24,24)}
+
+        self.icons = {}
+        for icon in os.listdir("icons"):
+            self.icons[icon.split(".")[0]] = QPixmap("icons/%s"%icon)#.scaled(32,32)
+        print (self.icons)
         self.gicons = {}
         
         self.update_gamelist_widget()
-        self.setMinimumSize(800,600)
+        self.setMinimumSize(1024,600)
         self.adjustSize()
         
     def get_row_for_game(self,game,w=[]):
@@ -357,7 +359,7 @@ class Form(QWidget):
             return []
         widgets = w[:]
         if not w:
-            source = QTableWidgetItem("source icon")
+            source = QTableWidgetItem("")
             widgets.append(source)
             
             label = QTableWidgetItem("")
@@ -398,8 +400,30 @@ class Form(QWidget):
                 f.write(r.content)
                 f.close()
             if not fpath in self.gicons:
-                self.gicons[fpath] = QPixmap(fpath).scaled(24,24)
+                self.gicons[fpath] = QPixmap(fpath)
             widgets[1].setIcon(QIcon(self.gicons[fpath]))
+        elif game.install_path and game.install_path.endswith(".exe"):
+            fpath = "cache/icons/"+game.install_path.replace("http","").replace(":","").replace("/","").replace("\\","")
+            if not os.path.exists(fpath):
+                p = winicons.get_icon(game.install_path)
+                import shutil
+                if p:
+                    shutil.copy(p,fpath)
+            if os.path.exists(fpath) and not fpath in self.gicons:
+                self.gicons[fpath] = QPixmap(fpath)
+            if fpath in self.gicons:
+                widgets[1].setIcon(QIcon(self.gicons[fpath]))
+        elif game.install_path and game.install_path.endswith(".gba"):
+            fpath = "cache/icons/"+game.install_path.replace("http","").replace(":","").replace("/","").replace("\\","")
+            if not os.path.exists(fpath):
+                p = winicons.get_gba(game.install_path)
+                import shutil
+                if p:
+                    shutil.copy(p,fpath)
+            if os.path.exists(fpath) and not fpath in self.gicons:
+                self.gicons[fpath] = QPixmap(fpath).scaled(48,48)
+            if fpath in self.gicons:
+                widgets[1].setIcon(QIcon(self.gicons[fpath]))
         def setbg(bg):
             [w.setBackground(bg) for w in widgets if hasattr(w,"setBackground")]
         if game.finished:
@@ -419,7 +443,7 @@ class Form(QWidget):
     def update_gamelist_widget(self):
         self.gamelist = [{"game":g,"widget":None,"hidden":g.hidden} for g in self.games.list(self.sort)]
         self.games_list_widget.clear()
-        self.games_list_widget.setHorizontalHeaderLabels(["source","icon","name","genre","playtime","lastplay","play","edit"])
+        self.games_list_widget.setIconSize(QSize(48,48))
         self.games_list_widget.horizontalHeader().setVisible(True)
         self.games_list_widget.verticalHeader().setVisible(False)
         self.games_list_widget.setRowCount(len(self.gamelist))
@@ -437,9 +461,10 @@ class Form(QWidget):
             if not cols:
                 self.games_list_widget.setRowHidden(i,True)
         self.game_scroller.verticalScrollBar().setValue(0)
-        self.update()
-        self.games_list_widget.setHorizontalHeaderLabels(["source","icon","name","genre","playtime","lastplay","play","edit"])
+        self.games_list_widget.setHorizontalHeaderLabels(["s","icon","name","genre","playtime","lastplay","play","edit"])
+        self.games_list_widget.resizeColumnsToContents()
         self.dosearch()
+        self.update()
 
     def import_steam(self):
         games = steamapi.import_steam()
