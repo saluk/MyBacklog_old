@@ -58,7 +58,7 @@ class RunGameThread(QThread):
     process = None
     stopfunc = None
     def run(self):
-        while self.process.returncode is None:
+        while self.process and self.process.returncode is None:
             self.process.communicate()
 
 
@@ -562,23 +562,24 @@ class Form(QWidget):
         creationflags = 0
         args,folder = game.get_run_args()
 
-        print(args)
-        import sys
-        curdir = os.path.abspath(os.curdir)
-        os.chdir(folder)
-        print(os.path.abspath(os.curdir))
-        self.running = subprocess.Popen(args, cwd=folder, stdout=sys.stdout, stderr=sys.stderr, creationflags=creationflags, shell=True)
-        print("subprocess open")
-        os.chdir(curdir)
+        if args and folder:
+            print(args)
+            import sys
+            curdir = os.path.abspath(os.curdir)
+            os.chdir(folder)
+            print(os.path.abspath(os.curdir))
+            self.running = subprocess.Popen(args, cwd=folder, stdout=sys.stdout, stderr=sys.stderr, creationflags=creationflags, shell=True)
+            print("subprocess open")
+            os.chdir(curdir)
         
         
         self.stop_playing_button = QPushButton("Stop Playing "+game.name)
         self.buttonLayout1.addWidget(self.stop_playing_button)
         self.stop_playing_button.clicked.connect(make_callback(self.stop_playing,game))
 
-        self.runthread = RunGameThread()
-        self.runthread.process = self.running
-        self.runthread.finished.connect(make_callback(self.stop_playing,game))
+        #self.runthread = RunGameThread()
+        #self.runthread.process = self.running
+        #self.runthread.finished.connect(make_callback(self.stop_playing,game))
         self.games.play(game)
         playrequest(game)
         #self.runthread.start()

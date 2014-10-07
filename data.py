@@ -129,6 +129,10 @@ sources["none"] = NoneSource()
 class OriginSource(Source):
     pass
 sources["origin"] = OriginSource()
+class OfflineSource(Source):
+    def get_run_args(self,game):
+        return None,None
+sources["offline"] = OfflineSource()
 
 class Game:
     args = [("name","s"),("playtime","f"),("finished","i"),("genre","s"),("source","s"),("hidden","i"),("icon_url","s"),
