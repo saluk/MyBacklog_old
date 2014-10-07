@@ -352,6 +352,7 @@ class Form(QWidget):
         
         self.update_gamelist_widget()
         self.setMinimumSize(1024,600)
+        self.setMaximumWidth(1024)
         self.adjustSize()
         
     def get_row_for_game(self,game,w=[]):
