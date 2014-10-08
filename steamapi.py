@@ -106,9 +106,9 @@ def set_username(sess,name):
 #~ set_username(sess,"saluk")
 #~ crash
 
-def get_games(userid=MY_STEAM_ID):
+def get_games(apikey=MY_API_KEY,userid=MY_STEAM_ID):
     url = STEAM_GAMES_URL
-    r = requests.get(url%{"apikey":MY_API_KEY,"steamid":MY_STEAM_ID})
+    r = requests.get(url%{"apikey":apikey,"steamid":userid})
     data = r.json()["response"]["games"]
     return data
     
@@ -127,10 +127,10 @@ def match_finished_games(games,finished):
         matched.append(matches[0])
     return matched
     
-def import_steam(userid=MY_STEAM_ID):
+def import_steam(apikey=MY_API_KEY,userid=MY_STEAM_ID):
     #apps = load_userdata()["UserLocalConfigStore"]["Software"]["Valve"]["Steam"]["apps"]
     apps = {}
-    games = get_games()
+    games = get_games(apikey,userid)
     is_finished = []#match_finished_games(games,finished)
     library = []
     for g in games:
