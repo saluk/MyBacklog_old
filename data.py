@@ -356,6 +356,17 @@ class Games:
                     add_dates[g.gameid] = time.mktime(stot(a["time"]))
             default = time.mktime(stot("23:39:03 1980-07-16"))
             return sorted(v,key=lambda g:(-add_dates.get(g.gameid,default)))
+    def get_package_for_game(self,game):
+        for p in self.games.values():
+            if not p.is_package:
+                continue
+            if p==game:
+                continue
+            if p.gogid == game.gogid and p.source=="gog" and game.source=="gog":
+                return p
+            if p.source=="humble" and game.source=="humble" and p.humble_package==game.humble_package:
+                return p
+        return None
     def delete(self, game):
         self.actions.append(add_action("delete",game=game.dict()))
         del self.games[game.gameid]

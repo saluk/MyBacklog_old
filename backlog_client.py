@@ -274,6 +274,8 @@ class EditGame(QWidget):
 class MainWindow(QMainWindow):
     def __init__(self):
         super(MainWindow,self).__init__(None,Qt.WindowStaysOnTopHint)
+        self.setWindowTitle("MyBacklog")
+        self.setWindowIcon(QIcon(QPixmap("icons/steam.png")))
         self.main_form = Form()
 
         menus = {}
@@ -284,9 +286,26 @@ class MainWindow(QMainWindow):
                     name = " ".join([y.capitalize() for y in x.split("_")[1:]])
                     menus[folder].addAction(QAction("&"+name,self,triggered=getattr(self.main_form,x)))
 
-        menus["file"].addAction(QAction("&Exit",self,triggered=self.close))
+        menus["file"].addAction(QAction("&Exit",self,triggered=self.really_close))
+        self.exit_requested = False
 
         self.setCentralWidget(self.main_form)
+
+        self.trayicon = QSystemTrayIcon(QIcon(QPixmap("icons/steam.png")))
+        self.trayicon.show()
+        self.trayicon.activated.connect(self.click_tray_icon)
+    def click_tray_icon(self):
+        self.show()
+    def really_close(self):
+        self.exit_requested = True
+        self.trayicon.hide()
+        self.close()
+    def closeEvent(self, event):
+        if self.exit_requested:
+            event.accept()
+        else:
+            event.ignore()
+            self.hide()
 
 class Form(QWidget):
     def __init__(self, parent=None):
@@ -432,7 +451,7 @@ class Form(QWidget):
         else:
             b = max(100,215-game.priority*40)
             setbg(QColor(b,b,b))
-        widgets[2].setText(game.name)
+        widgets[2].setText(game.widget_name)
         widgets[4].setText("%.2d:%.2d"%game.hours_minutes)
         #w.hours.setStyleSheet("QWidget {}")
         #if game.playtime < 500:
@@ -442,7 +461,28 @@ class Form(QWidget):
         return widgets
 
     def update_gamelist_widget(self):
-        self.gamelist = [{"game":g,"widget":None,"hidden":g.hidden} for g in self.games.list(self.sort)]
+        def abreve(t,l):
+            if len(t)<l:
+                return t
+            words = t.split(" ")
+            for i in range(len(words)):
+                t = " ".join(words)
+                if len(t)<l:
+                    return t
+                words[-i] = words[-i].replace("a","").replace("e","").replace("i","").replace("o","").replace("u","")
+            return " ".join(words)[:l]
+        for g in self.gamelist:
+            if g["widget"]:
+                self.games_list_widget.setRowHidden(g["widget"][0],False)
+        self.gamelist = []
+        for g in self.games.list(self.sort):
+            g.widget_name = g.name
+            if g.packageid:
+                package = self.games.get_package_for_game(g)
+                if package:
+                    g.widget_name = "["+abreve(package.name,25)+"] "+g.name
+            g.widget_name = abreve(g.widget_name,55)
+            self.gamelist.append({"game":g,"widget":None,"hidden":g.hidden})
         self.games_list_widget.clear()
         self.games_list_widget.setIconSize(QSize(48,48))
         self.games_list_widget.horizontalHeader().setVisible(True)
@@ -611,9 +651,9 @@ class Form(QWidget):
 
     def add_game(self):
         game = data.Game(source="none")
-        row = self.get_row_for_game(game)
-        self.gamelist.append({"game":game,"widget":row,"hidden":0})
-        self.show_edit_widget(game,row,self,new=True)
+        #row = self.get_row_for_game(game)
+        self.gamelist.append({"game":game,"widget":None,"hidden":0})
+        self.show_edit_widget(game,None,self,new=True)
 
     def dosearch(self,text=None):
         sn = self.search_name.text().lower()
