@@ -9,10 +9,13 @@ def get_icon(exe):
     os.system('ResourcesExtract.exe /Source "%s" /DestFolder "extract" /ExtractIcons 1 /ExtractCursors 0 /FileExistMode 1 /OpenDestFolder 0'%exe)
     for f in os.listdir("extract"):
         if "MAINICON" in f:
+            print ("extracted",f)
             return "extract/"+f
     for f in os.listdir("extract"):
         if ".ico" in f:
+            print ("extracted2",f)
             return "extract/"+f
+    return "icons/none.png"
 
 crcmap = {}
 f = open("gbaroms.dat")
