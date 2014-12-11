@@ -483,7 +483,7 @@ class Form(QWidget):
         self.gamelist = []
         for g in self.games.list(self.sort):
             g.widget_name = g.name
-            if g.packageid:
+            if g.packageid or g.humble_package:
                 package = self.games.get_package_for_game(g)
                 if package:
                     g.widget_name = "["+abreve(package.name,25)+"] "+g.name
