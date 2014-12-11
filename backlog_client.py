@@ -273,7 +273,8 @@ class EditGame(QWidget):
 
 class MainWindow(QMainWindow):
     def __init__(self):
-        super(MainWindow,self).__init__(None,Qt.WindowStaysOnTopHint)
+        #super(MainWindow,self).__init__(None,Qt.WindowStaysOnTopHint)
+        super(MainWindow,self).__init__(None)
         self.setWindowTitle("MyBacklog")
         self.setWindowIcon(QIcon(QPixmap("icons/steam.png")))
         self.main_form = Form()
