@@ -26315,6 +26315,1319 @@
             }, 
             "time": "18:24:24 2014-12-10", 
             "type": "stopgame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "is_package", 
+                        "ov": 0, 
+                        "v": 1
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "octodad_dadliestcatch", 
+                "humble_package": "2wAKM64hSE8G43FF", 
+                "icon_url": "", 
+                "install_path": "", 
+                "is_package": 1, 
+                "lastplayed": null, 
+                "name": "Octodad: Dadliest Catch", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "19:10:36 2014-12-10", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "is_package", 
+                        "ov": 1, 
+                        "v": 0
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "octodad_dadliestcatch", 
+                "humble_package": "2wAKM64hSE8G43FF", 
+                "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/71c4a7e34c0d18c78da55bc2808855150e08f7d7.png", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "Octodad: Dadliest Catch", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": "http://www.octodadgame.com"
+            }, 
+            "time": "19:10:36 2014-12-10", 
+            "type": "updategame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "assassinscreed_unity_storefront", 
+                "humble_package": "8mtdynSzynbzNyHz", 
+                "icon_url": "", 
+                "install_path": "", 
+                "is_package": 1, 
+                "lastplayed": null, 
+                "name": "Assassin\u2019s Creed\u00ae Unity", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "19:10:36 2014-12-10", 
+            "type": "addgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "assassinscreed_unity", 
+                "humble_package": "8mtdynSzynbzNyHz", 
+                "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/a29ed00af6deabe2500653347ce749cca602f331.png", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "Assassin\u2019s Creed\u00ae Unity", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "19:10:36 2014-12-10", 
+            "type": "addgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "uplayclient", 
+                "humble_package": "8mtdynSzynbzNyHz", 
+                "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/2f9ce6b5f677202c2e1a43c55e78f0a6cdb0350a.png", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "Uplay Client (will download latest version)", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": "http://www.ubi.com/US/"
+            }, 
+            "time": "19:10:36 2014-12-10", 
+            "type": "addgame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "icon_url", 
+                        "ov": "https://humblebundle-a.akamaihd.net/misc/files/hashed/1058fbdf50d1b53f5c03533515953f1b0d4162dc.png", 
+                        "v": "https://humblebundle-a.akamaihd.net/misc/files/hashed/b1577c8bb27e8823d7ce9d6de51f12dd1b135246.png"
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "crayonphysicsdeluxe", 
+                "humble_package": "8qP4RCxdDdZh", 
+                "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/b1577c8bb27e8823d7ce9d6de51f12dd1b135246.png", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "Crayon Physics Deluxe", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": "http://www.crayonphysics.com"
+            }, 
+            "time": "19:10:36 2014-12-10", 
+            "type": "updategame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "curiousexpedition_alphaaccess", 
+                "humble_package": "AERFM6vB6zfvPcuY", 
+                "icon_url": "", 
+                "install_path": "", 
+                "is_package": 1, 
+                "lastplayed": null, 
+                "name": "Curious Expedition - Alpha Access", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "19:10:36 2014-12-10", 
+            "type": "addgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "curiousexpedition", 
+                "humble_package": "AERFM6vB6zfvPcuY", 
+                "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/2d912ed1c8807ccc2860c6c43e978fb2ce513bbf.png", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "curiousexpedition", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": "http://www.curious-expedition.com/"
+            }, 
+            "time": "19:10:36 2014-12-10", 
+            "type": "addgame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "is_package", 
+                        "ov": 0, 
+                        "v": 1
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "elliotquest", 
+                "humble_package": "BNpA7Kp33D8pwHu8", 
+                "icon_url": "", 
+                "install_path": "", 
+                "is_package": 1, 
+                "lastplayed": null, 
+                "name": "Elliot Quest: Deluxe Edition", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "19:10:36 2014-12-10", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "is_package", 
+                        "ov": 1, 
+                        "v": 0
+                    }, 
+                    {
+                        "k": "icon_url", 
+                        "ov": "https://humblebundle-a.akamaihd.net/misc/files/hashed/a9dda399208c3362581eb71680fbdc1d7fc24902.png", 
+                        "v": "https://humblebundle-a.akamaihd.net/misc/files/hashed/82e03d3ce9a48b2b9de454983d70b4a1cc82c042.png"
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "elliotquest", 
+                "humble_package": "BNpA7Kp33D8pwHu8", 
+                "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/82e03d3ce9a48b2b9de454983d70b4a1cc82c042.png", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "Elliot Quest", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": "http://elliotquest.com"
+            }, 
+            "time": "19:10:36 2014-12-10", 
+            "type": "updategame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "ellioquest_soundtrack", 
+                "humble_package": "BNpA7Kp33D8pwHu8", 
+                "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/364cda3c931fba0745afa1f9f547687f3d112368.png", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "Elliot Quest - Soundtrack", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": "http://elliotquest.com"
+            }, 
+            "time": "19:10:36 2014-12-10", 
+            "type": "addgame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "is_package", 
+                        "ov": 0, 
+                        "v": 1
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "anodyne", 
+                "humble_package": "BrtqUecstsTD", 
+                "icon_url": "", 
+                "install_path": "", 
+                "is_package": 1, 
+                "lastplayed": null, 
+                "name": "Anodyne", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "19:10:36 2014-12-10", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "is_package", 
+                        "ov": 1, 
+                        "v": 0
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "anodyne", 
+                "humble_package": "BrtqUecstsTD", 
+                "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/040a0611e0b1d9f828c1b72d7760a89dce64f753.png", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "Anodyne", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": "http://www.anodynegame.com/"
+            }, 
+            "time": "19:10:36 2014-12-10", 
+            "type": "updategame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "pixelpiracy_storefront", 
+                "humble_package": "MZMrADuhEaVyyTre", 
+                "icon_url": "", 
+                "install_path": "", 
+                "is_package": 1, 
+                "lastplayed": null, 
+                "name": "Pixel Piracy", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "19:10:36 2014-12-10", 
+            "type": "addgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "pixelpiracy", 
+                "humble_package": "MZMrADuhEaVyyTre", 
+                "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/e223ca7e00/images/icons/pixelpiracy.png", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "Pixel Piracy", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": "http://piracysim.com/"
+            }, 
+            "time": "19:10:36 2014-12-10", 
+            "type": "addgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "spacechem_soundtrack", 
+                "humble_package": "SKmfW7H7RrEB", 
+                "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/2ee940dec2ebade9c60098401dd1a4c8bbb94302.png", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "SpaceChem Soundtrack", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": "http://spacechemthegame.com/"
+            }, 
+            "time": "19:10:36 2014-12-10", 
+            "type": "addgame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "is_package", 
+                        "ov": 0, 
+                        "v": 1
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "theswapper", 
+                "humble_package": "VGny6E2VC8aT", 
+                "icon_url": "", 
+                "install_path": "", 
+                "is_package": 1, 
+                "lastplayed": null, 
+                "name": "The Swapper", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "19:10:36 2014-12-10", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "is_package", 
+                        "ov": 1, 
+                        "v": 0
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "theswapper", 
+                "humble_package": "VGny6E2VC8aT", 
+                "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/36440cf53faa21ed9f12de50b957e7c175b88551.png", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "The Swapper", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": "http://facepalmgames.com/the-swapper/"
+            }, 
+            "time": "19:10:36 2014-12-10", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "is_package", 
+                        "ov": 0, 
+                        "v": 1
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "spudsquest", 
+                "humble_package": "aq7vUF38uWdEAUta", 
+                "icon_url": "", 
+                "install_path": "", 
+                "is_package": 1, 
+                "lastplayed": null, 
+                "name": "Spud's Quest", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "19:10:36 2014-12-10", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "is_package", 
+                        "ov": 1, 
+                        "v": 0
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "spudsquest", 
+                "humble_package": "aq7vUF38uWdEAUta", 
+                "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/1c5cebd08f01aa0c9e0da0f57d8bb8e604a2ac02.png", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "Spud's Quest", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": "http://www.spudsquest.com"
+            }, 
+            "time": "19:10:36 2014-12-10", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "is_package", 
+                        "ov": 0, 
+                        "v": 1
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "banished", 
+                "humble_package": "c3tBRShUFPCcAKK2", 
+                "icon_url": "", 
+                "install_path": "", 
+                "is_package": 1, 
+                "lastplayed": null, 
+                "name": "Banished", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "19:10:36 2014-12-10", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "is_package", 
+                        "ov": 1, 
+                        "v": 0
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "banished", 
+                "humble_package": "c3tBRShUFPCcAKK2", 
+                "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/2c11d6597e1756c16fb66c3ae8f0038f6744e45d.png", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "Banished", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": "http://www.shiningrocksoftware.com"
+            }, 
+            "time": "19:10:36 2014-12-10", 
+            "type": "updategame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "dreamfallchapters", 
+                "humble_package": "eHqXVAG4dPT2SFSZ", 
+                "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/80540d9369509f84c22f0c16ece1b48b28bc496c.png", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "Dreamfall Chapters (Book One)", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": "http://www.dreamfallchapters.com/"
+            }, 
+            "time": "19:10:36 2014-12-10", 
+            "type": "addgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "dreamfallchapters_artbook", 
+                "humble_package": "eHqXVAG4dPT2SFSZ", 
+                "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/f9e4b58d37ce5a0291e200372068fb4b2cc102cf.png", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "Dreamfall Chapters (Art of Book One)", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": "http://www.dreamfallchapters.com/"
+            }, 
+            "time": "19:10:36 2014-12-10", 
+            "type": "addgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "dreamfallchapters_touristmap", 
+                "humble_package": "eHqXVAG4dPT2SFSZ", 
+                "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/d93b8f26b069df8081e329029b2cf0356ac9c9e7.png", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "Dreamfall Chapters (Tourist Map of Europolis)", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": "http://www.dreamfallchapters.com/"
+            }, 
+            "time": "19:10:36 2014-12-10", 
+            "type": "addgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "dreamfallchapters_soundtrack", 
+                "humble_package": "eHqXVAG4dPT2SFSZ", 
+                "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/961febb2db8aea3f3146ce52de17d6d55cbc636d.png", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "Dreamfall Chapters Soundtrack", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": "http://www.dreamfallchapters.com/"
+            }, 
+            "time": "19:10:36 2014-12-10", 
+            "type": "addgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "abirdstory_storefront", 
+                "humble_package": "hHYrAYVarpFG4TYw", 
+                "icon_url": "", 
+                "install_path": "", 
+                "is_package": 1, 
+                "lastplayed": null, 
+                "name": "A Bird Story", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "19:10:36 2014-12-10", 
+            "type": "addgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "abirdstory", 
+                "humble_package": "hHYrAYVarpFG4TYw", 
+                "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/12b536b2a93d36e2afca87bf6230fb8dec73172a.png", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "A Bird Story", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": "http://freebirdgames.com/games/a-bird-story/"
+            }, 
+            "time": "19:10:36 2014-12-10", 
+            "type": "addgame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "is_package", 
+                        "ov": 0, 
+                        "v": 1
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "unrest", 
+                "humble_package": "pUbc4SEvZDPtvEnT", 
+                "icon_url": "", 
+                "install_path": "", 
+                "is_package": 1, 
+                "lastplayed": null, 
+                "name": "Unrest", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "19:10:36 2014-12-10", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "is_package", 
+                        "ov": 1, 
+                        "v": 0
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "unrest", 
+                "humble_package": "pUbc4SEvZDPtvEnT", 
+                "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/3882d206d102126ed83eac1eb5f510f3cec4224a.png", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "Unrest", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": "http://pyrodactyl.com/"
+            }, 
+            "time": "19:10:36 2014-12-10", 
+            "type": "updategame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "nottherobots_storefront", 
+                "humble_package": "qRKGucGBuMxF6cq4", 
+                "icon_url": "", 
+                "install_path": "", 
+                "is_package": 1, 
+                "lastplayed": null, 
+                "name": "Not the Robots", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "19:10:36 2014-12-10", 
+            "type": "addgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "nottherobots", 
+                "humble_package": "qRKGucGBuMxF6cq4", 
+                "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/c14cc1c09fe4c3ff214904c6a482e4118a960536.png", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "Not The Robots", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": "http://nottherobots.com/"
+            }, 
+            "time": "19:10:36 2014-12-10", 
+            "type": "addgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "interstellaria_kstier2", 
+                "humble_package": "s4qaFBqst3XFz8WZ", 
+                "icon_url": "", 
+                "install_path": "", 
+                "is_package": 1, 
+                "lastplayed": null, 
+                "name": "Interstellaria ($20+)", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "19:10:36 2014-12-10", 
+            "type": "addgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "interstellaria", 
+                "humble_package": "s4qaFBqst3XFz8WZ", 
+                "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/d454c663a8408c9ce1f3743df87aef23b20e34bf.png", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "Interstellaria", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": "http://coldricegames.com/"
+            }, 
+            "time": "19:10:36 2014-12-10", 
+            "type": "addgame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "is_package", 
+                        "ov": 0, 
+                        "v": 1
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "legendofgrimrock", 
+                "humble_package": "sar4un3WeMbM", 
+                "icon_url": "", 
+                "install_path": "", 
+                "is_package": 1, 
+                "lastplayed": null, 
+                "name": "Legend of Grimrock", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "19:10:36 2014-12-10", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "is_package", 
+                        "ov": 1, 
+                        "v": 0
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "legendofgrimrock", 
+                "humble_package": "sar4un3WeMbM", 
+                "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/100a26cb319c7092b972e6c872eec0b7ef00db72.png", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "Legend of Grimrock", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": "http://www.grimrock.net/"
+            }, 
+            "time": "19:10:36 2014-12-10", 
+            "type": "updategame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "cosmonautica_storefront", 
+                "humble_package": "tbnM8mFsSBufs58t", 
+                "icon_url": "", 
+                "install_path": "", 
+                "is_package": 1, 
+                "lastplayed": null, 
+                "name": "Cosmonautica (Early Access)", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "19:10:36 2014-12-10", 
+            "type": "addgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "massivechalice_kstier2", 
+                "humble_package": "u6EEWwCXh6zRPDXm", 
+                "icon_url": "", 
+                "install_path": "", 
+                "is_package": 1, 
+                "lastplayed": null, 
+                "name": "Massive Chalice ($35)", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "19:10:36 2014-12-10", 
+            "type": "addgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "massivechalice", 
+                "humble_package": "u6EEWwCXh6zRPDXm", 
+                "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/90317b4487c100eb004bd7c4255c9eb47ed06d42.png", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "Massive Chalice", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": "http://www.massivechalice.com/back/"
+            }, 
+            "time": "19:10:36 2014-12-10", 
+            "type": "addgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "dungeondashers_storefront", 
+                "humble_package": "vcyWt7rr5BwqKZSx", 
+                "icon_url": "", 
+                "install_path": "", 
+                "is_package": 1, 
+                "lastplayed": null, 
+                "name": "Dungeon Dashers (Early Access Game)", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "19:10:36 2014-12-10", 
+            "type": "addgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "dungeondashers_beta", 
+                "humble_package": "vcyWt7rr5BwqKZSx", 
+                "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/7729ac90893324070e8e0b1eef2f042bce8c50d8.png", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "Dungeon Dashers Beta", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": "http://www.dungeondashers.com"
+            }, 
+            "time": "19:10:36 2014-12-10", 
+            "type": "addgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "dungeondashers", 
+                "humble_package": "vcyWt7rr5BwqKZSx", 
+                "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/e340dba8ead0bb5743dc01567e9fe38373ccbc75.png", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "Dungeon Dashers", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": "http://www.dungeondashers.com"
+            }, 
+            "time": "19:10:36 2014-12-10", 
+            "type": "addgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "stonehearth_kstier1", 
+                "humble_package": "yefmPFyySHm3SVRt", 
+                "icon_url": "", 
+                "install_path": "", 
+                "is_package": 1, 
+                "lastplayed": null, 
+                "name": "Stonehearth ($15 Tier)", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "19:10:36 2014-12-10", 
+            "type": "addgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "stonehearth", 
+                "humble_package": "yefmPFyySHm3SVRt", 
+                "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/62d051a8494980673776c1b031a270214357bc20.png", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "Stonehearth", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": "http://stonehearth.net"
+            }, 
+            "time": "19:10:36 2014-12-10", 
+            "type": "addgame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "hidden", 
+                        "ov": 0, 
+                        "v": 1
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 1, 
+                "humble_machinename": "assassinscreed_unity_storefront", 
+                "humble_package": "8mtdynSzynbzNyHz", 
+                "icon_url": "", 
+                "install_path": "", 
+                "is_package": 1, 
+                "lastplayed": null, 
+                "name": "Assassin\u2019s Creed\u00ae Unity", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0.0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "19:11:04 2014-12-10", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "hidden", 
+                        "ov": 0, 
+                        "v": 1
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 1, 
+                "humble_machinename": "assassinscreed_unity", 
+                "humble_package": "8mtdynSzynbzNyHz", 
+                "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/a29ed00af6deabe2500653347ce749cca602f331.png", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "Assassin\u2019s Creed\u00ae Unity", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0.0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "19:13:03 2014-12-10", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "hidden", 
+                        "ov": 0, 
+                        "v": 1
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 1, 
+                "humble_machinename": "uplayclient", 
+                "humble_package": "8mtdynSzynbzNyHz", 
+                "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/2f9ce6b5f677202c2e1a43c55e78f0a6cdb0350a.png", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "Uplay Client (will download latest version)", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0.0, 
+                "priority": 0, 
+                "source": "humble", 
+                "steamid": "", 
+                "website": "http://www.ubi.com/US/"
+            }, 
+            "time": "19:15:45 2014-12-10", 
+            "type": "updategame"
         }
     ], 
     "games": {
@@ -36878,6 +38191,46 @@
             "steamid": "", 
             "website": ""
         }, 
+        "humble_abirdstory": {
+            "finished": 0, 
+            "genre": "", 
+            "gogid": "", 
+            "hidden": 0, 
+            "humble_machinename": "abirdstory", 
+            "humble_package": "hHYrAYVarpFG4TYw", 
+            "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/12b536b2a93d36e2afca87bf6230fb8dec73172a.png", 
+            "install_path": "", 
+            "is_package": 0, 
+            "lastplayed": null, 
+            "name": "A Bird Story", 
+            "notes": "", 
+            "packageid": "", 
+            "playtime": 0, 
+            "priority": 0, 
+            "source": "humble", 
+            "steamid": "", 
+            "website": "http://freebirdgames.com/games/a-bird-story/"
+        }, 
+        "humble_abirdstory_storefront": {
+            "finished": 0, 
+            "genre": "", 
+            "gogid": "", 
+            "hidden": 0, 
+            "humble_machinename": "abirdstory_storefront", 
+            "humble_package": "hHYrAYVarpFG4TYw", 
+            "icon_url": "", 
+            "install_path": "", 
+            "is_package": 1, 
+            "lastplayed": null, 
+            "name": "A Bird Story", 
+            "notes": "", 
+            "packageid": "", 
+            "playtime": 0, 
+            "priority": 0, 
+            "source": "humble", 
+            "steamid": "", 
+            "website": ""
+        }, 
         "humble_amnesiafortnight2012_soundtrack": {
             "finished": 0, 
             "genre": "", 
@@ -37093,6 +38446,46 @@
             "notes": "", 
             "packageid": "", 
             "playtime": 0, 
+            "priority": 0, 
+            "source": "humble", 
+            "steamid": "", 
+            "website": ""
+        }, 
+        "humble_assassinscreed_unity": {
+            "finished": 0, 
+            "genre": "", 
+            "gogid": "", 
+            "hidden": 1, 
+            "humble_machinename": "assassinscreed_unity", 
+            "humble_package": "8mtdynSzynbzNyHz", 
+            "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/a29ed00af6deabe2500653347ce749cca602f331.png", 
+            "install_path": "", 
+            "is_package": 0, 
+            "lastplayed": null, 
+            "name": "Assassin\u2019s Creed\u00ae Unity", 
+            "notes": "", 
+            "packageid": "", 
+            "playtime": 0.0, 
+            "priority": 0, 
+            "source": "humble", 
+            "steamid": "", 
+            "website": ""
+        }, 
+        "humble_assassinscreed_unity_storefront": {
+            "finished": 0, 
+            "genre": "", 
+            "gogid": "", 
+            "hidden": 1, 
+            "humble_machinename": "assassinscreed_unity_storefront", 
+            "humble_package": "8mtdynSzynbzNyHz", 
+            "icon_url": "", 
+            "install_path": "", 
+            "is_package": 1, 
+            "lastplayed": null, 
+            "name": "Assassin\u2019s Creed\u00ae Unity", 
+            "notes": "", 
+            "packageid": "", 
+            "playtime": 0.0, 
             "priority": 0, 
             "source": "humble", 
             "steamid": "", 
@@ -37418,6 +38811,26 @@
             "steamid": "", 
             "website": ""
         }, 
+        "humble_cosmonautica_storefront": {
+            "finished": 0, 
+            "genre": "", 
+            "gogid": "", 
+            "hidden": 0, 
+            "humble_machinename": "cosmonautica_storefront", 
+            "humble_package": "tbnM8mFsSBufs58t", 
+            "icon_url": "", 
+            "install_path": "", 
+            "is_package": 1, 
+            "lastplayed": null, 
+            "name": "Cosmonautica (Early Access)", 
+            "notes": "", 
+            "packageid": "", 
+            "playtime": 0, 
+            "priority": 0, 
+            "source": "humble", 
+            "steamid": "", 
+            "website": ""
+        }, 
         "humble_costumequest_prototype": {
             "finished": 0, 
             "genre": "adventure", 
@@ -37445,11 +38858,51 @@
             "hidden": 0, 
             "humble_machinename": "crayonphysicsdeluxe", 
             "humble_package": "EUxxVPRGbyaa", 
-            "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/1058fbdf50d1b53f5c03533515953f1b0d4162dc.png", 
+            "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/b1577c8bb27e8823d7ce9d6de51f12dd1b135246.png", 
             "install_path": "", 
             "is_package": 0, 
             "lastplayed": null, 
             "name": "Crayon Physics Deluxe", 
+            "notes": "", 
+            "packageid": "", 
+            "playtime": 0, 
+            "priority": 0, 
+            "source": "humble", 
+            "steamid": "", 
+            "website": ""
+        }, 
+        "humble_curiousexpedition": {
+            "finished": 0, 
+            "genre": "", 
+            "gogid": "", 
+            "hidden": 0, 
+            "humble_machinename": "curiousexpedition", 
+            "humble_package": "AERFM6vB6zfvPcuY", 
+            "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/2d912ed1c8807ccc2860c6c43e978fb2ce513bbf.png", 
+            "install_path": "", 
+            "is_package": 0, 
+            "lastplayed": null, 
+            "name": "curiousexpedition", 
+            "notes": "", 
+            "packageid": "", 
+            "playtime": 0, 
+            "priority": 0, 
+            "source": "humble", 
+            "steamid": "", 
+            "website": "http://www.curious-expedition.com/"
+        }, 
+        "humble_curiousexpedition_alphaaccess": {
+            "finished": 0, 
+            "genre": "", 
+            "gogid": "", 
+            "hidden": 0, 
+            "humble_machinename": "curiousexpedition_alphaaccess", 
+            "humble_package": "AERFM6vB6zfvPcuY", 
+            "icon_url": "", 
+            "install_path": "", 
+            "is_package": 1, 
+            "lastplayed": null, 
+            "name": "Curious Expedition - Alpha Access", 
             "notes": "", 
             "packageid": "", 
             "playtime": 0, 
@@ -37518,6 +38971,46 @@
             "steamid": "", 
             "website": ""
         }, 
+        "humble_dreamfallchapters": {
+            "finished": 0, 
+            "genre": "", 
+            "gogid": "", 
+            "hidden": 0, 
+            "humble_machinename": "dreamfallchapters", 
+            "humble_package": "eHqXVAG4dPT2SFSZ", 
+            "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/80540d9369509f84c22f0c16ece1b48b28bc496c.png", 
+            "install_path": "", 
+            "is_package": 0, 
+            "lastplayed": null, 
+            "name": "Dreamfall Chapters (Book One)", 
+            "notes": "", 
+            "packageid": "", 
+            "playtime": 0, 
+            "priority": 0, 
+            "source": "humble", 
+            "steamid": "", 
+            "website": "http://www.dreamfallchapters.com/"
+        }, 
+        "humble_dreamfallchapters_artbook": {
+            "finished": 0, 
+            "genre": "", 
+            "gogid": "", 
+            "hidden": 0, 
+            "humble_machinename": "dreamfallchapters_artbook", 
+            "humble_package": "eHqXVAG4dPT2SFSZ", 
+            "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/f9e4b58d37ce5a0291e200372068fb4b2cc102cf.png", 
+            "install_path": "", 
+            "is_package": 0, 
+            "lastplayed": null, 
+            "name": "Dreamfall Chapters (Art of Book One)", 
+            "notes": "", 
+            "packageid": "", 
+            "playtime": 0, 
+            "priority": 0, 
+            "source": "humble", 
+            "steamid": "", 
+            "website": "http://www.dreamfallchapters.com/"
+        }, 
         "humble_dreamfallchapters_longestjourney_kstier3": {
             "finished": 0, 
             "genre": "action", 
@@ -37530,6 +39023,106 @@
             "is_package": 1, 
             "lastplayed": null, 
             "name": "Dreamfall Chapters ($50+ tier)", 
+            "notes": "", 
+            "packageid": "", 
+            "playtime": 0, 
+            "priority": 0, 
+            "source": "humble", 
+            "steamid": "", 
+            "website": ""
+        }, 
+        "humble_dreamfallchapters_soundtrack": {
+            "finished": 0, 
+            "genre": "", 
+            "gogid": "", 
+            "hidden": 0, 
+            "humble_machinename": "dreamfallchapters_soundtrack", 
+            "humble_package": "eHqXVAG4dPT2SFSZ", 
+            "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/961febb2db8aea3f3146ce52de17d6d55cbc636d.png", 
+            "install_path": "", 
+            "is_package": 0, 
+            "lastplayed": null, 
+            "name": "Dreamfall Chapters Soundtrack", 
+            "notes": "", 
+            "packageid": "", 
+            "playtime": 0, 
+            "priority": 0, 
+            "source": "humble", 
+            "steamid": "", 
+            "website": "http://www.dreamfallchapters.com/"
+        }, 
+        "humble_dreamfallchapters_touristmap": {
+            "finished": 0, 
+            "genre": "", 
+            "gogid": "", 
+            "hidden": 0, 
+            "humble_machinename": "dreamfallchapters_touristmap", 
+            "humble_package": "eHqXVAG4dPT2SFSZ", 
+            "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/d93b8f26b069df8081e329029b2cf0356ac9c9e7.png", 
+            "install_path": "", 
+            "is_package": 0, 
+            "lastplayed": null, 
+            "name": "Dreamfall Chapters (Tourist Map of Europolis)", 
+            "notes": "", 
+            "packageid": "", 
+            "playtime": 0, 
+            "priority": 0, 
+            "source": "humble", 
+            "steamid": "", 
+            "website": "http://www.dreamfallchapters.com/"
+        }, 
+        "humble_dungeondashers": {
+            "finished": 0, 
+            "genre": "", 
+            "gogid": "", 
+            "hidden": 0, 
+            "humble_machinename": "dungeondashers", 
+            "humble_package": "vcyWt7rr5BwqKZSx", 
+            "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/e340dba8ead0bb5743dc01567e9fe38373ccbc75.png", 
+            "install_path": "", 
+            "is_package": 0, 
+            "lastplayed": null, 
+            "name": "Dungeon Dashers", 
+            "notes": "", 
+            "packageid": "", 
+            "playtime": 0, 
+            "priority": 0, 
+            "source": "humble", 
+            "steamid": "", 
+            "website": "http://www.dungeondashers.com"
+        }, 
+        "humble_dungeondashers_beta": {
+            "finished": 0, 
+            "genre": "", 
+            "gogid": "", 
+            "hidden": 0, 
+            "humble_machinename": "dungeondashers_beta", 
+            "humble_package": "vcyWt7rr5BwqKZSx", 
+            "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/7729ac90893324070e8e0b1eef2f042bce8c50d8.png", 
+            "install_path": "", 
+            "is_package": 0, 
+            "lastplayed": null, 
+            "name": "Dungeon Dashers Beta", 
+            "notes": "", 
+            "packageid": "", 
+            "playtime": 0, 
+            "priority": 0, 
+            "source": "humble", 
+            "steamid": "", 
+            "website": "http://www.dungeondashers.com"
+        }, 
+        "humble_dungeondashers_storefront": {
+            "finished": 0, 
+            "genre": "", 
+            "gogid": "", 
+            "hidden": 0, 
+            "humble_machinename": "dungeondashers_storefront", 
+            "humble_package": "vcyWt7rr5BwqKZSx", 
+            "icon_url": "", 
+            "install_path": "", 
+            "is_package": 1, 
+            "lastplayed": null, 
+            "name": "Dungeon Dashers (Early Access Game)", 
             "notes": "", 
             "packageid": "", 
             "playtime": 0, 
@@ -37558,6 +39151,26 @@
             "steamid": "", 
             "website": ""
         }, 
+        "humble_ellioquest_soundtrack": {
+            "finished": 0, 
+            "genre": "", 
+            "gogid": "", 
+            "hidden": 0, 
+            "humble_machinename": "ellioquest_soundtrack", 
+            "humble_package": "BNpA7Kp33D8pwHu8", 
+            "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/364cda3c931fba0745afa1f9f547687f3d112368.png", 
+            "install_path": "", 
+            "is_package": 0, 
+            "lastplayed": null, 
+            "name": "Elliot Quest - Soundtrack", 
+            "notes": "", 
+            "packageid": "", 
+            "playtime": 0, 
+            "priority": 0, 
+            "source": "humble", 
+            "steamid": "", 
+            "website": "http://elliotquest.com"
+        }, 
         "humble_elliotquest": {
             "finished": 0, 
             "genre": "action", 
@@ -37565,7 +39178,7 @@
             "hidden": 0, 
             "humble_machinename": "elliotquest", 
             "humble_package": "BNpA7Kp33D8pwHu8", 
-            "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/a9dda399208c3362581eb71680fbdc1d7fc24902.png", 
+            "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/82e03d3ce9a48b2b9de454983d70b4a1cc82c042.png", 
             "install_path": "", 
             "is_package": 0, 
             "lastplayed": null, 
@@ -37858,6 +39471,46 @@
             "steamid": "", 
             "website": ""
         }, 
+        "humble_interstellaria": {
+            "finished": 0, 
+            "genre": "", 
+            "gogid": "", 
+            "hidden": 0, 
+            "humble_machinename": "interstellaria", 
+            "humble_package": "s4qaFBqst3XFz8WZ", 
+            "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/d454c663a8408c9ce1f3743df87aef23b20e34bf.png", 
+            "install_path": "", 
+            "is_package": 0, 
+            "lastplayed": null, 
+            "name": "Interstellaria", 
+            "notes": "", 
+            "packageid": "", 
+            "playtime": 0, 
+            "priority": 0, 
+            "source": "humble", 
+            "steamid": "", 
+            "website": "http://coldricegames.com/"
+        }, 
+        "humble_interstellaria_kstier2": {
+            "finished": 0, 
+            "genre": "", 
+            "gogid": "", 
+            "hidden": 0, 
+            "humble_machinename": "interstellaria_kstier2", 
+            "humble_package": "s4qaFBqst3XFz8WZ", 
+            "icon_url": "", 
+            "install_path": "", 
+            "is_package": 1, 
+            "lastplayed": null, 
+            "name": "Interstellaria ($20+)", 
+            "notes": "", 
+            "packageid": "", 
+            "playtime": 0, 
+            "priority": 0, 
+            "source": "humble", 
+            "steamid": "", 
+            "website": ""
+        }, 
         "humble_introversionbundle": {
             "finished": 0, 
             "genre": "strategy", 
@@ -38038,6 +39691,46 @@
             "steamid": "", 
             "website": ""
         }, 
+        "humble_massivechalice": {
+            "finished": 0, 
+            "genre": "", 
+            "gogid": "", 
+            "hidden": 0, 
+            "humble_machinename": "massivechalice", 
+            "humble_package": "u6EEWwCXh6zRPDXm", 
+            "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/90317b4487c100eb004bd7c4255c9eb47ed06d42.png", 
+            "install_path": "", 
+            "is_package": 0, 
+            "lastplayed": null, 
+            "name": "Massive Chalice", 
+            "notes": "", 
+            "packageid": "", 
+            "playtime": 0, 
+            "priority": 0, 
+            "source": "humble", 
+            "steamid": "", 
+            "website": "http://www.massivechalice.com/back/"
+        }, 
+        "humble_massivechalice_kstier2": {
+            "finished": 0, 
+            "genre": "", 
+            "gogid": "", 
+            "hidden": 0, 
+            "humble_machinename": "massivechalice_kstier2", 
+            "humble_package": "u6EEWwCXh6zRPDXm", 
+            "icon_url": "", 
+            "install_path": "", 
+            "is_package": 1, 
+            "lastplayed": null, 
+            "name": "Massive Chalice ($35)", 
+            "notes": "", 
+            "packageid": "", 
+            "playtime": 0, 
+            "priority": 0, 
+            "source": "humble", 
+            "steamid": "", 
+            "website": ""
+        }, 
         "humble_metalslug3_android": {
             "finished": 0, 
             "genre": "action; co-op", 
@@ -38138,6 +39831,46 @@
             "steamid": "", 
             "website": ""
         }, 
+        "humble_nottherobots": {
+            "finished": 0, 
+            "genre": "", 
+            "gogid": "", 
+            "hidden": 0, 
+            "humble_machinename": "nottherobots", 
+            "humble_package": "qRKGucGBuMxF6cq4", 
+            "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/c14cc1c09fe4c3ff214904c6a482e4118a960536.png", 
+            "install_path": "", 
+            "is_package": 0, 
+            "lastplayed": null, 
+            "name": "Not The Robots", 
+            "notes": "", 
+            "packageid": "", 
+            "playtime": 0, 
+            "priority": 0, 
+            "source": "humble", 
+            "steamid": "", 
+            "website": "http://nottherobots.com/"
+        }, 
+        "humble_nottherobots_storefront": {
+            "finished": 0, 
+            "genre": "", 
+            "gogid": "", 
+            "hidden": 0, 
+            "humble_machinename": "nottherobots_storefront", 
+            "humble_package": "qRKGucGBuMxF6cq4", 
+            "icon_url": "", 
+            "install_path": "", 
+            "is_package": 1, 
+            "lastplayed": null, 
+            "name": "Not the Robots", 
+            "notes": "", 
+            "packageid": "", 
+            "playtime": 0, 
+            "priority": 0, 
+            "source": "humble", 
+            "steamid": "", 
+            "website": ""
+        }, 
         "humble_octodad_dadliestcatch": {
             "finished": 0, 
             "genre": "adventure; co-op", 
@@ -38150,6 +39883,46 @@
             "is_package": 0, 
             "lastplayed": null, 
             "name": "Octodad: Dadliest Catch", 
+            "notes": "", 
+            "packageid": "", 
+            "playtime": 0, 
+            "priority": 0, 
+            "source": "humble", 
+            "steamid": "", 
+            "website": ""
+        }, 
+        "humble_pixelpiracy": {
+            "finished": 0, 
+            "genre": "", 
+            "gogid": "", 
+            "hidden": 0, 
+            "humble_machinename": "pixelpiracy", 
+            "humble_package": "MZMrADuhEaVyyTre", 
+            "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/e223ca7e00/images/icons/pixelpiracy.png", 
+            "install_path": "", 
+            "is_package": 0, 
+            "lastplayed": null, 
+            "name": "Pixel Piracy", 
+            "notes": "", 
+            "packageid": "", 
+            "playtime": 0, 
+            "priority": 0, 
+            "source": "humble", 
+            "steamid": "", 
+            "website": "http://piracysim.com/"
+        }, 
+        "humble_pixelpiracy_storefront": {
+            "finished": 0, 
+            "genre": "", 
+            "gogid": "", 
+            "hidden": 0, 
+            "humble_machinename": "pixelpiracy_storefront", 
+            "humble_package": "MZMrADuhEaVyyTre", 
+            "icon_url": "", 
+            "install_path": "", 
+            "is_package": 1, 
+            "lastplayed": null, 
+            "name": "Pixel Piracy", 
             "notes": "", 
             "packageid": "", 
             "playtime": 0, 
@@ -38378,6 +40151,26 @@
             "steamid": "", 
             "website": ""
         }, 
+        "humble_spacechem_soundtrack": {
+            "finished": 0, 
+            "genre": "", 
+            "gogid": "", 
+            "hidden": 0, 
+            "humble_machinename": "spacechem_soundtrack", 
+            "humble_package": "SKmfW7H7RrEB", 
+            "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/2ee940dec2ebade9c60098401dd1a4c8bbb94302.png", 
+            "install_path": "", 
+            "is_package": 0, 
+            "lastplayed": null, 
+            "name": "SpaceChem Soundtrack", 
+            "notes": "", 
+            "packageid": "", 
+            "playtime": 0, 
+            "priority": 0, 
+            "source": "humble", 
+            "steamid": "", 
+            "website": "http://spacechemthegame.com/"
+        }, 
         "humble_splot": {
             "finished": 0, 
             "genre": "", 
@@ -38433,6 +40226,46 @@
             "notes": "", 
             "packageid": "", 
             "playtime": 0.0, 
+            "priority": 0, 
+            "source": "humble", 
+            "steamid": "", 
+            "website": ""
+        }, 
+        "humble_stonehearth": {
+            "finished": 0, 
+            "genre": "", 
+            "gogid": "", 
+            "hidden": 0, 
+            "humble_machinename": "stonehearth", 
+            "humble_package": "yefmPFyySHm3SVRt", 
+            "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/62d051a8494980673776c1b031a270214357bc20.png", 
+            "install_path": "", 
+            "is_package": 0, 
+            "lastplayed": null, 
+            "name": "Stonehearth", 
+            "notes": "", 
+            "packageid": "", 
+            "playtime": 0, 
+            "priority": 0, 
+            "source": "humble", 
+            "steamid": "", 
+            "website": "http://stonehearth.net"
+        }, 
+        "humble_stonehearth_kstier1": {
+            "finished": 0, 
+            "genre": "", 
+            "gogid": "", 
+            "hidden": 0, 
+            "humble_machinename": "stonehearth_kstier1", 
+            "humble_package": "yefmPFyySHm3SVRt", 
+            "icon_url": "", 
+            "install_path": "", 
+            "is_package": 1, 
+            "lastplayed": null, 
+            "name": "Stonehearth ($15 Tier)", 
+            "notes": "", 
+            "packageid": "", 
+            "playtime": 0, 
             "priority": 0, 
             "source": "humble", 
             "steamid": "", 
@@ -38717,6 +40550,26 @@
             "source": "humble", 
             "steamid": "", 
             "website": ""
+        }, 
+        "humble_uplayclient": {
+            "finished": 0, 
+            "genre": "", 
+            "gogid": "", 
+            "hidden": 1, 
+            "humble_machinename": "uplayclient", 
+            "humble_package": "8mtdynSzynbzNyHz", 
+            "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/2f9ce6b5f677202c2e1a43c55e78f0a6cdb0350a.png", 
+            "install_path": "", 
+            "is_package": 0, 
+            "lastplayed": null, 
+            "name": "Uplay Client (will download latest version)", 
+            "notes": "", 
+            "packageid": "", 
+            "playtime": 0.0, 
+            "priority": 0, 
+            "source": "humble", 
+            "steamid": "", 
+            "website": "http://www.ubi.com/US/"
         }, 
         "humble_uplink_pc": {
             "finished": 0, 

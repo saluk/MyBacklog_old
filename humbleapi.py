@@ -50,8 +50,10 @@ def get_humble_gamelist():
     logged_in = False
     if not logged_in:
         b.get("https://www.humblebundle.com")
+        print("b.cookies:",b.cookies)
         b.post("https://www.humblebundle.com/login",{
             "authy-token":"",
+            "_le_csrf_token":b.cookies["csrf_cookie"],
             "goto":"/home",
             "password":"blurontian",
             "qs":"",
@@ -63,7 +65,8 @@ def get_humble_gamelist():
     #Should be logged in now
     api_get_order = "https://www.humblebundle.com/api/v1/order/%(key)s"
     #print (b.url,b.text)
-    b.get("http://www.humblebundle.com/home")
+    b.get("https://www.humblebundle.com/home")
+    print(b.text)
     keys = re.findall("gamekeys\:.*?\[(.*?)\]",b.text)[0]
     print (keys)
     games = []
