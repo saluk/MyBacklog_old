@@ -379,10 +379,6 @@ class Form(QWidget):
         self.adjustSize()
         
     def get_row_for_game(self,game,w=[]):
-        if game.hidden and not self.show_hidden:
-            return []
-        if game.is_package and self.hide_packages:
-            return []
         widgets = w[:]
         if not w:
             source = QTableWidgetItem("")
@@ -493,7 +489,7 @@ class Form(QWidget):
                 if package:
                     g.widget_name = "["+abreve(package.name,25)+"] "+g.name
             g.widget_name = abreve(g.widget_name,55)
-            self.gamelist.append({"game":g,"widget":None,"hidden":g.hidden})
+            self.gamelist.append({"game":g,"widget":None})
         self.games_list_widget.clear()
         self.games_list_widget.setIconSize(QSize(48,48))
         self.games_list_widget.horizontalHeader().setVisible(True)
@@ -510,8 +506,7 @@ class Form(QWidget):
                 else:
                     pass
                     self.games_list_widget.setItem(i,r,col)
-            if not cols:
-                self.games_list_widget.setRowHidden(i,True)
+        self.dosearch()
         self.game_scroller.verticalScrollBar().setValue(0)
         self.games_list_widget.setHorizontalHeaderLabels(["s","icon","name","genre","playtime","lastplay","play","launch","edit"])
         self.games_list_widget.resizeColumnsToContents()
@@ -603,11 +598,11 @@ class Form(QWidget):
         self.update_gamelist_widget()
 
     def view_show_packages(self):
-        self.hide_packages = False
+        self.hide_packages = not self.hide_packages
         self.update_gamelist_widget()
 
     def view_show_hidden(self):
-        self.show_hidden = True
+        self.show_hidden = not self.show_hidden
         self.update_gamelist_widget()
 
     def run_game_notimer(self,game):
@@ -675,25 +670,31 @@ class Form(QWidget):
     def add_game(self):
         game = data.Game(source="none")
         #row = self.get_row_for_game(game)
-        self.gamelist.append({"game":game,"widget":None,"hidden":0})
+        self.gamelist.append({"game":game,"widget":None})
         self.show_edit_widget(game,None,self,new=True)
 
     def dosearch(self,text=None):
         sn = self.search_name.text().lower()
         sg = self.search_genre.text().lower()
         sp = self.search_platform.text().lower()
+        def showrow(g):
+            self.games_list_widget.setRowHidden(g["widget"][0],False)
+        def hiderow(g):
+            self.games_list_widget.setRowHidden(g["widget"][0],True)
         for g in self.gamelist:
-            if (not sn or sn in g["game"].name.lower()) and \
-            (not sg or sg in g["game"].genre.lower()) and \
-            (not sp or sp in g["game"].source.lower()) and \
-            not g["game"].hidden:
-                if g["hidden"]:
-                    self.games_list_widget.setRowHidden(g["widget"][0],False)
-                    g["hidden"] = 0
-            else:
-                if not g["hidden"]:
-                    self.games_list_widget.setRowHidden(g["widget"][0],True)
-                    g["hidden"] = 1
+            game = g["game"]
+            showrow(g)
+            if game.is_package and self.hide_packages:
+                hiderow(g)
+                continue
+            if game.hidden and not self.show_hidden:
+                hiderow(g)
+                continue
+            if (sn and not sn in game.name.lower()) or \
+            (sg and not sg in game.genre.lower()) or \
+            (sp and not sp in game.source.lower()):
+                hiderow(g)
+                continue
  
 if __name__ == '__main__':
     import sys
