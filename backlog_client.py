@@ -371,8 +371,8 @@ class Form(QWidget):
         self.gicons = {}
         
         self.update_gamelist_widget()
-        self.setMinimumSize(1024,600)
-        self.setMaximumWidth(1024)
+        self.setMinimumSize(1080,600)
+        self.setMaximumWidth(1080)
         self.adjustSize()
         
     def get_row_for_game(self,game,w=[]):
@@ -405,6 +405,11 @@ class Form(QWidget):
             run.setFixedWidth(50)
             run.clicked.connect(make_callback(self.run_game,game))
             widgets.append(run)
+
+            run_no_timer = QPushButton("launch")
+            run_no_timer.setFixedWidth(50)
+            run_no_timer.clicked.connect(make_callback(self.run_game_notimer,game))
+            widgets.append(run_no_timer)
             
             edit = QPushButton("edit")
             edit.setFixedWidth(50)
@@ -489,7 +494,7 @@ class Form(QWidget):
         self.games_list_widget.horizontalHeader().setVisible(True)
         self.games_list_widget.verticalHeader().setVisible(False)
         self.games_list_widget.setRowCount(len(self.gamelist))
-        self.games_list_widget.setColumnCount(8)
+        self.games_list_widget.setColumnCount(9)
         for i,g in enumerate(self.gamelist):
             cols = self.get_row_for_game(g["game"])
             g["widget"] = (i,cols)
@@ -503,7 +508,7 @@ class Form(QWidget):
             if not cols:
                 self.games_list_widget.setRowHidden(i,True)
         self.game_scroller.verticalScrollBar().setValue(0)
-        self.games_list_widget.setHorizontalHeaderLabels(["s","icon","name","genre","playtime","lastplay","play","edit"])
+        self.games_list_widget.setHorizontalHeaderLabels(["s","icon","name","genre","playtime","lastplay","play","launch","edit"])
         self.games_list_widget.resizeColumnsToContents()
         self.dosearch()
         self.update()
@@ -592,10 +597,14 @@ class Form(QWidget):
         self.sort = "priority"
         self.update_gamelist_widget()
 
-    def run_game(self,game):
+    def run_game_notimer(self,game):
+        return self.run_game(game,track_time=False)
+
+    def run_game(self,game,track_time=True):
         if getattr(self,"stop_playing_button",None):
             return
-        self.timer_started = time.time()
+        if track_time:
+            self.timer_started = time.time()
         print ("run game",game.name,game.gameid)
         args = []
         folder = "."
@@ -613,10 +622,10 @@ class Form(QWidget):
             print("subprocess open")
             os.chdir(curdir)
         
-        
-        self.stop_playing_button = QPushButton("Stop Playing "+game.name)
-        self.buttonLayout1.addWidget(self.stop_playing_button)
-        self.stop_playing_button.clicked.connect(make_callback(self.stop_playing,game))
+        if track_time:
+            self.stop_playing_button = QPushButton("Stop Playing "+game.name)
+            self.buttonLayout1.addWidget(self.stop_playing_button)
+            self.stop_playing_button.clicked.connect(make_callback(self.stop_playing,game))
 
         #self.runthread = RunGameThread()
         #self.runthread.process = self.running
