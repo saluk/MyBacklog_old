@@ -317,6 +317,9 @@ class Form(QWidget):
         self.games = data.Games()
         self.games.load("games.json")
         self.gamelist = []
+
+        self.hide_packages = True
+        self.show_hidden = False
  
         buttonLayout1 = QVBoxLayout()
         
@@ -376,7 +379,9 @@ class Form(QWidget):
         self.adjustSize()
         
     def get_row_for_game(self,game,w=[]):
-        if game.hidden:
+        if game.hidden and not self.show_hidden:
+            return []
+        if game.is_package and self.hide_packages:
             return []
         widgets = w[:]
         if not w:
@@ -595,6 +600,14 @@ class Form(QWidget):
 
     def view_sort_by_priority(self):
         self.sort = "priority"
+        self.update_gamelist_widget()
+
+    def view_show_packages(self):
+        self.hide_packages = False
+        self.update_gamelist_widget()
+
+    def view_show_hidden(self):
+        self.show_hidden = True
         self.update_gamelist_widget()
 
     def run_game_notimer(self,game):
