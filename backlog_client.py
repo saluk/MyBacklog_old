@@ -645,7 +645,7 @@ class Form(QWidget):
     def stop_playing(self,game):
         self.games.stop(game)
         stoprequest()
-        self.buttonLayout1.removeWidget(self.stop_playing_button)
+        #self.buttonLayout1.removeWidget(self.stop_playing_button)
         self.stop_playing_button.deleteLater()
         self.stop_playing_button = None
         elapsed_time = time.time()-self.timer_started
