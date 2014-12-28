@@ -3,6 +3,7 @@ import os
 import time
 import datetime
 import json
+import sys
 
 fmt = "%H:%M:%S %Y-%m-%d"
 def now():
@@ -94,7 +95,11 @@ class SteamSource(Source):
             raise InvalidIdException()
         return "steam_%s"%game.steamid
     def get_run_args(self,game):
-        args = ["c:\\steam\\steam.exe", "-applaunch", "%d"%game.steamid]
+        if sys.platform.startswith("win"):
+            args = ["c:\\steam\\steam.exe", "-applaunch", "%d"%game.steamid]
+        elif sys.platform == "darwin":
+            args = ["open", "steam://run/%d"%game.steamid]
+            #args = ["open", "/Applications/Steam.app", "--args", "-applaunch %d"%game.steamid]
         return args,"."
     def missing_steam_launch(self,game):
         return False
