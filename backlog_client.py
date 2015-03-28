@@ -503,7 +503,7 @@ class Form(QWidget):
                 package = self.games.get_package_for_game(g)
                 if package:
                     g.widget_name = "["+abreve(package.name,25)+"] "+g.name
-            g.widget_name = abreve(g.widget_name,55)
+            g.widget_name = abreve(g.widget_name,100)
             self.gamelist.append({"game":g,"widget":None})
         self.games_list_widget.clear()
         self.games_list_widget.setIconSize(QSize(48,48))
