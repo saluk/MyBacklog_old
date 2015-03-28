@@ -92,7 +92,7 @@ def import_gog(multipack={}):
                     package = data.Game(name=" ".join([x.capitalize() for x in g["gameindex"].split("_")]),source="gog",gogid=g["gameindex"],is_package=1)
                     packs[package.gameid] = package
                     games.append(package)
-            game = data.Game(name=name,source="gog",gogid=g["gameindex"],icon_url="http://www.gog.com"+g["icon"],packageid=g2.replace(" ","_"))
+            game = data.Game(name=name,source="gog",gogid=g["gameindex"],icon_url=g["icon"],packageid=g2.replace(" ","_"))
             games.append(game)
     return games
     

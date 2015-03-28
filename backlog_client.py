@@ -181,7 +181,6 @@ class ListGamesForPack(QWidget):
         self.app.update_gamelist_widget()
         self.deleteLater()
 
-
 class EditGame(QWidget):
     def __init__(self, game, row_widget, app, new=False):
         super(EditGame, self).__init__()
@@ -269,7 +268,7 @@ class EditGame(QWidget):
         self.games.delete(self.game)
         self.games.save("games.json")
         self.deleteLater()
-        self.row_widget.deleteLater()
+        self.app.update_gamelist_widget()
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -372,11 +371,19 @@ class Form(QWidget):
             self.icons[icon.split(".")[0]] = QPixmap("icons/%s"%icon)#.scaled(32,32)
         print (self.icons)
         self.gicons = {}
+
+        self.timer = QTimer(self)
+        self.timer.setInterval(300000)
+        #self.timer.setInterval(5000)
+        self.timer.timeout.connect(self.notify)
         
         self.update_gamelist_widget()
-        self.setMinimumSize(1080,600)
+        self.setMinimumSize(1280,600)
         self.setMaximumWidth(1080)
         self.adjustSize()
+
+    def notify(self):
+        self.parent().trayicon.showMessage("Still Playing","Are you still playing?")
         
     def get_row_for_game(self,game,w=[]):
         widgets = w[:]
@@ -411,6 +418,11 @@ class Form(QWidget):
             run_no_timer.setFixedWidth(50)
             run_no_timer.clicked.connect(make_callback(self.run_game_notimer,game))
             widgets.append(run_no_timer)
+
+            download = QPushButton("get")
+            download.setFixedWidth(50)
+            download.clicked.connect(make_callback(self.download,game))
+            widgets.append(download)
             
             edit = QPushButton("edit")
             edit.setFixedWidth(50)
@@ -420,7 +432,7 @@ class Form(QWidget):
         if game.source in self.icons:
             widgets[0].setIcon(QIcon(self.icons[game.source]))
         if game.icon_url:
-            fpath = "cache/icons/"+game.icon_url.replace("http","").replace(":","").replace("/","")
+            fpath = "cache/icons/"+game.icon_url.replace("http","").replace("https","").replace(":","").replace("/","")
             if not os.path.exists(fpath):
                 r = requests.get(game.icon_url)
                 f = open(fpath,"wb")
@@ -430,7 +442,7 @@ class Form(QWidget):
                 self.gicons[fpath] = QPixmap(fpath)
             widgets[1].setIcon(QIcon(self.gicons[fpath]))
         elif game.install_path and game.install_path.endswith(".exe"):
-            fpath = "cache/icons/"+game.install_path.replace("http","").replace(":","").replace("/","").replace("\\","")
+            fpath = "cache/icons/"+game.install_path.replace("http","").replace("https","").replace(":","").replace("/","").replace("\\","")
             if not os.path.exists(fpath):
                 p = winicons.get_icon(game.install_path)
                 import shutil
@@ -455,6 +467,8 @@ class Form(QWidget):
             [w.setBackground(bg) for w in widgets if hasattr(w,"setBackground")]
         if game.finished:
             setbg(QColor(100,200,150))
+        elif game.is_package:
+            setbg(QColor(100,100,200))
         else:
             b = max(100,215-game.priority*40)
             setbg(QColor(b,b,b))
@@ -495,7 +509,7 @@ class Form(QWidget):
         self.games_list_widget.horizontalHeader().setVisible(True)
         self.games_list_widget.verticalHeader().setVisible(False)
         self.games_list_widget.setRowCount(len(self.gamelist))
-        self.games_list_widget.setColumnCount(9)
+        self.games_list_widget.setColumnCount(10)
         for i,g in enumerate(self.gamelist):
             cols = self.get_row_for_game(g["game"])
             g["widget"] = (i,cols)
@@ -508,7 +522,7 @@ class Form(QWidget):
                     self.games_list_widget.setItem(i,r,col)
         self.dosearch()
         self.game_scroller.verticalScrollBar().setValue(0)
-        self.games_list_widget.setHorizontalHeaderLabels(["s","icon","name","genre","playtime","lastplay","play","launch","edit"])
+        self.games_list_widget.setHorizontalHeaderLabels(["s","icon","name","genre","playtime","lastplay","play","launch","get","edit"])
         self.games_list_widget.resizeColumnsToContents()
         self.dosearch()
         self.update()
@@ -614,6 +628,7 @@ class Form(QWidget):
         if track_time:
             self.timer_started = time.time()
         print ("run game",game.name,game.gameid)
+        self.timer.start()
         args = []
         folder = "."
         startupinfo = None
@@ -644,6 +659,7 @@ class Form(QWidget):
 
     def stop_playing(self,game):
         self.games.stop(game)
+        self.timer.stop()
         stoprequest()
         #self.buttonLayout1.removeWidget(self.stop_playing_button)
         self.stop_playing_button.deleteLater()
@@ -667,6 +683,11 @@ class Form(QWidget):
     def edit_game(self,game,row_widget):
         self.show_edit_widget(game,row_widget,self)
 
+    def download(self,game):
+        if game.download_link:
+            import webbrowser
+            webbrowser.open(game.download_link)
+
     def add_game(self):
         game = data.Game(source="none")
         #row = self.get_row_for_game(game)
@@ -677,6 +698,8 @@ class Form(QWidget):
         sn = self.search_name.text().lower()
         sg = self.search_genre.text().lower()
         sp = self.search_platform.text().lower()
+        if sp == "emu":
+            sp = "gba or snes or n64"
         def showrow(g):
             self.games_list_widget.setRowHidden(g["widget"][0],False)
         def hiderow(g):
@@ -690,9 +713,14 @@ class Form(QWidget):
             if game.hidden and not self.show_hidden:
                 hiderow(g)
                 continue
-            if (sn and not sn in game.name.lower()) or \
-            (sg and not sg in game.genre.lower()) or \
-            (sp and not sp in game.source.lower()):
+            def match(search,field):
+                searches = search.split(" or ")
+                for s in searches:
+                    if s in field:
+                        return True
+            if (sn and not match(sn,game.name.lower())) or \
+            (sg and not match(sg,game.genre.lower())) or \
+            (sp and not match(sp,game.source.lower())):
                 hiderow(g)
                 continue
  

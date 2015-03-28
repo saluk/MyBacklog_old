@@ -40,6 +40,8 @@ class Source:
         s = [x.lower() for x in game.name if x.lower() in "abcdefghijklmnopqrstuvwxyz1234567890 "]
         s = "".join(s).replace(" ","_")
         return s
+    def download_link(self,game):
+        return ""
     def get_run_args(self,game):
         """Returns the method to run the game. Defaults to using a batch file to run the install_path exe"""
         import subprocess
@@ -58,7 +60,10 @@ class Source:
             if 1:#not os.path.exists("cache/batches/"+game.gameid+".bat"):
                 with open("cache/batches/"+game.gameid+".bat", "w") as f:
                     f.write('cd "%s"\n'%folder)
-                    f.write('"%s"\n'%(game.install_path.split("\\")[-1]))
+                    path = game.install_path.split("\\")[-1]
+                    exe,args = path.split(".exe")
+                    exe = exe+".exe"
+                    f.write('"%s" %s\n'%(exe,args))
             args = [game.gameid+".bat"]
             folder = os.path.abspath("cache\\batches\\")
             #args = [game.install_path.split("\\")[-1]]
@@ -106,6 +111,8 @@ class GogSource(Source):
         if not game.gogid:
             raise InvalidIdException()
         return "gog_%s"%game.gogid
+    def download_link(self,game):
+        return "gogdownloader://%s/installer_win_en"%game.gogid
 sources["gog"] = GogSource()
 class HumbleSource(Source):
     def args(self):
@@ -120,22 +127,35 @@ class ItchSource(Source):
 sources["itch"] = ItchSource()
 class GBASource(Source):
     def get_run_args(self,game):
-        args = ["c:\\emu\\gb\\vbam\\VisualBoyAdvance-M.exe",game.install_path]
+        args = ["C:\\emu\\retroarch\\retroarch.exe","-c","C:\\emu\\retroarch\\retroarch-gba.cfg",game.install_path]
         return args,"."
 sources["gba"] = GBASource()
+class SNESSource(Source):
+    def get_run_args(self,game):
+        args = ["C:\\emu\\retroarch\\retroarch.exe","-c","C:\\emu\\retroarch\\retroarch-snes.cfg",game.install_path]
+        return args,"."
+sources["snes"] = SNESSource()
+class N64Source(Source):
+    def get_run_args(self,game):
+        args = ["C:\\emu\\retroarch\\retroarch.exe","-c","C:\\emu\\retroarch\\retroarch-n64.cfg",game.install_path]
+        return args,"."
+sources["n64"] = N64Source()
 class NoneSource(Source):
     pass
 sources["none"] = NoneSource()
 class OriginSource(Source):
     pass
 sources["origin"] = OriginSource()
+class GamersGateSource(Source):
+    pass
+sources["gamersgate"] = GamersGateSource()
 class OfflineSource(Source):
     def get_run_args(self,game):
         return None,None
 sources["offline"] = OfflineSource()
 
 class Game:
-    args = [("name","s"),("playtime","f"),("finished","i"),("genre","s"),("source","s"),("hidden","i"),("icon_url","s"),
+    args = [("name","s"),("playtime","f"),("lastplayed","s"),("finished","i"),("genre","s"),("source","s"),("hidden","i"),("icon_url","s"),
     ("packageid","s"),("is_package","i"),("notes","s"),("priority","i"),("website","s")]
     def __init__(self,**kwargs):
         dontsavekeys = set(dir(self))
@@ -200,6 +220,10 @@ class Game:
         s = sources[self.source].gameid(self)
         if self.packageid and s:
             s += ".%s"%self.packageid
+        return s
+    @property
+    def download_link(self):
+        s = sources[self.source].download_link(self)
         return s
     @property
     def install_folder(self):
