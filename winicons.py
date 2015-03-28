@@ -1,10 +1,16 @@
 import os
+import sys
 import shutil
 import requests
 import zlib
 
+from systems import *
+
 def get_icon(exe):
-    shutil.rmtree("extract")
+    if not EXTRACT_ICONS:
+        return "icons/none.png"
+    if os.path.exists("extract"):
+        shutil.rmtree("extract")
     print("extracting",exe)
     os.system('ResourcesExtract.exe /Source "%s" /DestFolder "extract" /ExtractIcons 1 /ExtractCursors 0 /FileExistMode 1 /OpenDestFolder 0'%exe)
     for f in os.listdir("extract"):
@@ -18,10 +24,10 @@ def get_icon(exe):
     return "icons/none.png"
 
 crcmap = {}
-f = open("gbaroms.dat")
-lines = f.read().split("\n")
-f.close()
-for l in lines:
+#f = open("gbaroms.dat")
+#lines = f.read().split("\n")
+#f.close()
+for l in []:#lines:
     if l.strip():
         fields = l.split(";")
         crc = fields[8].lstrip("0")
@@ -32,7 +38,10 @@ def read_crc(filename):
     return "%X"%(zlib.crc32(open(filename,"rb").read()) & 0xFFFFFFFF)
 
 def get_gba(gba):
-    shutil.rmtree("extract")
+    if not os.path.exists("gba"):
+        return "icons/none.png"
+    if os.path.exists("extract"):
+        shutil.rmtree("extract")
     os.mkdir("extract")
     print("extracting",gba)
     #get crc

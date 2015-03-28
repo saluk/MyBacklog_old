@@ -3,6 +3,7 @@
 #STDLIB
 import json
 import os
+import sys
 import time
 import requests
 import subprocess
@@ -633,15 +634,18 @@ class Form(QWidget):
         folder = "."
         startupinfo = None
         creationflags = 0
+        shell = True
+        if sys.platform=='darwin':
+            shell = False
         args,folder = game.get_run_args()
+        print("run args:",args,folder)
 
         if args and folder:
             print(args)
-            import sys
             curdir = os.path.abspath(os.curdir)
             os.chdir(folder)
             print(os.path.abspath(os.curdir))
-            self.running = subprocess.Popen(args, cwd=folder, stdout=sys.stdout, stderr=sys.stderr, creationflags=creationflags, shell=True)
+            self.running = subprocess.Popen(args, cwd=folder, stdout=sys.stdout, stderr=sys.stderr, creationflags=creationflags, shell=shell)
             print("subprocess open")
             os.chdir(curdir)
         
