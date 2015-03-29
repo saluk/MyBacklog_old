@@ -145,6 +145,11 @@ class N64Source(Source):
         args = ["C:\\emu\\retroarch\\retroarch.exe","-c","C:\\emu\\retroarch\\retroarch-n64.cfg",game.install_path]
         return args,"."
 sources["n64"] = N64Source()
+class NDSSource(Source):
+    def get_run_args(self,game):
+        args = ["C:\\emu\\retroarch\\retroarch.exe","-c","C:\\emu\\retroarch\\retroarch-nds.cfg",game.install_path]
+        return args,"."
+sources["nds"] = NDSSource()
 class NoneSource(Source):
     pass
 sources["none"] = NoneSource()
@@ -169,7 +174,7 @@ class Game:
         self.finished = 0
         self.hidden = 0
         self.is_package = 0   #Set to 1 if it includes multiple games
-        self.lastplayed = None   #timestamp in fmt
+        self.lastplayed = ""   #timestamp in fmt
         self.source = "steam"
         self.packageid = ""  #Id of game within a package
         self.genre = ""

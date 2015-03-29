@@ -703,7 +703,7 @@ class Form(QWidget):
         sg = self.search_genre.text().lower()
         sp = self.search_platform.text().lower()
         if sp == "emu":
-            sp = "gba or snes or n64"
+            sp = "gba or snes or n64 or nds"
         def showrow(g):
             self.games_list_widget.setRowHidden(g["widget"][0],False)
         def hiderow(g):
