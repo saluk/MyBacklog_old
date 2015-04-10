@@ -270,6 +270,38 @@ class EditGame(QWidget):
         self.deleteLater()
         self.app.update_gamelist_widget()
 
+def icon_for_game(game,size,icon_cache):
+    if game.icon_url:
+        fpath = "cache/icons/"+game.icon_url.replace("http","").replace("https","").replace(":","").replace("/","")
+        if not os.path.exists(fpath):
+            r = requests.get(game.icon_url)
+            f = open(fpath,"wb")
+            f.write(r.content)
+            f.close()
+    elif game.install_path and game.install_path.endswith(".exe"):
+        fpath = "cache/icons/"+game.install_path.replace("http","").replace("https","").replace(":","").replace("/","").replace("\\","")
+        if not os.path.exists(fpath):
+            p = winicons.get_icon(game.install_path)
+            import shutil
+            if p:
+                shutil.copy(p,fpath)
+    elif game.install_path and game.install_path.endswith(".gba"):
+        fpath = "cache/icons/"+game.install_path.replace("http","").replace(":","").replace("/","").replace("\\","")
+        if not os.path.exists(fpath):
+            p = winicons.get_gba(game.install_path)
+            import shutil
+            if p:
+                shutil.copy(p,fpath)
+    else:
+        fpath = "icons/blank.png"
+    if os.path.exists(fpath) and not fpath+"_%d"%size in icon_cache:
+        qp = QPixmap(fpath)
+        if not qp.isNull():
+            qp = qp.scaled(size,size)
+        icon_cache[fpath] = qp
+    if fpath in icon_cache:
+        return QIcon(icon_cache[fpath])
+
 class GameOptions(QWidget):
     def __init__(self, game, widget, app):
         super(GameOptions, self).__init__()
@@ -279,7 +311,17 @@ class GameOptions(QWidget):
 
         #Layout
         layout = QGridLayout()
-        layout.addWidget(QLabel(game.name))
+        layout.setAlignment(Qt.AlignTop)
+
+        label_section = QGridLayout()
+        label_section.addWidget(QLabel(game.name),1,0)
+        icon = icon_for_game(game,128,self.app.gicons)
+        if icon:
+            iconw = QLabel()
+            iconw.setPixmap(icon.pixmap(128,128))
+            label_section.addWidget(iconw,0,0)
+
+        layout.addLayout(label_section,0,0)
 
         if not game.missing_steam_launch():
             run = QPushButton("Play Game")
@@ -312,7 +354,7 @@ class MainWindow(QMainWindow):
         super(MainWindow,self).__init__(None)
         self.setWindowTitle("MyBacklog")
         self.setWindowIcon(QIcon(QPixmap("icons/steam.png")))
-        self.main_form = Form()
+        self.main_form = Form(self)
 
         menus = {}
         for folder in ["file","import","cleanup","sync","view"]:
@@ -321,6 +363,9 @@ class MainWindow(QMainWindow):
                 if x.startswith(folder+"_"):
                     name = " ".join([y.capitalize() for y in x.split("_")[1:]])
                     menus[folder].addAction(QAction("&"+name,self,triggered=getattr(self.main_form,x)))
+        menus["view"] = self.menuBar().addMenu("&Add Game")
+        for source in data.sources:
+            menus["view"].addAction(QAction("&"+source,self,triggered=lambda : self.main_form.add_game(source)))
 
         menus["file"].addAction(QAction("&Exit",self,triggered=self.really_close))
         self.exit_requested = False
@@ -389,10 +434,6 @@ class Form(QWidget):
         #self.game_scroller.setFixedWidth(600)
         self.game_scroller.setWidget(self.games_list_widget)
         buttonLayout1.addWidget(self.game_scroller)
-        
-        b = QPushButton("Add Game")
-        buttonLayout1.addWidget(b)
-        b.clicked.connect(self.add_game)
  
         self.buttonLayout1 = buttonLayout1
         mainLayout = QGridLayout()
@@ -404,8 +445,10 @@ class Form(QWidget):
 
         self.icons = {}
         for icon in os.listdir("icons"):
-            self.icons[icon.split(".")[0]] = QPixmap("icons/%s"%icon)#.scaled(32,32)
-        print (self.icons)
+            self.icons[icon.split(".")[0]] = QPixmap("icons/%s"%icon)
+        for source in data.sources:
+            if source not in self.icons:
+                self.icons[source] = QPixmap("icons/blank.png")
         self.gicons = {}
 
         self.timer = QTimer(self)
@@ -414,11 +457,18 @@ class Form(QWidget):
         self.timer.timeout.connect(self.notify)
         
         self.update_gamelist_widget()
-        self.setMinimumSize(1280,600)
+        self.setMinimumSize(740,600)
         self.setMaximumWidth(1080)
         self.adjustSize()
 
         self.running = None #Game currently being played
+
+        self.game_options_dock = QDockWidget("Game Options",self)
+        self.game_options_dock.setFeatures(QDockWidget.NoDockWidgetFeatures)
+        self.game_options_dock.setMaximumWidth(300)
+        self.game_options_dock.setMinimumWidth(300)
+        self.game_options_dock.setMaximumHeight(400)
+        self.window().addDockWidget(Qt.LeftDockWidgetArea,self.game_options_dock)
 
     def notify(self):
         if self.running:
@@ -447,38 +497,9 @@ class Form(QWidget):
         
         if game.source in self.icons:
             widgets[0].setIcon(QIcon(self.icons[game.source]))
-        if game.icon_url:
-            fpath = "cache/icons/"+game.icon_url.replace("http","").replace("https","").replace(":","").replace("/","")
-            if not os.path.exists(fpath):
-                r = requests.get(game.icon_url)
-                f = open(fpath,"wb")
-                f.write(r.content)
-                f.close()
-            if not fpath in self.gicons:
-                self.gicons[fpath] = QPixmap(fpath)
-            widgets[1].setIcon(QIcon(self.gicons[fpath]))
-        elif game.install_path and game.install_path.endswith(".exe"):
-            fpath = "cache/icons/"+game.install_path.replace("http","").replace("https","").replace(":","").replace("/","").replace("\\","")
-            if not os.path.exists(fpath):
-                p = winicons.get_icon(game.install_path)
-                import shutil
-                if p:
-                    shutil.copy(p,fpath)
-            if os.path.exists(fpath) and not fpath in self.gicons:
-                self.gicons[fpath] = QPixmap(fpath)
-            if fpath in self.gicons:
-                widgets[1].setIcon(QIcon(self.gicons[fpath]))
-        elif game.install_path and game.install_path.endswith(".gba"):
-            fpath = "cache/icons/"+game.install_path.replace("http","").replace(":","").replace("/","").replace("\\","")
-            if not os.path.exists(fpath):
-                p = winicons.get_gba(game.install_path)
-                import shutil
-                if p:
-                    shutil.copy(p,fpath)
-            if os.path.exists(fpath) and not fpath in self.gicons:
-                self.gicons[fpath] = QPixmap(fpath).scaled(48,48)
-            if fpath in self.gicons:
-                widgets[1].setIcon(QIcon(self.gicons[fpath]))
+        icon = icon_for_game(game,48,self.gicons)
+        if icon:
+            widgets[1].setIcon(icon)
         def setbg(bg):
             [w.setBackground(bg) for w in widgets if hasattr(w,"setBackground")]
         if game.finished:
@@ -541,6 +562,12 @@ class Form(QWidget):
         self.game_scroller.verticalScrollBar().setValue(0)
         self.games_list_widget.setHorizontalHeaderLabels(["s","icon","name","genre","playtime","lastplay"])
         self.games_list_widget.resizeColumnsToContents()
+        self.games_list_widget.setColumnWidth(0,48)
+        self.games_list_widget.setColumnWidth(1,48)
+        self.games_list_widget.setColumnWidth(2,350)
+        self.games_list_widget.setColumnWidth(3,50)
+        self.games_list_widget.setColumnWidth(4,50)
+        self.games_list_widget.setColumnWidth(5,150)
         self.dosearch()
         self.update()
 
@@ -676,7 +703,7 @@ class Form(QWidget):
 
     def show_edit_widget(self,*args,**kwargs):
         self.egw = EditGame(*args,**kwargs)
-        dock = QDockWidget("Dock Widget",self)
+        dock = QDockWidget("Edit",self)
         dock.setWidget(self.egw)
         self.window().addDockWidget(Qt.LeftDockWidgetArea,dock)
         return self.egw
@@ -689,14 +716,6 @@ class Form(QWidget):
 
     def update_game_options(self,game,widget):
         self.game_options = GameOptions(game,widget,self)
-        if not hasattr(self,"game_options_dock"):
-            self.game_options_dock = QDockWidget("Dock Widget",self)
-            self.game_options_dock.setMaximumWidth(300)
-            self.game_options_dock.setMinimumWidth(300)
-            self.game_options_dock.setMaximumHeight(400)
-            self.window().addDockWidget(Qt.LeftDockWidgetArea,self.game_options_dock)
-        else:
-            self.game_options_dock.widget().deleteLater()
         self.game_options_dock.setWidget(self.game_options)
 
         return self.game_options
@@ -710,8 +729,8 @@ class Form(QWidget):
     def download(self,game):
         game.download_method()
 
-    def add_game(self):
-        game = data.Game(source="steam")
+    def add_game(self,source):
+        game = data.Game(source=source)
         #row = self.get_row_for_game(game)
         self.gamelist.append({"game":game,"widget":None})
         self.show_edit_widget(game,None,self,new=True)

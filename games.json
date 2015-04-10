@@ -62943,6 +62943,675 @@
             }, 
             "time": "14:24:45 2015-04-08", 
             "type": "updategame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "14:21:34 2015-04-08", 
+                "name": "Serious Sam HD: The Second Encounter", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 329.43850588798523, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 41010, 
+                "website": ""
+            }, 
+            "time": "21:31:31 2015-04-09", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "14:21:34 2015-04-08", 
+                "name": "Serious Sam HD: The Second Encounter", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 329.43850588798523, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 41010, 
+                "website": ""
+            }, 
+            "time": "22:11:57 2015-04-09", 
+            "type": "stopgame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "finished", 
+                        "ov": 0, 
+                        "v": 1
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 1, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/257220/788427264cc2b29eaa3afbed90270e608e477b4c.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "12:41:57 2015-04-08", 
+                "name": "Secret Files: Sam Peters", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 6067.893612861633, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 257220, 
+                "website": ""
+            }, 
+            "time": "22:12:12 2015-04-09", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "genre", 
+                        "ov": "construction and management simulation", 
+                        "v": "simulation"
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "simulation", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/220200/6dc8c1377c6b0ffedaeaec59c253f8c33fb3e62b.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "12:55:07 2013-12-13", 
+                "name": "Kerbal Space Program", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 67740.0, 
+                "priority": 0, 
+                "source": "steam", 
+                "steamid": 220200, 
+                "website": ""
+            }, 
+            "time": "22:48:20 2015-04-09", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "genre", 
+                        "ov": "construction and management simulation", 
+                        "v": "simulation"
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "simulation", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/233450/c166c7911beec4d63a74cdddf25f26b73c84556b.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "12:29:23 2013-11-29", 
+                "name": "Prison Architect", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 22140.0, 
+                "priority": 0, 
+                "source": "steam", 
+                "steamid": 233450, 
+                "website": ""
+            }, 
+            "time": "22:48:27 2015-04-09", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "genre", 
+                        "ov": "construction and management simulation", 
+                        "v": "simulation"
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "simulation", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/42890/3f4adefad44d8c445bdf8e6c4f31ef6e755d9ab6.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "00:00:00 2011-12-03", 
+                "name": "Sword of the Stars Complete Collection", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 3900.0, 
+                "priority": 0, 
+                "source": "steam", 
+                "steamid": 42890, 
+                "website": ""
+            }, 
+            "time": "22:48:38 2015-04-09", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "lastplayed", 
+                        "ov": null, 
+                        "v": "None"
+                    }, 
+                    {
+                        "k": "genre", 
+                        "ov": "construction and management simulation", 
+                        "v": "simulation"
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "simulation", 
+                "gogid": "caesar_3", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "https://www.gog.com/upload/images/2010/02/46c05f7aba64d3a8b83e955df3fe545f09892899_bbC_20.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "None", 
+                "name": "Caesar 3", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0.0, 
+                "priority": 0, 
+                "source": "gog", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "22:48:57 2015-04-09", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "lastplayed", 
+                        "ov": null, 
+                        "v": ""
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "simulation", 
+                "gogid": "caesar_3", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "https://www.gog.com/upload/images/2010/02/46c05f7aba64d3a8b83e955df3fe545f09892899_bbC_20.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "", 
+                "name": "Caesar 3", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0.0, 
+                "priority": 0, 
+                "source": "gog", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "22:50:08 2015-04-09", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "genre", 
+                        "ov": "construction and management simulation", 
+                        "v": "simulation"
+                    }, 
+                    {
+                        "k": "lastplayed", 
+                        "ov": null, 
+                        "v": ""
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "simulation", 
+                "gogid": "capitalism_2", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "https://www.gog.com/upload/images/2009/02/72080258fefa8058d05b77e0185e8dddd5a0cdd1_bbC_20.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "", 
+                "name": "Capitalism 2", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0.0, 
+                "priority": 0, 
+                "source": "gog", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "22:50:18 2015-04-09", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "genre", 
+                        "ov": "construction and management simulation", 
+                        "v": "simulation"
+                    }, 
+                    {
+                        "k": "lastplayed", 
+                        "ov": null, 
+                        "v": ""
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "simulation", 
+                "gogid": "capitalism_plus", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "https://www.gog.com/upload/images/2009/02/1e5fba0b3138dd93bfb5fdac23e8f37ad99553a5_bbC_20.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "", 
+                "name": "Capitalism Plus", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0.0, 
+                "priority": 0, 
+                "source": "gog", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "22:50:51 2015-04-09", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "genre", 
+                        "ov": "construction and management simulation", 
+                        "v": "simulation"
+                    }, 
+                    {
+                        "k": "lastplayed", 
+                        "ov": null, 
+                        "v": "None"
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "simulation", 
+                "gogid": "constructor", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "https://www.gog.com/upload/images/2010/01/3c5aa96b02380f18fd2df8b119f276a688cebf65_bbC_20.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "None", 
+                "name": "Constructor", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0.0, 
+                "priority": 0, 
+                "source": "gog", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "22:51:04 2015-04-09", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "genre", 
+                        "ov": "construction and management simulation", 
+                        "v": "simulation"
+                    }, 
+                    {
+                        "k": "lastplayed", 
+                        "ov": null, 
+                        "v": ""
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "simulation", 
+                "gogid": "eador_genesis", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "https://www.gog.com/upload/images/2012/12/980c7ceacffc0759741bec02cad999d903c669f5_bbC_20.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "", 
+                "name": "Eador Genesis", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0.0, 
+                "priority": 0, 
+                "source": "gog", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "22:51:19 2015-04-09", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "genre", 
+                        "ov": "construction and management simulation", 
+                        "v": "simulation"
+                    }, 
+                    {
+                        "k": "lastplayed", 
+                        "ov": null, 
+                        "v": ""
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "simulation", 
+                "gogid": "pharaoh_cleopatra", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "https://www.gog.com/upload/images/2012/05/961fc28b094c7cc9da0d1f866b5604b974a6aa6d_bbC_20.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "", 
+                "name": "Pharaoh Cleopatra", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0.0, 
+                "priority": 0, 
+                "source": "gog", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "22:51:51 2015-04-09", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "lastplayed", 
+                        "ov": null, 
+                        "v": "None"
+                    }, 
+                    {
+                        "k": "genre", 
+                        "ov": "construction and management simulation", 
+                        "v": "simulation"
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "simulation", 
+                "gogid": "restaurant_empire", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "https://www.gog.com/upload/images/2010/01/4b477e2cd31279069ea2246e24d7faaa9f3eca09_bbC_20.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "None", 
+                "name": "Restaurant Empire", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0.0, 
+                "priority": 0, 
+                "source": "gog", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "22:52:08 2015-04-09", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "lastplayed", 
+                        "ov": null, 
+                        "v": "None"
+                    }, 
+                    {
+                        "k": "genre", 
+                        "ov": "construction and management simulation", 
+                        "v": "simulation"
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "simulation", 
+                "gogid": "simcity_2000_special_edition", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "https://www.gog.com/upload/images/2011/10/74459cbbc6550a8c2c2bd33782536dd9a7b0fc0d_bbC_20.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "None", 
+                "name": "Simcity 2000 Special Edition", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0.0, 
+                "priority": 0, 
+                "source": "gog", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "22:52:15 2015-04-09", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "lastplayed", 
+                        "ov": null, 
+                        "v": "None"
+                    }, 
+                    {
+                        "k": "genre", 
+                        "ov": "construction and management simulation", 
+                        "v": "simulation"
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "simulation", 
+                "gogid": "spellforce_platinum", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "https://www.gog.com/upload/images/2009/01/d9e288cb5d17512d60f56376bececb4b169a726b_bbC_20.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "None", 
+                "name": "Spellforce Platinum", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0.0, 
+                "priority": 0, 
+                "source": "gog", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "22:52:21 2015-04-09", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "lastplayed", 
+                        "ov": null, 
+                        "v": "None"
+                    }, 
+                    {
+                        "k": "genre", 
+                        "ov": "construction and management simulation", 
+                        "v": "simulation"
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "simulation", 
+                "gogid": "startopia", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "https://www.gog.com/upload/images/2012/09/dab7320c766b5783dfba1f62a389ca4516b06703_bbC_20.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "None", 
+                "name": "Startopia", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0.0, 
+                "priority": 0, 
+                "source": "gog", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "22:52:27 2015-04-09", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "lastplayed", 
+                        "ov": null, 
+                        "v": "None"
+                    }, 
+                    {
+                        "k": "genre", 
+                        "ov": "construction and management simulation", 
+                        "v": "simulation"
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "simulation", 
+                "gogid": "theme_hospital", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "https://www.gog.com/upload/images/2012/04/7f47422ae90c511281cfcf55909a69382e16f1f0_bbC_20.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "None", 
+                "name": "Theme Hospital", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0.0, 
+                "priority": 0, 
+                "source": "gog", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "22:52:33 2015-04-09", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "lastplayed", 
+                        "ov": null, 
+                        "v": "None"
+                    }, 
+                    {
+                        "k": "genre", 
+                        "ov": "construction and management simulation", 
+                        "v": "simulation"
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "simulation", 
+                "gogid": "warlords_battlecry_3", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "https://www.gog.com/upload/images/2009/02/8cce54cb9cc9dea116034161a2122a3d1ad3d63c_bbC_20.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "None", 
+                "name": "Warlords Battlecry 3", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0.0, 
+                "priority": 0, 
+                "source": "gog", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "22:52:40 2015-04-09", 
+            "type": "updategame"
         }
     ], 
     "games": {
@@ -64608,7 +65277,7 @@
         }, 
         "gog_caesar_3": {
             "finished": 0, 
-            "genre": "construction and management simulation", 
+            "genre": "simulation", 
             "gogid": "caesar_3", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -64616,11 +65285,11 @@
             "icon_url": "https://www.gog.com/upload/images/2010/02/46c05f7aba64d3a8b83e955df3fe545f09892899_bbC_20.jpg", 
             "install_path": "", 
             "is_package": 0, 
-            "lastplayed": null, 
+            "lastplayed": "", 
             "name": "Caesar 3", 
             "notes": "", 
             "packageid": "", 
-            "playtime": 0, 
+            "playtime": 0.0, 
             "priority": 0, 
             "source": "gog", 
             "steamid": "", 
@@ -64648,7 +65317,7 @@
         }, 
         "gog_capitalism_2": {
             "finished": 0, 
-            "genre": "construction and management simulation", 
+            "genre": "simulation", 
             "gogid": "capitalism_2", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -64656,11 +65325,11 @@
             "icon_url": "https://www.gog.com/upload/images/2009/02/72080258fefa8058d05b77e0185e8dddd5a0cdd1_bbC_20.jpg", 
             "install_path": "", 
             "is_package": 0, 
-            "lastplayed": null, 
+            "lastplayed": "", 
             "name": "Capitalism 2", 
             "notes": "", 
             "packageid": "", 
-            "playtime": 0, 
+            "playtime": 0.0, 
             "priority": 0, 
             "source": "gog", 
             "steamid": "", 
@@ -64668,7 +65337,7 @@
         }, 
         "gog_capitalism_plus": {
             "finished": 0, 
-            "genre": "construction and management simulation", 
+            "genre": "simulation", 
             "gogid": "capitalism_plus", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -64676,11 +65345,11 @@
             "icon_url": "https://www.gog.com/upload/images/2009/02/1e5fba0b3138dd93bfb5fdac23e8f37ad99553a5_bbC_20.jpg", 
             "install_path": "", 
             "is_package": 0, 
-            "lastplayed": null, 
+            "lastplayed": "", 
             "name": "Capitalism Plus", 
             "notes": "", 
             "packageid": "", 
-            "playtime": 0, 
+            "playtime": 0.0, 
             "priority": 0, 
             "source": "gog", 
             "steamid": "", 
@@ -64948,7 +65617,7 @@
         }, 
         "gog_constructor": {
             "finished": 0, 
-            "genre": "construction and management simulation", 
+            "genre": "simulation", 
             "gogid": "constructor", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -64956,11 +65625,11 @@
             "icon_url": "https://www.gog.com/upload/images/2010/01/3c5aa96b02380f18fd2df8b119f276a688cebf65_bbC_20.jpg", 
             "install_path": "", 
             "is_package": 0, 
-            "lastplayed": null, 
+            "lastplayed": "", 
             "name": "Constructor", 
             "notes": "", 
             "packageid": "", 
-            "playtime": 0, 
+            "playtime": 0.0, 
             "priority": 0, 
             "source": "gog", 
             "steamid": "", 
@@ -66028,7 +66697,7 @@
         }, 
         "gog_eador_genesis": {
             "finished": 0, 
-            "genre": "construction and management simulation", 
+            "genre": "simulation", 
             "gogid": "eador_genesis", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -66036,11 +66705,11 @@
             "icon_url": "https://www.gog.com/upload/images/2012/12/980c7ceacffc0759741bec02cad999d903c669f5_bbC_20.jpg", 
             "install_path": "", 
             "is_package": 0, 
-            "lastplayed": null, 
+            "lastplayed": "", 
             "name": "Eador Genesis", 
             "notes": "", 
             "packageid": "", 
-            "playtime": 0, 
+            "playtime": 0.0, 
             "priority": 0, 
             "source": "gog", 
             "steamid": "", 
@@ -69828,7 +70497,7 @@
         }, 
         "gog_pharaoh_cleopatra": {
             "finished": 0, 
-            "genre": "construction and management simulation", 
+            "genre": "simulation", 
             "gogid": "pharaoh_cleopatra", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -69836,11 +70505,11 @@
             "icon_url": "https://www.gog.com/upload/images/2012/05/961fc28b094c7cc9da0d1f866b5604b974a6aa6d_bbC_20.jpg", 
             "install_path": "", 
             "is_package": 0, 
-            "lastplayed": null, 
+            "lastplayed": "", 
             "name": "Pharaoh Cleopatra", 
             "notes": "", 
             "packageid": "", 
-            "playtime": 0, 
+            "playtime": 0.0, 
             "priority": 0, 
             "source": "gog", 
             "steamid": "", 
@@ -70668,7 +71337,7 @@
         }, 
         "gog_restaurant_empire": {
             "finished": 0, 
-            "genre": "construction and management simulation", 
+            "genre": "simulation", 
             "gogid": "restaurant_empire", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -70676,11 +71345,11 @@
             "icon_url": "https://www.gog.com/upload/images/2010/01/4b477e2cd31279069ea2246e24d7faaa9f3eca09_bbC_20.jpg", 
             "install_path": "", 
             "is_package": 0, 
-            "lastplayed": null, 
+            "lastplayed": "None", 
             "name": "Restaurant Empire", 
             "notes": "", 
             "packageid": "", 
-            "playtime": 0, 
+            "playtime": 0.0, 
             "priority": 0, 
             "source": "gog", 
             "steamid": "", 
@@ -71208,7 +71877,7 @@
         }, 
         "gog_simcity_2000_special_edition": {
             "finished": 0, 
-            "genre": "construction and management simulation", 
+            "genre": "simulation", 
             "gogid": "simcity_2000_special_edition", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -71216,11 +71885,11 @@
             "icon_url": "https://www.gog.com/upload/images/2011/10/74459cbbc6550a8c2c2bd33782536dd9a7b0fc0d_bbC_20.jpg", 
             "install_path": "", 
             "is_package": 0, 
-            "lastplayed": null, 
+            "lastplayed": "None", 
             "name": "Simcity 2000 Special Edition", 
             "notes": "", 
             "packageid": "", 
-            "playtime": 0, 
+            "playtime": 0.0, 
             "priority": 0, 
             "source": "gog", 
             "steamid": "", 
@@ -71508,7 +72177,7 @@
         }, 
         "gog_spellforce_platinum": {
             "finished": 0, 
-            "genre": "construction and management simulation", 
+            "genre": "simulation", 
             "gogid": "spellforce_platinum", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -71516,11 +72185,11 @@
             "icon_url": "https://www.gog.com/upload/images/2009/01/d9e288cb5d17512d60f56376bececb4b169a726b_bbC_20.jpg", 
             "install_path": "", 
             "is_package": 0, 
-            "lastplayed": null, 
+            "lastplayed": "None", 
             "name": "Spellforce Platinum", 
             "notes": "", 
             "packageid": "", 
-            "playtime": 0, 
+            "playtime": 0.0, 
             "priority": 0, 
             "source": "gog", 
             "steamid": "", 
@@ -71668,7 +72337,7 @@
         }, 
         "gog_startopia": {
             "finished": 0, 
-            "genre": "construction and management simulation", 
+            "genre": "simulation", 
             "gogid": "startopia", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -71676,11 +72345,11 @@
             "icon_url": "https://www.gog.com/upload/images/2012/09/dab7320c766b5783dfba1f62a389ca4516b06703_bbC_20.jpg", 
             "install_path": "", 
             "is_package": 0, 
-            "lastplayed": null, 
+            "lastplayed": "None", 
             "name": "Startopia", 
             "notes": "", 
             "packageid": "", 
-            "playtime": 0, 
+            "playtime": 0.0, 
             "priority": 0, 
             "source": "gog", 
             "steamid": "", 
@@ -72748,7 +73417,7 @@
         }, 
         "gog_theme_hospital": {
             "finished": 0, 
-            "genre": "construction and management simulation", 
+            "genre": "simulation", 
             "gogid": "theme_hospital", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -72756,11 +73425,11 @@
             "icon_url": "https://www.gog.com/upload/images/2012/04/7f47422ae90c511281cfcf55909a69382e16f1f0_bbC_20.jpg", 
             "install_path": "", 
             "is_package": 0, 
-            "lastplayed": null, 
+            "lastplayed": "None", 
             "name": "Theme Hospital", 
             "notes": "", 
             "packageid": "", 
-            "playtime": 0, 
+            "playtime": 0.0, 
             "priority": 0, 
             "source": "gog", 
             "steamid": "", 
@@ -73548,7 +74217,7 @@
         }, 
         "gog_warlords_battlecry_3": {
             "finished": 0, 
-            "genre": "construction and management simulation", 
+            "genre": "simulation", 
             "gogid": "warlords_battlecry_3", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -73556,11 +74225,11 @@
             "icon_url": "https://www.gog.com/upload/images/2009/02/8cce54cb9cc9dea116034161a2122a3d1ad3d63c_bbC_20.jpg", 
             "install_path": "", 
             "is_package": 0, 
-            "lastplayed": null, 
+            "lastplayed": "None", 
             "name": "Warlords Battlecry 3", 
             "notes": "", 
             "packageid": "", 
-            "playtime": 0, 
+            "playtime": 0.0, 
             "priority": 0, 
             "source": "gog", 
             "steamid": "", 
@@ -80268,7 +80937,7 @@
         }, 
         "steam_220200": {
             "finished": 0, 
-            "genre": "construction and management simulation", 
+            "genre": "simulation", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -81388,7 +82057,7 @@
         }, 
         "steam_233450": {
             "finished": 0, 
-            "genre": "construction and management simulation", 
+            "genre": "simulation", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -82867,7 +83536,7 @@
             "website": ""
         }, 
         "steam_257220": {
-            "finished": 0, 
+            "finished": 1, 
             "genre": "", 
             "gogid": "", 
             "hidden": 0, 
@@ -85336,11 +86005,11 @@
             "icon_url": "", 
             "install_path": "", 
             "is_package": 0, 
-            "lastplayed": "14:21:34 2015-04-08", 
+            "lastplayed": "22:11:58 2015-04-09", 
             "name": "Serious Sam HD: The Second Encounter", 
             "notes": "", 
             "packageid": "", 
-            "playtime": 329.43850588798523, 
+            "playtime": 2754.71705698967, 
             "priority": -1, 
             "source": "steam", 
             "steamid": 41010, 
@@ -85468,7 +86137,7 @@
         }, 
         "steam_42890": {
             "finished": 0, 
-            "genre": "construction and management simulation", 
+            "genre": "simulation", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 

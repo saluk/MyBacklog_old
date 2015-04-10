@@ -12,7 +12,7 @@ def now():
     t = time.localtime()
     return time.strftime(fmt,t)
 def stot(s):
-    if not s:
+    if not s or s == "None":
         return time.localtime(0)
     return time.strptime(s,fmt)
 def ttos(t):
@@ -242,7 +242,7 @@ class Game:
         return hour,min
     @property
     def last_played_nice(self):
-        if not self.lastplayed:
+        if not self.lastplayed or self.lastplayed == "None":
             return "never"
         t = time.strptime(self.lastplayed,fmt)
         return time.strftime("%a, %d %b %Y %H:%M:%S",t)
