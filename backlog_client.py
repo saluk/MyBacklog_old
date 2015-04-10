@@ -6,7 +6,6 @@ import os
 import sys
 import time
 import requests
-import subprocess
 
 #backloglib
 import data
@@ -271,6 +270,42 @@ class EditGame(QWidget):
         self.deleteLater()
         self.app.update_gamelist_widget()
 
+class GameOptions(QWidget):
+    def __init__(self, game, widget, app):
+        super(GameOptions, self).__init__()
+        self.game = game.copy()
+        self.app = app
+        self.games = app.games
+
+        #Layout
+        layout = QGridLayout()
+        layout.addWidget(QLabel(game.name))
+
+        if not game.missing_steam_launch():
+            run = QPushButton("Play Game")
+        else:
+            run = QPushButton("Play Game (no steam)")
+        run.clicked.connect(make_callback(self.app.run_game,game))
+        layout.addWidget(run)
+
+        run_no_timer = QPushButton("Play without time tracking")
+        run_no_timer.clicked.connect(make_callback(self.app.run_game_notimer,game))
+        layout.addWidget(run_no_timer)
+
+        download = QPushButton("Download")
+        download.clicked.connect(make_callback(self.app.download,game))
+        layout.addWidget(download)
+
+        edit = QPushButton("Edit")
+        edit.clicked.connect(make_callback(self.app.edit_game,game,widget))
+        layout.addWidget(edit)
+
+        edit = QPushButton("Uninstall")
+        edit.clicked.connect(make_callback(self.app.uninstall_game,game,widget))
+        layout.addWidget(edit)
+
+        self.setLayout(layout)
+
 class MainWindow(QMainWindow):
     def __init__(self):
         #super(MainWindow,self).__init__(None,Qt.WindowStaysOnTopHint)
@@ -383,8 +418,11 @@ class Form(QWidget):
         self.setMaximumWidth(1080)
         self.adjustSize()
 
+        self.running = None #Game currently being played
+
     def notify(self):
-        self.parent().trayicon.showMessage("Still Playing","Are you still playing?")
+        if self.running:
+            self.parent().trayicon.showMessage("Still Playing","Are you still playing %s ?"%self.running.name)
         
     def get_row_for_game(self,game,w=[]):
         widgets = w[:]
@@ -406,29 +444,6 @@ class Form(QWidget):
             
             lastplayed = QTableWidgetItem("GAME LAST PLAYED")
             widgets.append(lastplayed)
-
-            if not game.missing_steam_launch():
-                run = QPushButton("play")
-            else:
-                run = QPushButton("playalone")
-            run.setFixedWidth(50)
-            run.clicked.connect(make_callback(self.run_game,game))
-            widgets.append(run)
-
-            run_no_timer = QPushButton("launch")
-            run_no_timer.setFixedWidth(50)
-            run_no_timer.clicked.connect(make_callback(self.run_game_notimer,game))
-            widgets.append(run_no_timer)
-
-            download = QPushButton("get")
-            download.setFixedWidth(50)
-            download.clicked.connect(make_callback(self.download,game))
-            widgets.append(download)
-            
-            edit = QPushButton("edit")
-            edit.setFixedWidth(50)
-            edit.clicked.connect(make_callback(self.edit_game,game,w))
-            widgets.append(edit)
         
         if game.source in self.icons:
             widgets[0].setIcon(QIcon(self.icons[game.source]))
@@ -510,7 +525,8 @@ class Form(QWidget):
         self.games_list_widget.horizontalHeader().setVisible(True)
         self.games_list_widget.verticalHeader().setVisible(False)
         self.games_list_widget.setRowCount(len(self.gamelist))
-        self.games_list_widget.setColumnCount(10)
+        self.games_list_widget.setColumnCount(6)
+        self.games_list_widget.itemSelectionChanged.connect(self.selected_row)
         for i,g in enumerate(self.gamelist):
             cols = self.get_row_for_game(g["game"])
             g["widget"] = (i,cols)
@@ -523,7 +539,7 @@ class Form(QWidget):
                     self.games_list_widget.setItem(i,r,col)
         self.dosearch()
         self.game_scroller.verticalScrollBar().setValue(0)
-        self.games_list_widget.setHorizontalHeaderLabels(["s","icon","name","genre","playtime","lastplay","play","launch","get","edit"])
+        self.games_list_widget.setHorizontalHeaderLabels(["s","icon","name","genre","playtime","lastplay"])
         self.games_list_widget.resizeColumnsToContents()
         self.dosearch()
         self.update()
@@ -630,41 +646,22 @@ class Form(QWidget):
             self.timer_started = time.time()
         print ("run game",game.name,game.gameid)
         self.timer.start()
-        args = []
-        folder = "."
-        startupinfo = None
-        creationflags = 0
-        shell = True
-        if sys.platform=='darwin':
-            shell = False
-        args,folder = game.get_run_args()
-        print("run args:",args,folder)
-
-        if args and folder:
-            print(args)
-            curdir = os.path.abspath(os.curdir)
-            os.chdir(folder)
-            print(os.path.abspath(os.curdir))
-            self.running = subprocess.Popen(args, cwd=folder, stdout=sys.stdout, stderr=sys.stderr, creationflags=creationflags, shell=shell)
-            print("subprocess open")
-            os.chdir(curdir)
         
         if track_time:
             self.stop_playing_button = QPushButton("Stop Playing "+game.name)
             self.buttonLayout1.addWidget(self.stop_playing_button)
             self.stop_playing_button.clicked.connect(make_callback(self.stop_playing,game))
 
-        #self.runthread = RunGameThread()
-        #self.runthread.process = self.running
-        #self.runthread.finished.connect(make_callback(self.stop_playing,game))
+        self.running = game
+        game.run_game()
         self.games.play(game)
         playrequest(game)
-        #self.runthread.start()
 
     def stop_playing(self,game):
+        self.running = None
         self.games.stop(game)
         self.timer.stop()
-        stoprequest()
+        #stoprequest()
         #self.buttonLayout1.removeWidget(self.stop_playing_button)
         self.stop_playing_button.deleteLater()
         self.stop_playing_button = None
@@ -684,16 +681,37 @@ class Form(QWidget):
         self.window().addDockWidget(Qt.LeftDockWidgetArea,dock)
         return self.egw
 
+    def selected_row(self):
+        if self.games_list_widget.selectedItems():
+            item = self.games_list_widget.selectedItems()[0]
+            row = item.row()
+            self.update_game_options(self.gamelist[row]["game"],self.gamelist[row]["widget"])
+
+    def update_game_options(self,game,widget):
+        self.game_options = GameOptions(game,widget,self)
+        if not hasattr(self,"game_options_dock"):
+            self.game_options_dock = QDockWidget("Dock Widget",self)
+            self.game_options_dock.setMaximumWidth(300)
+            self.game_options_dock.setMinimumWidth(300)
+            self.game_options_dock.setMaximumHeight(400)
+            self.window().addDockWidget(Qt.LeftDockWidgetArea,self.game_options_dock)
+        else:
+            self.game_options_dock.widget().deleteLater()
+        self.game_options_dock.setWidget(self.game_options)
+
+        return self.game_options
+
     def edit_game(self,game,row_widget):
         self.show_edit_widget(game,row_widget,self)
 
+    def uninstall_game(self,game,row_widget):
+        game.uninstall()
+
     def download(self,game):
-        if game.download_link:
-            import webbrowser
-            webbrowser.open(game.download_link)
+        game.download_method()
 
     def add_game(self):
-        game = data.Game(source="none")
+        game = data.Game(source="steam")
         #row = self.get_row_for_game(game)
         self.gamelist.append({"game":game,"widget":None})
         self.show_edit_widget(game,None,self,new=True)

@@ -4,6 +4,8 @@ import time
 import datetime
 import json
 import sys
+import subprocess
+import webbrowser
 
 fmt = "%H:%M:%S %Y-%m-%d"
 def now():
@@ -43,9 +45,14 @@ class Source:
         return s
     def download_link(self,game):
         return ""
+    def download_method(self,game):
+        if game.download_link:
+            webbrowser.open(game.download_link)
+    def uninstall(self,game):
+        if game.install_folder:
+            subprocess.Popen(["explorer.exe",game.install_folder], cwd=game.install_folder, stdout=sys.stdout, stderr=sys.stderr)
     def get_run_args(self,game):
         """Returns the method to run the game. Defaults to using a batch file to run the install_path exe"""
-        import subprocess
         folder = game.install_folder #Navigate to executable's directory
         startupinfo = subprocess.STARTUPINFO()
         startupinfo.dwFlags = subprocess.STARTF_USESHOWWINDOW
@@ -74,6 +81,22 @@ class Source:
                 args = ["cache\\steamshortcuts\\%s.url"%game.shortcut_name]
                 folder = os.path.abspath("")
         return args,folder
+    def run_game(self,game):
+        creationflags = 0
+        shell = True
+        if sys.platform=='darwin':
+            shell = False
+        args,folder = game.get_run_args()
+        print("run args:",args,folder)
+
+        if args and folder:
+            print(args)
+            curdir = os.path.abspath(os.curdir)
+            os.chdir(folder)
+            print(os.path.abspath(os.curdir))
+            self.running = subprocess.Popen(args, cwd=folder, stdout=sys.stdout, stderr=sys.stderr, creationflags=creationflags, shell=shell)
+            print("subprocess open")
+            os.chdir(curdir)
     def missing_steam_launch(self,game):
         """Returns True if the game type wants a steam launcher and it doesn't exist"""
         if not run_with_steam:
@@ -99,15 +122,14 @@ class SteamSource(Source):
         if not game.steamid:
             raise InvalidIdException()
         return "steam_%s"%game.steamid
-    def get_run_args(self,game):
-        if sys.platform.startswith("win"):
-            args = ["c:\\steam\\steam.exe", "-applaunch", "%d"%game.steamid]
-        elif sys.platform == "darwin":
-            args = ["open", "steam://run/%d"%game.steamid]
-            #args = ["open", "/Applications/Steam.app", "--args", "-applaunch %d"%game.steamid]
-        return args,"."
+    def run_game(self,game):
+        webbrowser.open("steam://rungameid/%d"%game.steamid)
     def missing_steam_launch(self,game):
         return False
+    def download_method(self,game):
+        webbrowser.open("steam://install/%d"%game.steamid)
+    def uninstall(self,game):
+        webbrowser.open("steam://uninstall/%d"%game.steamid)
 sources["steam"] = SteamSource()
 class GogSource(Source):
     def args(self):
@@ -194,7 +216,7 @@ class Game:
                 setattr(self,k,kwargs[k])
         if "minutes" in kwargs:
             self.playtime = datetime.timedelta(minutes=kwargs["minutes"]).total_seconds()
-        if stot(self.lastplayed).tm_year<1971:
+        if self.lastplayed and stot(self.lastplayed).tm_year<1971:
             self.lastplayed = None
     def played(self):
         """Resets lastplayed to now"""
@@ -235,6 +257,10 @@ class Game:
     def download_link(self):
         s = sources[self.source].download_link(self)
         return s
+    def download_method(self):
+        return sources[self.source].download_method(self)
+    def uninstall(self):
+        return sources[self.source].uninstall(self)
     @property
     def install_folder(self):
         """Full path to folder where executable is located"""
@@ -242,6 +268,8 @@ class Game:
     def get_run_args(self):
         """Returns the args and folder to pass to the subprocess to run the game, according to our source"""
         return sources[self.source].get_run_args(self)
+    def run_game(self):
+        return sources[self.source].run_game(self)
     def missing_steam_launch(self):
         return sources[self.source].missing_steam_launch(self)
     def dict(self):
