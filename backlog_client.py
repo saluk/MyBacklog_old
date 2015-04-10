@@ -388,6 +388,27 @@ class MainWindow(QMainWindow):
             event.ignore()
             self.hide()
 
+DATA_GAMEID = 101
+DATA_SORT = 12
+class WILastPlayed(QTableWidgetItem):
+    def __lt__(self, other):
+        first = self.data(DATA_SORT)
+        last = other.data(DATA_SORT)
+        if not first:
+            first = 0
+        if not last:
+            last = 0
+        return first<last
+
+a = WILastPlayed()
+b = WILastPlayed()
+a.setText("Wed")
+a.setData(DATA_SORT,"a")
+b.setText("Mon")
+b.setData(DATA_SORT,"b")
+assert a<b
+assert b>a
+
 class Form(QWidget):
     def __init__(self, parent=None):
         super(Form, self).__init__(parent)
@@ -423,15 +444,8 @@ class Form(QWidget):
         self.sort = "priority"
         self.games_list_widget = QTableWidget()
 
-        #self.games_list_widget = QWidget()
-        #self.games_list_widget_layout = QGridLayout()
-        #self.games_list_widget_layout.setSpacing(0)
-        #self.games_list_widget.setLayout(self.games_list_widget_layout)
-
         self.game_scroller = QScrollArea()
         self.game_scroller.setWidgetResizable(True)
-        #self.game_scroller.setFixedHeight(400)
-        #self.game_scroller.setFixedWidth(600)
         self.game_scroller.setWidget(self.games_list_widget)
         buttonLayout1.addWidget(self.game_scroller)
  
@@ -479,6 +493,7 @@ class Form(QWidget):
         if not w:
             source = QTableWidgetItem("")
             widgets.append(source)
+            source.setData(DATA_GAMEID,game.gameid)
             
             label = QTableWidgetItem("")
             widgets.append(label)
@@ -492,7 +507,8 @@ class Form(QWidget):
             hours = QTableWidgetItem("GAME HOURS")
             widgets.append(hours)
             
-            lastplayed = QTableWidgetItem("GAME LAST PLAYED")
+            lastplayed = WILastPlayed("GAME LAST PLAYED")
+            lastplayed.setData(DATA_SORT,data.stot(game.lastplayed))
             widgets.append(lastplayed)
         
         if game.source in self.icons:
@@ -568,6 +584,9 @@ class Form(QWidget):
         self.games_list_widget.setColumnWidth(3,50)
         self.games_list_widget.setColumnWidth(4,50)
         self.games_list_widget.setColumnWidth(5,150)
+
+        self.games_list_widget.setSortingEnabled(True)
+
         self.dosearch()
         self.update()
 
@@ -676,7 +695,7 @@ class Form(QWidget):
         
         if track_time:
             self.stop_playing_button = QPushButton("Stop Playing "+game.name)
-            self.buttonLayout1.addWidget(self.stop_playing_button)
+            self.game_options_dock.widget().layout().addWidget(self.stop_playing_button)
             self.stop_playing_button.clicked.connect(make_callback(self.stop_playing,game))
 
         self.running = game
@@ -712,7 +731,9 @@ class Form(QWidget):
         if self.games_list_widget.selectedItems():
             item = self.games_list_widget.selectedItems()[0]
             row = item.row()
-            self.update_game_options(self.gamelist[row]["game"],self.gamelist[row]["widget"])
+            gameid = self.games_list_widget.item(row,0).data(DATA_GAMEID)
+            game = self.games.games[gameid]
+            self.update_game_options(game,self.gamelist[row]["widget"])
 
     def update_game_options(self,game,widget):
         self.game_options = GameOptions(game,widget,self)
