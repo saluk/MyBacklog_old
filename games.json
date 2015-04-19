@@ -64161,6 +64161,1122 @@
             }, 
             "time": "02:06:45 2015-04-10", 
             "type": "stopgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "openworld", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "", 
+                "install_path": "C:\\games\\Assassin's Creed Unity\\ACU.exe", 
+                "is_package": 0, 
+                "lastplayed": "22:10:18 2015-03-20", 
+                "name": "Assassin's Creed Unity", 
+                "notes": "uplay", 
+                "packageid": "", 
+                "playtime": 148243.6463739872, 
+                "priority": -1, 
+                "source": "none", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "11:04:37 2015-04-10", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "openworld", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "", 
+                "install_path": "C:\\games\\Assassin's Creed Unity\\ACU.exe", 
+                "is_package": 0, 
+                "lastplayed": "22:10:18 2015-03-20", 
+                "name": "Assassin's Creed Unity", 
+                "notes": "uplay", 
+                "packageid": "", 
+                "playtime": 148243.6463739872, 
+                "priority": -1, 
+                "source": "none", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "12:08:30 2015-04-10", 
+            "type": "stopgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "openworld", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "", 
+                "install_path": "C:\\games\\Assassin's Creed Unity\\ACU.exe", 
+                "is_package": 0, 
+                "lastplayed": "12:08:31 2015-04-10", 
+                "name": "Assassin's Creed Unity", 
+                "notes": "uplay", 
+                "packageid": "", 
+                "playtime": 152076.7768588066, 
+                "priority": -1, 
+                "source": "none", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "16:47:22 2015-04-11", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "openworld", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "", 
+                "install_path": "C:\\games\\Assassin's Creed Unity\\ACU.exe", 
+                "is_package": 0, 
+                "lastplayed": "12:08:31 2015-04-10", 
+                "name": "Assassin's Creed Unity", 
+                "notes": "uplay", 
+                "packageid": "", 
+                "playtime": 152076.7768588066, 
+                "priority": -1, 
+                "source": "none", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "18:43:59 2015-04-11", 
+            "type": "stopgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "adventure", 
+                "gogid": "story_about_my_uncle_a", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "https://www.gog.com/upload/images/2014/05/f4f7f44c4f3d2750d95ce276743ef8c2207638c4_bbC_20.jpg", 
+                "install_path": "C:\\GOG Games\\A Story About My Uncle\\Launch A Story About My Uncle.lnk", 
+                "is_package": 0, 
+                "lastplayed": "02:06:46 2015-04-10", 
+                "name": "Story About My Uncle A", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 1698.891459941864, 
+                "priority": -1, 
+                "source": "gog", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "18:44:10 2015-04-11", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "adventure", 
+                "gogid": "story_about_my_uncle_a", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "https://www.gog.com/upload/images/2014/05/f4f7f44c4f3d2750d95ce276743ef8c2207638c4_bbC_20.jpg", 
+                "install_path": "C:\\GOG Games\\A Story About My Uncle\\Launch A Story About My Uncle.lnk", 
+                "is_package": 0, 
+                "lastplayed": "02:06:46 2015-04-10", 
+                "name": "Story About My Uncle A", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 1698.891459941864, 
+                "priority": -1, 
+                "source": "gog", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "19:04:37 2015-04-11", 
+            "type": "stopgame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "priority", 
+                        "ov": -1, 
+                        "v": 1
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "lands_of_lore_guardians_of_destiny", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "https://www.gog.com/upload/images/2015/03/178233a6b47eb57da86d5c24c7385649fa1decde_bbC_20.jpg", 
+                "install_path": "C:\\GOG Games\\Lands Of Lore 1 and 2\\Lands of Lore 2\\Launch Lands Of Lore - Guardians of Destiny - 3dfx.lnk", 
+                "is_package": 0, 
+                "lastplayed": "00:34:40 2015-04-10", 
+                "name": "Lands Of Lore Guardians Of Destiny", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 36362.93047118187, 
+                "priority": 1, 
+                "source": "gog", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "23:48:48 2015-04-11", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "hidden", 
+                        "ov": 0, 
+                        "v": 1
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "role-playing", 
+                "gogid": "", 
+                "hidden": 1, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/221360/d0e3b2b70dfae51e1d5eec12b05dbface25e8ce1.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "00:00:00 2013-02-04", 
+                "name": "Wizardry Online", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 9840.0, 
+                "priority": 0, 
+                "source": "steam", 
+                "steamid": 221360, 
+                "website": ""
+            }, 
+            "time": "23:56:18 2015-04-11", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "finished", 
+                        "ov": 0, 
+                        "v": 1
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 1, 
+                "genre": "adventure", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/207610/87a13ae0a2a76488792924aa8bb0dd8a7760f931.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "00:00:00 2012-11-27", 
+                "name": "The Walking Dead", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 48960.0, 
+                "priority": 0, 
+                "source": "steam", 
+                "steamid": 207610, 
+                "website": ""
+            }, 
+            "time": "23:56:40 2015-04-11", 
+            "type": "updategame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "adventure", 
+                "gogid": "story_about_my_uncle_a", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "https://www.gog.com/upload/images/2014/05/f4f7f44c4f3d2750d95ce276743ef8c2207638c4_bbC_20.jpg", 
+                "install_path": "C:\\GOG Games\\A Story About My Uncle\\Launch A Story About My Uncle.lnk", 
+                "is_package": 0, 
+                "lastplayed": "19:04:57 2015-04-11", 
+                "name": "Story About My Uncle A", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 2925.9615728855133, 
+                "priority": -1, 
+                "source": "gog", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "23:57:49 2015-04-11", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "adventure", 
+                "gogid": "story_about_my_uncle_a", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "https://www.gog.com/upload/images/2014/05/f4f7f44c4f3d2750d95ce276743ef8c2207638c4_bbC_20.jpg", 
+                "install_path": "C:\\GOG Games\\A Story About My Uncle\\Launch A Story About My Uncle.lnk", 
+                "is_package": 0, 
+                "lastplayed": "19:04:57 2015-04-11", 
+                "name": "Story About My Uncle A", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 2925.9615728855133, 
+                "priority": -1, 
+                "source": "gog", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "00:50:24 2015-04-12", 
+            "type": "stopgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/260230/903f95e08ebcd45dfb78deb171b2f12909892be2.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "10:44:51 2015-03-15", 
+                "name": "Valiant Hearts: The Great War\u2122 / Soldats Inconnus : M\u00e9moires de la Grande Guerre\u2122", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 9139.995118618011, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 260230, 
+                "website": ""
+            }, 
+            "time": "22:09:15 2015-04-15", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/260230/903f95e08ebcd45dfb78deb171b2f12909892be2.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "10:44:51 2015-03-15", 
+                "name": "Valiant Hearts: The Great War\u2122 / Soldats Inconnus : M\u00e9moires de la Grande Guerre\u2122", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 9139.995118618011, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 260230, 
+                "website": ""
+            }, 
+            "time": "22:14:04 2015-04-15", 
+            "type": "stopgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/260230/903f95e08ebcd45dfb78deb171b2f12909892be2.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "22:14:05 2015-04-15", 
+                "name": "Valiant Hearts: The Great War\u2122 / Soldats Inconnus : M\u00e9moires de la Grande Guerre\u2122", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 9429.562891721725, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 260230, 
+                "website": ""
+            }, 
+            "time": "22:17:58 2015-04-15", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/260230/903f95e08ebcd45dfb78deb171b2f12909892be2.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "22:14:05 2015-04-15", 
+                "name": "Valiant Hearts: The Great War\u2122 / Soldats Inconnus : M\u00e9moires de la Grande Guerre\u2122", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 9429.562891721725, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 260230, 
+                "website": ""
+            }, 
+            "time": "23:15:26 2015-04-15", 
+            "type": "stopgame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "genre", 
+                        "ov": "", 
+                        "v": "adventure"
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "adventure", 
+                "gogid": "bad_mojo_redux", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "https://www.gog.com/upload/images/2014/05/4d9b4910013579ce72ef5cd3a952ec3abbdb286d_bbC_20.jpg", 
+                "install_path": "C:\\GOG Games\\Bad Mojo\\launcher.exe", 
+                "is_package": 0, 
+                "lastplayed": "01:25:39 2015-04-10", 
+                "name": "Bad Mojo Redux", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 5338.7715401649475, 
+                "priority": -1, 
+                "source": "gog", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "23:24:43 2015-04-15", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "genre", 
+                        "ov": "", 
+                        "v": "adventure"
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "adventure", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/279940/23f4284a0df55a8c9ec7889bb6bb59d8dd7a20be.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "00:25:01 2015-04-10", 
+                "name": "The Book of Unwritten Tales 2", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 52332.52762675285, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 279940, 
+                "website": ""
+            }, 
+            "time": "23:24:56 2015-04-15", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "genre", 
+                        "ov": "", 
+                        "v": "rpg"
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "rpg", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "", 
+                "install_path": "C:\\emu\\snes\\roms\\Dragon Quest III - Soshite Densetsu he... (Japan).sfc", 
+                "is_package": 0, 
+                "lastplayed": "16:48:01 2015-04-03", 
+                "name": "Dragon Quest 3", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 44469.833953142166, 
+                "priority": -1, 
+                "source": "snes", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "23:25:13 2015-04-15", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "genre", 
+                        "ov": "", 
+                        "v": "rpg"
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "rpg", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "", 
+                "install_path": "C:\\emu\\nds\\roms\\3424 - Dragon Quest V - Hand of the Heavenly Bride (US)(M3)(XenoPhobia).nds", 
+                "is_package": 0, 
+                "lastplayed": "17:17:48 2015-03-28", 
+                "name": "Dragon Quest 5", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 1309.5743310451508, 
+                "priority": -1, 
+                "source": "nds", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "23:25:20 2015-04-15", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "genre", 
+                        "ov": "", 
+                        "v": "adventure"
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "adventure", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/260230/903f95e08ebcd45dfb78deb171b2f12909892be2.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "23:15:28 2015-04-15", 
+                "name": "Valiant Hearts: The Great War\u2122 / Soldats Inconnus : M\u00e9moires de la Grande Guerre\u2122", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 12877.82385468483, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 260230, 
+                "website": ""
+            }, 
+            "time": "23:25:30 2015-04-15", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "genre", 
+                        "ov": "", 
+                        "v": "fps"
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "fps", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "22:11:58 2015-04-09", 
+                "name": "Serious Sam HD: The Second Encounter", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 2754.71705698967, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 41010, 
+                "website": ""
+            }, 
+            "time": "23:25:39 2015-04-15", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "genre", 
+                        "ov": "", 
+                        "v": "racing"
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "racing", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/241560/66a5a937fe4330be00b03ed9c99e42fbd6dfd9f5.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "14:02:54 2015-03-28", 
+                "name": "The Crew", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 46057.85741877556, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 241560, 
+                "website": ""
+            }, 
+            "time": "23:25:50 2015-04-15", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "genre", 
+                        "ov": "", 
+                        "v": "puzzle"
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "puzzle", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/257510/8222673c1eb13e6a8a8367ec0e2940a887ecf270.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "00:08:14 2015-03-27", 
+                "name": "The Talos Principle", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 42689.23874878883, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 257510, 
+                "website": ""
+            }, 
+            "time": "23:25:57 2015-04-15", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "genre", 
+                        "ov": "adventure", 
+                        "v": "strategy"
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "strategy", 
+                "gogid": "defenders_quest", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "https://www.gog.com/upload/images/2012/10/8882fedaafe6f86ac96e00dc264be797f9f6651f_bbC_20.jpg", 
+                "install_path": "C:\\GOG Games\\Defender's Quest\\DefendersQuest.exe", 
+                "is_package": 0, 
+                "lastplayed": "10:28:09 2015-02-04", 
+                "name": "Defender's Quest", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 11180.74367070198, 
+                "priority": -1, 
+                "source": "gog", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "23:26:14 2015-04-15", 
+            "type": "updategame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "action", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/12210/a3cf6a64c73f991898a9e34681d0db8226eaa191.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "22:46:01 2014-08-13", 
+                "name": "Grand Theft Auto IV", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 109472.43703079224, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 12210, 
+                "website": ""
+            }, 
+            "time": "21:20:19 2015-04-17", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "action", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/12210/a3cf6a64c73f991898a9e34681d0db8226eaa191.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "22:46:01 2014-08-13", 
+                "name": "Grand Theft Auto IV", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 109472.43703079224, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 12210, 
+                "website": ""
+            }, 
+            "time": "22:22:48 2015-04-17", 
+            "type": "stopgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "action", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/12210/a3cf6a64c73f991898a9e34681d0db8226eaa191.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "22:22:52 2015-04-17", 
+                "name": "Grand Theft Auto IV", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 113222.1178188324, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 12210, 
+                "website": ""
+            }, 
+            "time": "22:25:03 2015-04-17", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "action", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/12210/a3cf6a64c73f991898a9e34681d0db8226eaa191.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "22:22:52 2015-04-17", 
+                "name": "Grand Theft Auto IV", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 113222.1178188324, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 12210, 
+                "website": ""
+            }, 
+            "time": "00:02:55 2015-04-18", 
+            "type": "stopgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "action", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/12210/a3cf6a64c73f991898a9e34681d0db8226eaa191.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "00:02:56 2015-04-18", 
+                "name": "Grand Theft Auto IV", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 119093.71490693092, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 12210, 
+                "website": ""
+            }, 
+            "time": "10:34:25 2015-04-18", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "action", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/12210/a3cf6a64c73f991898a9e34681d0db8226eaa191.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "00:02:56 2015-04-18", 
+                "name": "Grand Theft Auto IV", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 119093.71490693092, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 12210, 
+                "website": ""
+            }, 
+            "time": "10:37:09 2015-04-18", 
+            "type": "stopgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "action", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/12210/a3cf6a64c73f991898a9e34681d0db8226eaa191.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "10:37:10 2015-04-18", 
+                "name": "Grand Theft Auto IV", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 119257.28407692909, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 12210, 
+                "website": ""
+            }, 
+            "time": "10:51:18 2015-04-18", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "action", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/12210/a3cf6a64c73f991898a9e34681d0db8226eaa191.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "10:37:10 2015-04-18", 
+                "name": "Grand Theft Auto IV", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 119257.28407692909, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 12210, 
+                "website": ""
+            }, 
+            "time": "10:52:38 2015-04-18", 
+            "type": "stopgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "action", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/12210/a3cf6a64c73f991898a9e34681d0db8226eaa191.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "10:52:39 2015-04-18", 
+                "name": "Grand Theft Auto IV", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 119337.43075299263, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 12210, 
+                "website": ""
+            }, 
+            "time": "11:18:19 2015-04-18", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "action", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/12210/a3cf6a64c73f991898a9e34681d0db8226eaa191.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "10:52:39 2015-04-18", 
+                "name": "Grand Theft Auto IV", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 119337.43075299263, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 12210, 
+                "website": ""
+            }, 
+            "time": "14:44:08 2015-04-18", 
+            "type": "stopgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "action", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/12210/a3cf6a64c73f991898a9e34681d0db8226eaa191.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "14:44:09 2015-04-18", 
+                "name": "Grand Theft Auto IV", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 131686.06332087517, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 12210, 
+                "website": ""
+            }, 
+            "time": "19:02:06 2015-04-18", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "action", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/12210/a3cf6a64c73f991898a9e34681d0db8226eaa191.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "14:44:09 2015-04-18", 
+                "name": "Grand Theft Auto IV", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 131686.06332087517, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 12210, 
+                "website": ""
+            }, 
+            "time": "19:39:28 2015-04-18", 
+            "type": "stopgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "action", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/12210/a3cf6a64c73f991898a9e34681d0db8226eaa191.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "19:39:29 2015-04-18", 
+                "name": "Grand Theft Auto IV", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 133927.94808506966, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 12210, 
+                "website": ""
+            }, 
+            "time": "20:23:28 2015-04-18", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "action", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/12210/a3cf6a64c73f991898a9e34681d0db8226eaa191.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "19:39:29 2015-04-18", 
+                "name": "Grand Theft Auto IV", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 133927.94808506966, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 12210, 
+                "website": ""
+            }, 
+            "time": "23:32:48 2015-04-18", 
+            "type": "stopgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "action", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/12210/a3cf6a64c73f991898a9e34681d0db8226eaa191.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "23:32:49 2015-04-18", 
+                "name": "Grand Theft Auto IV", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 145287.77970004082, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 12210, 
+                "website": ""
+            }, 
+            "time": "09:28:24 2015-04-19", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "action", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/12210/a3cf6a64c73f991898a9e34681d0db8226eaa191.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "23:32:49 2015-04-18", 
+                "name": "Grand Theft Auto IV", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 145287.77970004082, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 12210, 
+                "website": ""
+            }, 
+            "time": "09:57:07 2015-04-19", 
+            "type": "stopgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "action", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/12210/a3cf6a64c73f991898a9e34681d0db8226eaa191.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "09:57:08 2015-04-19", 
+                "name": "Grand Theft Auto IV", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 147010.83753609657, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 12210, 
+                "website": ""
+            }, 
+            "time": "09:57:12 2015-04-19", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "action", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/12210/a3cf6a64c73f991898a9e34681d0db8226eaa191.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "09:57:08 2015-04-19", 
+                "name": "Grand Theft Auto IV", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 147010.83753609657, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 12210, 
+                "website": ""
+            }, 
+            "time": "12:42:26 2015-04-19", 
+            "type": "stopgame"
         }
     ], 
     "games": {
@@ -64194,11 +65310,11 @@
             "icon_url": "", 
             "install_path": "C:\\games\\Assassin's Creed Unity\\ACU.exe", 
             "is_package": 0, 
-            "lastplayed": "22:10:18 2015-03-20", 
+            "lastplayed": "18:44:00 2015-04-11", 
             "name": "Assassin's Creed Unity", 
             "notes": "uplay", 
             "packageid": "", 
-            "playtime": 148243.6463739872, 
+            "playtime": 159073.31590986252, 
             "priority": -1, 
             "source": "none", 
             "steamid": "", 
@@ -64326,7 +65442,7 @@
         }, 
         "dragon_quest_3": {
             "finished": 0, 
-            "genre": "", 
+            "genre": "rpg", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -64366,7 +65482,7 @@
         }, 
         "dragon_quest_5": {
             "finished": 0, 
-            "genre": "", 
+            "genre": "rpg", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -65286,7 +66402,7 @@
         }, 
         "gog_bad_mojo_redux": {
             "finished": 0, 
-            "genre": "", 
+            "genre": "adventure", 
             "gogid": "bad_mojo_redux", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -66526,7 +67642,7 @@
         }, 
         "gog_defenders_quest": {
             "finished": 0, 
-            "genre": "adventure", 
+            "genre": "strategy", 
             "gogid": "defenders_quest", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -69459,7 +70575,7 @@
             "notes": "", 
             "packageid": "", 
             "playtime": 36362.93047118187, 
-            "priority": -1, 
+            "priority": 1, 
             "source": "gog", 
             "steamid": "", 
             "website": ""
@@ -69654,7 +70770,7 @@
             "icon_url": "http://www.gog.com/upload/images/2013/09/9b0e936fff3c36f5f35a62c8839e7cb3846b7800_bbC_20.jpg", 
             "install_path": "", 
             "is_package": 0, 
-            "lastplayed": "None", 
+            "lastplayed": null, 
             "name": "Legend Of Kyrandia Malcolms Revenge", 
             "notes": "", 
             "packageid": "", 
@@ -72994,11 +74110,11 @@
             "icon_url": "https://www.gog.com/upload/images/2014/05/f4f7f44c4f3d2750d95ce276743ef8c2207638c4_bbC_20.jpg", 
             "install_path": "C:\\GOG Games\\A Story About My Uncle\\Launch A Story About My Uncle.lnk", 
             "is_package": 0, 
-            "lastplayed": "02:06:46 2015-04-10", 
+            "lastplayed": "00:50:25 2015-04-12", 
             "name": "Story About My Uncle A", 
             "notes": "", 
             "packageid": "", 
-            "playtime": 1698.891459941864, 
+            "playtime": 6080.542461872101, 
             "priority": -1, 
             "source": "gog", 
             "steamid": "", 
@@ -75434,7 +76550,7 @@
             "icon_url": "https://humblebundle-a.akamaihd.net/misc/files/hashed/040a0611e0b1d9f828c1b72d7760a89dce64f753.png", 
             "install_path": "", 
             "is_package": 0, 
-            "lastplayed": "None", 
+            "lastplayed": null, 
             "name": "Anodyne", 
             "notes": "", 
             "packageid": "", 
@@ -78874,11 +79990,11 @@
             "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/12210/a3cf6a64c73f991898a9e34681d0db8226eaa191.jpg", 
             "install_path": "", 
             "is_package": 0, 
-            "lastplayed": "22:46:01 2014-08-13", 
+            "lastplayed": "12:42:27 2015-04-19", 
             "name": "Grand Theft Auto IV", 
             "notes": "", 
             "packageid": "", 
-            "playtime": 109472.43703079224, 
+            "playtime": 156924.77514600754, 
             "priority": -1, 
             "source": "steam", 
             "steamid": 12210, 
@@ -80605,7 +81721,7 @@
             "website": ""
         }, 
         "steam_207610": {
-            "finished": 0, 
+            "finished": 1, 
             "genre": "adventure", 
             "gogid": "", 
             "hidden": 0, 
@@ -81628,7 +82744,7 @@
             "finished": 0, 
             "genre": "role-playing", 
             "gogid": "", 
-            "hidden": 0, 
+            "hidden": 1, 
             "humble_machinename": "", 
             "humble_package": "", 
             "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/221360/d0e3b2b70dfae51e1d5eec12b05dbface25e8ce1.jpg", 
@@ -83186,7 +84302,7 @@
         }, 
         "steam_241560": {
             "finished": 0, 
-            "genre": "", 
+            "genre": "racing", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -84106,7 +85222,7 @@
         }, 
         "steam_257510": {
             "finished": 0, 
-            "genre": "", 
+            "genre": "puzzle", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -84286,7 +85402,7 @@
         }, 
         "steam_260230": {
             "finished": 0, 
-            "genre": "", 
+            "genre": "adventure", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -84294,11 +85410,11 @@
             "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/260230/903f95e08ebcd45dfb78deb171b2f12909892be2.jpg", 
             "install_path": "", 
             "is_package": 0, 
-            "lastplayed": "10:44:51 2015-03-15", 
+            "lastplayed": "23:15:28 2015-04-15", 
             "name": "Valiant Hearts: The Great War\u2122 / Soldats Inconnus : M\u00e9moires de la Grande Guerre\u2122", 
             "notes": "", 
             "packageid": "", 
-            "playtime": 9139.995118618011, 
+            "playtime": 12877.82385468483, 
             "priority": -1, 
             "source": "steam", 
             "steamid": 260230, 
@@ -84886,7 +86002,7 @@
         }, 
         "steam_279940": {
             "finished": 0, 
-            "genre": "", 
+            "genre": "adventure", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -86546,7 +87662,7 @@
         }, 
         "steam_41010": {
             "finished": 0, 
-            "genre": "", 
+            "genre": "fps", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 

@@ -327,6 +327,7 @@ class GameOptions(QWidget):
             run = QPushButton("Play Game")
         else:
             run = QPushButton("Play Game (no steam)")
+        run.setBackgroundRole(QPalette.Highlight)
         run.clicked.connect(make_callback(self.app.run_game,game))
         layout.addWidget(run)
 
