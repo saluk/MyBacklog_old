@@ -763,18 +763,15 @@ class Form(QWidget):
         sp = self.search_platform.text().lower()
         if sp == "emu":
             sp = "gba or snes or n64 or nds"
-        def showrow(g):
-            self.games_list_widget.setRowHidden(g["widget"][0],False)
-        def hiderow(g):
-            self.games_list_widget.setRowHidden(g["widget"][0],True)
-        for g in self.gamelist:
-            game = g["game"]
-            showrow(g)
+        for row in range(self.games_list_widget.rowCount()):
+            gameid = self.games_list_widget.item(row,0).data(DATA_GAMEID)
+            game = self.games.games[gameid]
+            self.games_list_widget.setRowHidden(row,False)
             if game.is_package and self.hide_packages:
-                hiderow(g)
+                self.games_list_widget.setRowHidden(row,True)
                 continue
             if game.hidden and not self.show_hidden:
-                hiderow(g)
+                self.games_list_widget.setRowHidden(row,True)
                 continue
             def match(search,field):
                 searches = search.split(" or ")
@@ -784,7 +781,7 @@ class Form(QWidget):
             if (sn and not match(sn,game.name.lower())) or \
             (sg and not match(sg,game.genre.lower())) or \
             (sp and not match(sp,game.source.lower())):
-                hiderow(g)
+                self.games_list_widget.setRowHidden(row,True)
                 continue
  
 if __name__ == '__main__':
