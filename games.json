@@ -51709,7 +51709,7 @@
             }, 
             "time": "09:45:39 2015-03-27", 
             "type": "updategame"
-        },
+        }, 
         {
             "changes": {
                 "_set_": [
@@ -65901,6 +65901,78 @@
             }, 
             "time": "01:30:21 2015-04-24", 
             "type": "stopgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "action", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/12220/603a444d9092d007f2d9640d12ebba62b1efc377.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "01:30:22 2015-04-24", 
+                "name": "Grand Theft Auto: Episodes from Liberty City", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 31984.494935035706, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 12220, 
+                "website": ""
+            }, 
+            "time": "13:21:54 2015-04-24", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "action", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/12220/603a444d9092d007f2d9640d12ebba62b1efc377.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "01:30:22 2015-04-24", 
+                "name": "Grand Theft Auto: Episodes from Liberty City", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 31984.494935035706, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 12220, 
+                "website": ""
+            }, 
+            "time": "14:14:48 2015-04-24", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "action", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/12220/603a444d9092d007f2d9640d12ebba62b1efc377.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "01:30:22 2015-04-24", 
+                "name": "Grand Theft Auto: Episodes from Liberty City", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 31984.494935035706, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 12220, 
+                "website": ""
+            }, 
+            "time": "16:11:47 2015-04-24", 
+            "type": "stopgame"
         }
     ], 
     "games": {
@@ -71783,7 +71855,7 @@
             "source": "gog", 
             "steamid": "", 
             "website": ""
-        },
+        }, 
         "gog_magic_carpet": {
             "finished": 0, 
             "genre": "action", 
@@ -74546,7 +74618,7 @@
         }, 
         "gog_starflight_1": {
             "finished": 0, 
-            "genre": "", 
+            "genre": "sim", 
             "gogid": "starflight_1", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -74566,7 +74638,7 @@
         }, 
         "gog_starflight_2": {
             "finished": 0, 
-            "genre": "", 
+            "genre": "sim", 
             "gogid": "starflight_2", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -74695,7 +74767,7 @@
             "install_path": "C:\\GOG Games\\A Story About My Uncle\\Launch A Story About My Uncle.lnk", 
             "is_package": 0, 
             "lastplayed": "00:50:25 2015-04-12", 
-            "name": "Story About My Uncle A", 
+            "name": "A Story About My Uncle", 
             "notes": "", 
             "packageid": "", 
             "playtime": 6080.542461872101, 
@@ -78246,7 +78318,7 @@
         }, 
         "humble_interstellaria": {
             "finished": 0, 
-            "genre": "", 
+            "genre": "sim", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "interstellaria", 
@@ -80594,11 +80666,11 @@
             "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/12220/603a444d9092d007f2d9640d12ebba62b1efc377.jpg", 
             "install_path": "", 
             "is_package": 0, 
-            "lastplayed": "01:30:22 2015-04-24", 
+            "lastplayed": "16:11:48 2015-04-24", 
             "name": "Grand Theft Auto: Episodes from Liberty City", 
             "notes": "", 
             "packageid": "", 
-            "playtime": 31984.494935035706, 
+            "playtime": 39003.3939268589, 
             "priority": -1, 
             "source": "steam", 
             "steamid": 12220, 
@@ -84566,7 +84638,7 @@
         }, 
         "steam_237850": {
             "finished": 0, 
-            "genre": "", 
+            "genre": "adventure", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -85306,7 +85378,7 @@
         }, 
         "steam_247080": {
             "finished": 0, 
-            "genre": "", 
+            "genre": "roguelike", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -86046,7 +86118,7 @@
         }, 
         "steam_262060": {
             "finished": 0, 
-            "genre": "", 
+            "genre": "roguelike", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -87026,7 +87098,7 @@
         }, 
         "steam_298630": {
             "finished": 0, 
-            "genre": "", 
+            "genre": "sim", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -87086,7 +87158,7 @@
         }, 
         "steam_304650": {
             "finished": 0, 
-            "genre": "", 
+            "genre": "roguelike", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -87326,7 +87398,7 @@
         }, 
         "steam_322330": {
             "finished": 0, 
-            "genre": "", 
+            "genre": "roguelike", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -87506,7 +87578,7 @@
         }, 
         "steam_335670": {
             "finished": 0, 
-            "genre": "", 
+            "genre": "rpg", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -89666,7 +89738,7 @@
         }, 
         "steam_73010": {
             "finished": 0, 
-            "genre": "", 
+            "genre": "sim", 
             "gogid": "", 
             "hidden": 0, 
             "humble_machinename": "", 
@@ -90593,7 +90665,7 @@
             "leisure suit larry 5", 
             "leisure suit larry 6", 
             "softporn adventures"
-        ],
+        ], 
         "masters_of_orion_1_2": [
             "masters of orion 1", 
             "masters of orion 2"

@@ -122,13 +122,11 @@ class Browser(QWidget):
 
 
 class ListGamesForPack(QWidget):
-    def __init__(self, game, row_widget, app):
+    def __init__(self, game, app):
         super(ListGamesForPack, self).__init__()
         self.game = game
         self.game.is_package = 1
         self.app = app
-        
-        self.row_widget = row_widget
         
         self.oldid = game.gameid
         
@@ -182,13 +180,11 @@ class ListGamesForPack(QWidget):
         self.deleteLater()
 
 class EditGame(QWidget):
-    def __init__(self, game, row_widget, app, new=False):
+    def __init__(self, game, app, new=False):
         super(EditGame, self).__init__()
         self.game = game.copy()
         self.app = app
         self.games = app.games
-        
-        self.row_widget = row_widget
 
         self.oldid = None
         if not new:
@@ -240,7 +236,7 @@ class EditGame(QWidget):
         w.setText(filename.replace("/","\\"))
 
     def make_package(self):
-        self.lg = ListGamesForPack(self.game,self.row_widget,self.app)
+        self.lg = ListGamesForPack(self.game,self.app)
         self.lg.show()
 
     def save_close(self):
@@ -303,7 +299,7 @@ def icon_for_game(game,size,icon_cache):
         return QIcon(icon_cache[fpath])
 
 class GameOptions(QWidget):
-    def __init__(self, game, widget, app):
+    def __init__(self, game, app):
         super(GameOptions, self).__init__()
         self.game = game.copy()
         self.app = app
@@ -340,11 +336,11 @@ class GameOptions(QWidget):
         layout.addWidget(download)
 
         edit = QPushButton("Edit")
-        edit.clicked.connect(make_callback(self.app.edit_game,game,widget))
+        edit.clicked.connect(make_callback(self.app.edit_game,game))
         layout.addWidget(edit)
 
         edit = QPushButton("Uninstall")
-        edit.clicked.connect(make_callback(self.app.uninstall_game,game,widget))
+        edit.clicked.connect(make_callback(self.app.uninstall_game,game))
         layout.addWidget(edit)
 
         self.setLayout(layout)
@@ -391,6 +387,7 @@ class MainWindow(QMainWindow):
 
 DATA_GAMEID = 101
 DATA_SORT = 12
+DATA_EDIT = 145
 class WILastPlayed(QTableWidgetItem):
     def __lt__(self, other):
         first = self.data(DATA_SORT)
@@ -419,6 +416,10 @@ class Form(QWidget):
         self.games = data.Games()
         self.games.load("games.json")
         self.gamelist = []
+
+        self.columns = [("s",None,None),("icon",None,None),("name","widget_name","name"),
+                        ("genre","genre","genre"),("playtime",None,None),("lastplay",None,None)]
+        self.changed = []
 
         self.hide_packages = True
         self.show_hidden = False
@@ -485,57 +486,30 @@ class Form(QWidget):
         self.game_options_dock.setMaximumHeight(400)
         self.window().addDockWidget(Qt.LeftDockWidgetArea,self.game_options_dock)
 
+    def disable_edit_notify(self):
+        try:
+            self.games_list_widget.cellChanged.disconnect(self.cell_changed)
+        except:
+            pass
+
+    def enable_edit_notify(self):
+        self.games_list_widget.cellChanged.connect(self.cell_changed)
+
+    def file_save(self):
+        self.disable_edit_notify()
+        self.games.save("games.json")
+        for row in range(self.games_list_widget.rowCount()):
+            gameid = self.games_list_widget.item(row,0).data(DATA_GAMEID)
+            if gameid in self.changed:
+                self.update_game_row(row,self.games.games[gameid])
+        self.changed = []
+        self.enable_edit_notify()
+
     def notify(self):
         if self.running:
             self.parent().trayicon.showMessage("Still Playing","Are you still playing %s ?"%self.running.name)
         
-    def get_row_for_game(self,game,w=[]):
-        widgets = w[:]
-        if not w:
-            source = QTableWidgetItem("")
-            widgets.append(source)
-            source.setData(DATA_GAMEID,game.gameid)
-            
-            label = QTableWidgetItem("")
-            widgets.append(label)
-            
-            name = QTableWidgetItem("GAME NAME")
-            widgets.append(name)
-            
-            genre = QTableWidgetItem("GAME GENRE")
-            widgets.append(genre)
-            
-            hours = QTableWidgetItem("GAME HOURS")
-            widgets.append(hours)
-            
-            lastplayed = WILastPlayed("GAME LAST PLAYED")
-            lastplayed.setData(DATA_SORT,data.stot(game.lastplayed))
-            widgets.append(lastplayed)
-        
-        if game.source in self.icons:
-            widgets[0].setIcon(QIcon(self.icons[game.source]))
-        icon = icon_for_game(game,48,self.gicons)
-        if icon:
-            widgets[1].setIcon(icon)
-        def setbg(bg):
-            [w.setBackground(bg) for w in widgets if hasattr(w,"setBackground")]
-        if game.finished:
-            setbg(QColor(100,200,150))
-        elif game.is_package:
-            setbg(QColor(100,100,200))
-        else:
-            b = max(100,215-game.priority*40)
-            setbg(QColor(b,b,b))
-        widgets[2].setText(game.widget_name)
-        widgets[4].setText("%.2d:%.2d"%game.hours_minutes)
-        #w.hours.setStyleSheet("QWidget {}")
-        #if game.playtime < 500:
-        #    w.hours.setStyleSheet("QWidget {background-color: red}")
-        widgets[3].setText(game.genre)
-        widgets[5].setText(game.last_played_nice)
-        return widgets
-
-    def update_gamelist_widget(self):
+    def update_game_row(self,row,game):
         def abreve(t,l):
             if len(t)<l:
                 return t
@@ -546,17 +520,63 @@ class Form(QWidget):
                     return t
                 words[-i] = words[-i].replace("a","").replace("e","").replace("i","").replace("o","").replace("u","")
             return " ".join(words)[:l]
-        for g in self.gamelist:
-            if g["widget"]:
-                self.games_list_widget.setRowHidden(g["widget"][0],False)
+
+        game.widget_name = game.name
+        if game.packageid or game.humble_package:
+            package = self.games.get_package_for_game(game)
+            if package:
+                game.widget_name = "["+abreve(package.name,25)+"] "+game.name
+        game.widget_name = abreve(game.widget_name,100)
+        if game.finished:
+            bg = QColor(100,200,150)
+        elif game.is_package:
+            bg = QColor(100,100,200)
+        else:
+            b = max(100,215-game.priority*40)
+            bg = QColor(b,b,b)
+
+        source = QTableWidgetItem("")
+        source.setBackground(bg)
+        source.setData(DATA_GAMEID,game.gameid)
+        if game.source in self.icons:
+            source.setIcon(QIcon(self.icons[game.source]))
+        self.games_list_widget.setItem(row,0,source)
+            
+        label = QTableWidgetItem("")
+        label.setBackground(bg)
+        icon = icon_for_game(game,48,self.gicons)
+        if icon:
+            label.setIcon(icon)
+        self.games_list_widget.setItem(row,1,label)
+            
+        name = QTableWidgetItem("GAME NAME")
+        name.setBackground(bg)
+        name.setText(game.widget_name)
+        self.games_list_widget.setItem(row,2,name)
+
+        genre = QTableWidgetItem("GAME GENRE")
+        genre.setBackground(bg)
+        genre.setText(game.genre)
+        self.games_list_widget.setItem(row,3,genre)
+
+        hours = QTableWidgetItem("GAME HOURS")
+        hours.setBackground(bg)
+        hours.setText("%.2d:%.2d"%game.hours_minutes)
+        self.games_list_widget.setItem(row,4,hours)
+
+        lastplayed = WILastPlayed("GAME LAST PLAYED")
+        lastplayed.setBackground(bg)
+        lastplayed.setText(game.last_played_nice)
+        lastplayed.setData(DATA_SORT,data.stot(game.lastplayed))
+        self.games_list_widget.setItem(row,5,lastplayed)
+
+    def update_gamelist_widget(self):
+        try:
+            self.games_list_widget.cellChanged.disconnect(self.cell_changed)
+        except TypeError:
+            pass
         self.gamelist = []
         for g in self.games.list(self.sort):
-            g.widget_name = g.name
-            if g.packageid or g.humble_package:
-                package = self.games.get_package_for_game(g)
-                if package:
-                    g.widget_name = "["+abreve(package.name,25)+"] "+g.name
-            g.widget_name = abreve(g.widget_name,100)
             self.gamelist.append({"game":g,"widget":None})
         self.games_list_widget.clear()
         self.games_list_widget.setIconSize(QSize(48,48))
@@ -566,18 +586,10 @@ class Form(QWidget):
         self.games_list_widget.setColumnCount(6)
         self.games_list_widget.itemSelectionChanged.connect(self.selected_row)
         for i,g in enumerate(self.gamelist):
-            cols = self.get_row_for_game(g["game"])
-            g["widget"] = (i,cols)
-            for r,col in enumerate(cols):
-                if r>=6:
-                    pass
-                    self.games_list_widget.setCellWidget(i,r,col)
-                else:
-                    pass
-                    self.games_list_widget.setItem(i,r,col)
+            self.update_game_row(i,g["game"])
         self.dosearch()
         self.game_scroller.verticalScrollBar().setValue(0)
-        self.games_list_widget.setHorizontalHeaderLabels(["s","icon","name","genre","playtime","lastplay"])
+        self.games_list_widget.setHorizontalHeaderLabels([x[0] for x in self.columns])
         self.games_list_widget.resizeColumnsToContents()
         self.games_list_widget.setColumnWidth(0,48)
         self.games_list_widget.setColumnWidth(1,48)
@@ -587,6 +599,9 @@ class Form(QWidget):
         self.games_list_widget.setColumnWidth(5,150)
 
         self.games_list_widget.setSortingEnabled(True)
+
+        self.games_list_widget.cellChanged.connect(self.cell_changed)
+        self.games_list_widget.cellDoubleClicked.connect(self.cell_activated)
 
         self.dosearch()
         self.update()
@@ -710,7 +725,8 @@ class Form(QWidget):
         self.timer.stop()
         #stoprequest()
         #self.buttonLayout1.removeWidget(self.stop_playing_button)
-        self.stop_playing_button.deleteLater()
+        if getattr(self,"stop_playing_button",None):
+            self.stop_playing_button.deleteLater()
         self.stop_playing_button = None
         elapsed_time = time.time()-self.timer_started
         QMessageBox.information(self, "Success!",
@@ -734,18 +750,38 @@ class Form(QWidget):
             row = item.row()
             gameid = self.games_list_widget.item(row,0).data(DATA_GAMEID)
             game = self.games.games[gameid]
-            self.update_game_options(game,self.gamelist[row]["widget"])
+            self.update_game_options(game)
 
-    def update_game_options(self,game,widget):
-        self.game_options = GameOptions(game,widget,self)
+            if getattr(self,"stop_playing_button",None):
+                self.game_options_dock.widget().layout().addWidget(self.stop_playing_button)
+                self.stop_playing_button.clicked.connect(make_callback(self.stop_playing,game))
+
+    def cell_changed(self,row,col):
+        gameid = self.games_list_widget.item(row,0).data(DATA_GAMEID)
+        game = self.games.games[gameid]
+        self.games_list_widget.item(row,col).setBackground(QColor(200,10,10))
+        if self.columns[col][2]:
+            print("setting",gameid,self.columns[col][2],"to",self.games_list_widget.item(row,col).text())
+            setattr(game,self.columns[col][2],self.games_list_widget.item(row,col).text())
+        self.selected_row()
+        self.changed.append(gameid)
+
+    def cell_activated(self,row,col):
+        if self.columns[col][2]:
+            gameid = self.games_list_widget.item(row,0).data(DATA_GAMEID)
+            game = self.games.games[gameid]
+            self.games_list_widget.item(row,col).setText(getattr(game,self.columns[col][2]))
+
+    def update_game_options(self,game):
+        self.game_options = GameOptions(game,self)
         self.game_options_dock.setWidget(self.game_options)
 
         return self.game_options
 
-    def edit_game(self,game,row_widget):
-        self.show_edit_widget(game,row_widget,self)
+    def edit_game(self,game):
+        self.show_edit_widget(game,self)
 
-    def uninstall_game(self,game,row_widget):
+    def uninstall_game(self,game):
         game.uninstall()
 
     def download(self,game):
@@ -753,7 +789,6 @@ class Form(QWidget):
 
     def add_game(self,source):
         game = data.Game(source=source)
-        #row = self.get_row_for_game(game)
         self.gamelist.append({"game":game,"widget":None})
         self.show_edit_widget(game,None,self,new=True)
 
