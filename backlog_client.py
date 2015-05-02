@@ -256,7 +256,7 @@ class EditGame(QWidget):
                 del self.games.games[self.oldid]
         self.games.update_game(self.game.gameid,self.game,force=True)
         self.games.save("games.json")
-        self.app.update_gamelist_widget()
+        self.app.update_game_row(self.game)
         self.deleteLater()
         self.parent().deleteLater()
 
@@ -264,7 +264,10 @@ class EditGame(QWidget):
         self.games.delete(self.game)
         self.games.save("games.json")
         self.deleteLater()
-        self.app.update_gamelist_widget()
+        self.parent().deleteLater()
+        row = self.app.get_row_for_game(self.game)
+        if row:
+            self.app.games_list_widget.setRowHidden(row,True)
 
 def icon_for_game(game,size,icon_cache):
     if game.icon_url:
@@ -501,15 +504,26 @@ class Form(QWidget):
         for row in range(self.games_list_widget.rowCount()):
             gameid = self.games_list_widget.item(row,0).data(DATA_GAMEID)
             if gameid in self.changed:
-                self.update_game_row(row,self.games.games[gameid])
+                self.update_game_row(self.games.games[gameid],row)
         self.changed = []
         self.enable_edit_notify()
 
     def notify(self):
         if self.running:
             self.parent().trayicon.showMessage("Still Playing","Are you still playing %s ?"%self.running.name)
+
+    def get_row_for_game(self,game):
+        for row in range(self.games_list_widget.rowCount()):
+            gameid = self.games_list_widget.item(row,0).data(DATA_GAMEID)
+            if gameid == game.gameid:
+                return row
         
-    def update_game_row(self,row,game):
+    def update_game_row(self,game,row=None):
+        if row is None:
+            row = self.get_row_for_game(game)
+        if row is None:
+            return
+
         def abreve(t,l):
             if len(t)<l:
                 return t
@@ -586,7 +600,7 @@ class Form(QWidget):
         self.games_list_widget.setColumnCount(6)
         self.games_list_widget.itemSelectionChanged.connect(self.selected_row)
         for i,g in enumerate(self.gamelist):
-            self.update_game_row(i,g["game"])
+            self.update_game_row(g["game"],i)
         self.dosearch()
         self.game_scroller.verticalScrollBar().setValue(0)
         self.games_list_widget.setHorizontalHeaderLabels([x[0] for x in self.columns])
