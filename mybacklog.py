@@ -7,12 +7,6 @@ import time
 
 import requests
 
-
-
-
-
-
-
 #backloglib
 from code.apis import giantbomb, steamapi, gogapi, humbleapi, thegamesdb
 from code.resources import winicons
