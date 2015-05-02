@@ -1,16 +1,15 @@
 #!python3
-import requests,re
+import re
+
+import requests
+
 import data
+
 #import vdf
 
 MY_API_KEY = "eli754JNFX483T19Ci7D4WExs0xjKEt3M4VnUBs2"
 MY_STEAM_ID = "76561197999655940"
 STEAM_GAMES_URL = "http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=%(apikey)s&steamid=%(steamid)s&format=json&include_appinfo=1&include_played_free_games=1=1"
-
-#f = open("finished.txt",encoding="utf8")
-#finished = f.read().split("\n")
-#finished = [x.decode("utf8") for x in finished]
-#f.close()
 
 
 def login_for_chat():
@@ -158,7 +157,8 @@ def import_steam(userid=MY_STEAM_ID):
     return library
     
 def load_userdata(path="C:\\Steam\\userdata\\39390212\\config\\localconfig.vdf"):
-    import vdf
+    from code.apis import vdf
+
     f = open(path)
     data = vdf.parse(f)
     f.close()
@@ -166,7 +166,8 @@ def load_userdata(path="C:\\Steam\\userdata\\39390212\\config\\localconfig.vdf")
     
 def create_nonsteam_shortcuts(games):
     """Given a list of games create shortcuts in steam for them"""
-    import steam_shortcut_manager as ssm
+    from code.apis import steam_shortcut_manager as ssm
+
     print ("Creating Steam Shortcuts")
     shortcuts = ssm.SteamShortcutManager("C:\\Steam\\userdata\\39390212\\config\\shortcuts.vdf")
     shortcuts.shortcuts = []

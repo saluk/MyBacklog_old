@@ -2,7 +2,7 @@
 import time
 import requests
 import re
-import data
+from .. import data
 import json
 
 def get_gog_games_from_google():
@@ -76,7 +76,7 @@ def get_gog_games_html(html):
 def import_gog(multipack={}):
     packs = {}
     games = []
-    gog_games = get_gog_games_html("mygog_shelf.html")
+    gog_games = get_gog_games_html("cache/mygog_shelf.html")
     for key in gog_games:
         g = gog_games[key]
         multi = multipack.get(g["gameindex"],[""])
@@ -95,83 +95,6 @@ def import_gog(multipack={}):
             game = data.Game(name=name,source="gog",gogid=g["gameindex"],icon_url=g["icon"],packageid=g2.replace(" ","_"))
             games.append(game)
     return games
-    
-def selenium():
-    import pickle
-    import selenium
-    print (selenium.__version__)
-    from selenium import webdriver
-    from selenium.webdriver.support.ui import WebDriverWait
-    from selenium.webdriver.support import expected_conditions as EC
-    from selenium.webdriver.common.by import By
-    from selenium.webdriver.phantomjs.service import Service as PhantomJSService
-    class NewService(PhantomJSService):
-        def __init__(self, *args, **kwargs):
-            service_args = kwargs.setdefault('service_args', [])
-            service_args = [
-                '--load-images=no',
-                '--ignore-ssl-errors=true'
-            ]
-            super(NewService, self).__init__(*args, **kwargs)
-    webdriver.phantomjs.webdriver.Service = NewService
-    #~ browser = webdriver.PhantomJS("phantomjs/phantomjs.exe",
-        #~ desired_capabilities={"phantomjs.page.settings.resourceTimeout":"1000"}
-    #~ )
-    browser = webdriver.Firefox()
-    #browser.set_window_size(1024,768)
-    browser.set_page_load_timeout(1)
-    browser.set_script_timeout(1)
-    try:
-        browser.get("http://127.0.0.1")
-    except:
-        pass
-    browser.set_page_load_timeout(20)
-    browser.set_script_timeout(20)
-    cookies = []
-    try:
-        print("opening cookies")
-        cookies = pickle.load(open("cache/cookies","rb"))
-    except:
-        print("error opening cookies")
-    browser.get("http://www.gog.com")
-    for cookie in cookies:
-        browser.add_cookie(cookie)
-    browser.get("http://www.gog.com")
-    logged_in = False
-    try:
-        acct = WebDriverWait(browser,10).until(EC.presence_of_element_located((By.ID,"topMenuAvatarImg")))
-        logged_in = True
-        print("already logged in")
-    except:
-        print("Error logging in")
-    if not logged_in:
-        browser.save_screenshot("phantomshot_prelogin.jpg")
-        print("not logged in, logging in")
-        acct = WebDriverWait(browser,10).until(EC.presence_of_element_located((By.CSS_SELECTOR,".nav_login")))
-        browser.find_element_by_css_selector(".nav_login").click()
-        browser.switch_to.frame("GalaxyAccountsFrame")
-        browser.find_element_by_id("login_username").send_keys(GOG_USERNAME)
-        browser.find_element_by_id("login_password").send_keys(GOG_PASSWORD)
-        browser.find_element_by_id("login_login").click()
-    try:
-        acct = WebDriverWait(browser,10).until(EC.presence_of_element_located((By.ID,"topMenuAvatarImg")))
-        logged_in = True
-    except:
-        print("Error logging in")
-    browser.save_screenshot("phantomshot_loggedin.jpg")
-    if logged_in:
-        print("logged in, dumping cookies")
-        pickle.dump(browser.get_cookies(),open("cache/cookies","wb"))
-        print("open shelf")
-        browser.get("https://secure.gog.com/account/games/shelf")
-        print("shelf open, waiting for full game list")
-        acct = WebDriverWait(browser,20).until(EC.presence_of_element_located((By.CSS_SELECTOR,"span.all")))
-        print("saving screenshot")
-        browser.save_screenshot("phantomshot_shelf.jpg")
-        f = open("mygog_shelf.html","w")
-        f.write("<html>"+browser.find_element_by_css_selector("html").get_attribute("innerHTML")+"</html>")
-        f.close()
-    browser.quit()
 
 class Browser:
     def __init__(self):
@@ -280,7 +203,7 @@ class Gog:
         f.close()
         count = 50
         page=1
-        f = open("mygog_shelf.html","w")
+        f = open("cache/mygog_shelf.html","w")
         #b.get("https://www.gog.com/account")
         #f.write(b.text)
         while count:

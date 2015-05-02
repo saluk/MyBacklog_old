@@ -1,10 +1,11 @@
 import os
-import sys
 import shutil
-import requests
 import zlib
 
-from systems import *
+import requests
+
+from code.systems import *
+
 
 def get_icon(exe):
     if not EXTRACT_ICONS:
@@ -12,7 +13,7 @@ def get_icon(exe):
     if os.path.exists("extract"):
         shutil.rmtree("extract")
     print("extracting",exe)
-    os.system('ResourcesExtract.exe /Source "%s" /DestFolder "extract" /ExtractIcons 1 /ExtractCursors 0 /FileExistMode 1 /OpenDestFolder 0'%exe)
+    os.system('tools\\ResourcesExtract.exe /Source "%s" /DestFolder "extract" /ExtractIcons 1 /ExtractCursors 0 /FileExistMode 1 /OpenDestFolder 0'%exe)
     for f in os.listdir("extract"):
         if "MAINICON" in f:
             print ("extracted",f)

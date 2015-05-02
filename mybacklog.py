@@ -3,18 +3,21 @@
 #STDLIB
 import json
 import os
-import sys
 import time
+
 import requests
 
+
+
+
+
+
+
 #backloglib
-import data
-import steamapi
-import gogapi
-import humbleapi
-import thegamesdb
-import giantbomb
-import winicons
+from code.apis import giantbomb, steamapi, gogapi, humbleapi, thegamesdb
+from code.resources import winicons
+from code import data
+
 os.environ["QT_QPA_PLATFORM_PLUGIN_PATH"] = "C:\\Python33\\Lib\\site-packages\\PyQt5\\plugins\\platforms"
 
 from PyQt5.QtCore import *
