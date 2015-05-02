@@ -175,7 +175,7 @@ class ListGamesForPack(QWidget):
             self.app.games.multipack[self.game.gogid].append(game.packageid)
             self.app.games.games[game.gameid] = game
             #Add or update row in list
-        self.app.games.save("games.json")
+        self.app.games.save()
         self.app.update_gamelist_widget()
         self.deleteLater()
 
@@ -255,14 +255,14 @@ class EditGame(QWidget):
                 self.games.games[newid] = self.games.games[self.oldid]
                 del self.games.games[self.oldid]
         self.games.update_game(self.game.gameid,self.game,force=True)
-        self.games.save("games.json")
+        self.games.save()
         self.app.update_game_row(self.game)
         self.deleteLater()
         self.parent().deleteLater()
 
     def delete(self):
         self.games.delete(self.game)
-        self.games.save("games.json")
+        self.games.save()
         self.deleteLater()
         self.parent().deleteLater()
         row = self.app.get_row_for_game(self.game)
@@ -348,13 +348,13 @@ class GameOptions(QWidget):
 
         self.setLayout(layout)
 
-class MainWindow(QMainWindow):
+class MyBacklog(QMainWindow):
     def __init__(self):
         #super(MainWindow,self).__init__(None,Qt.WindowStaysOnTopHint)
-        super(MainWindow,self).__init__(None)
+        super(MyBacklog,self).__init__(None)
         self.setWindowTitle("MyBacklog")
         self.setWindowIcon(QIcon(QPixmap("icons/steam.png")))
-        self.main_form = Form(self)
+        self.main_form = GamelistForm(self)
 
         menus = {}
         for folder in ["file","import","cleanup","sync","view"]:
@@ -410,15 +410,19 @@ b.setData(DATA_SORT,"b")
 assert a<b
 assert b>a
 
-class Form(QWidget):
+class GamelistForm(QWidget):
     def __init__(self, parent=None):
-        super(Form, self).__init__(parent)
+        super(GamelistForm, self).__init__(parent)
         
         self.timer_started = 0
         
         self.games = data.Games()
-        self.games.load("games.json")
+        self.games.load()
         self.gamelist = []
+
+        account = json.loads(open("data/account.json").read())
+        self.gog = gogapi.Gog(account["gog"]["user"],account["gog"]["pass"])
+        self.steam = steamapi.Steam(account["steam"]["api"],account["steam"]["id"],account["steam"]["shortcut_folder"])
 
         self.columns = [("s",None,None),("icon",None,None),("name","widget_name","name"),
                         ("genre","genre","genre"),("playtime",None,None),("lastplay",None,None)]
@@ -500,7 +504,7 @@ class Form(QWidget):
 
     def file_save(self):
         self.disable_edit_notify()
-        self.games.save("games.json")
+        self.games.save()
         for row in range(self.games_list_widget.rowCount()):
             gameid = self.games_list_widget.item(row,0).data(DATA_GAMEID)
             if gameid in self.changed:
@@ -621,34 +625,34 @@ class Form(QWidget):
         self.update()
 
     def import_steam(self):
-        games = steamapi.import_steam()
+        games = self.steam.import_steam()
         self.games.add_games(games)
         self.update_gamelist_widget()
-        self.games.save("games.json")
+        self.games.save()
         
     def cleanup_add_steam_shortcuts(self):
-        steamapi.create_nonsteam_shortcuts(self.games.games)
+        self.steam.create_nonsteam_shortcuts(self.games.games)
 
     def import_humble(self):
         games = humbleapi.get_humble_gamelist()
         self.games.add_games(games)
         self.update_gamelist_widget()
-        self.games.save("games.json")
+        self.games.save()
 
     def import_gog(self):
         #self.browser = Browser("https://secure.gog.com/account/games",self)
-        gogapi.better_get_shelf()
+        self.gog.better_get_shelf()
         self.import_gog_html()
 
     def import_gog_html(self):
-        games = gogapi.import_gog(self.games.multipack)
+        games = self.gog.import_gog(self.games.multipack)
         self.games.add_games(games)
         self.update_gamelist_widget()
-        self.games.save("games.json")
+        self.games.save()
 
     def cleanup_fix_gog(self):
         self.games.import_packages()
-        self.games.save("games.json")
+        self.games.save()
 
     def sync_uploadgames(self):
         uploadrequest(self.games)
@@ -657,7 +661,7 @@ class Form(QWidget):
         games = downloadrequest()
         self.games = data.Games()
         self.games.translate_json(games)
-        self.games.save("games.json")
+        self.games.save()
         self.update_gamelist_widget()
 
     def cleanup_gamesdb(self):
@@ -676,7 +680,7 @@ class Form(QWidget):
                     if coop:
                         g.genre = g.genre+"; co-op"
                     print(g.genre)
-        self.games.save("games.json")
+        self.games.save()
 
     def cleanup_giantbomb(self):
         for g in self.games.games.values():
@@ -694,7 +698,7 @@ class Form(QWidget):
                     if coop:
                         g.genre = g.genre+"; co-op"
                     print(g.genre)
-        self.games.save("games.json")
+        self.games.save()
 
     def view_sort_by_added(self):
         self.sort = "added"
@@ -748,7 +752,7 @@ class Form(QWidget):
         game.played()
         game.playtime += elapsed_time
         game.priority = -1
-        self.games.save("games.json")
+        self.games.save()
         self.update_gamelist_widget()
 
     def show_edit_widget(self,*args,**kwargs):
@@ -838,7 +842,7 @@ if __name__ == '__main__':
  
     app = QApplication(sys.argv)
 
-    window = MainWindow()
+    window = MyBacklog()
     window.show()
  
     sys.exit(app.exec_())

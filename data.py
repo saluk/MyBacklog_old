@@ -335,7 +335,7 @@ class Games:
             self.multipack = json.loads(open("gog_packages.json").read())
         except:
             pass
-    def load(self,file):
+    def load(self,file="data/games.json"):
         if not os.path.exists(file):
             print("Warning, no save file to load:",file)
             return
@@ -371,7 +371,7 @@ class Games:
         save_data["actions"] = self.actions
         save_data["multipack"] = self.multipack
         return json.dumps(save_data,sort_keys=True,indent=4)
-    def save(self,file):
+    def save(self,file="data/games.json"):
         sd = self.save_data()
         f = open(file,"w")
         f.write(sd)

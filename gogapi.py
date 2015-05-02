@@ -150,8 +150,8 @@ def selenium():
         acct = WebDriverWait(browser,10).until(EC.presence_of_element_located((By.CSS_SELECTOR,".nav_login")))
         browser.find_element_by_css_selector(".nav_login").click()
         browser.switch_to.frame("GalaxyAccountsFrame")
-        browser.find_element_by_id("login_username").send_keys("saluk64007@gmail.com")
-        browser.find_element_by_id("login_password").send_keys("wan3bane")
+        browser.find_element_by_id("login_username").send_keys(GOG_USERNAME)
+        browser.find_element_by_id("login_password").send_keys(GOG_PASSWORD)
         browser.find_element_by_id("login_login").click()
     try:
         acct = WebDriverWait(browser,10).until(EC.presence_of_element_located((By.ID,"topMenuAvatarImg")))
@@ -209,88 +209,94 @@ class Browser:
             self.url = answer.url
         except:
             pass
-import time
-def better_get_shelf():
-    print(time.time())
-    b = Browser()
-    #Try cookies
-    logged_in = False
-    try:
-        f = open("cache/cookies","r")
-        b.cookies = eval(f.read())
+
+
+
+class Gog:
+    def __init__(self,username,password):
+        self.username = username
+        self.password = password
+        self.import_gog = import_gog
+    def better_get_shelf(self):
+        print(time.time())
+        b = Browser()
+        #Try cookies
+        logged_in = False
+        try:
+            f = open("cache/cookies","r")
+            b.cookies = eval(f.read())
+            f.close()
+            b.get("https://www.gog.com/account/ajax",params={
+                "a":"gamesShelfMore",
+                "p":0,
+                "s":"date_purchased",
+                "h":0,
+                "q":"",
+                "t":"%d"%time.time()*100
+                })
+            assert b.json["count"]
+            print("Logged in")
+            logged_in = True
+        except:
+            print("Not logged in")
+            pass
+
+        if not logged_in:
+            b.get("https://www.gog.com/")
+            login_auth = re.findall("(https\:\/\/auth\.gog\.com.*?)(\"|')",b.text)
+            print(login_auth)
+            b.get(login_auth[0][0])
+            token = re.findall("login\[\_token\].*?>",b.text)
+            print("token:",token)
+            token_value = re.findall("value\=\"(.*?)\"",token[0])[0]
+            print("token_value:",token_value)
+            print("cur url:",b.url)
+            b.post("https://login.gog.com/login_check",{
+                "login[username]":self.username,
+                "login[password]":self.password,
+                "login[_token]":token_value,
+                #~ "register[email]":"",
+                #~ "register[password]":"",
+                #~ "register[_token]":token_value,
+                "login[login]":"",
+                },
+                )
+            print("new url:",b.url)
+
+            #Properly follow redirect!
+            #print(b.answer.history[1].content)
+            print(b.answer.history[0].content)
+            link = re.findall(b"content\=.*?https(.*?)\"",b.answer.history[0].content)
+            print(link)
+            linknice = "https"+link[0].decode("utf8").replace("auth?amp;","auth?").replace("%22&amp;amp;","&").replace("https%3A%2F%2F","https://").replace("%2F","/").replace("&amp;amp;","&").replace("&amp;","&")
+            print(linknice)
+            b.get(linknice)
+            print(b.url)
+            print(b.cookies)
+
+        #Should be logged in now
+        f = open("cache/cookies","w")
+        f.write(repr(b.cookies))
         f.close()
-        b.get("https://www.gog.com/account/ajax",params={
-            "a":"gamesShelfMore",
-            "p":0,
-            "s":"date_purchased",
-            "h":0,
-            "q":"",
-            "t":"%d"%time.time()*100
-            })
-        assert b.json["count"]
-        print("Logged in")
-        logged_in = True
-    except:
-        print("Not logged in")
-        pass
-    
-    if not logged_in:
-        b.get("https://www.gog.com/")
-        login_auth = re.findall("(https\:\/\/auth\.gog\.com.*?)(\"|')",b.text)
-        print(login_auth)
-        b.get(login_auth[0][0])
-        token = re.findall("login\[\_token\].*?>",b.text)
-        print("token:",token)
-        token_value = re.findall("value\=\"(.*?)\"",token[0])[0]
-        print("token_value:",token_value)
-        print("cur url:",b.url)
-        b.post("https://login.gog.com/login_check",{
-            "login[username]":"saluk64007@gmail.com",
-            "login[password]":"wan3bane",
-            "login[_token]":token_value,
-            #~ "register[email]":"",
-            #~ "register[password]":"",
-            #~ "register[_token]":token_value,
-            "login[login]":"",
-            },
-            )
-        print("new url:",b.url)
-        
-        #Properly follow redirect!
-        #print(b.answer.history[1].content)
-        print(b.answer.history[0].content)
-        link = re.findall(b"content\=.*?https(.*?)\"",b.answer.history[0].content)
-        print(link)
-        linknice = "https"+link[0].decode("utf8").replace("auth?amp;","auth?").replace("%22&amp;amp;","&").replace("https%3A%2F%2F","https://").replace("%2F","/").replace("&amp;amp;","&").replace("&amp;","&")
-        print(linknice)
-        b.get(linknice)
-        print(b.url)
-        print(b.cookies)
-    
-    #Should be logged in now
-    f = open("cache/cookies","w")
-    f.write(repr(b.cookies))
-    f.close()
-    count = 50
-    page=1
-    f = open("mygog_shelf.html","w")
-    #b.get("https://www.gog.com/account")
-    #f.write(b.text)
-    while count:
-        b.get("https://www.gog.com/account/ajax",params={
-            "a":"gamesShelfMore",
-            "p":page,
-            "s":"date_purchased",
-            "h":0,
-            "q":"",
-            "t":"%d"%time.time()*100
-            })
-        print(b.json["count"])
-        f.write(b.json["html"])
-        page+=1
-        count=b.json["count"]
-    f.close()
-    
+        count = 50
+        page=1
+        f = open("mygog_shelf.html","w")
+        #b.get("https://www.gog.com/account")
+        #f.write(b.text)
+        while count:
+            b.get("https://www.gog.com/account/ajax",params={
+                "a":"gamesShelfMore",
+                "p":page,
+                "s":"date_purchased",
+                "h":0,
+                "q":"",
+                "t":"%d"%time.time()*100
+                })
+            print(b.json["count"])
+            f.write(b.json["html"])
+            page+=1
+            count=b.json["count"]
+        f.close()
 
 if __name__ == "__main__":
     better_get_shelf()

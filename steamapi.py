@@ -3,8 +3,9 @@ import requests,re
 import data
 #import vdf
 
-MY_API_KEY = "98934075AAB5F4E1223BEC4C40E88AA8"
-MY_STEAM_ID = "76561197999655940"
+MY_API_KEY = ""
+MY_STEAM_ID = ""
+
 STEAM_GAMES_URL = "http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=%(apikey)s&steamid=%(steamid)s&format=json&include_appinfo=1&include_played_free_games=1=1"
 
 #f = open("finished.txt",encoding="utf8")
@@ -164,11 +165,11 @@ def load_userdata(path="C:\\Steam\\userdata\\39390212\\config\\localconfig.vdf")
     f.close()
     return data
     
-def create_nonsteam_shortcuts(games):
+def create_nonsteam_shortcuts(games,shortcut_folder):
     """Given a list of games create shortcuts in steam for them"""
     import steam_shortcut_manager as ssm
     print ("Creating Steam Shortcuts")
-    shortcuts = ssm.SteamShortcutManager("C:\\Steam\\userdata\\39390212\\config\\shortcuts.vdf")
+    shortcuts = ssm.SteamShortcutManager(shortcut_folder)
     shortcuts.shortcuts = []
     for game in games.values():
         print (game.name)
@@ -186,6 +187,16 @@ def create_nonsteam_shortcuts(games):
     print ("saving")
     shortcuts.save()
     print ("saved")
+
+class Steam:
+    def __init__(self,api_key,user_id,shortcut_folder):
+        self.api_key = api_key
+        self.user_id = user_id
+        self.shortcut_folder = shortcut_folder
+    def import_steam(self):
+        return import_steam(self.api_key,self.user_id)
+    def create_nonsteam_shortcuts(self,games):
+        return create_nonsteam_shortcuts(games,self.shortcut_folder)
 
 #~ if __name__=="__main__":
     #~ import json

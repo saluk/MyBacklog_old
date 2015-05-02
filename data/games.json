@@ -68588,6 +68588,345 @@
             }, 
             "time": "18:07:18 2015-05-01", 
             "type": "deletegame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "adventure", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/232790/4b859c6d3dbb58c102276516b4cff175e8dd4ea0.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "11:31:49 2015-05-01", 
+                "name": "Broken Age", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 37167.36375808716, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 232790, 
+                "website": ""
+            }, 
+            "time": "18:16:27 2015-05-01", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "adventure", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/232790/4b859c6d3dbb58c102276516b4cff175e8dd4ea0.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "11:31:49 2015-05-01", 
+                "name": "Broken Age", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 37167.36375808716, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 232790, 
+                "website": ""
+            }, 
+            "time": "22:20:27 2015-05-01", 
+            "type": "stopgame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "finished", 
+                        "ov": 0, 
+                        "v": 1
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 1, 
+                "genre": "adventure", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/232790/4b859c6d3dbb58c102276516b4cff175e8dd4ea0.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "22:20:28 2015-05-01", 
+                "name": "Broken Age", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 51806.99371123314, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 232790, 
+                "website": ""
+            }, 
+            "time": "22:20:34 2015-05-01", 
+            "type": "updategame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "action", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/12220/603a444d9092d007f2d9640d12ebba62b1efc377.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "19:44:48 2015-04-28", 
+                "name": "Grand Theft Auto: Episodes from Liberty City", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 60566.82180285454, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 12220, 
+                "website": ""
+            }, 
+            "time": "22:21:36 2015-05-01", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "action", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/12220/603a444d9092d007f2d9640d12ebba62b1efc377.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "19:44:48 2015-04-28", 
+                "name": "Grand Theft Auto: Episodes from Liberty City", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 60566.82180285454, 
+                "priority": -1, 
+                "source": "steam", 
+                "steamid": 12220, 
+                "website": ""
+            }, 
+            "time": "23:48:00 2015-05-01", 
+            "type": "stopgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "planetfall", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "https://www.gog.com/upload/images/2015/03/5687f23cb9f42e5e630d0d9db8b14cc158c21f9a_bbC_20.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "", 
+                "name": "Planetfall", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0, 
+                "priority": 0, 
+                "source": "gog", 
+                "steamid": "", 
+                "website": ""
+            }, 
+            "time": "10:56:13 2015-05-02", 
+            "type": "addgame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "playtime", 
+                        "ov": 65750.13422679901, 
+                        "v": 65760.0
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/12220/603a444d9092d007f2d9640d12ebba62b1efc377.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "Grand Theft Auto: Episodes from Liberty City", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 65760.0, 
+                "priority": 0, 
+                "source": "steam", 
+                "steamid": 12220, 
+                "website": ""
+            }, 
+            "time": "11:01:11 2015-05-02", 
+            "type": "updategame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/109600/b65eee286148b9ab29c27847ff47cbcd158788b6.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "Neverwinter", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0.0, 
+                "priority": 0, 
+                "source": "steam", 
+                "steamid": 109600, 
+                "website": ""
+            }, 
+            "time": "11:01:11 2015-05-02", 
+            "type": "addgame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "playtime", 
+                        "ov": 51806.99371123314, 
+                        "v": 51840.0
+                    }
+                ]
+            }, 
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/232790/4b859c6d3dbb58c102276516b4cff175e8dd4ea0.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "Broken Age", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 51840.0, 
+                "priority": 0, 
+                "source": "steam", 
+                "steamid": 232790, 
+                "website": ""
+            }, 
+            "time": "11:01:11 2015-05-02", 
+            "type": "updategame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/367540/9420b506fe5b00fd02d9005f1f5555358e3f71f7.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "Starbound - Unstable", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0.0, 
+                "priority": 0, 
+                "source": "steam", 
+                "steamid": 367540, 
+                "website": ""
+            }, 
+            "time": "11:01:11 2015-05-02", 
+            "type": "addgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/299360/7b36dde1b5631c436a1914c9b2a55672e4e1fb51.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "Block N Load", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0.0, 
+                "priority": 0, 
+                "source": "steam", 
+                "steamid": 299360, 
+                "website": ""
+            }, 
+            "time": "11:01:11 2015-05-02", 
+            "type": "addgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/209660/aab8b39ef63c54af5497b55aa104d5c7ec860fd9.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "Call of Duty: Advanced Warfare - Multiplayer", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 0.0, 
+                "priority": 0, 
+                "source": "steam", 
+                "steamid": 209660, 
+                "website": ""
+            }, 
+            "time": "11:01:11 2015-05-02", 
+            "type": "addgame"
+        }, 
+        {
+            "game": {
+                "finished": 0, 
+                "genre": "", 
+                "gogid": "", 
+                "hidden": 0, 
+                "humble_machinename": "", 
+                "humble_package": "", 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/27040/1eb715776067ef9c5ac38eaf77d2f9512775ac24.jpg", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "The Path - Prologue", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 480.0, 
+                "priority": 0, 
+                "source": "steam", 
+                "steamid": 27040, 
+                "website": ""
+            }, 
+            "time": "11:01:11 2015-05-02", 
+            "type": "addgame"
         }
     ], 
     "games": {
@@ -75791,6 +76130,26 @@
             "steamid": "", 
             "website": ""
         }, 
+        "gog_planetfall": {
+            "finished": 0, 
+            "genre": "", 
+            "gogid": "planetfall", 
+            "hidden": 0, 
+            "humble_machinename": "", 
+            "humble_package": "", 
+            "icon_url": "https://www.gog.com/upload/images/2015/03/5687f23cb9f42e5e630d0d9db8b14cc158c21f9a_bbC_20.jpg", 
+            "install_path": "", 
+            "is_package": 0, 
+            "lastplayed": "", 
+            "name": "Planetfall", 
+            "notes": "", 
+            "packageid": "", 
+            "playtime": 0, 
+            "priority": 0, 
+            "source": "gog", 
+            "steamid": "", 
+            "website": ""
+        }, 
         "gog_pod_gold": {
             "finished": 0, 
             "genre": "action; co-op", 
@@ -82891,6 +83250,26 @@
             "steamid": 108800, 
             "website": ""
         }, 
+        "steam_109600": {
+            "finished": 0, 
+            "genre": "", 
+            "gogid": "", 
+            "hidden": 0, 
+            "humble_machinename": "", 
+            "humble_package": "", 
+            "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/109600/b65eee286148b9ab29c27847ff47cbcd158788b6.jpg", 
+            "install_path": "", 
+            "is_package": 0, 
+            "lastplayed": null, 
+            "name": "Neverwinter", 
+            "notes": "", 
+            "packageid": "", 
+            "playtime": 0.0, 
+            "priority": 0, 
+            "source": "steam", 
+            "steamid": 109600, 
+            "website": ""
+        }, 
         "steam_11040": {
             "finished": 1, 
             "genre": "adventure", 
@@ -83501,11 +83880,11 @@
             "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/12220/603a444d9092d007f2d9640d12ebba62b1efc377.jpg", 
             "install_path": "", 
             "is_package": 0, 
-            "lastplayed": "19:44:48 2015-04-28", 
+            "lastplayed": "23:48:01 2015-05-01", 
             "name": "Grand Theft Auto: Episodes from Liberty City", 
             "notes": "", 
             "packageid": "", 
-            "playtime": 60566.82180285454, 
+            "playtime": 65760.0, 
             "priority": -1, 
             "source": "steam", 
             "steamid": 12220, 
@@ -85431,6 +85810,26 @@
             "steamid": 209370, 
             "website": ""
         }, 
+        "steam_209660": {
+            "finished": 0, 
+            "genre": "", 
+            "gogid": "", 
+            "hidden": 0, 
+            "humble_machinename": "", 
+            "humble_package": "", 
+            "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/209660/aab8b39ef63c54af5497b55aa104d5c7ec860fd9.jpg", 
+            "install_path": "", 
+            "is_package": 0, 
+            "lastplayed": null, 
+            "name": "Call of Duty: Advanced Warfare - Multiplayer", 
+            "notes": "", 
+            "packageid": "", 
+            "playtime": 0.0, 
+            "priority": 0, 
+            "source": "steam", 
+            "steamid": 209660, 
+            "website": ""
+        }, 
         "steam_209830": {
             "finished": 0, 
             "genre": "horror", 
@@ -87112,7 +87511,7 @@
             "website": ""
         }, 
         "steam_232790": {
-            "finished": 0, 
+            "finished": 1, 
             "genre": "adventure", 
             "gogid": "", 
             "hidden": 0, 
@@ -87121,11 +87520,11 @@
             "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/232790/4b859c6d3dbb58c102276516b4cff175e8dd4ea0.jpg", 
             "install_path": "", 
             "is_package": 0, 
-            "lastplayed": "11:31:49 2015-05-01", 
+            "lastplayed": "22:20:28 2015-05-01", 
             "name": "Broken Age", 
             "notes": "", 
             "packageid": "", 
-            "playtime": 37167.36375808716, 
+            "playtime": 51840.0, 
             "priority": -1, 
             "source": "steam", 
             "steamid": 232790, 
@@ -89271,6 +89670,26 @@
             "steamid": 270170, 
             "website": ""
         }, 
+        "steam_27040": {
+            "finished": 0, 
+            "genre": "", 
+            "gogid": "", 
+            "hidden": 0, 
+            "humble_machinename": "", 
+            "humble_package": "", 
+            "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/27040/1eb715776067ef9c5ac38eaf77d2f9512775ac24.jpg", 
+            "install_path": "", 
+            "is_package": 0, 
+            "lastplayed": null, 
+            "name": "The Path - Prologue", 
+            "notes": "", 
+            "packageid": "", 
+            "playtime": 480.0, 
+            "priority": 0, 
+            "source": "steam", 
+            "steamid": 27040, 
+            "website": ""
+        }, 
         "steam_271590": {
             "finished": 0, 
             "genre": "openworld", 
@@ -89869,6 +90288,26 @@
             "priority": -1, 
             "source": "steam", 
             "steamid": 298630, 
+            "website": ""
+        }, 
+        "steam_299360": {
+            "finished": 0, 
+            "genre": "", 
+            "gogid": "", 
+            "hidden": 0, 
+            "humble_machinename": "", 
+            "humble_package": "", 
+            "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/299360/7b36dde1b5631c436a1914c9b2a55672e4e1fb51.jpg", 
+            "install_path": "", 
+            "is_package": 0, 
+            "lastplayed": null, 
+            "name": "Block N Load", 
+            "notes": "", 
+            "packageid": "", 
+            "playtime": 0.0, 
+            "priority": 0, 
+            "source": "steam", 
+            "steamid": 299360, 
             "website": ""
         }, 
         "steam_300380": {
@@ -90749,6 +91188,26 @@
             "priority": 0, 
             "source": "steam", 
             "steamid": 360, 
+            "website": ""
+        }, 
+        "steam_367540": {
+            "finished": 0, 
+            "genre": "", 
+            "gogid": "", 
+            "hidden": 0, 
+            "humble_machinename": "", 
+            "humble_package": "", 
+            "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/367540/9420b506fe5b00fd02d9005f1f5555358e3f71f7.jpg", 
+            "install_path": "", 
+            "is_package": 0, 
+            "lastplayed": null, 
+            "name": "Starbound - Unstable", 
+            "notes": "", 
+            "packageid": "", 
+            "playtime": 0.0, 
+            "priority": 0, 
+            "source": "steam", 
+            "steamid": 367540, 
             "website": ""
         }, 
         "steam_37260": {
