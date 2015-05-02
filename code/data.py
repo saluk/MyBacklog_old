@@ -21,6 +21,7 @@ def sec_to_ts(sec):
     return ttos(time.localtime(sec))
 
 PRIORITIES = {-1:"now playing",0:"unprioritized",1:"soon",2:"later",3:"much later",5:"next year",99:"probably never"}
+GAME_DB = "data/gamesv003.json"
 
 run_with_steam = 1
 #   NEW METHOD TO RUN THROUGH STEAM:
@@ -43,15 +44,15 @@ class Source:
         s = [x.lower() for x in game.name if x.lower() in "abcdefghijklmnopqrstuvwxyz1234567890 "]
         s = "".join(s).replace(" ","_")
         return s
-    def download_link(self,game):
+    def download_link(self,game,source):
         return ""
-    def download_method(self,game):
+    def download_method(self,game,source):
         if game.download_link:
             webbrowser.open(game.download_link)
-    def uninstall(self,game):
+    def uninstall(self,game,source):
         if game.install_folder:
             subprocess.Popen(["explorer.exe",game.install_folder], cwd=game.install_folder, stdout=sys.stdout, stderr=sys.stderr)
-    def get_run_args(self,game):
+    def get_run_args(self,game,source):
         """Returns the method to run the game. Defaults to using a batch file to run the install_path exe"""
         folder = game.install_folder #Navigate to executable's directory
         startupinfo = subprocess.STARTUPINFO()
@@ -81,12 +82,12 @@ class Source:
                 args = ["cache\\steamshortcuts\\%s.url"%game.shortcut_name]
                 folder = os.path.abspath("")
         return args,folder
-    def run_game(self,game):
+    def run_game(self,game,source):
         creationflags = 0
         shell = True
         if sys.platform=='darwin':
             shell = False
-        args,folder = game.get_run_args()
+        args,folder = self.get_run_args(game,source)
         print("run args:",args,folder)
 
         if args and folder:
@@ -97,7 +98,7 @@ class Source:
             self.running = subprocess.Popen(args, cwd=folder, stdout=sys.stdout, stderr=sys.stderr, creationflags=creationflags, shell=shell)
             print("subprocess open")
             os.chdir(curdir)
-    def missing_steam_launch(self,game):
+    def missing_steam_launch(self,game,source):
         """Returns True if the game type wants a steam launcher and it doesn't exist"""
         if not run_with_steam:
             return False
@@ -117,58 +118,46 @@ class InvalidIdException(Exception):
 sources = {}
 class SteamSource(Source):
     def args(self):
-        return [("steamid","i")]
-    def gameid(self,game):
-        if not game.steamid:
-            raise InvalidIdException()
-        return "steam_%s"%game.steamid
-    def run_game(self,game):
-        webbrowser.open("steam://rungameid/%d"%game.steamid)
-    def missing_steam_launch(self,game):
+        return []
+    def run_game(self,game,source):
+        webbrowser.open("steam://rungameid/%d"%source["id"])
+    def missing_steam_launch(self,game,source):
         return False
-    def download_method(self,game):
-        webbrowser.open("steam://install/%d"%game.steamid)
-    def uninstall(self,game):
-        webbrowser.open("steam://uninstall/%d"%game.steamid)
+    def download_method(self,game,source):
+        webbrowser.open("steam://install/%d"%source["id"])
+    def uninstall(self,game,source):
+        webbrowser.open("steam://uninstall/%d"%source["id"])
 sources["steam"] = SteamSource()
 class GogSource(Source):
     def args(self):
-        return [("gogid","s"),("install_path","s")]
-    def gameid(self,game):
-        if not game.gogid:
-            raise InvalidIdException()
-        return "gog_%s"%game.gogid
-    def download_link(self,game):
-        return "gogdownloader://%s/installer_win_en"%game.gogid
+        return [("install_path","s")]
+    def download_link(self,game,source):
+        return "gogdownloader://%s/installer_win_en"%source["id"]
 sources["gog"] = GogSource()
 class HumbleSource(Source):
     def args(self):
-        return [("humble_machinename","s"),("install_path","s"),("humble_package","s")]
-    def gameid(self,game):
-        if not game.humble_machinename:
-            raise InvalidIdException()
-        return "humble_%s"%game.humble_machinename
+        return [("install_path","s")]
 sources["humble"] = HumbleSource()
 class ItchSource(Source):
     pass
 sources["itch"] = ItchSource()
 class GBASource(Source):
-    def get_run_args(self,game):
+    def get_run_args(self,game,source):
         args = ["C:\\emu\\retroarch\\retroarch.exe","-c","C:\\emu\\retroarch\\retroarch-gba.cfg",game.install_path]
         return args,"."
 sources["gba"] = GBASource()
 class SNESSource(Source):
-    def get_run_args(self,game):
+    def get_run_args(self,game,source):
         args = ["C:\\emu\\retroarch\\retroarch.exe","-c","C:\\emu\\retroarch\\retroarch-snes.cfg",game.install_path]
         return args,"."
 sources["snes"] = SNESSource()
 class N64Source(Source):
-    def get_run_args(self,game):
+    def get_run_args(self,game,source):
         args = ["C:\\emu\\retroarch\\retroarch.exe","-c","C:\\emu\\retroarch\\retroarch-n64.cfg",game.install_path]
         return args,"."
 sources["n64"] = N64Source()
 class NDSSource(Source):
-    def get_run_args(self,game):
+    def get_run_args(self,game,source):
         args = ["C:\\emu\\retroarch\\retroarch.exe","-c","C:\\emu\\retroarch\\retroarch-nds.cfg",game.install_path]
         return args,"."
 sources["nds"] = NDSSource()
@@ -182,32 +171,30 @@ class GamersGateSource(Source):
     pass
 sources["gamersgate"] = GamersGateSource()
 class OfflineSource(Source):
-    def get_run_args(self,game):
+    def get_run_args(self,game,source):
         return None,None
 sources["offline"] = OfflineSource()
 
 class Game:
-    args = [("name","s"),("playtime","f"),("lastplayed","s"),("finished","i"),("genre","s"),("source","s"),("hidden","i"),("icon_url","s"),
+    args = [("name","s"),("playtime","f"),("lastplayed","s"),("finished","i"),("genre","s"),("hidden","i"),("icon_url","s"),
     ("packageid","s"),("is_package","i"),("notes","s"),("priority","i"),("website","s")]
     def __init__(self,**kwargs):
         dontsavekeys = set(dir(self))
+        self.gameid = ""
+
         self.name = ""
         self.playtime = 0
         self.finished = 0
         self.hidden = 0
         self.is_package = 0   #Set to 1 if it includes multiple games
         self.lastplayed = ""   #timestamp in fmt
-        self.source = "steam"
+        self.sources = []
         self.packageid = ""  #Id of game within a package
         self.genre = ""
         self.icon_url = ""
         self.notes = ""
         self.priority = 0
-        
-        self.steamid = ""
-        self.gogid = ""
-        self.humble_machinename = ""
-        self.humble_package = ""
+
         self.install_path = ""
         self.website = ""
         self.savekeys = set(dir(self)) - dontsavekeys
@@ -218,6 +205,9 @@ class Game:
             self.playtime = datetime.timedelta(minutes=kwargs["minutes"]).total_seconds()
         if self.lastplayed and stot(self.lastplayed).tm_year<1971:
             self.lastplayed = None
+    @property
+    def is_in_package(self):
+        return self.packageid or "humble" in self.sources and self.sources["humble"]["package"]
     def played(self):
         """Resets lastplayed to now"""
         self.lastplayed = now()
@@ -232,7 +222,10 @@ class Game:
         return self.name.replace(":","")
     @property
     def valid_args(self):
-        return self.args+sources[self.source].args()
+        a = self.args[:]
+        for s in self.sources:
+            a.append(sources[s["source"]].args())
+        return a
     @property
     def hours_minutes(self):
         s = self.playtime
@@ -247,31 +240,29 @@ class Game:
         t = time.strptime(self.lastplayed,fmt)
         return time.strftime("%a, %d %b %Y %H:%M:%S",t)
     @property
-    def gameid(self):
-        s = ""
-        s = sources[self.source].gameid(self)
-        if self.packageid and s:
-            s += ".%s"%self.packageid
-        return s
-    @property
     def download_link(self):
-        s = sources[self.source].download_link(self)
-        return s
+        for s in self.sources:
+            return sources[s["source"]].download_link(self,s)
     def download_method(self):
-        return sources[self.source].download_method(self)
+        for s in self.sources:
+            return sources[s["source"]].download_method(self,s)
     def uninstall(self):
-        return sources[self.source].uninstall(self)
+        for s in self.sources:
+            return sources[s["source"]].uninstall(self,s)
     @property
     def install_folder(self):
         """Full path to folder where executable is located"""
         return self.install_path.rsplit("\\",1)[0]
     def get_run_args(self):
         """Returns the args and folder to pass to the subprocess to run the game, according to our source"""
-        return sources[self.source].get_run_args(self)
+        for s in self.sources:
+            return sources[s["source"]].get_run_args(self,s)
     def run_game(self):
-        return sources[self.source].run_game(self)
+        for s in self.sources:
+            return sources[s["source"]].run_game(self,s)
     def missing_steam_launch(self):
-        return sources[self.source].missing_steam_launch(self)
+        for s in self.sources:
+            return sources[s["source"]].missing_steam_launch(self,s)
     def dict(self):
         d = {}
         for k in self.savekeys:
@@ -288,9 +279,14 @@ class Game:
                 continue
             if g.is_package:
                 continue
-            if g.gogid == self.gogid and self.source=="gog" and g.source=="gog":
-                gamelist.append(g)
-            if g.source=="humble" and self.source=="humble" and self.humble_package==g.humble_package:
+            add = False
+            for ps in g.sources:
+                for gs in self.sources:
+                    if ps["source"] == "gog" and gs["source"] == "gog" and ps["id"] == gs["id"]:
+                        add = True
+                    if ps["source"] == "humble" and gs["source"] == "humble" and ps["package"] == gs["package"]:
+                        add = True
+            if add:
                 gamelist.append(g)
         return gamelist
     def __repr__(self):
@@ -335,7 +331,7 @@ class Games:
             self.multipack = json.loads(open("gog_packages.json").read())
         except:
             pass
-    def load(self,file="data/gamesv002.json"):
+    def load(self,file=GAME_DB):
         if not os.path.exists(file):
             print("Warning, no save file to load:",file)
             return
@@ -351,19 +347,6 @@ class Games:
         if not self.multipack:
             self.multipack = load_data.get("multipack",{})
         self.actions = load_data.get("actions",[])
-    def import_packages(self):
-        for gkey in list(self.games.keys()):
-            game = self.games[gkey]
-            if game.source=="gog" and "." in game.gogid:
-                gogid,packageid = game.gogid.rsplit(".",1)
-                game.gogid = gogid
-                game.packageid = packageid
-                package = Game(name=" ".join([x.capitalize() for x in gogid.split("_")]),
-                        is_package=1,source="gog",gogid=gogid)
-                if not package.gameid in self.games:
-                    self.games[package.gameid] = package
-                del self.games[gkey]
-                self.games[game.gameid] = game
     def save_data(self):
         save_data = {"games":{}}
         for k in self.games:
@@ -371,7 +354,7 @@ class Games:
         save_data["actions"] = self.actions
         save_data["multipack"] = self.multipack
         return json.dumps(save_data,sort_keys=True,indent=4)
-    def save(self,file="data/gamesv002.json"):
+    def save(self,file=GAME_DB):
         sd = self.save_data()
         f = open(file,"w")
         f.write(sd)
@@ -424,10 +407,12 @@ class Games:
                 continue
             if p==game:
                 continue
-            if p.gogid == game.gogid and p.source=="gog" and game.source=="gog":
-                return p
-            if p.source=="humble" and game.source=="humble" and p.humble_package==game.humble_package:
-                return p
+            for ps in p.sources:
+                for gs in game.sources:
+                    if ps["source"] == "gog" and gs["source"] == "gog" and ps["id"] == gs["id"]:
+                        return p
+                    if ps["source"] == "humble" and gs["source"] == "humble" and ps["package"] == gs["package"]:
+                        return p
         return None
     def delete(self, game):
         self.actions.append(add_action("delete",game=game.dict()))

@@ -537,7 +537,7 @@ class GamelistForm(QWidget):
             return " ".join(words)[:l]
 
         game.widget_name = game.name
-        if game.packageid or game.humble_package:
+        if game.is_in_package:
             package = self.games.get_package_for_game(game)
             if package:
                 game.widget_name = "["+abreve(package.name,25)+"] "+game.name
@@ -553,8 +553,9 @@ class GamelistForm(QWidget):
         source = QTableWidgetItem("")
         source.setBackground(bg)
         source.setData(DATA_GAMEID,game.gameid)
-        if game.source in self.icons:
-            source.setIcon(QIcon(self.icons[game.source]))
+        for s in game.sources:
+            if s["source"] in self.icons:
+                source.setIcon(QIcon(self.icons[s["source"]]))
         self.games_list_widget.setItem(row,0,source)
             
         label = QTableWidgetItem("")
@@ -645,10 +646,6 @@ class GamelistForm(QWidget):
         games = self.gog.import_gog(self.games.multipack)
         self.games.add_games(games)
         self.update_gamelist_widget()
-        self.games.save()
-
-    def cleanup_fix_gog(self):
-        self.games.import_packages()
         self.games.save()
 
     def sync_uploadgames(self):
