@@ -177,7 +177,7 @@ sources["offline"] = OfflineSource()
 
 class Game:
     args = [("name","s"),("playtime","f"),("lastplayed","s"),("finished","i"),("genre","s"),("hidden","i"),("icon_url","s"),
-    ("packageid","s"),("is_package","i"),("notes","s"),("priority","i"),("website","s")]
+    ("packageid","s"),("is_package","i"),("notes","s"),("priority","i"),("website","s"),("import_date","s"),("finish_date","s")]
     def __init__(self,**kwargs):
         dontsavekeys = set(dir(self))
         self.gameid = ""
@@ -188,6 +188,8 @@ class Game:
         self.hidden = 0
         self.is_package = 0   #Set to 1 if it includes multiple games
         self.lastplayed = ""   #timestamp in fmt
+        self.import_date = ""
+        self.finish_date = ""
         self.sources = []
         self.packageid = ""  #Id of game within a package
         self.genre = ""
@@ -400,7 +402,7 @@ class Games:
                     g = Game(**a["game"])
                     add_dates[g.gameid] = time.mktime(stot(a["time"]))
             default = time.mktime(stot("23:39:03 1980-07-16"))
-            return sorted(v,key=lambda g:(-add_dates.get(g.gameid,default)))
+            return sorted(v,key=lambda g:(-time.mktime(stot(g.import_date)) or default))
     def get_package_for_game(self,game):
         for p in self.games.values():
             if not p.is_package:

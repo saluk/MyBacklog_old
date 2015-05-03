@@ -1,6 +1,7 @@
 def v002_to_v003(inp):
     """Take source information out of root and put into sources,
-    and change the key to be a key generated from the name:
+    and change the key to be a key generated from the name.
+    Also, record the date added to the database.:
 
     "steam_218090": {
             "finished": 0,
@@ -38,6 +39,7 @@ def v002_to_v003(inp):
     "notes": "",
     "playtime": 0.0,
     "priority": 0,
+    "import_date": null
     }
     """
     out = {}
@@ -57,6 +59,26 @@ def v002_to_v003(inp):
             print("ERROR",key)
             continue
         new = {}
+
+        def matchgame(a,b):
+            for k in ["steamid","gogid","humble_machinename","install_path"]:
+                if a[k] != b[k]:
+                    return False
+            return True
+
+        new["import_date"] = ""
+        for a in inp["actions"]:
+            if a["type"] == "addgame" and matchgame(a["game"],game):
+                new["import_date"] = a["time"]
+
+        new["finish_date"] = ""
+        for a in inp["actions"]:
+            if a["type"] == "updategame" and matchgame(a["game"],game):
+                changes = a["changes"].get("_set_",[])
+                for c in changes:
+                    if c.get("k","") == "finished" and c.get("ov",None) != 1 and c.get("v",None):
+                        new["finish_date"] = a["time"]
+
         new["sources"] = []
         sourceinfo = {}
         sourceinfo["source"] = game["source"]
