@@ -208,13 +208,13 @@ class EditGame(QWidget):
                 button = QPushButton("Set Path")
                 layout.addWidget(button,i+1,2)
                 button.clicked.connect(make_callback(self.set_filepath,edit))
-        if game.source=="gog" or game.source=="humble":
-            name = "Make Package"
-            if game.is_package:
-                name = "Edit Package"
-            button = QPushButton(name)
-            layout.addWidget(button, i+2, 0)
-            button.clicked.connect(make_callback(self.make_package))
+
+        name = "Make Package"
+        if game.is_package:
+            name = "Edit Package"
+        button = QPushButton(name)
+        layout.addWidget(button, i+2, 0)
+        button.clicked.connect(make_callback(self.make_package))
             
         #Save button
         button = QPushButton("Save + Close")

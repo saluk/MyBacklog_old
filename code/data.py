@@ -226,7 +226,7 @@ class Game:
     def valid_args(self):
         a = self.args[:]
         for s in self.sources:
-            a.append(sources[s["source"]].args())
+            a.extend(sources[s["source"]].args())
         return a
     @property
     def hours_minutes(self):
