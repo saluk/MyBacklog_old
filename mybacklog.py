@@ -9,6 +9,7 @@ import requests
 
 #backloglib
 from code.apis import giantbomb, steamapi, gogapi, humbleapi, thegamesdb
+from code.interface import account
 from code.resources import winicons
 from code import data
 
@@ -18,7 +19,6 @@ from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5 import QtWebKit
-print(dir(QtWebKit))
 from PyQt5.QtWebKitWidgets import *
 from PyQt5.QtNetwork import *
 
@@ -418,8 +418,7 @@ class GamelistForm(QWidget):
         self.gamelist = []
 
         account = json.loads(open("data/account.json").read())
-        self.gog = gogapi.Gog(account["gog"]["user"],account["gog"]["pass"])
-        self.steam = steamapi.Steam(account["steam"]["api"],account["steam"]["id"],account["steam"]["shortcut_folder"])
+        self.set_accounts(account)
 
         self.columns = [("s",None,None),("icon",None,None),("name","widget_name","name"),
                         ("genre","genre","genre"),("playtime",None,None),("lastplay",None,None)]
@@ -490,6 +489,10 @@ class GamelistForm(QWidget):
         self.game_options_dock.setMaximumHeight(400)
         self.window().addDockWidget(Qt.LeftDockWidgetArea,self.game_options_dock)
 
+    def set_accounts(self,account):
+        self.gog = gogapi.Gog(account["gog"]["user"],account["gog"]["pass"])
+        self.steam = steamapi.Steam(account["steam"]["api"],account["steam"]["id"],account["steam"]["shortcut_folder"])
+
     def disable_edit_notify(self):
         try:
             self.games_list_widget.cellChanged.disconnect(self.cell_changed)
@@ -508,6 +511,10 @@ class GamelistForm(QWidget):
                 self.update_game_row(self.games.games[gameid],row)
         self.changed = []
         self.enable_edit_notify()
+
+    def file_options(self):
+        self.edit_account = account.AccountForm(self)
+        self.edit_account.show()
 
     def notify(self):
         if self.running:

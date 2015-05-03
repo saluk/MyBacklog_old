@@ -1,5 +1,1 @@
-{
-  "steam":{"api":"98934075AAB5F4E1223BEC4C40E88AA8","id":"76561197999655940",
-          "shortcut_folder":"C:\\Steam\\userdata\\39390212\\config\\shortcuts.vdf"},
-  "gog":{"user":"saluk64007@gmail.com","pass":"wan3bane"}
-}
+{"steam": {"api": "98934075AAB5F4E1223BEC4C40E88AA8", "shortcut_folder": "C:\\Steam\\userdata\\39390212\\config\\shortcuts.vdf", "id": "76561197999655940"}, "gog": {"user": "saluk64007@gmail.com", "pass": "wan3bane"}}
