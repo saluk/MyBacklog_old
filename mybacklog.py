@@ -417,7 +417,9 @@ class GamelistForm(QWidget):
         self.games.load()
         self.gamelist = []
 
-        account = json.loads(open("data/account.json").read())
+        account = {"steam": {"api": "", "shortcut_folder": "", "id": ""}, "gog": {"user": "", "pass": ""}}
+        if os.path.exists("data/account.json"):
+            account = json.loads(open("data/account.json").read())
         self.set_accounts(account)
 
         self.columns = [("s",None,None),("icon",None,None),("name","widget_name","name"),
@@ -647,7 +649,12 @@ class GamelistForm(QWidget):
 
     def import_gog(self):
         #self.browser = Browser("https://secure.gog.com/account/games",self)
-        self.gog.better_get_shelf()
+        try:
+            self.gog.better_get_shelf()
+        except gogapi.BadAccount:
+            self.edit_account = account.AccountForm(self,"Improper GOG account, please update gog username and password",["gog_user","gog_password"])
+            self.edit_account.show()
+            return
         self.import_gog_html()
 
     def import_gog_html(self):

@@ -15,29 +15,42 @@ def make_callback(f, *args):
     return lambda: f(*args)
 
 class AccountForm(QWidget):
-    def __init__(self, app):
+    def __init__(self, app, message="", highlight_fields=[]):
         super(AccountForm, self).__init__()
         self.app = app
 
         #Layout
         layout = QGridLayout()
-        layout.addWidget(QLabel("Edit Accounts"))
+        if not message:
+            layout.addWidget(QLabel("Edit Accounts"))
+        else:
+            layout.addWidget(QLabel(message))
+
+        def highlight(w):
+            w.setFont(QFont("Times",10,QFont.Bold,True))
+            pass
 
         #Fields
         self.fields = {"steam":{},"gog":{}}
         w = QLabel("Steam ID")
+        if "steam_id" in highlight_fields:
+            highlight(w)
         layout.addWidget(w,1,0)
         w = QLineEdit(self.app.steam.user_id)
         layout.addWidget(w,1,1)
         self.fields["steam"]["id"] = w
 
         w = QLabel("Steam API Key")
+        if "steam_api" in highlight_fields:
+            highlight(w)
         layout.addWidget(w,2,0)
         w = QLineEdit(self.app.steam.api_key)
         layout.addWidget(w,2,1)
         self.fields["steam"]["api"] = w
 
         w = QLabel("Steam shortcuts")
+        if "steam_shortcut" in highlight_fields:
+            highlight(w)
         layout.addWidget(w,3,0)
         w = QLineEdit(self.app.steam.shortcut_folder)
         layout.addWidget(w,3,1)
@@ -47,12 +60,16 @@ class AccountForm(QWidget):
         self.fields["steam"]["shortcut_folder"] = w
 
         w = QLabel("GOG Username")
+        if "gog_user" in highlight_fields:
+            highlight(w)
         layout.addWidget(w,5,0)
         w = QLineEdit(self.app.gog.username)
         layout.addWidget(w,5,1)
         self.fields["gog"]["user"] = w
 
         w = QLabel("GOG Password")
+        if "gog_password" in highlight_fields:
+            highlight(w)
         layout.addWidget(w,6,0)
         w = QLineEdit(self.app.gog.password)
         layout.addWidget(w,6,1)

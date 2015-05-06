@@ -133,7 +133,8 @@ class Browser:
         except:
             pass
 
-
+class BadAccount(Exception):
+    pass
 
 class Gog:
     def __init__(self,username,password):
@@ -141,6 +142,8 @@ class Gog:
         self.password = password
         self.import_gog = import_gog
     def better_get_shelf(self):
+        if not self.username or not self.password:
+            raise BadAccount()
         print(time.time())
         b = Browser()
         #Try cookies
@@ -195,6 +198,8 @@ class Gog:
             print(linknice)
             b.get(linknice)
             print(b.url)
+            if "login" in b.url.replace("on_login_success",""):
+                raise BadAccount()
             print(b.cookies)
 
         #Should be logged in now
