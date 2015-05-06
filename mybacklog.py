@@ -633,7 +633,12 @@ class GamelistForm(QWidget):
         self.update()
 
     def import_steam(self):
-        games = self.steam.import_steam()
+        try:
+            games = self.steam.import_steam()
+        except steamapi.ApiError:
+            self.edit_account = account.AccountForm(self,"Steam API error - check settings",["steam_id","steam_api"])
+            self.edit_account.show()
+            return
         self.games.add_games(games)
         self.update_gamelist_widget()
         self.games.save()

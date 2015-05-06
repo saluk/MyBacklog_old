@@ -33,18 +33,24 @@ class AccountForm(QWidget):
         #Fields
         self.fields = {"steam":{},"gog":{}}
         w = QLabel("Steam ID")
+        s = "In steam, if you view your profile, the url will look like 'http://steamcommunity.com/id/[your_account_id]/'. Enter the value for [your_account_id] here."
+        w.setToolTip(s)
         if "steam_id" in highlight_fields:
             highlight(w)
         layout.addWidget(w,1,0)
         w = QLineEdit(self.app.steam.user_id)
+        w.setToolTip(s)
         layout.addWidget(w,1,1)
         self.fields["steam"]["id"] = w
 
+        s = "You can register for a web api key here: http://steamcommunity.com/dev/apikey"
         w = QLabel("Steam API Key")
+        w.setToolTip(s)
         if "steam_api" in highlight_fields:
             highlight(w)
         layout.addWidget(w,2,0)
         w = QLineEdit(self.app.steam.api_key)
+        w.setToolTip(s)
         layout.addWidget(w,2,1)
         self.fields["steam"]["api"] = w
 

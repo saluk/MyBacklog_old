@@ -105,10 +105,25 @@ def set_username(sess,name):
 #~ set_username(sess,"saluk")
 #~ crash
 
+class ApiError(Exception):
+    pass
+
+def get_user_id(custom_name):
+    r = requests.get("http://steamcommunity.com/profiles/%s"%custom_name)
+    if "Steam Community :: Error" in r.text:
+        r = requests.get("http://steamcommunity.com/id/%s?xml=1"%custom_name)
+        user_id = re.findall("steamID64\>(\d+)\<\/steamID64",r.text)[0]
+        return user_id
+    else:
+        return custom_name
+
 def get_games(apikey=MY_API_KEY,userid=MY_STEAM_ID):
     url = STEAM_GAMES_URL
     r = requests.get(url%{"apikey":apikey,"steamid":userid})
-    data = r.json()["response"]["games"]
+    try:
+        data = r.json()["response"]["games"]
+    except ValueError:
+        raise ApiError()
     return data
     
 def match_finished_games(games,finished):
@@ -190,10 +205,18 @@ def create_nonsteam_shortcuts(games,shortcut_folder):
 class Steam:
     def __init__(self,api_key,user_id,shortcut_folder):
         self.api_key = api_key
+        self.profile_name = user_id
         self.user_id = user_id
         self.shortcut_folder = shortcut_folder
     def import_steam(self):
-        return import_steam(self.api_key,self.user_id)
+        try:
+            return import_steam(self.api_key,self.user_id)
+        except ApiError:
+            user_id = get_user_id(self.profile_name)
+            an = import_steam(self.api_key,user_id)
+            if user_id != self.user_id:
+                self.user_id = user_id
+            return an
     def create_nonsteam_shortcuts(self,games):
         return create_nonsteam_shortcuts(games,self.shortcut_folder)
 
