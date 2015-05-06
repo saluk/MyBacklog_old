@@ -5,3 +5,4 @@ phantomjs/*
 *.pyc
 .idea/*
 screens/*
+data/account.json
