@@ -42,7 +42,7 @@ class AccountForm(QWidget):
         w = QLineEdit(self.app.steam.shortcut_folder)
         layout.addWidget(w,3,1)
         button = QPushButton("Set Path")
-        layout.addWidget(button,2,2)
+        layout.addWidget(button,3,2)
         button.clicked.connect(make_callback(self.set_filepath,w))
         self.fields["steam"]["shortcut_folder"] = w
 
@@ -84,4 +84,3 @@ class AccountForm(QWidget):
 
     def delete(self):
         self.deleteLater()
-        #self.parent().deleteLater()

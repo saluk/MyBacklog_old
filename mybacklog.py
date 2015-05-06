@@ -556,6 +556,7 @@ class GamelistForm(QWidget):
         else:
             b = max(100,215-game.priority*40)
             bg = QColor(b,b,b)
+            #bg = QColor(self.palette().Background)
 
         source = QTableWidgetItem("")
         source.setBackground(bg)
@@ -842,6 +843,23 @@ if __name__ == '__main__':
     import sys
  
     app = QApplication(sys.argv)
+
+    # app.setStyle('Fusion')
+    # palette = QPalette()
+    # palette.setColor(QPalette.Window, QColor(53,53,53))
+    # palette.setColor(QPalette.WindowText, Qt.white)
+    # palette.setColor(QPalette.Base, QColor(15,15,15))
+    # palette.setColor(QPalette.AlternateBase, QColor(53,53,53))
+    # palette.setColor(QPalette.ToolTipBase, Qt.white)
+    # palette.setColor(QPalette.ToolTipText, Qt.white)
+    # palette.setColor(QPalette.Text, Qt.white)
+    # palette.setColor(QPalette.Button, QColor(53,53,53))
+    # palette.setColor(QPalette.ButtonText, Qt.white)
+    # palette.setColor(QPalette.BrightText, Qt.red)
+    #
+    # palette.setColor(QPalette.Highlight, QColor(142,45,197).lighter())
+    # palette.setColor(QPalette.HighlightedText, Qt.black)
+    # app.setPalette(palette)
 
     window = MyBacklog()
     window.show()

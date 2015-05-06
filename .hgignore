@@ -4,3 +4,4 @@ cache/*
 phantomjs/*
 *.pyc
 .idea/*
+screens/*
