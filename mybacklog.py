@@ -331,17 +331,19 @@ class GameOptions(QWidget):
         run_no_timer.clicked.connect(make_callback(self.app.run_game_notimer,game))
         layout.addWidget(run_no_timer)
 
-        download = QPushButton("Download")
-        download.clicked.connect(make_callback(self.app.download,game))
-        layout.addWidget(download)
+        if game.needs_download():
+            download = QPushButton("Download")
+            download.clicked.connect(make_callback(self.app.download,game))
+            layout.addWidget(download)
 
         edit = QPushButton("Edit")
         edit.clicked.connect(make_callback(self.app.edit_game,game))
         layout.addWidget(edit)
 
-        edit = QPushButton("Uninstall")
-        edit.clicked.connect(make_callback(self.app.uninstall_game,game))
-        layout.addWidget(edit)
+        if game.is_installed():
+            edit = QPushButton("Uninstall")
+            edit.clicked.connect(make_callback(self.app.uninstall_game,game))
+            layout.addWidget(edit)
 
         self.setLayout(layout)
 
@@ -495,6 +497,8 @@ class GamelistForm(QWidget):
     def set_accounts(self,account):
         self.gog = gogapi.Gog(account["gog"]["user"],account["gog"]["pass"])
         self.steam = steamapi.Steam(account["steam"]["api"],account["steam"]["id"],account["steam"]["shortcut_folder"])
+        data.sources["steam"].api = self.steam
+        data.sources["gog"].api = self.gog
 
     def disable_edit_notify(self):
         try:
@@ -843,7 +847,7 @@ class GamelistForm(QWidget):
                 self.games_list_widget.setRowHidden(row,True)
                 continue
             if self.show_installed:
-                if not game.is_installed(self.steam):
+                if not game.is_installed():
                     self.games_list_widget.setRowHidden(row,True)
                     continue
             if game.hidden and not self.show_hidden:

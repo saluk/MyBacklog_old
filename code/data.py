@@ -35,8 +35,12 @@ class Source:
         """Return editable arguments that are unique to this source
         Defaults to install_path as that is pretty common"""
         return [("install_path","s")]
-    def is_installed(self,game,source,source_instance=None):
+    def is_installed(self,game,source):
         return game.install_path
+    def needs_download(self,game,source):
+        if self.is_installed(game,source):
+            return False
+        return True
     def gameid(self,game):
         """Returns the unique id for the game according to this source
         If a unique id cannot be generated raise an error
@@ -119,6 +123,7 @@ class InvalidIdException(Exception):
 
 sources = {}
 class SteamSource(Source):
+    """Needs .api to be set to steamapi.Steam"""
     def args(self):
         return []
     def run_game(self,game,source):
@@ -129,10 +134,11 @@ class SteamSource(Source):
         webbrowser.open("steam://install/%d"%source["id"])
     def uninstall(self,game,source):
         webbrowser.open("steam://uninstall/%d"%source["id"])
-    def is_installed(self,game,source,source_instance):
-        return source_instance.is_installed(source["id"])
+    def is_installed(self,game,source):
+        return self.api.is_installed(source["id"])
 sources["steam"] = SteamSource()
 class GogSource(Source):
+    """Needs .api to be set to steamapi.Gog"""
     def args(self):
         return [("install_path","s")]
     def download_link(self,game,source):
@@ -214,9 +220,13 @@ class Game:
     @property
     def is_in_package(self):
         return self.packageid or "humble" in self.sources and self.sources["humble"]["package"]
-    def is_installed(self,source_instance):
+    def is_installed(self):
         for s in self.sources:
-            if sources[s["source"]].is_installed(self,s,source_instance):
+            if sources[s["source"]].is_installed(self,s):
+                return True
+    def needs_download(self):
+        for s in self.sources:
+            if sources[s["source"]].needs_download(self,s):
                 return True
     def played(self):
         """Resets lastplayed to now"""
