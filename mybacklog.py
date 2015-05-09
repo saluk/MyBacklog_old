@@ -428,6 +428,7 @@ class GamelistForm(QWidget):
 
         self.hide_packages = True
         self.show_hidden = False
+        self.show_installed = False #If True, games not installed are hidden
  
         buttonLayout1 = QVBoxLayout()
         
@@ -730,6 +731,10 @@ class GamelistForm(QWidget):
         self.show_hidden = not self.show_hidden
         self.update_gamelist_widget()
 
+    def view_show_installed(self):
+        self.show_installed = not self.show_installed
+        self.update_gamelist_widget()
+
     def run_game_notimer(self,game):
         return self.run_game(game,track_time=False)
 
@@ -837,6 +842,10 @@ class GamelistForm(QWidget):
             if game.is_package and self.hide_packages:
                 self.games_list_widget.setRowHidden(row,True)
                 continue
+            if self.show_installed:
+                if not game.is_installed(self.steam):
+                    self.games_list_widget.setRowHidden(row,True)
+                    continue
             if game.hidden and not self.show_hidden:
                 self.games_list_widget.setRowHidden(row,True)
                 continue
@@ -847,7 +856,7 @@ class GamelistForm(QWidget):
                         return True
             if (sn and not match(sn,game.name.lower())) or \
             (sg and not match(sg,game.genre.lower())) or \
-            (sp and not match(sp,game.source.lower())):
+            (sp and not match(sp," ".join([s["source"] for s in game.sources]))):
                 self.games_list_widget.setRowHidden(row,True)
                 continue
  

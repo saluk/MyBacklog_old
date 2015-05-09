@@ -35,6 +35,8 @@ class Source:
         """Return editable arguments that are unique to this source
         Defaults to install_path as that is pretty common"""
         return [("install_path","s")]
+    def is_installed(self,game,source,source_instance=None):
+        return game.install_path
     def gameid(self,game):
         """Returns the unique id for the game according to this source
         If a unique id cannot be generated raise an error
@@ -127,6 +129,8 @@ class SteamSource(Source):
         webbrowser.open("steam://install/%d"%source["id"])
     def uninstall(self,game,source):
         webbrowser.open("steam://uninstall/%d"%source["id"])
+    def is_installed(self,game,source,source_instance):
+        return source_instance.is_installed(source["id"])
 sources["steam"] = SteamSource()
 class GogSource(Source):
     def args(self):
@@ -210,6 +214,10 @@ class Game:
     @property
     def is_in_package(self):
         return self.packageid or "humble" in self.sources and self.sources["humble"]["package"]
+    def is_installed(self,source_instance):
+        for s in self.sources:
+            if sources[s["source"]].is_installed(self,s,source_instance):
+                return True
     def played(self):
         """Resets lastplayed to now"""
         self.lastplayed = now()

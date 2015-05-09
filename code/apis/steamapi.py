@@ -208,6 +208,7 @@ class Steam:
         self.profile_name = user_id
         self.user_id = user_id
         self.shortcut_folder = shortcut_folder
+        self.userdata = None
     def import_steam(self):
         try:
             return import_steam(self.api_key,self.user_id)
@@ -219,6 +220,11 @@ class Steam:
             return an
     def create_nonsteam_shortcuts(self,games):
         return create_nonsteam_shortcuts(games,self.shortcut_folder)
+    def is_installed(self,steamid):
+        if not self.userdata:
+            self.userdata = load_userdata()
+        if str(steamid) in self.userdata["UserLocalConfigStore"]["Software"]["Valve"]["Steam"]["apps"]:
+            return True
 
 #~ if __name__=="__main__":
     #~ import json
