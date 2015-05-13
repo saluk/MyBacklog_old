@@ -21,7 +21,7 @@ def sec_to_ts(sec):
     return ttos(time.localtime(sec))
 
 PRIORITIES = {-1:"now playing",0:"unprioritized",1:"soon",2:"later",3:"much later",5:"next year",99:"probably never"}
-GAME_DB = "data/gamesv003.json"
+GAME_DB = "data/gamesv004.json"
 
 run_with_steam = 1
 #   NEW METHOD TO RUN THROUGH STEAM:
@@ -47,9 +47,7 @@ class Source:
         Defaults to a letters only version of the game's name"""
         if not game.name:
             raise InvalidIdException()
-        s = [x.lower() for x in game.name if x.lower() in "abcdefghijklmnopqrstuvwxyz1234567890 "]
-        s = "".join(s).replace(" ","_")
-        return s
+        return game.name_stripped
     def download_link(self,game,source):
         return ""
     def download_method(self,game,source):
@@ -213,10 +211,19 @@ class Game:
         for k in kwargs:
             if hasattr(self,k):
                 setattr(self,k,kwargs[k])
+        if not self.gameid:
+            self.gameid = self.name_stripped+".0"
         if "minutes" in kwargs:
             self.playtime = datetime.timedelta(minutes=kwargs["minutes"]).total_seconds()
         if self.lastplayed and stot(self.lastplayed).tm_year<1971:
             self.lastplayed = None
+    @property
+    def name_stripped(self):
+        if not self.name:
+            return ""
+        s = [x.lower() for x in self.name if x.lower() in "abcdefghijklmnopqrstuvwxyz1234567890 "]
+        s = "".join(s).replace(" ","_")
+        return s
     @property
     def is_in_package(self):
         return self.packageid or "humble" in self.sources and self.sources["humble"]["package"]
@@ -311,6 +318,42 @@ class Game:
         return gamelist
     def __repr__(self):
         return repr(self.dict())
+    @property
+    def source_match(self):
+        string = ""
+        for s in sorted(self.sources):
+            string += s["source"] + "_" + str(s.get("id","")) + ";"
+        return string
+    def same_game(self,other_game):
+        """Is this game logically the same game as other_game?
+
+        Eventually
+        if the id of this game from source_a matches the id of the other_game from source_a; YES
+        if the id of this game from source_a does NOT match the id of the other_game from source_a: NO
+        if our name matches other_game.name: yes
+        if our name does not match other_game.name: no
+
+        For now, we limit one entry per source:
+        if our sources all match other_game.sources: yes
+        if our install_path matches other_game.install_path: yes
+        if our name matches other_game.name with NO sources: yes
+        no
+        """
+
+        match1 = self.source_match
+        match2 = other_game.source_match
+
+        if (match1 or match2):
+            if match1==match2:
+                return True
+            return False
+        if (self.install_path or other_game.install_path):
+            if self.install_path==other_game.install_path:
+                return True
+            return False
+        if self.name_stripped==other_game.name_stripped:
+            return True
+        return False
 
 actions = {"add":{"type":"addgame","game":"","time":""},
         "delete":{"type":"deletegame","game":"","time":""},
@@ -345,6 +388,7 @@ def add_action(t,**d):
 class Games:
     def __init__(self):
         self.games = {}
+        self.source_map = {}
         self.actions = []
         self.multipack = {}
         try:
@@ -379,19 +423,69 @@ class Games:
         f = open(file,"w")
         f.write(sd)
         f.close()
+    def build_source_map(self):
+        """Builds a dictionary map of source_id:game to make it easier to search for a game from
+        a given source"""
+        self.source_map = {}
+        for gameid in self.games:
+            game = self.games[gameid]
+            keys = []
+            for s in game.sources:
+                keys.append(s["source"]+"_"+str(s.get("id","")))
+            for key in keys:
+                if key not in self.source_map:
+                    self.source_map[key] = []
+                self.source_map[key].append(game)
     def add_games(self,game_list):
+        self.build_source_map()
         for g in game_list:
             self.update_game(g.gameid,g)
+    def get_similar_games(self,game):
+        list = []
+
+        ids = []
+        for s in game.sources:
+            for g in self.source_map.get(s["source"]+"_"+str(s.get("id","")),[]):
+                ids.append(g.gameid)
+
+        okey,i = game.gameid.rsplit(".",1)
+        while 1:
+            nkey = okey+"."+str(i)
+            if nkey not in self.games:
+                break
+            ids.append(okey+"."+str(i))
+            i=int(i)+1
+
+        for oid in ids:
+            if game.same_game(self.games[oid]):
+                list.append(game)
+            elif game.gameid==oid:
+                list.append(game)
+        return list
     def update_game(self,gameid,game,force=False):
         assert(isinstance(game,Game))
-        cur_game = self.games.get(gameid,None)
+
+        cur_game = None
+        i = 0
+        for g in self.get_similar_games(game):
+            if g.same_game(game):
+                cur_game = g
+                break
+            i2 = int(g.gameid.rsplit(".",1)[1])
+            if i2>i:
+                i = i2
+        okey,oldi = gameid.rsplit(".",1)
+        gameid = okey+"."+str(i)
+
         if not cur_game or force:
             if cur_game:
                 diff = changed(cur_game.dict(),game.dict())
                 if diff:
                     self.actions.append(add_action("update",game=game.dict(),changes=diff))
+                    print("updating",cur_game.gameid,cur_game.source_match,">",game.gameid,game.source_match)
             else:
                 self.actions.append(add_action("add",game=game.dict()))
+                print("adding",game.gameid,game.source_match)
             self.games[gameid] = game
             return
         previous_data = cur_game.dict()
@@ -408,6 +502,7 @@ class Games:
         diff = changed(previous_data,cur_game.dict())
         if diff:
             self.actions.append(add_action("update",game=game.dict(),changes=diff))
+            print("update 2",cur_game.gameid,cur_game.source_match,">",game.name,game.source_match)
         return game
     def list(self,sort="priority"):
         v = self.games.values()

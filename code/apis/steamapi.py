@@ -10,7 +10,7 @@ from .. import data
 MY_API_KEY = ""
 MY_STEAM_ID = ""
 
-STEAM_GAMES_URL = "http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=%(apikey)s&steamid=%(steamid)s&format=json&include_appinfo=1&include_played_free_games=1=1"
+STEAM_GAMES_URL = "http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=%(apikey)s&steamid=%(steamid)s&format=json&include_appinfo=1&include_played_free_games=1"
 
 def login_for_chat():
     sess = requests.session()
@@ -163,12 +163,13 @@ def import_steam(apikey=MY_API_KEY,userid=MY_STEAM_ID):
             data.Game(name=g["name"],
                             minutes=g["playtime_forever"],
                             finished=set_finished,
-                            source="steam",
-                            steamid=g["appid"],
+                            sources=[
+                                {"source":"steam","id":g["appid"]}
+                            ],
                             lastplayed=lastplayed,
                             icon_url=icon_url
+            )
         )
-    )
     return library
     
 def load_userdata(path="C:\\Steam\\userdata\\39390212\\config\\localconfig.vdf"):
