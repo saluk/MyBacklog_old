@@ -343,6 +343,8 @@ class Game:
         match1 = self.source_match
         match2 = other_game.source_match
 
+        if self.is_package != other_game.is_package:
+            return False
         if (match1 or match2):
             if match1==match2:
                 return True

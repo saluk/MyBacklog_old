@@ -89,10 +89,12 @@ def import_gog(multipack={}):
             if g2:
                 id = id+"."+g2.replace(" ","_")
                 if not g["gameindex"] in packs:
-                    package = data.Game(name=" ".join([x.capitalize() for x in g["gameindex"].split("_")]),source="gog",gogid=g["gameindex"],is_package=1)
+                    package = data.Game(name=" ".join([x.capitalize() for x in g["gameindex"].split("_")]),is_package=1)
+                    package.sources = [{"source":"gog","id":g["gameindex"]}]
                     packs[package.gameid] = package
                     games.append(package)
-            game = data.Game(name=name,source="gog",gogid=g["gameindex"],icon_url=g["icon"],packageid=g2.replace(" ","_"))
+            game = data.Game(name=name,icon_url=g["icon"],packageid=g2.replace(" ","_"))
+            game.sources = [{"source":"gog","id":g["gameindex"]}]
             games.append(game)
     return games
 

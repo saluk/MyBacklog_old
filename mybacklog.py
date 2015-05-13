@@ -655,6 +655,7 @@ class GamelistForm(QWidget):
         games = humbleapi.get_humble_gamelist()
         self.games.add_games(games)
         self.update_gamelist_widget()
+        crash
         self.games.save()
 
     def import_gog(self):
