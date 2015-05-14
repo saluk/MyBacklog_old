@@ -94,16 +94,26 @@ def get_humble_gamelist():
         b.get(api_get_order%{"key":key})
         print (b.json)
         hdata = b.json
-        package = data.Game(name=hdata["product"]["human_name"],
-                                        is_package=1)
+        package = data.Game(name=hdata["product"]["human_name"])
         package.sources = [{"source":"humble","id":hdata["product"]["machine_name"],"package":hdata["gamekey"]}]
+        package.package_data = {
+            "type":"bundle",
+            "contents":[],
+            "source_info":package.create_package_data()
+        }
         games.append(package)
         for sub in hdata["subproducts"]:
             game = data.Game(name=sub["human_name"],
                                         website=sub["url"],
                                         icon_url=sub["icon"])
             game.sources = [{"source":"humble","id":sub["machine_name"],"package":hdata["gamekey"]}]
+            game.package_data = {
+                    "type":"content",
+                    "parent":{"gameid":package.gameid,"name":package.name},
+                    "source_info":game.create_package_data()
+            }
             games.append(game)
+            package.package_data["contents"].append({"gameid":game.gameid,"name":game.name})
     for g in games:
         print (g.name,g.icon_url)
     print(games)
