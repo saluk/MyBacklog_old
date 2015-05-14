@@ -136,6 +136,93 @@ def v003_to_v004(inp):
     print(len(out["games"]),len(inp["games"]))
     return out
 
+def v004_to_v005(inp):
+    """
+    All games are given an update_date datetime field, defaults to very_old
+    If there is an update command in actions, set the update_date to the most recent of those
+    """
+    out = {}
+    out["multipack"] = inp["multipack"]
+    out["actions"] = []
+    out["games"] = {}
+    print("starting:",len(inp["games"]))
+    ran = 0
+    for key in inp["games"]:
+        ran += 1
+        game = inp["games"][key]
+        if not game["name"]:
+            print("ERROR",key)
+            continue
+        new = copy.deepcopy(game)
+
+        if new["lastplayed"]:
+            new["data_changed_date"] = new["lastplayed"]
+        elif new["finish_date"]:
+            new["data_changed_date"] = new["finish_date"]
+        elif new["import_date"]:
+            new["data_changed_date"] = new["import_date"]
+        else:
+            new["data_changed_date"] = None
+
+        def matchgame(a,b):
+            for k in ["gameid"]:
+                if a[k] != b[k]:
+                    return False
+            return True
+
+        for a in inp["actions"]:
+            if matchgame(a["game"],game):
+                if not new["data_changed_date"] or data.stot(new["data_changed_date"])<data.stot(a["time"]):
+                    new["data_changed_date"] = a["time"]
+
+        out["games"][new["gameid"]] = new
+    print("looped",ran,"times")
+    print(len(out["games"]),len(inp["games"]))
+    return out
+
+def v005_to_v006(inp):
+    """
+    Games that are a package will have a package_contents:[] field added.
+    The package_contents will be a list containing gameid of all package contents
+    is_package is changed to package_type, set to bundle
+
+    Games that are in a package will have their source set to point back
+    to the package gameid, rather than their other source. For auditing,
+    we can put their original source information inside the source:package
+    as an additional field.
+    is_package is changed to package_type, set to content
+
+    Games that are not a package, nor are the in a package,
+    is_package is changed to package_type, set to null
+    """
+    out = {}
+    out["multipack"] = inp["multipack"]
+    out["actions"] = []
+    out["games"] = {}
+    print("starting:",len(inp["games"]))
+    ran = 0
+    for key in inp["games"]:
+        ran += 1
+        game = inp["games"][key]
+        if not game["name"]:
+            print("ERROR",key)
+            continue
+        new = copy.deepcopy(game)
+
+        game = data.Game(**game)
+        new["gameid"] = game.name_stripped
+        dest_key = new["gameid"]+".0"
+        i = 0
+        while dest_key in out["games"]:
+            dest_key = game.name_stripped + "."+str(i)
+            i += 1
+            print("conflict",dest_key)
+        new["gameid"] = dest_key
+        out["games"][dest_key] = new
+    print("looped",ran,"times")
+    print(len(out["games"]),len(inp["games"]))
+    return out
+
 def vunknown(inp):
     """Games have multiple run scenarios which may or may not be tied to a source
 
@@ -334,10 +421,10 @@ def vunknown(inp):
 
 
 import json
-f = open("../data/gamesv003.json")
+f = open("../data/gamesv004.json")
 old_data = json.loads(f.read())
 f.close()
 
-f = open("../data/gamesv004.json","w")
-f.write(json.dumps(v003_to_v004(old_data),indent=2,sort_keys=True))
+f = open("../data/gamesv005.json","w")
+f.write(json.dumps(v004_to_v005(old_data),indent=2,sort_keys=True))
 f.close()

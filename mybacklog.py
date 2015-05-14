@@ -163,7 +163,7 @@ class ListGamesForPack(QWidget):
             name = field["w"].text()
             if not name:
                 continue
-            game = field["g"]
+            game = field["g"].copy()
             if not game:
                 game = self.game.copy()
                 game.is_package = 0
@@ -237,6 +237,7 @@ class EditGame(QWidget):
         self.lg.show()
 
     def save_close(self):
+        game = self.game.copy()
         for field in self.fields:
             value = self.fields[field]["w"].text()
             t = self.fields[field]["t"]
@@ -244,14 +245,16 @@ class EditGame(QWidget):
                 value = int(value)
             elif t == "f":
                 value = float(value)
-            setattr(self.game,field,value)
-        newid = self.game.gameid
-        print("save", newid, self.oldid)
+            setattr(game,field,value)
+        newid = game.gameid
         if newid!=self.oldid:
             if self.oldid in self.games.games:
                 self.games.games[newid] = self.games.games[self.oldid]
                 del self.games.games[self.oldid]
-        self.games.update_game(self.game.gameid,self.game,force=True)
+        print("save", newid, self.oldid)
+        print(game.priority,self.games.games[self.oldid].priority)
+        print(game in self.games.games.values())
+        self.games.update_game(self.game.gameid,game,force=True)
         self.games.save()
         self.app.update_game_row(self.game)
         self.deleteLater()
@@ -726,6 +729,10 @@ class GamelistForm(QWidget):
 
     def view_sort_by_priority(self):
         self.sort = "priority"
+        self.update_gamelist_widget()
+
+    def view_sort_by_changed(self):
+        self.sort = "changed"
         self.update_gamelist_widget()
 
     def view_show_packages(self):

@@ -12,16 +12,19 @@ def now():
     t = time.localtime()
     return time.strftime(fmt,t)
 def stot(s):
+    """From a string, return a datetime object"""
     if not s or s == "None":
         return time.localtime(0)
     return time.strptime(s,fmt)
 def ttos(t):
+    """From a datetime object, return a string"""
     return time.strftime(fmt,t)
-def sec_to_ts(sec):
-    return ttos(time.localtime(sec))
+#def sec_to_ts(sec):
+#    """Convert an amount of seconds as a string into a time delta"""
+#    return ttos(time.localtime(sec))
 
 PRIORITIES = {-1:"now playing",0:"unprioritized",1:"soon",2:"later",3:"much later",5:"next year",99:"probably never"}
-GAME_DB = "data/gamesv004.json"
+GAME_DB = "data/gamesv005.json"
 
 run_with_steam = 1
 #   NEW METHOD TO RUN THROUGH STEAM:
@@ -215,8 +218,7 @@ class Game:
             self.gameid = self.name_stripped+".0"
         if "minutes" in kwargs:
             self.playtime = datetime.timedelta(minutes=kwargs["minutes"]).total_seconds()
-        if self.lastplayed and stot(self.lastplayed).tm_year<1971:
-            self.lastplayed = None
+        self.data_changed_date = ""
     @property
     def name_stripped(self):
         if not self.name:
@@ -294,6 +296,7 @@ class Game:
         d = {}
         for k in self.savekeys:
             d[k] = getattr(self,k)
+        d["sources"] = d["sources"].copy()
         return d
     def copy(self):
         return Game(**self.dict())
@@ -357,6 +360,11 @@ class Game:
             return True
         return False
 
+test1 = Game(name="blah")
+test2 = test1.copy()
+test2.name = "blah2"
+assert test1.name!=test2.name
+
 actions = {"add":{"type":"addgame","game":"","time":""},
         "delete":{"type":"deletegame","game":"","time":""},
         "update":{"type":"updategame","game":"","changes":{},"time":""},
@@ -365,6 +373,7 @@ actions = {"add":{"type":"addgame","game":"","time":""},
         }
 def changed(da,db):
     """Helper for update action, returns difference of 2 dicts"""
+    print("Changed? ",da,db)
     d = {"_del_":[],"_add_":[],"_set_":[]}
     for k in da:
         if k not in db:
@@ -380,6 +389,7 @@ def changed(da,db):
         del d["_add_"]
     if not d["_set_"]:
         del d["_set_"]
+    print(d)
     return d
 def add_action(t,**d):
     a = actions[t].copy()
@@ -460,9 +470,9 @@ class Games:
 
         for oid in ids:
             if game.same_game(self.games[oid]):
-                list.append(game)
+                list.append(self.games[oid])
             elif game.gameid==oid:
-                list.append(game)
+                list.append(self.games[oid])
         return list
     def update_game(self,gameid,game,force=False):
         assert(isinstance(game,Game))
@@ -478,16 +488,23 @@ class Games:
                 i = i2
         okey,oldi = gameid.rsplit(".",1)
         gameid = okey+"."+str(i)
+        assert game is not cur_game
 
         if not cur_game or force:
             if cur_game:
                 diff = changed(cur_game.dict(),game.dict())
                 if diff:
+                    print("UPDATE CHANGED GAME")
                     self.actions.append(add_action("update",game=game.dict(),changes=diff))
                     print("updating",cur_game.gameid,cur_game.source_match,">",game.gameid,game.source_match)
+                else:
+                    print("UPDATE... did not change game")
+                    return
             else:
                 self.actions.append(add_action("add",game=game.dict()))
+                print("ADD GAME ACTION")
                 print("adding",game.gameid,game.source_match)
+            game.data_changed_date = now()
             self.games[gameid] = game
             return
         previous_data = cur_game.dict()
@@ -503,9 +520,10 @@ class Games:
         cur_game.packageid = game.packageid
         diff = changed(previous_data,cur_game.dict())
         if diff:
+            cur_game.data_changed_date = now()
             self.actions.append(add_action("update",game=game.dict(),changes=diff))
             print("update 2",cur_game.gameid,cur_game.source_match,">",game.name,game.source_match)
-        return game
+        return cur_game
     def list(self,sort="priority"):
         v = self.games.values()
         if sort=="priority":
@@ -518,6 +536,9 @@ class Games:
                     add_dates[g.gameid] = time.mktime(stot(a["time"]))
             default = time.mktime(stot("23:39:03 1980-07-16"))
             return sorted(v,key=lambda g:(-time.mktime(stot(g.import_date)) or default))
+        elif sort=="changed":
+            default = time.mktime(stot("23:39:03 1980-07-16"))
+            return sorted(v,key=lambda g:(-time.mktime(stot(g.data_changed_date)) or default))
     def get_package_for_game(self,game):
         for p in self.games.values():
             if not p.is_package:
