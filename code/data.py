@@ -214,7 +214,7 @@ class Game:
             if hasattr(self,k):
                 setattr(self,k,kwargs[k])
         if not self.gameid:
-            self.gameid = self.name_stripped+".0"
+            self.gameid = self.generate_gameid()
         if "minutes" in kwargs:
             self.playtime = datetime.timedelta(minutes=kwargs["minutes"]).total_seconds()
         self.data_changed_date = ""
@@ -225,6 +225,9 @@ class Game:
         s = [x.lower() for x in self.name if x.lower() in "abcdefghijklmnopqrstuvwxyz1234567890 "]
         s = "".join(s).replace(" ","_")
         return s
+    def generate_gameid(self):
+        """Used to generate the intial gameid, before collisions are checked when checking into the db"""
+        return self.name_stripped + ".0"
     @property
     def is_in_package(self):
         return self.package_data.get("type","")=="content"
@@ -532,8 +535,7 @@ class Games:
             cur_game.finished = 1
         if game.lastplayed and (not cur_game.lastplayed or stot(game.lastplayed)>stot(cur_game.lastplayed)):
             cur_game.lastplayed = game.lastplayed
-        cur_game.is_package = game.is_package
-        cur_game.packageid = game.packageid
+        cur_game.package_data = game.package_data.copy()
         diff = changed(previous_data,cur_game.dict())
         if diff:
             cur_game.data_changed_date = now()

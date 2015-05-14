@@ -120,6 +120,10 @@ class Browser(QWidget):
 
 class ListGamesForPack(QWidget):
     def __init__(self, game, app):
+        #  Currently only enable splitting of a game from a single source
+        #  If a game has multiple sources, it must be split into each source before a bundle can be made
+        #  The BUNDLE can only be from one source, however the individual titles can have multiple sources
+        assert len(game.sources) == 1
         super(ListGamesForPack, self).__init__()
         self.game = game
         self.app = app
@@ -156,22 +160,25 @@ class ListGamesForPack(QWidget):
         self.setLayout(layout)
 
     def save_close(self):
-        self.app.games.multipack[self.game.gogid] = []
+        self.app.games.multipack[self.game.sources[0]["id"]] = []
         pack_games = []
         for field in self.fields:
             field = self.fields[field]
             name = field["w"].text()
             if not name:
                 continue
-            game = field["g"].copy()
+            game = None
+            if field["g"]:
+                game = field["g"].copy()
             if not game:
                 game = self.game.copy()
             game.package_data = {"type":"content",
                                 "parent":{"gameid":self.game.gameid,"name":self.game.name},
-                                "source_info":self.game.create_package_data()}
+                                "source_info":game.create_package_data()}
             game.name = name
+            game.gameid = game.generate_gameid()
 
-            self.app.games.multipack[self.game.gogid].append(game.packageid)
+            self.app.games.multipack[self.game.sources[0]["id"]].append(game.gameid)
 
             game = self.app.games.update_game(game.gameid,game)
             pack_games.append({"gameid":game.gameid,"name":game.name})

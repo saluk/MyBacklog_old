@@ -81,20 +81,36 @@ def import_gog(multipack={}):
         g = gog_games[key]
         multi = multipack.get(g["gameindex"],[""])
         for g2 in multi:
+            original_name = g["gameindex"]
+            original_name = " ".join([x.capitalize() for x in original_name.replace("_"," ").split(" ")])
+
             name = g["gameindex"]
             if g2:
                 name = g2
             name = " ".join([x.capitalize() for x in name.replace("_"," ").split(" ")])
+
             id = g["gameindex"]
+            game = data.Game(name=name,icon_url=g["icon"])
+            game.sources = [{"source":"gog","id":id}]
+
             if g2:
-                id = id+"."+g2.replace(" ","_")
-                if not g["gameindex"] in packs:
-                    package = data.Game(name=" ".join([x.capitalize() for x in g["gameindex"].split("_")]),is_package=1)
+                if not id in packs:
+                    package = data.Game(name=original_name)
                     package.sources = [{"source":"gog","id":g["gameindex"]}]
-                    packs[package.gameid] = package
+                    package.package_data = {
+                        "type":"bundle",
+                        "contents":[],
+                        "source_info":package.create_package_data()
+                    }
+                    packs[id] = package
                     games.append(package)
-            game = data.Game(name=name,icon_url=g["icon"],packageid=g2.replace(" ","_"))
-            game.sources = [{"source":"gog","id":g["gameindex"]}]
+                package = packs[id]
+                game.package_data = {
+                    "type":"content",
+                    "parent":{"gameid":package.gameid,"name":package.name},
+                    "source_info":game.create_package_data()
+                }
+                package.package_data["contents"].append({"gameid":game.gameid,"name":game.name})
             games.append(game)
     return games
 
