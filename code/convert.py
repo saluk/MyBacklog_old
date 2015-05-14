@@ -182,19 +182,22 @@ def v004_to_v005(inp):
 
 def v005_to_v006(inp):
     """
-    Games that are a package will have a package_contents:[] field added.
-    The package_contents will be a list containing gameid of all package contents
-    is_package is changed to package_type, set to bundle
+    Games that are a package (is_package==True) will have:
+    package_data: {"type":"bundle","contents":[(gameid,name) for all games in package]}
 
-    Games that are in a package will have their source set to point back
-    to the package gameid, rather than their other source. For auditing,
-    we can put their original source information inside the source:package
-    as an additional field.
-    is_package is changed to package_type, set to content
+    Games that are in a package (is_package==False, but have package info elsewhere)
+    package_data: {"type":"content","parent":[(gameid,name) for package],"source_info":{"gog_id","humble_package"}}
+    source_info is just for auditing
 
-    Games that are not a package, nor are the in a package,
-    is_package is changed to package_type, set to null
+    Games that are not a package, nor are they in a package (is_package==False, no other packaging keys),
+    package_data: {}
+
+    delete is_package identifyer (gotten with package_data)
     """
+
+    gamelist = data.Games()
+    gamelist.translate_json(json.dumps(inp))
+
     out = {}
     out["multipack"] = inp["multipack"]
     out["actions"] = []
@@ -210,15 +213,34 @@ def v005_to_v006(inp):
         new = copy.deepcopy(game)
 
         game = data.Game(**game)
-        new["gameid"] = game.name_stripped
-        dest_key = new["gameid"]+".0"
-        i = 0
-        while dest_key in out["games"]:
-            dest_key = game.name_stripped + "."+str(i)
-            i += 1
-            print("conflict",dest_key)
-        new["gameid"] = dest_key
-        out["games"][dest_key] = new
+
+        package = gamelist.get_package_for_game_converter(game)
+
+        def get_source_info(source):
+            if source["source"] == "gog":
+                return {"package_source":"gog","package_id":source["id"],"id_within_package":game.packageid}
+            elif source["source"] == "humble":
+                return {"package_source":"humble","package_id":source["package"],"id_within_package":source["id"]}
+
+        assert len(game.sources)==1
+
+        if game.is_package:
+            print("Converting package:",game.gameid)
+            inside = game.games_for_pack_converter(gamelist)
+            new["package_data"] = {"type":"bundle","contents":[{"gameid":g.gameid,"name":g.name} for g in inside],
+                                   "source_info":get_source_info(game.sources[0])}
+        else:
+            if package:
+                print("Converting content item:",game.gameid)
+                source_info = get_source_info(game.sources[0])
+                new["package_data"] = {"type":"content","parent":{"gameid":package.gameid,"name":package.name},
+                                       "source_info":source_info}
+            else:
+                new["package_data"] = {}
+        del new["is_package"]
+        del new["packageid"]
+
+        out["games"][game.gameid] = new
     print("looped",ran,"times")
     print(len(out["games"]),len(inp["games"]))
     return out
@@ -421,10 +443,10 @@ def vunknown(inp):
 
 
 import json
-f = open("../data/gamesv004.json")
+f = open("../data/gamesv005.json")
 old_data = json.loads(f.read())
 f.close()
 
-f = open("../data/gamesv005.json","w")
-f.write(json.dumps(v004_to_v005(old_data),indent=2,sort_keys=True))
+f = open("../data/gamesv006.json","w")
+f.write(json.dumps(v005_to_v006(old_data),indent=2,sort_keys=True))
 f.close()

@@ -122,7 +122,6 @@ class ListGamesForPack(QWidget):
     def __init__(self, game, app):
         super(ListGamesForPack, self).__init__()
         self.game = game
-        self.game.is_package = 1
         self.app = app
         
         self.oldid = game.gameid
@@ -131,7 +130,7 @@ class ListGamesForPack(QWidget):
         layout = QGridLayout()
         layout.addWidget(QLabel("Editing Package:"+game.gameid))
         
-        current_games = game.games_for_pack(self.app.games)
+        current_games = self.app.games.games_for_pack(self.game)
         
         #Fields
         self.fields = {}
@@ -158,6 +157,7 @@ class ListGamesForPack(QWidget):
 
     def save_close(self):
         self.app.games.multipack[self.game.gogid] = []
+        pack_games = []
         for field in self.fields:
             field = self.fields[field]
             name = field["w"].text()
@@ -166,12 +166,18 @@ class ListGamesForPack(QWidget):
             game = field["g"].copy()
             if not game:
                 game = self.game.copy()
-                game.is_package = 0
+            game.package_data = {"type":"content",
+                                "parent":{"gameid":self.game.gameid,"name":self.game.name},
+                                "source_info":self.game.create_package_data()}
             game.name = name
-            game.packageid = name.lower().replace(" ","_")
+
             self.app.games.multipack[self.game.gogid].append(game.packageid)
-            self.app.games.games[game.gameid] = game
-            #Add or update row in list
+
+            game = self.app.games.update_game(game.gameid,game)
+            pack_games.append({"gameid":game.gameid,"name":game.name})
+        self.game.package_data = {"type":"bundle",
+                                  "contents":pack_games,
+                                  "source_info":self.game.create_package_data()}
         self.app.games.save()
         self.app.update_gamelist_widget()
         self.deleteLater()

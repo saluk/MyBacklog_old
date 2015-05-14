@@ -24,7 +24,7 @@ def ttos(t):
 #    return ttos(time.localtime(sec))
 
 PRIORITIES = {-1:"now playing",0:"unprioritized",1:"soon",2:"later",3:"much later",5:"next year",99:"probably never"}
-GAME_DB = "data/gamesv005.json"
+GAME_DB = "data/gamesv006.json"
 
 run_with_steam = 1
 #   NEW METHOD TO RUN THROUGH STEAM:
@@ -188,7 +188,7 @@ sources["offline"] = OfflineSource()
 
 class Game:
     args = [("name","s"),("playtime","f"),("lastplayed","s"),("finished","i"),("genre","s"),("hidden","i"),("icon_url","s"),
-    ("packageid","s"),("is_package","i"),("notes","s"),("priority","i"),("website","s"),("import_date","s"),("finish_date","s")]
+    ("notes","s"),("priority","i"),("website","s"),("import_date","s"),("finish_date","s")]
     def __init__(self,**kwargs):
         dontsavekeys = set(dir(self))
         self.gameid = ""
@@ -197,12 +197,11 @@ class Game:
         self.playtime = 0
         self.finished = 0
         self.hidden = 0
-        self.is_package = 0   #Set to 1 if it includes multiple games
+        self.package_data = {}
         self.lastplayed = ""   #timestamp in fmt
         self.import_date = ""
         self.finish_date = ""
         self.sources = []
-        self.packageid = ""  #Id of game within a package
         self.genre = ""
         self.icon_url = ""
         self.notes = ""
@@ -228,7 +227,10 @@ class Game:
         return s
     @property
     def is_in_package(self):
-        return self.packageid or "humble" in self.sources and self.sources["humble"]["package"]
+        return self.package_data.get("type","")=="content"
+    @property
+    def is_package(self):
+        return self.package_data.get("type","")=="bundle"
     def is_installed(self):
         for s in self.sources:
             if sources[s["source"]].is_installed(self,s):
@@ -300,7 +302,8 @@ class Game:
         return d
     def copy(self):
         return Game(**self.dict())
-    def games_for_pack(self,games):
+    def games_for_pack_converter(self,games):
+        #TODO: This is just so we don't break the converter, once we have fully migrated we don't need this anymore
         if not self.is_package:
             raise Exception("Not a package")
         gamelist = []
@@ -348,6 +351,8 @@ class Game:
 
         if self.is_package != other_game.is_package:
             return False
+        if self.is_in_package != other_game.is_in_package:
+            return False
         if (match1 or match2):
             if match1==match2:
                 return True
@@ -359,6 +364,17 @@ class Game:
         if self.name_stripped==other_game.name_stripped:
             return True
         return False
+    def create_package_data(self):
+        def get_source_info(source):
+            if source["source"] == "gog":
+                return {"package_source":"gog","package_id":source["id"],"id_within_package":self.gameid}
+            elif source["source"] == "humble":
+                return {"package_source":"humble","package_id":source["package"],"id_within_package":source["id"]}
+        for source in self.sources:
+            inf = get_source_info(source)
+            if inf:
+                return inf
+        return {}
 
 test1 = Game(name="blah")
 test2 = test1.copy()
@@ -499,14 +515,14 @@ class Games:
                     print("updating",cur_game.gameid,cur_game.source_match,">",game.gameid,game.source_match)
                 else:
                     print("UPDATE... did not change game")
-                    return
+                    return game
             else:
                 self.actions.append(add_action("add",game=game.dict()))
                 print("ADD GAME ACTION")
                 print("adding",game.gameid,game.source_match)
             game.data_changed_date = now()
             self.games[gameid] = game
-            return
+            return game
         previous_data = cur_game.dict()
         if game.icon_url:
             cur_game.icon_url = game.icon_url
@@ -539,7 +555,8 @@ class Games:
         elif sort=="changed":
             default = time.mktime(stot("23:39:03 1980-07-16"))
             return sorted(v,key=lambda g:(-time.mktime(stot(g.data_changed_date)) or default))
-    def get_package_for_game(self,game):
+    def get_package_for_game_converter(self,game):
+        #TODO: Only implemented here for conversion from old data, once migrated can remove
         for p in self.games.values():
             if not p.is_package:
                 continue
@@ -552,6 +569,16 @@ class Games:
                     if ps["source"] == "humble" and gs["source"] == "humble" and ps["package"] == gs["package"]:
                         return p
         return None
+    def get_package_for_game(self,game):
+        if game.is_in_package:
+            package_id = game.package_data["parent"]["gameid"]
+            return self.games[package_id]
+    def games_for_pack(self,pack):
+        gamelist = []
+        if pack.is_package:
+            for game in pack.package_data["contents"]:
+                gamelist.append(self.games[game["gameid"]])
+        return gamelist
     def delete(self, game):
         self.actions.append(add_action("delete",game=game.dict()))
         del self.games[game.gameid]
