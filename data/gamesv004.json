@@ -139,6 +139,174 @@
             }, 
             "time": "19:34:13 2015-05-12", 
             "type": "addgame"
+        }, 
+        {
+            "game": {
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "the_elder_scrolls_v_skyrim.0", 
+                "genre": "rpg", 
+                "hidden": 0, 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/72850/b9aca8a189abd8d6aaf09047dbb0f57582683e1c.jpg", 
+                "import_date": "", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "02:07:26 2013-08-21", 
+                "name": "The Elder Scrolls V: Skyrim", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 78480.0, 
+                "priority": 0, 
+                "sources": [
+                    {
+                        "id": 72850, 
+                        "source": "steam"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "21:38:06 2015-05-12", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "the_elder_scrolls_v_skyrim.0", 
+                "genre": "rpg", 
+                "hidden": 0, 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/72850/b9aca8a189abd8d6aaf09047dbb0f57582683e1c.jpg", 
+                "import_date": "", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "02:07:26 2013-08-21", 
+                "name": "The Elder Scrolls V: Skyrim", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 78480.0, 
+                "priority": 0, 
+                "sources": [
+                    {
+                        "id": 72850, 
+                        "source": "steam"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "21:38:09 2015-05-12", 
+            "type": "stopgame"
+        }, 
+        {
+            "game": {
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "grand_theft_auto_v.0", 
+                "genre": "openworld", 
+                "hidden": 0, 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/271590/1e72f87eb927fa1485e68aefaff23c7fd7178251.jpg", 
+                "import_date": "00:46:13 2015-04-25", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "23:52:07 2015-05-03", 
+                "name": "Grand Theft Auto V", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 17884.00986123085, 
+                "priority": -1, 
+                "sources": [
+                    {
+                        "id": 271590, 
+                        "source": "steam"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "21:38:22 2015-05-12", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "grand_theft_auto_v.0", 
+                "genre": "openworld", 
+                "hidden": 0, 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/271590/1e72f87eb927fa1485e68aefaff23c7fd7178251.jpg", 
+                "import_date": "00:46:13 2015-04-25", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": "23:52:07 2015-05-03", 
+                "name": "Grand Theft Auto V", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 17884.00986123085, 
+                "priority": -1, 
+                "sources": [
+                    {
+                        "id": 271590, 
+                        "source": "steam"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "22:30:23 2015-05-12", 
+            "type": "stopgame"
+        }, 
+        {
+            "game": {
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "grim_fandango_remastered.0", 
+                "genre": "", 
+                "hidden": 0, 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/316790/4e9da606cb52dfebf296dc8d3b0bc6ba81065a52.jpg", 
+                "import_date": "", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "Grim Fandango Remastered", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 1080.0, 
+                "priority": 0, 
+                "sources": [
+                    {
+                        "id": 316790, 
+                        "source": "steam"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "22:31:26 2015-05-12", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "grim_fandango_remastered.0", 
+                "genre": "", 
+                "hidden": 0, 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/316790/4e9da606cb52dfebf296dc8d3b0bc6ba81065a52.jpg", 
+                "import_date": "", 
+                "install_path": "", 
+                "is_package": 0, 
+                "lastplayed": null, 
+                "name": "Grim Fandango Remastered", 
+                "notes": "", 
+                "packageid": "", 
+                "playtime": 1080.0, 
+                "priority": 0, 
+                "sources": [
+                    {
+                        "id": 316790, 
+                        "source": "steam"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "23:49:45 2015-05-12", 
+            "type": "stopgame"
         }
     ], 
     "games": {
@@ -10606,11 +10774,11 @@
             "import_date": "00:46:13 2015-04-25", 
             "install_path": "", 
             "is_package": 0, 
-            "lastplayed": "23:52:07 2015-05-03", 
+            "lastplayed": "22:30:24 2015-05-12", 
             "name": "Grand Theft Auto V", 
             "notes": "", 
             "packageid": "", 
-            "playtime": 17884.00986123085, 
+            "playtime": 21004.49781513214, 
             "priority": -1, 
             "sources": [
                 {
@@ -10874,12 +11042,12 @@
             "import_date": "", 
             "install_path": "", 
             "is_package": 0, 
-            "lastplayed": null, 
+            "lastplayed": "23:49:46 2015-05-12", 
             "name": "Grim Fandango Remastered", 
             "notes": "", 
             "packageid": "", 
-            "playtime": 1080.0, 
-            "priority": 0, 
+            "playtime": 5778.904044866562, 
+            "priority": -1, 
             "sources": [
                 {
                     "id": 316790, 
@@ -25088,12 +25256,12 @@
             "import_date": "", 
             "install_path": "", 
             "is_package": 0, 
-            "lastplayed": "02:07:26 2013-08-21", 
+            "lastplayed": "21:38:10 2015-05-12", 
             "name": "The Elder Scrolls V: Skyrim", 
             "notes": "", 
             "packageid": "", 
-            "playtime": 78480.0, 
-            "priority": 0, 
+            "playtime": 78483.14177513123, 
+            "priority": -1, 
             "sources": [
                 {
                     "id": 72850, 
