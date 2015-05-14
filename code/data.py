@@ -213,11 +213,11 @@ class Game:
         for k in kwargs:
             if hasattr(self,k):
                 setattr(self,k,kwargs[k])
+        self.data_changed_date = kwargs.get("data_changed_date",None)
         if not self.gameid:
             self.gameid = self.generate_gameid()
         if "minutes" in kwargs:
             self.playtime = datetime.timedelta(minutes=kwargs["minutes"]).total_seconds()
-        self.data_changed_date = ""
     @property
     def name_stripped(self):
         if not self.name:
@@ -555,8 +555,12 @@ class Games:
             default = time.mktime(stot("23:39:03 1980-07-16"))
             return sorted(v,key=lambda g:(-time.mktime(stot(g.import_date)) or default))
         elif sort=="changed":
-            default = time.mktime(stot("23:39:03 1980-07-16"))
-            return sorted(v,key=lambda g:(-time.mktime(stot(g.data_changed_date)) or default))
+            #crash
+            def key(game):
+                if game.data_changed_date:
+                    return -time.mktime(stot(game.data_changed_date))
+                return -time.mktime(stot("23:39:03 1980-07-16"))
+            return sorted(v,key=key)
     def get_package_for_game_converter(self,game):
         #TODO: Only implemented here for conversion from old data, once migrated can remove
         for p in self.games.values():
