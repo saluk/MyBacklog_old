@@ -258,6 +258,204 @@
             }, 
             "time": "13:50:03 2015-05-15", 
             "type": "stopgame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "00:32:47 2014-11-06", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "wing_commander.0", 
+                "genre": "flight simulator", 
+                "hidden": 0, 
+                "icon_url": "https://www.gog.com/upload/images/2015/03/8d50253162d02d17f45f272603daa8a0b3300196_bbC_20.jpg", 
+                "import_date": "09:45:39 2015-03-27", 
+                "lastplayed": "00:32:47 2014-11-06", 
+                "name": "Wing Commander", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 12989.81408071518, 
+                "priority": 0, 
+                "sources": [
+                    {
+                        "id": "wing_commander", 
+                        "source": "gog"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "15:26:19 2015-05-15", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "00:32:47 2014-11-06", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "wing_commander.0", 
+                "genre": "flight simulator", 
+                "hidden": 0, 
+                "icon_url": "https://www.gog.com/upload/images/2015/03/8d50253162d02d17f45f272603daa8a0b3300196_bbC_20.jpg", 
+                "import_date": "09:45:39 2015-03-27", 
+                "lastplayed": "00:32:47 2014-11-06", 
+                "name": "Wing Commander", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 12989.81408071518, 
+                "priority": 0, 
+                "sources": [
+                    {
+                        "id": "wing_commander", 
+                        "source": "gog"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "15:29:03 2015-05-15", 
+            "type": "stopgame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "00:32:47 2014-11-06", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "wing_commander.0", 
+                "genre": "flight simulator", 
+                "hidden": 0, 
+                "icon_url": "https://www.gog.com/upload/images/2015/03/8d50253162d02d17f45f272603daa8a0b3300196_bbC_20.jpg", 
+                "import_date": "09:45:39 2015-03-27", 
+                "lastplayed": "15:29:05 2015-05-15", 
+                "name": "Wing Commander", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 13154.33325266838, 
+                "priority": -1, 
+                "sources": [
+                    {
+                        "id": "wing_commander", 
+                        "source": "gog"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "15:29:49 2015-05-15", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "00:32:47 2014-11-06", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "wing_commander.0", 
+                "genre": "flight simulator", 
+                "hidden": 0, 
+                "icon_url": "https://www.gog.com/upload/images/2015/03/8d50253162d02d17f45f272603daa8a0b3300196_bbC_20.jpg", 
+                "import_date": "09:45:39 2015-03-27", 
+                "lastplayed": "15:29:05 2015-05-15", 
+                "name": "Wing Commander", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 13154.33325266838, 
+                "priority": -1, 
+                "sources": [
+                    {
+                        "id": "wing_commander", 
+                        "source": "gog"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "15:29:54 2015-05-15", 
+            "type": "stopgame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "00:32:47 2014-11-06", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "wing_commander.0", 
+                "genre": "flight simulator", 
+                "hidden": 0, 
+                "icon_url": "https://www.gog.com/upload/images/2015/03/8d50253162d02d17f45f272603daa8a0b3300196_bbC_20.jpg", 
+                "import_date": "09:45:39 2015-03-27", 
+                "lastplayed": "15:29:56 2015-05-15", 
+                "name": "Wing Commander", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 13159.643226861954, 
+                "priority": -1, 
+                "sources": [
+                    {
+                        "id": "wing_commander", 
+                        "source": "gog"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "15:30:04 2015-05-15", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "00:32:47 2014-11-06", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "wing_commander.0", 
+                "genre": "flight simulator", 
+                "hidden": 0, 
+                "icon_url": "https://www.gog.com/upload/images/2015/03/8d50253162d02d17f45f272603daa8a0b3300196_bbC_20.jpg", 
+                "import_date": "09:45:39 2015-03-27", 
+                "lastplayed": "15:29:56 2015-05-15", 
+                "name": "Wing Commander", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 13159.643226861954, 
+                "priority": -1, 
+                "sources": [
+                    {
+                        "id": "wing_commander", 
+                        "source": "gog"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "15:30:23 2015-05-15", 
+            "type": "stopgame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "priority", 
+                        "ov": -1, 
+                        "v": 1
+                    }
+                ]
+            }, 
+            "game": {
+                "data_changed_date": "00:32:47 2014-11-06", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "wing_commander.0", 
+                "genre": "flight simulator", 
+                "hidden": 0, 
+                "icon_url": "https://www.gog.com/upload/images/2015/03/8d50253162d02d17f45f272603daa8a0b3300196_bbC_20.jpg", 
+                "import_date": "09:45:39 2015-03-27", 
+                "lastplayed": "15:30:24 2015-05-15", 
+                "name": "Wing Commander", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 13178.504881858826, 
+                "priority": 1, 
+                "sources": [
+                    {
+                        "id": "wing_commander", 
+                        "source": "gog"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "15:30:31 2015-05-15", 
+            "type": "updategame"
         }
     ], 
     "games": {
@@ -29706,7 +29904,7 @@
             "website": ""
         }, 
         "wing_commander.0": {
-            "data_changed_date": "00:32:47 2014-11-06", 
+            "data_changed_date": "15:30:31 2015-05-15", 
             "finish_date": "", 
             "finished": 0, 
             "gameid": "wing_commander.0", 
@@ -29714,12 +29912,12 @@
             "hidden": 0, 
             "icon_url": "https://www.gog.com/upload/images/2015/03/8d50253162d02d17f45f272603daa8a0b3300196_bbC_20.jpg", 
             "import_date": "09:45:39 2015-03-27", 
-            "lastplayed": "00:32:47 2014-11-06", 
+            "lastplayed": "15:30:24 2015-05-15", 
             "name": "Wing Commander", 
             "notes": "", 
             "package_data": {}, 
-            "playtime": 12989.81408071518, 
-            "priority": 0, 
+            "playtime": 13178.504881858826, 
+            "priority": 1, 
             "sources": [
                 {
                     "id": "wing_commander", 

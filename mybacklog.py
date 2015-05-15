@@ -337,17 +337,18 @@ class GameOptions(QWidget):
 
         layout.addLayout(label_section,0,0)
 
-        if not game.missing_steam_launch():
-            run = QPushButton("Play Game")
-        else:
-            run = QPushButton("Play Game (no steam)")
-        run.setBackgroundRole(QPalette.Highlight)
-        run.clicked.connect(make_callback(self.app.run_game,game))
-        layout.addWidget(run)
+        if game.is_installed():
+            if not game.missing_steam_launch():
+                run = QPushButton("Play Game")
+            else:
+                run = QPushButton("Play Game (no steam)")
+            run.setBackgroundRole(QPalette.Highlight)
+            run.clicked.connect(make_callback(self.app.run_game,game))
+            layout.addWidget(run)
 
-        run_no_timer = QPushButton("Play without time tracking")
-        run_no_timer.clicked.connect(make_callback(self.app.run_game_notimer,game))
-        layout.addWidget(run_no_timer)
+            run_no_timer = QPushButton("Play without time tracking")
+            run_no_timer.clicked.connect(make_callback(self.app.run_game_notimer,game))
+            layout.addWidget(run_no_timer)
 
         if game.needs_download():
             download = QPushButton("Download")

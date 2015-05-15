@@ -168,6 +168,8 @@ class GamersGateSource(Source):
 class OfflineSource(Source):
     def get_run_args(self,game,source):
         return None,None
+    def is_installed(self,game,source):
+        return True
 
 
 all = {}

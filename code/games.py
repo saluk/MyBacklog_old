@@ -148,7 +148,9 @@ class Game:
         d["sources"] = d["sources"].copy()
         return d
     def copy(self):
-        return Game(**self.dict())
+        g = Game(**self.dict())
+        g.games = self.games
+        return g
     def games_for_pack_converter(self,games):
         #TODO: This is just so we don't break the converter, once we have fully migrated we don't need this anymore
         if not self.is_package:
@@ -224,8 +226,7 @@ class Game:
         return {}
     def get_path(self):
         """If possible, return path to the main exe or file which launches the game"""
-        if not self.games:
-            return ""
+        assert self.games
         files = self.games.local.get("game_data",{}).get(self.gameid,{}).get("files",[])
         for f in files:
             if f["primary"]:
@@ -240,6 +241,25 @@ class Game:
         path = self.get_path()
         if path.endswith(".gba"):
             return path
+    @property
+    def install_path(self):
+        return self.get_path()
+    @install_path.setter
+    def install_path(self,value):
+        if not self.get_path():
+            file = {"source":self.sources[0],"primary":True}
+            if self.gameid not in self.games.local["game_data"]:
+                self.games.local["game_data"][self.gameid] = {"files":[]}
+            if not self.games.local["game_data"][self.gameid]["files"]:
+                self.games.local["game_data"][self.gameid]["files"] = []
+            self.games.local["game_data"][self.gameid]["files"].append(file)
+        else:
+            file = self.games.local["game_data"][self.gameid]["files"][0]
+        file["type"] = "exe"
+        if self.sources[0]["source"] in ["gba","snes","n64","nds"]:
+            file["type"] = "rom"
+        file["path"] = value
+        print("set path:",self.games.local["game_data"][self.gameid]["files"])
 
 test1 = Game(name="blah")
 test2 = test1.copy()

@@ -818,6 +818,19 @@
                 }
             ]
         }, 
+        "wing_commander.0": {
+            "files": [
+                {
+                    "path": "C:\\GOG Games\\Wing Commander 1 and 2\\WC\\Launch Wing Commander.lnk", 
+                    "primary": true, 
+                    "source": {
+                        "id": "wing_commander", 
+                        "source": "gog"
+                    }, 
+                    "type": "exe"
+                }
+            ]
+        }, 
         "wing_commander_3_heart_of_the_tiger.0": {
             "files": [
                 {
