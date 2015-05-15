@@ -105,6 +105,7 @@ def import_gog(multipack={}):
                     packs[id] = package
                     imported_games.append(package)
                 package = packs[id]
+                print("packaging",name,"into",id,game.create_package_data())
                 game.package_data = {
                     "type":"content",
                     "parent":{"gameid":package.gameid,"name":package.name},

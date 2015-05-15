@@ -456,6 +456,219 @@
             }, 
             "time": "15:30:31 2015-05-15", 
             "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "package_data", 
+                        "ov": {
+                            "contents": [
+                                {
+                                    "gameid": "alone_in_the_dark_2.0", 
+                                    "name": "Alone In The Dark 2"
+                                }, 
+                                {
+                                    "gameid": "alone_in_the_dark_1.0", 
+                                    "name": "Alone In The Dark 1"
+                                }, 
+                                {
+                                    "gameid": "alone_in_the_dark_3.0", 
+                                    "name": "Alone In The Dark 3"
+                                }
+                            ], 
+                            "source_info": {
+                                "id_within_package": "", 
+                                "package_id": "alone_in_the_dark", 
+                                "package_source": "gog"
+                            }, 
+                            "type": "bundle"
+                        }, 
+                        "v": {
+                            "contents": [
+                                {
+                                    "gameid": "alone_in_the_dark_1.0", 
+                                    "name": "Alone In The Dark 1"
+                                }, 
+                                {
+                                    "gameid": "alone_in_the_dark_2.0", 
+                                    "name": "Alone In The Dark 2"
+                                }, 
+                                {
+                                    "gameid": "alone_in_the_dark_3.0", 
+                                    "name": "Alone In The Dark 3"
+                                }
+                            ], 
+                            "source_info": {
+                                "id_within_package": "alone_in_the_dark.0", 
+                                "package_id": "alone_in_the_dark", 
+                                "package_source": "gog"
+                            }, 
+                            "type": "bundle"
+                        }
+                    }
+                ]
+            }, 
+            "game": {
+                "data_changed_date": "", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "alone_in_the_dark.0", 
+                "genre": "", 
+                "hidden": 0, 
+                "icon_url": "", 
+                "import_date": "", 
+                "lastplayed": "", 
+                "name": "Alone In The Dark", 
+                "notes": "", 
+                "package_data": {
+                    "contents": [
+                        {
+                            "gameid": "alone_in_the_dark_1.0", 
+                            "name": "Alone In The Dark 1"
+                        }, 
+                        {
+                            "gameid": "alone_in_the_dark_2.0", 
+                            "name": "Alone In The Dark 2"
+                        }, 
+                        {
+                            "gameid": "alone_in_the_dark_3.0", 
+                            "name": "Alone In The Dark 3"
+                        }
+                    ], 
+                    "source_info": {
+                        "id_within_package": "alone_in_the_dark.0", 
+                        "package_id": "alone_in_the_dark", 
+                        "package_source": "gog"
+                    }, 
+                    "type": "bundle"
+                }, 
+                "playtime": 0, 
+                "priority": 0, 
+                "sources": [
+                    {
+                        "id": "alone_in_the_dark", 
+                        "source": "gog"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "16:18:30 2015-05-15", 
+            "type": "updategame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "alone_in_the_dark_1.0", 
+                "genre": "", 
+                "hidden": 0, 
+                "icon_url": "https://www.gog.com/upload/images/2011/04/bc9d5857f8462ecb5bd40858eabb38ca9d426fbb_bbC_20.jpg", 
+                "import_date": "", 
+                "lastplayed": "", 
+                "name": "Alone In The Dark 1", 
+                "notes": "", 
+                "package_data": {
+                    "parent": {
+                        "gameid": "alone_in_the_dark.0", 
+                        "name": "Alone In The Dark"
+                    }, 
+                    "source_info": {
+                        "id_within_package": "alone_in_the_dark_1.0", 
+                        "package_id": "alone_in_the_dark", 
+                        "package_source": "gog"
+                    }, 
+                    "type": "content"
+                }, 
+                "playtime": 0, 
+                "priority": 0, 
+                "sources": [
+                    {
+                        "id": "alone_in_the_dark", 
+                        "source": "gog"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "16:18:30 2015-05-15", 
+            "type": "addgame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "alone_in_the_dark_2.0", 
+                "genre": "", 
+                "hidden": 0, 
+                "icon_url": "https://www.gog.com/upload/images/2011/04/bc9d5857f8462ecb5bd40858eabb38ca9d426fbb_bbC_20.jpg", 
+                "import_date": "", 
+                "lastplayed": "", 
+                "name": "Alone In The Dark 2", 
+                "notes": "", 
+                "package_data": {
+                    "parent": {
+                        "gameid": "alone_in_the_dark.0", 
+                        "name": "Alone In The Dark"
+                    }, 
+                    "source_info": {
+                        "id_within_package": "alone_in_the_dark_2.0", 
+                        "package_id": "alone_in_the_dark", 
+                        "package_source": "gog"
+                    }, 
+                    "type": "content"
+                }, 
+                "playtime": 0, 
+                "priority": 0, 
+                "sources": [
+                    {
+                        "id": "alone_in_the_dark", 
+                        "source": "gog"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "16:18:30 2015-05-15", 
+            "type": "addgame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "alone_in_the_dark_3.0", 
+                "genre": "", 
+                "hidden": 0, 
+                "icon_url": "https://www.gog.com/upload/images/2011/04/bc9d5857f8462ecb5bd40858eabb38ca9d426fbb_bbC_20.jpg", 
+                "import_date": "", 
+                "lastplayed": "", 
+                "name": "Alone In The Dark 3", 
+                "notes": "", 
+                "package_data": {
+                    "parent": {
+                        "gameid": "alone_in_the_dark.0", 
+                        "name": "Alone In The Dark"
+                    }, 
+                    "source_info": {
+                        "id_within_package": "alone_in_the_dark_3.0", 
+                        "package_id": "alone_in_the_dark", 
+                        "package_source": "gog"
+                    }, 
+                    "type": "content"
+                }, 
+                "playtime": 0, 
+                "priority": 0, 
+                "sources": [
+                    {
+                        "id": "alone_in_the_dark", 
+                        "source": "gog"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "16:18:30 2015-05-15", 
+            "type": "addgame"
         }
     ], 
     "games": {
@@ -1050,7 +1263,7 @@
             "website": ""
         }, 
         "alone_in_the_dark.0": {
-            "data_changed_date": null, 
+            "data_changed_date": "16:18:30 2015-05-15", 
             "finish_date": "", 
             "finished": 0, 
             "gameid": "alone_in_the_dark.0", 
@@ -1064,12 +1277,12 @@
             "package_data": {
                 "contents": [
                     {
-                        "gameid": "alone_in_the_dark_2.0", 
-                        "name": "Alone In The Dark 2"
-                    }, 
-                    {
                         "gameid": "alone_in_the_dark_1.0", 
                         "name": "Alone In The Dark 1"
+                    }, 
+                    {
+                        "gameid": "alone_in_the_dark_2.0", 
+                        "name": "Alone In The Dark 2"
                     }, 
                     {
                         "gameid": "alone_in_the_dark_3.0", 
@@ -1077,7 +1290,7 @@
                     }
                 ], 
                 "source_info": {
-                    "id_within_package": "", 
+                    "id_within_package": "alone_in_the_dark.0", 
                     "package_id": "alone_in_the_dark", 
                     "package_source": "gog"
                 }, 
@@ -1094,15 +1307,15 @@
             "website": ""
         }, 
         "alone_in_the_dark_1.0": {
-            "data_changed_date": null, 
+            "data_changed_date": "16:18:30 2015-05-15", 
             "finish_date": "", 
             "finished": 0, 
             "gameid": "alone_in_the_dark_1.0", 
-            "genre": "horror", 
+            "genre": "", 
             "hidden": 0, 
             "icon_url": "https://www.gog.com/upload/images/2011/04/bc9d5857f8462ecb5bd40858eabb38ca9d426fbb_bbC_20.jpg", 
             "import_date": "", 
-            "lastplayed": null, 
+            "lastplayed": "", 
             "name": "Alone In The Dark 1", 
             "notes": "", 
             "package_data": {
@@ -1111,7 +1324,7 @@
                     "name": "Alone In The Dark"
                 }, 
                 "source_info": {
-                    "id_within_package": "alone_in_the_dark_1", 
+                    "id_within_package": "alone_in_the_dark_1.0", 
                     "package_id": "alone_in_the_dark", 
                     "package_source": "gog"
                 }, 
@@ -1128,15 +1341,15 @@
             "website": ""
         }, 
         "alone_in_the_dark_2.0": {
-            "data_changed_date": null, 
+            "data_changed_date": "16:18:30 2015-05-15", 
             "finish_date": "", 
             "finished": 0, 
             "gameid": "alone_in_the_dark_2.0", 
-            "genre": "horror", 
+            "genre": "", 
             "hidden": 0, 
             "icon_url": "https://www.gog.com/upload/images/2011/04/bc9d5857f8462ecb5bd40858eabb38ca9d426fbb_bbC_20.jpg", 
             "import_date": "", 
-            "lastplayed": null, 
+            "lastplayed": "", 
             "name": "Alone In The Dark 2", 
             "notes": "", 
             "package_data": {
@@ -1145,7 +1358,7 @@
                     "name": "Alone In The Dark"
                 }, 
                 "source_info": {
-                    "id_within_package": "alone_in_the_dark_2", 
+                    "id_within_package": "alone_in_the_dark_2.0", 
                     "package_id": "alone_in_the_dark", 
                     "package_source": "gog"
                 }, 
@@ -1162,15 +1375,15 @@
             "website": ""
         }, 
         "alone_in_the_dark_3.0": {
-            "data_changed_date": null, 
+            "data_changed_date": "16:18:30 2015-05-15", 
             "finish_date": "", 
             "finished": 0, 
             "gameid": "alone_in_the_dark_3.0", 
-            "genre": "horror", 
+            "genre": "", 
             "hidden": 0, 
             "icon_url": "https://www.gog.com/upload/images/2011/04/bc9d5857f8462ecb5bd40858eabb38ca9d426fbb_bbC_20.jpg", 
             "import_date": "", 
-            "lastplayed": null, 
+            "lastplayed": "", 
             "name": "Alone In The Dark 3", 
             "notes": "", 
             "package_data": {
@@ -1179,7 +1392,7 @@
                     "name": "Alone In The Dark"
                 }, 
                 "source_info": {
-                    "id_within_package": "alone_in_the_dark_3", 
+                    "id_within_package": "alone_in_the_dark_3.0", 
                     "package_id": "alone_in_the_dark", 
                     "package_source": "gog"
                 }, 

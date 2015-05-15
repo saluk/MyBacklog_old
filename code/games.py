@@ -202,6 +202,9 @@ class Game:
             return False
         if self.is_in_package != other_game.is_in_package:
             return False
+        if self.is_in_package:
+            if self.package_data["source_info"] != other_game.package_data["source_info"]:
+                return False
         if (match1 or match2):
             if match1==match2:
                 return True
@@ -417,6 +420,7 @@ class Games:
         assert game is not cur_game
 
         if not cur_game or force:
+            game.games = self
             if cur_game:
                 diff = changed(cur_game.dict(),game.dict())
                 if diff:
