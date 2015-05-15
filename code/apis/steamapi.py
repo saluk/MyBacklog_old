@@ -3,7 +3,7 @@ import re
 
 import requests
 
-from .. import data
+from .. import games
 
 #import vdf
 
@@ -158,9 +158,9 @@ def import_steam(apikey=MY_API_KEY,userid=MY_STEAM_ID):
         if str(g["appid"]) in apps:
             app = apps[str(g["appid"])]
             if "LastPlayed" in app:
-                lastplayed=data.sec_to_ts(int(app["LastPlayed"]))
+                lastplayed=games.sec_to_ts(int(app["LastPlayed"]))
         library.append(
-            data.Game(name=g["name"],
+            games.Game(name=g["name"],
                             minutes=g["playtime_forever"],
                             finished=set_finished,
                             sources=[

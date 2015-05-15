@@ -2,7 +2,7 @@
 import time
 import requests
 import re
-from .. import data
+from .. import games
 import json
 
 def get_gog_games_from_google():
@@ -90,12 +90,12 @@ def import_gog(multipack={}):
             name = " ".join([x.capitalize() for x in name.replace("_"," ").split(" ")])
 
             id = g["gameindex"]
-            game = data.Game(name=name,icon_url=g["icon"])
+            game = games.Game(name=name,icon_url=g["icon"])
             game.sources = [{"source":"gog","id":id}]
 
             if g2:
                 if not id in packs:
-                    package = data.Game(name=original_name)
+                    package = games.Game(name=original_name)
                     package.sources = [{"source":"gog","id":g["gameindex"]}]
                     package.package_data = {
                         "type":"bundle",

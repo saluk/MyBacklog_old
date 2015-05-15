@@ -92,6 +92,116 @@
             }, 
             "time": "12:39:34 2015-05-15", 
             "type": "updategame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "16:48:01 2015-04-03", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "dragon_quest_3.0", 
+                "genre": "rpg", 
+                "hidden": 0, 
+                "icon_url": "", 
+                "import_date": "", 
+                "install_path": "C:\\emu\\snes\\roms\\Dragon Quest III - Soshite Densetsu he... (Japan).sfc", 
+                "lastplayed": "16:48:01 2015-04-03", 
+                "name": "Dragon Quest 3", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 44469.833953142166, 
+                "priority": -1, 
+                "sources": [
+                    {
+                        "source": "snes"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "13:06:42 2015-05-15", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "16:48:01 2015-04-03", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "dragon_quest_3.0", 
+                "genre": "rpg", 
+                "hidden": 0, 
+                "icon_url": "", 
+                "import_date": "", 
+                "install_path": "C:\\emu\\snes\\roms\\Dragon Quest III - Soshite Densetsu he... (Japan).sfc", 
+                "lastplayed": "16:48:01 2015-04-03", 
+                "name": "Dragon Quest 3", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 44469.833953142166, 
+                "priority": -1, 
+                "sources": [
+                    {
+                        "source": "snes"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "13:06:56 2015-05-15", 
+            "type": "stopgame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "12:39:34 2015-05-15", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "grim_fandango_remastered.0", 
+                "genre": "", 
+                "hidden": 0, 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/316790/4e9da606cb52dfebf296dc8d3b0bc6ba81065a52.jpg", 
+                "import_date": "", 
+                "install_path": "", 
+                "lastplayed": "12:38:41 2015-05-15", 
+                "name": "Grim Fandango Remastered", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 5993.316400766373, 
+                "priority": -1, 
+                "sources": [
+                    {
+                        "id": 316790, 
+                        "source": "steam"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "13:07:06 2015-05-15", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "12:39:34 2015-05-15", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "grim_fandango_remastered.0", 
+                "genre": "", 
+                "hidden": 0, 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/316790/4e9da606cb52dfebf296dc8d3b0bc6ba81065a52.jpg", 
+                "import_date": "", 
+                "install_path": "", 
+                "lastplayed": "12:38:41 2015-05-15", 
+                "name": "Grim Fandango Remastered", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 5993.316400766373, 
+                "priority": -1, 
+                "sources": [
+                    {
+                        "id": 316790, 
+                        "source": "steam"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "13:21:28 2015-05-15", 
+            "type": "stopgame"
         }
     ], 
     "games": {
@@ -7756,11 +7866,11 @@
             "icon_url": "", 
             "import_date": "", 
             "install_path": "C:\\emu\\snes\\roms\\Dragon Quest III - Soshite Densetsu he... (Japan).sfc", 
-            "lastplayed": "16:48:01 2015-04-03", 
+            "lastplayed": "13:06:57 2015-05-15", 
             "name": "Dragon Quest 3", 
             "notes": "", 
             "package_data": {}, 
-            "playtime": 44469.833953142166, 
+            "playtime": 44483.779682159424, 
             "priority": -1, 
             "sources": [
                 {
@@ -11575,11 +11685,11 @@
             "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/316790/4e9da606cb52dfebf296dc8d3b0bc6ba81065a52.jpg", 
             "import_date": "", 
             "install_path": "", 
-            "lastplayed": "12:38:41 2015-05-15", 
+            "lastplayed": "13:21:29 2015-05-15", 
             "name": "Grim Fandango Remastered", 
             "notes": "", 
             "package_data": {}, 
-            "playtime": 5993.316400766373, 
+            "playtime": 6856.057901859283, 
             "priority": -1, 
             "sources": [
                 {

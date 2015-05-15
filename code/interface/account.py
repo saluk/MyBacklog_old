@@ -2,7 +2,7 @@ import json
 
 from code.apis import giantbomb, steamapi, gogapi, humbleapi, thegamesdb
 from code.resources import winicons
-from code import data
+from code import games
 
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *

@@ -2,7 +2,7 @@
 import time
 import requests
 import re
-from code import data
+from code import games
 import json
 
 class Browser:
@@ -94,7 +94,7 @@ def get_humble_gamelist():
         b.get(api_get_order%{"key":key})
         print (b.json)
         hdata = b.json
-        package = data.Game(name=hdata["product"]["human_name"])
+        package = games.Game(name=hdata["product"]["human_name"])
         package.sources = [{"source":"humble","id":hdata["product"]["machine_name"],"package":hdata["gamekey"]}]
         package.package_data = {
             "type":"bundle",
@@ -103,7 +103,7 @@ def get_humble_gamelist():
         }
         games.append(package)
         for sub in hdata["subproducts"]:
-            game = data.Game(name=sub["human_name"],
+            game = games.Game(name=sub["human_name"],
                                         website=sub["url"],
                                         icon_url=sub["icon"])
             game.sources = [{"source":"humble","id":sub["machine_name"],"package":hdata["gamekey"]}]

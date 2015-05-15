@@ -11,7 +11,7 @@ import requests
 from code.apis import giantbomb, steamapi, gogapi, humbleapi, thegamesdb
 from code.interface import account
 from code.resources import winicons
-from code import data
+from code import games
 
 os.environ["QT_QPA_PLATFORM_PLUGIN_PATH"] = "C:\\Python33\\Lib\\site-packages\\PyQt5\\plugins\\platforms"
 
@@ -379,7 +379,7 @@ class MyBacklog(QMainWindow):
                     name = " ".join([y.capitalize() for y in x.split("_")[1:]])
                     menus[folder].addAction(QAction("&"+name,self,triggered=getattr(self.main_form,x)))
         menus["view"] = self.menuBar().addMenu("&Add Game")
-        for source in data.sources.all:
+        for source in games.sources.all:
             menus["view"].addAction(QAction("&"+source,self,triggered=lambda : self.main_form.add_game(source)))
 
         menus["file"].addAction(QAction("&Exit",self,triggered=self.really_close))
@@ -431,7 +431,7 @@ class GamelistForm(QWidget):
         
         self.timer_started = 0
         
-        self.games = data.Games()
+        self.games = games.Games()
         self.games.load()
         self.gamelist = []
 
@@ -486,7 +486,7 @@ class GamelistForm(QWidget):
         self.icons = {}
         for icon in os.listdir("icons"):
             self.icons[icon.split(".")[0]] = QPixmap("icons/%s"%icon)
-        for source in data.sources.all:
+        for source in games.sources.all:
             if source not in self.icons:
                 self.icons[source] = QPixmap("icons/blank.png")
         self.gicons = {}
@@ -513,8 +513,8 @@ class GamelistForm(QWidget):
     def set_accounts(self,account):
         self.gog = gogapi.Gog(account["gog"]["user"],account["gog"]["pass"])
         self.steam = steamapi.Steam(account["steam"]["api"],account["steam"]["id"],account["steam"]["shortcut_folder"])
-        data.sources.SteamSource.api = self.steam
-        data.sources.GogSource.api = self.gog
+        games.sources.SteamSource.api = self.steam
+        games.sources.GogSource.api = self.gog
 
     def disable_edit_notify(self):
         try:
@@ -614,7 +614,7 @@ class GamelistForm(QWidget):
         lastplayed = WILastPlayed("GAME LAST PLAYED")
         lastplayed.setBackground(bg)
         lastplayed.setText(game.last_played_nice)
-        lastplayed.setData(DATA_SORT,data.stot(game.lastplayed))
+        lastplayed.setData(DATA_SORT,games.stot(game.lastplayed))
         self.games_list_widget.setItem(row,5,lastplayed)
 
     def update_gamelist_widget(self):
@@ -695,7 +695,7 @@ class GamelistForm(QWidget):
 
     def sync_downloadgames(self):
         games = downloadrequest()
-        self.games = data.Games()
+        self.games = games.Games()
         self.games.translate_json(games)
         self.games.save()
         self.update_gamelist_widget()
@@ -850,7 +850,7 @@ class GamelistForm(QWidget):
         game.download_method()
 
     def add_game(self,source):
-        game = data.Game(source=source)
+        game = games.Game(source=source)
         self.gamelist.append({"game":game,"widget":None})
         self.show_edit_widget(game,None,self,new=True)
 
