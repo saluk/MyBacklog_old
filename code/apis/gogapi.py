@@ -75,7 +75,7 @@ def get_gog_games_html(html):
     return gog_games
 def import_gog(multipack={}):
     packs = {}
-    games = []
+    imported_games = []
     gog_games = get_gog_games_html("cache/mygog_shelf.html")
     for key in gog_games:
         g = gog_games[key]
@@ -103,7 +103,7 @@ def import_gog(multipack={}):
                         "source_info":package.create_package_data()
                     }
                     packs[id] = package
-                    games.append(package)
+                    imported_games.append(package)
                 package = packs[id]
                 game.package_data = {
                     "type":"content",
@@ -111,8 +111,8 @@ def import_gog(multipack={}):
                     "source_info":game.create_package_data()
                 }
                 package.package_data["contents"].append({"gameid":game.gameid,"name":game.name})
-            games.append(game)
-    return games
+            imported_games.append(game)
+    return imported_games
 
 class Browser:
     def __init__(self):

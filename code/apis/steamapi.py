@@ -144,10 +144,9 @@ def match_finished_games(games,finished):
 def import_steam(apikey=MY_API_KEY,userid=MY_STEAM_ID):
     #apps = load_userdata()["UserLocalConfigStore"]["Software"]["Valve"]["Steam"]["apps"]
     apps = {}
-    games = get_games(apikey,userid)
     is_finished = []#match_finished_games(games,finished)
     library = []
-    for g in games:
+    for g in get_games(apikey,userid):
         set_finished = 0
         if g in is_finished:
             set_finished = 1
