@@ -3,9 +3,7 @@ import os
 import time
 import datetime
 import json
-import sys
-import subprocess
-import webbrowser
+from code import sources
 
 fmt = "%H:%M:%S %Y-%m-%d"
 def now():
@@ -26,165 +24,8 @@ def ttos(t):
 PRIORITIES = {-1:"now playing",0:"unprioritized",1:"soon",2:"later",3:"much later",5:"next year",99:"probably never"}
 GAME_DB = "data/gamesv006.json"
 
-run_with_steam = 1
-#   NEW METHOD TO RUN THROUGH STEAM:
-#   Export function which creates shortcuts to all non-steam games that aren't in steam yet
-#   Manually creat shortcut for often played game, and put it in cache/steamshortcuts
-#   When running a game, if a steam shortcut exists in cache/steamshortcuts, run that
-
-class Source:
-    """Definition of a source of games"""
-    def args(self):
-        """Return editable arguments that are unique to this source
-        Defaults to install_path as that is pretty common"""
-        return [("install_path","s")]
-    def is_installed(self,game,source):
-        return game.install_path
-    def needs_download(self,game,source):
-        if self.is_installed(game,source):
-            return False
-        return True
-    def gameid(self,game):
-        """Returns the unique id for the game according to this source
-        If a unique id cannot be generated raise an error
-        Defaults to a letters only version of the game's name"""
-        if not game.name:
-            raise InvalidIdException()
-        return game.name_stripped
-    def download_link(self,game,source):
-        return ""
-    def download_method(self,game,source):
-        if game.download_link:
-            webbrowser.open(game.download_link)
-    def uninstall(self,game,source):
-        if game.install_folder:
-            subprocess.Popen(["explorer.exe",game.install_folder], cwd=game.install_folder, stdout=sys.stdout, stderr=sys.stderr)
-    def get_run_args(self,game,source):
-        """Returns the method to run the game. Defaults to using a batch file to run the install_path exe"""
-        folder = game.install_folder #Navigate to executable's directory
-        startupinfo = subprocess.STARTUPINFO()
-        startupinfo.dwFlags = subprocess.STARTF_USESHOWWINDOW
-        startupinfo.wShowWindow = 0
-        creationflags = subprocess.CREATE_NEW_PROCESS_GROUP
-        import winshell, shlex
-        if game.install_path.endswith(".lnk"):
-            with winshell.shortcut(game.install_path) as link:
-                args = [link.path] + shlex.split(link.arguments)
-                folder = link.working_directory
-        else:
-            #Make batch file to run
-            if 1:#not os.path.exists("cache/batches/"+game.gameid+".bat"):
-                with open("cache/batches/"+game.gameid+".bat", "w") as f:
-                    f.write('cd "%s"\n'%folder)
-                    path = game.install_path.split("\\")[-1]
-                    exe,args = path.split(".exe")
-                    exe = exe+".exe"
-                    f.write('"%s" %s\n'%(exe,args))
-            args = [game.gameid+".bat"]
-            folder = os.path.abspath("cache\\batches\\")
-            #args = [game.install_path.split("\\")[-1]]
-            #folder = game.install_path.rsplit("\\",1)[0]
-            if not self.missing_steam_launch(game):
-            #HACKY - run game through steam
-                args = ["cache\\steamshortcuts\\%s.url"%game.shortcut_name]
-                folder = os.path.abspath("")
-        return args,folder
-    def run_game(self,game,source):
-        creationflags = 0
-        shell = True
-        if sys.platform=='darwin':
-            shell = False
-        args,folder = self.get_run_args(game,source)
-        print("run args:",args,folder)
-
-        if args and folder:
-            print(args)
-            curdir = os.path.abspath(os.curdir)
-            os.chdir(folder)
-            print(os.path.abspath(os.curdir))
-            self.running = subprocess.Popen(args, cwd=folder, stdout=sys.stdout, stderr=sys.stderr, creationflags=creationflags, shell=shell)
-            print("subprocess open")
-            os.chdir(curdir)
-    def missing_steam_launch(self,game,source):
-        """Returns True if the game type wants a steam launcher and it doesn't exist"""
-        if not run_with_steam:
-            return False
-        dest_shortcut_path = "cache/steamshortcuts/%s.url"%game.shortcut_name
-        userhome = os.path.expanduser("~")
-        desktop = userhome + "/Desktop/"
-        shortcut_path = desktop+"%s.url"%game.shortcut_name
-        if os.path.exists(shortcut_path):
-            import shutil
-            shutil.move(shortcut_path,dest_shortcut_path)
-        if os.path.exists(dest_shortcut_path):
-            return False
-        return True
-class InvalidIdException(Exception):
-    pass
-
-sources = {}
-class SteamSource(Source):
-    """Needs .api to be set to steamapi.Steam"""
-    def args(self):
-        return []
-    def run_game(self,game,source):
-        webbrowser.open("steam://rungameid/%d"%source["id"])
-    def missing_steam_launch(self,game,source):
-        return False
-    def download_method(self,game,source):
-        webbrowser.open("steam://install/%d"%source["id"])
-    def uninstall(self,game,source):
-        webbrowser.open("steam://uninstall/%d"%source["id"])
-    def is_installed(self,game,source):
-        return self.api.is_installed(source["id"])
-sources["steam"] = SteamSource()
-class GogSource(Source):
-    """Needs .api to be set to steamapi.Gog"""
-    def args(self):
-        return [("install_path","s")]
-    def download_link(self,game,source):
-        return "gogdownloader://%s/installer_win_en"%source["id"]
-sources["gog"] = GogSource()
-class HumbleSource(Source):
-    def args(self):
-        return [("install_path","s")]
-sources["humble"] = HumbleSource()
-class ItchSource(Source):
-    pass
-sources["itch"] = ItchSource()
-class GBASource(Source):
-    def get_run_args(self,game,source):
-        args = ["C:\\emu\\retroarch\\retroarch.exe","-c","C:\\emu\\retroarch\\retroarch-gba.cfg",game.install_path]
-        return args,"."
-sources["gba"] = GBASource()
-class SNESSource(Source):
-    def get_run_args(self,game,source):
-        args = ["C:\\emu\\retroarch\\retroarch.exe","-c","C:\\emu\\retroarch\\retroarch-snes.cfg",game.install_path]
-        return args,"."
-sources["snes"] = SNESSource()
-class N64Source(Source):
-    def get_run_args(self,game,source):
-        args = ["C:\\emu\\retroarch\\retroarch.exe","-c","C:\\emu\\retroarch\\retroarch-n64.cfg",game.install_path]
-        return args,"."
-sources["n64"] = N64Source()
-class NDSSource(Source):
-    def get_run_args(self,game,source):
-        args = ["C:\\emu\\retroarch\\retroarch.exe","-c","C:\\emu\\retroarch\\retroarch-nds.cfg",game.install_path]
-        return args,"."
-sources["nds"] = NDSSource()
-class NoneSource(Source):
-    pass
-sources["none"] = NoneSource()
-class OriginSource(Source):
-    pass
-sources["origin"] = OriginSource()
-class GamersGateSource(Source):
-    pass
-sources["gamersgate"] = GamersGateSource()
-class OfflineSource(Source):
-    def get_run_args(self,game,source):
-        return None,None
-sources["offline"] = OfflineSource()
+def get_source(s):
+    return sources.all[s]()
 
 class Game:
     args = [("name","s"),("playtime","f"),("lastplayed","s"),("finished","i"),("genre","s"),("hidden","i"),("icon_url","s"),
@@ -236,11 +77,11 @@ class Game:
         return self.package_data.get("type","")=="bundle"
     def is_installed(self):
         for s in self.sources:
-            if sources[s["source"]].is_installed(self,s):
+            if get_source(s["source"]).is_installed(self,s):
                 return True
     def needs_download(self):
         for s in self.sources:
-            if sources[s["source"]].needs_download(self,s):
+            if get_source(s["source"]).needs_download(self,s):
                 return True
     def played(self):
         """Resets lastplayed to now"""
@@ -258,7 +99,7 @@ class Game:
     def valid_args(self):
         a = self.args[:]
         for s in self.sources:
-            a.extend(sources[s["source"]].args())
+            a.extend(get_source(s["source"]).args())
         return a
     @property
     def hours_minutes(self):
@@ -276,13 +117,13 @@ class Game:
     @property
     def download_link(self):
         for s in self.sources:
-            return sources[s["source"]].download_link(self,s)
+            return get_source(s["source"]).download_link(self,s)
     def download_method(self):
         for s in self.sources:
-            return sources[s["source"]].download_method(self,s)
+            return get_source(s["source"]).download_method(self,s)
     def uninstall(self):
         for s in self.sources:
-            return sources[s["source"]].uninstall(self,s)
+            return get_source(s["source"]).uninstall(self,s)
     @property
     def install_folder(self):
         """Full path to folder where executable is located"""
@@ -290,13 +131,13 @@ class Game:
     def get_run_args(self):
         """Returns the args and folder to pass to the subprocess to run the game, according to our source"""
         for s in self.sources:
-            return sources[s["source"]].get_run_args(self,s)
+            return get_source(s["source"]).get_run_args(self,s)
     def run_game(self):
         for s in self.sources:
-            return sources[s["source"]].run_game(self,s)
+            return get_source(s["source"]).run_game(self,s)
     def missing_steam_launch(self):
         for s in self.sources:
-            return sources[s["source"]].missing_steam_launch(self,s)
+            return get_source(s["source"]).missing_steam_launch(self,s)
     def dict(self):
         d = {}
         for k in self.savekeys:

@@ -379,7 +379,7 @@ class MyBacklog(QMainWindow):
                     name = " ".join([y.capitalize() for y in x.split("_")[1:]])
                     menus[folder].addAction(QAction("&"+name,self,triggered=getattr(self.main_form,x)))
         menus["view"] = self.menuBar().addMenu("&Add Game")
-        for source in data.sources:
+        for source in data.sources.all:
             menus["view"].addAction(QAction("&"+source,self,triggered=lambda : self.main_form.add_game(source)))
 
         menus["file"].addAction(QAction("&Exit",self,triggered=self.really_close))
@@ -486,7 +486,7 @@ class GamelistForm(QWidget):
         self.icons = {}
         for icon in os.listdir("icons"):
             self.icons[icon.split(".")[0]] = QPixmap("icons/%s"%icon)
-        for source in data.sources:
+        for source in data.sources.all:
             if source not in self.icons:
                 self.icons[source] = QPixmap("icons/blank.png")
         self.gicons = {}
@@ -513,8 +513,8 @@ class GamelistForm(QWidget):
     def set_accounts(self,account):
         self.gog = gogapi.Gog(account["gog"]["user"],account["gog"]["pass"])
         self.steam = steamapi.Steam(account["steam"]["api"],account["steam"]["id"],account["steam"]["shortcut_folder"])
-        data.sources["steam"].api = self.steam
-        data.sources["gog"].api = self.gog
+        data.sources.SteamSource.api = self.steam
+        data.sources.GogSource.api = self.gog
 
     def disable_edit_notify(self):
         try:
