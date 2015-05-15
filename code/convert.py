@@ -1,5 +1,5 @@
 import copy
-import data
+import games
 
 def v002_to_v003(inp):
     """Take source information out of root and put into sources,
@@ -195,7 +195,7 @@ def v005_to_v006(inp):
     delete is_package identifyer (gotten with package_data)
     """
 
-    gamelist = data.Games()
+    gamelist = games.Games()
     gamelist.translate_json(json.dumps(inp))
 
     out = {}
@@ -212,7 +212,7 @@ def v005_to_v006(inp):
             continue
         new = copy.deepcopy(game)
 
-        game = data.Game(**game)
+        game = games.Game(**game)
 
         package = gamelist.get_package_for_game_converter(game)
 
@@ -245,11 +245,90 @@ def v005_to_v006(inp):
     print(len(out["games"]),len(inp["games"]))
     return out
 
+def v006_to_v007(inp):
+    """
+    Converts install_path to external local exe information
+
+    "mother_1.0": {
+            "gameid": "mother_1.0",
+            "install_path": "C:\\emu\\gb\\mother12.gba",
+            "lastplayed": "13:32:54 2015-01-19",
+            "name": "Mother 1",
+            "website": "",
+            "sources": [
+                {
+                    "source": "gba"
+                }
+            ],
+        },
+
+    >>>
+
+    local_db = {
+        "game_data":{
+            "mother_1.0":{
+                "files": [
+                    {"type":"rom","primary":True,"path":"C:\\emu\\gb\\mother12.gba","source":"gba"}
+                ]
+            }
+        },
+        "emulators":{
+            "gba":{
+                "path":"C:\\emu\\retroarch\\retroarch.exe",
+                "cmd":"$program -c C:\\emu\\retroarch\\retroarch-gba.cfg $path"
+            }
+        }
+    }
+    """
+
+    gamelist = games.Games()
+    gamelist.translate_json(json.dumps(inp))
+
+    out_games = {}
+    out_local = {"game_data":{},"emulators":{}}
+    out_games["multipack"] = inp["multipack"]
+    out_games["actions"] = inp["actions"]
+    out_games["games"] = {}
+    print("starting:",len(inp["games"]))
+    ran = 0
+    for key in inp["games"]:
+        ran += 1
+        game = inp["games"][key]
+        if not game["name"]:
+            print("ERROR",key)
+            continue
+        new = copy.deepcopy(game)
+
+        game = games.Game(**game)
+
+        if game.install_path:
+            li = []
+            out_local["game_data"][game.gameid] = {"files":li}
+            for s in game.sources:
+                file = {"source":s,"primary":True}
+                if s["source"] in ["gba","snes","n64","nds"]:
+                    file.update({"type":"rom","path":game.install_path})
+                else:
+                    file.update({"type":"exe","path":game.install_path})
+                li.append(file)
+
+        del new["install_path"]
+        out_games["games"][game.gameid] = new
+    print("looped",ran,"times")
+    print(len(out_games["games"]),len(inp["games"]))
+    return out_games,out_local
+
+
 import json
-f = open("../data/gamesv005.json")
+f = open("../data/gamesv006.json")
 old_data = json.loads(f.read())
 f.close()
 
-f = open("../data/gamesv006.json","w")
-f.write(json.dumps(v005_to_v006(old_data),indent=2,sort_keys=True))
-f.close()
+gdb,ldb = v006_to_v007(old_data)
+g = open("../data/gamesv007.json","w")
+g.write(json.dumps(gdb,indent=4,sort_keys=True))
+g.close()
+
+l = open("../data/localv001.json","w")
+l.write(json.dumps(ldb,indent=4,sort_keys=True))
+l.close()

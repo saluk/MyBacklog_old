@@ -22,7 +22,8 @@ def ttos(t):
 #    return ttos(time.localtime(sec))
 
 PRIORITIES = {-1:"now playing",0:"unprioritized",1:"soon",2:"later",3:"much later",5:"next year",99:"probably never"}
-GAME_DB = "data/gamesv006.json"
+GAME_DB = "data/gamesv007.json"
+LOCAL_DB = "data/localv001.json"
 
 def get_source(s):
     return sources.all[s]()
@@ -49,7 +50,6 @@ class Game:
         self.notes = ""
         self.priority = 0
 
-        self.install_path = ""
         self.website = ""
         self.savekeys = set(dir(self)) - dontsavekeys
         for k in kwargs:
@@ -59,6 +59,9 @@ class Game:
             self.gameid = self.generate_gameid()
         if "minutes" in kwargs:
             self.playtime = datetime.timedelta(minutes=kwargs["minutes"]).total_seconds()
+        self.games = None
+        if "games" in kwargs:
+            self.games = kwargs["games"]
     @property
     def name_stripped(self):
         if not self.name:
@@ -221,7 +224,13 @@ class Game:
         return {}
     def get_path(self):
         """If possible, return path to the main exe or file which launches the game"""
-        return self.install_path
+        if not self.games:
+            return ""
+        files = self.games.local.get("game_data",{}).get(self.gameid,{}).get("files",[])
+        for f in files:
+            if f["primary"]:
+                return f["path"]
+        return ""
     def get_exe(self):
         """If possible, return an exe, or file to launch the game"""
         path = self.get_path()
@@ -275,11 +284,15 @@ class Games:
         self.source_map = {}
         self.actions = []
         self.multipack = {}
+        self.local = {}
         try:
             self.multipack = json.loads(open("gog_packages.json").read())
         except:
             pass
-    def load(self,file=GAME_DB):
+    def load(self,game_db_file=GAME_DB,local_db_file=LOCAL_DB):
+        self.load_games(game_db_file)
+        self.load_local(local_db_file)
+    def load_games(self,file=GAME_DB):
         if not os.path.exists(file):
             print("Warning, no save file to load:",file)
             return
@@ -292,21 +305,42 @@ class Games:
         load_data = json.loads(d)
         for k in load_data["games"]:
             self.games[k] = Game(**load_data["games"][k])
+            self.games[k].games = self
         if not self.multipack:
             self.multipack = load_data.get("multipack",{})
         self.actions = load_data.get("actions",[])
-    def save_data(self):
+    def load_local(self,file=LOCAL_DB):
+        if not os.path.exists(file):
+            print("Warning, no local save file to load:",file)
+            return
+        f = open(file,"r")
+        d = f.read()
+        f.close()
+        self.local_translate_json(d)
+    def local_translate_json(self,d):
+        self.local = {}
+        load_data = json.loads(d)
+        self.local = load_data
+    def save_games_data(self):
         save_data = {"games":{}}
         for k in self.games:
             save_data["games"][k] = self.games[k].dict()
         save_data["actions"] = self.actions
         save_data["multipack"] = self.multipack
         return json.dumps(save_data,sort_keys=True,indent=4)
-    def save(self,file=GAME_DB):
-        sd = self.save_data()
+    def save_games(self,file=GAME_DB):
+        sd = self.save_games_data()
         f = open(file,"w")
         f.write(sd)
         f.close()
+    def save_local(self,file=LOCAL_DB):
+        sd = json.dumps(self.local,sort_keys=True,indent=4)
+        f = open(file,"w")
+        f.write(sd)
+        f.close()
+    def save(self,game_db_file=GAME_DB,local_db_file=LOCAL_DB):
+        self.save_games()
+        self.save_local()
     def build_source_map(self):
         """Builds a dictionary map of source_id:game to make it easier to search for a game from
         a given source"""
