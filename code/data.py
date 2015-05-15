@@ -199,6 +199,7 @@ class Game:
         self.hidden = 0
         self.package_data = {}
         self.lastplayed = ""   #timestamp in fmt
+        self.data_changed_date = ""
         self.import_date = ""
         self.finish_date = ""
         self.sources = []
@@ -213,7 +214,6 @@ class Game:
         for k in kwargs:
             if hasattr(self,k):
                 setattr(self,k,kwargs[k])
-        self.data_changed_date = kwargs.get("data_changed_date",None)
         if not self.gameid:
             self.gameid = self.generate_gameid()
         if "minutes" in kwargs:
