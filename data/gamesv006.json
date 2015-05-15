@@ -202,6 +202,62 @@
             }, 
             "time": "13:21:28 2015-05-15", 
             "type": "stopgame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "18:33:10 2015-04-25", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "a_story_about_my_uncle.0", 
+                "genre": "adventure", 
+                "hidden": 0, 
+                "icon_url": "https://www.gog.com/upload/images/2014/05/f4f7f44c4f3d2750d95ce276743ef8c2207638c4_bbC_20.jpg", 
+                "import_date": "", 
+                "install_path": "C:\\GOG Games\\A Story About My Uncle\\Launch A Story About My Uncle.lnk", 
+                "lastplayed": "18:33:10 2015-04-25", 
+                "name": "A Story About My Uncle", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 9104.872521877289, 
+                "priority": -1, 
+                "sources": [
+                    {
+                        "id": "story_about_my_uncle_a", 
+                        "source": "gog"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "13:35:36 2015-05-15", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "18:33:10 2015-04-25", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "a_story_about_my_uncle.0", 
+                "genre": "adventure", 
+                "hidden": 0, 
+                "icon_url": "https://www.gog.com/upload/images/2014/05/f4f7f44c4f3d2750d95ce276743ef8c2207638c4_bbC_20.jpg", 
+                "import_date": "", 
+                "install_path": "C:\\GOG Games\\A Story About My Uncle\\Launch A Story About My Uncle.lnk", 
+                "lastplayed": "18:33:10 2015-04-25", 
+                "name": "A Story About My Uncle", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 9104.872521877289, 
+                "priority": -1, 
+                "sources": [
+                    {
+                        "id": "story_about_my_uncle_a", 
+                        "source": "gog"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "13:50:03 2015-05-15", 
+            "type": "stopgame"
         }
     ], 
     "games": {
@@ -397,11 +453,11 @@
             "icon_url": "https://www.gog.com/upload/images/2014/05/f4f7f44c4f3d2750d95ce276743ef8c2207638c4_bbC_20.jpg", 
             "import_date": "", 
             "install_path": "C:\\GOG Games\\A Story About My Uncle\\Launch A Story About My Uncle.lnk", 
-            "lastplayed": "18:33:10 2015-04-25", 
+            "lastplayed": "13:50:04 2015-05-15", 
             "name": "A Story About My Uncle", 
             "notes": "", 
             "package_data": {}, 
-            "playtime": 9104.872521877289, 
+            "playtime": 9972.719102859497, 
             "priority": -1, 
             "sources": [
                 {

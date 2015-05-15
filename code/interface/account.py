@@ -1,7 +1,7 @@
 import json
 
 from code.apis import giantbomb, steamapi, gogapi, humbleapi, thegamesdb
-from code.resources import winicons
+from code.resources import extract_icons
 from code import games
 
 from PyQt5.QtCore import *

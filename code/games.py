@@ -201,8 +201,8 @@ class Game:
             if match1==match2:
                 return True
             return False
-        if (self.install_path or other_game.install_path):
-            if self.install_path==other_game.install_path:
+        if (self.get_path() or other_game.get_path()):
+            if self.get_path()==other_game.get_path():
                 return True
             return False
         if self.name_stripped==other_game.name_stripped:
@@ -219,6 +219,18 @@ class Game:
             if inf:
                 return inf
         return {}
+    def get_path(self):
+        """If possible, return path to the main exe or file which launches the game"""
+        return self.install_path
+    def get_exe(self):
+        """If possible, return an exe, or file to launch the game"""
+        path = self.get_path()
+        if path.endswith(".exe"):
+            return path
+    def get_gba(self):
+        path = self.get_path()
+        if path.endswith(".gba"):
+            return path
 
 test1 = Game(name="blah")
 test2 = test1.copy()

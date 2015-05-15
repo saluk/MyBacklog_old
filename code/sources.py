@@ -16,7 +16,7 @@ class Source:
         Defaults to install_path as that is pretty common"""
         return [("install_path","s")]
     def is_installed(self,game,source):
-        return game.install_path
+        return game.get_path()
     def needs_download(self,game,source):
         if self.is_installed(game,source):
             return False
@@ -44,8 +44,9 @@ class Source:
         startupinfo.wShowWindow = 0
         creationflags = subprocess.CREATE_NEW_PROCESS_GROUP
         import winshell, shlex
-        if game.install_path.endswith(".lnk"):
-            with winshell.shortcut(game.install_path) as link:
+        path = game.get_path()
+        if path.endswith(".lnk"):
+            with winshell.shortcut(path) as link:
                 args = [link.path] + shlex.split(link.arguments)
                 folder = link.working_directory
         else:
@@ -53,14 +54,12 @@ class Source:
             if 1:#not os.path.exists("cache/batches/"+game.gameid+".bat"):
                 with open("cache/batches/"+game.gameid+".bat", "w") as f:
                     f.write('cd "%s"\n'%folder)
-                    path = game.install_path.split("\\")[-1]
-                    exe,args = path.split(".exe")
+                    filepath = path.split("\\")[-1]
+                    exe,args = filepath.split(".exe")
                     exe = exe+".exe"
                     f.write('"%s" %s\n'%(exe,args))
             args = [game.gameid+".bat"]
             folder = os.path.abspath("cache\\batches\\")
-            #args = [game.install_path.split("\\")[-1]]
-            #folder = game.install_path.rsplit("\\",1)[0]
             if not self.missing_steam_launch(game):
             #HACKY - run game through steam
                 args = ["cache\\steamshortcuts\\%s.url"%game.shortcut_name]
@@ -132,25 +131,25 @@ class ItchSource(Source):
 
 class GBASource(Source):
     def get_run_args(self,game,source):
-        args = ["C:\\emu\\retroarch\\retroarch.exe","-c","C:\\emu\\retroarch\\retroarch-gba.cfg",game.install_path]
+        args = ["C:\\emu\\retroarch\\retroarch.exe","-c","C:\\emu\\retroarch\\retroarch-gba.cfg",game.get_path()]
         return args,"."
 
 
 class SNESSource(Source):
     def get_run_args(self,game,source):
-        args = ["C:\\emu\\retroarch\\retroarch.exe","-c","C:\\emu\\retroarch\\retroarch-snes.cfg",game.install_path]
+        args = ["C:\\emu\\retroarch\\retroarch.exe","-c","C:\\emu\\retroarch\\retroarch-snes.cfg",game.get_path()]
         return args,"."
 
 
 class N64Source(Source):
     def get_run_args(self,game,source):
-        args = ["C:\\emu\\retroarch\\retroarch.exe","-c","C:\\emu\\retroarch\\retroarch-n64.cfg",game.install_path]
+        args = ["C:\\emu\\retroarch\\retroarch.exe","-c","C:\\emu\\retroarch\\retroarch-n64.cfg",game.get_path()]
         return args,"."
 
 
 class NDSSource(Source):
     def get_run_args(self,game,source):
-        args = ["C:\\emu\\retroarch\\retroarch.exe","-c","C:\\emu\\retroarch\\retroarch-nds.cfg",game.install_path]
+        args = ["C:\\emu\\retroarch\\retroarch.exe","-c","C:\\emu\\retroarch\\retroarch-nds.cfg",game.get_path()]
         return args,"."
 
 

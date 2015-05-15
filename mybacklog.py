@@ -10,7 +10,7 @@ import requests
 #backloglib
 from code.apis import giantbomb, steamapi, gogapi, humbleapi, thegamesdb
 from code.interface import account
-from code.resources import winicons
+from code.resources import extract_icons
 from code import games
 
 os.environ["QT_QPA_PLATFORM_PLUGIN_PATH"] = "C:\\Python33\\Lib\\site-packages\\PyQt5\\plugins\\platforms"
@@ -290,17 +290,19 @@ def icon_for_game(game,size,icon_cache):
             f = open(fpath,"wb")
             f.write(r.content)
             f.close()
-    elif game.install_path and game.install_path.endswith(".exe"):
-        fpath = "cache/icons/"+game.install_path.replace("http","").replace("https","").replace(":","").replace("/","").replace("\\","")
+    elif game.get_exe():
+        exe_path = game.get_exe()
+        fpath = "cache/icons/"+exe_path.replace("http","").replace("https","").replace(":","").replace("/","").replace("\\","")
         if not os.path.exists(fpath):
-            p = winicons.get_icon(game.install_path)
+            p = extract_icons.get_icon(exe_path)
             import shutil
             if p:
                 shutil.copy(p,fpath)
-    elif game.install_path and game.install_path.endswith(".gba"):
-        fpath = "cache/icons/"+game.install_path.replace("http","").replace(":","").replace("/","").replace("\\","")
+    elif game.get_gba():
+        gba_path = game.get_gba()
+        fpath = "cache/icons/"+gba_path.replace("http","").replace(":","").replace("/","").replace("\\","")
         if not os.path.exists(fpath):
-            p = winicons.get_gba(game.install_path)
+            p = extract_icons.get_gba(gba_path)
             import shutil
             if p:
                 shutil.copy(p,fpath)
