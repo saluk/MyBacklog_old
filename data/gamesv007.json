@@ -1665,6 +1665,83 @@
             }, 
             "time": "01:46:31 2015-05-16", 
             "type": "stopgame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "lastplayed", 
+                        "ov": null, 
+                        "v": "None"
+                    }, 
+                    {
+                        "k": "name", 
+                        "ov": "Last Express The", 
+                        "v": "The Last Express"
+                    }
+                ]
+            }, 
+            "game": {
+                "data_changed_date": null, 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "last_express_the.0", 
+                "genre": "adventure", 
+                "hidden": 0, 
+                "icon_url": "https://www.gog.com/upload/images/2011/01/29d9e78c334862cedbc5e64def2415195927edc6_bbC_20.jpg", 
+                "import_date": "", 
+                "lastplayed": "None", 
+                "name": "The Last Express", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 0.0, 
+                "priority": 0, 
+                "sources": [
+                    {
+                        "id": "last_express_the", 
+                        "source": "gog"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "09:39:21 2015-05-16", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "notes", 
+                        "ov": "", 
+                        "v": "good game"
+                    }
+                ]
+            }, 
+            "game": {
+                "data_changed_date": "09:39:21 2015-05-16", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "last_express_the.0", 
+                "genre": "adventure", 
+                "hidden": 0, 
+                "icon_url": "https://www.gog.com/upload/images/2011/01/29d9e78c334862cedbc5e64def2415195927edc6_bbC_20.jpg", 
+                "import_date": "", 
+                "lastplayed": "None", 
+                "name": "The Last Express", 
+                "notes": "good game", 
+                "package_data": {}, 
+                "playtime": 0.0, 
+                "priority": 0, 
+                "sources": [
+                    {
+                        "id": "last_express_the", 
+                        "source": "gog"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "09:40:44 2015-05-16", 
+            "type": "updategame"
         }
     ], 
     "games": {
@@ -16188,7 +16265,7 @@
             "website": ""
         }, 
         "last_express_the.0": {
-            "data_changed_date": null, 
+            "data_changed_date": "09:40:44 2015-05-16", 
             "finish_date": "", 
             "finished": 0, 
             "gameid": "last_express_the.0", 
@@ -16196,11 +16273,11 @@
             "hidden": 0, 
             "icon_url": "https://www.gog.com/upload/images/2011/01/29d9e78c334862cedbc5e64def2415195927edc6_bbC_20.jpg", 
             "import_date": "", 
-            "lastplayed": null, 
-            "name": "Last Express The", 
-            "notes": "", 
+            "lastplayed": "None", 
+            "name": "The Last Express", 
+            "notes": "good game", 
             "package_data": {}, 
-            "playtime": 0, 
+            "playtime": 0.0, 
             "priority": 0, 
             "sources": [
                 {

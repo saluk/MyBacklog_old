@@ -250,6 +250,8 @@ class Game:
         return self.get_path()
     @install_path.setter
     def install_path(self,value):
+        if not value:
+            return
         if not self.get_path():
             file = {"source":self.sources[0],"primary":True}
             if self.gameid not in self.games.local["game_data"]:
