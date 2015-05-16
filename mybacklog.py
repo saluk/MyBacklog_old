@@ -119,7 +119,7 @@ class Browser(QWidget):
 
 
 class ListGamesForPack(QWidget):
-    def __init__(self, game, app):
+    def __init__(self, game, app, edit_widget):
         #  Currently only enable splitting of a game from a single source
         #  If a game has multiple sources, it must be split into each source before a bundle can be made
         #  The BUNDLE can only be from one source, however the individual titles can have multiple sources
@@ -127,6 +127,7 @@ class ListGamesForPack(QWidget):
         super(ListGamesForPack, self).__init__()
         self.game = game
         self.app = app
+        self.edit_widget = edit_widget
         
         self.oldid = game.gameid
         
@@ -185,9 +186,11 @@ class ListGamesForPack(QWidget):
         self.game.package_data = {"type":"bundle",
                                   "contents":pack_games,
                                   "source_info":self.game.create_package_data()}
+        self.app.games.update_game(self.game.gameid,self.game,force=True)
         self.app.games.save()
         self.app.update_gamelist_widget()
         self.deleteLater()
+        self.edit_widget.deleteLater()
 
 class EditGame(QWidget):
     def __init__(self, game, app, new=False):
@@ -246,7 +249,7 @@ class EditGame(QWidget):
         w.setText(filename.replace("/","\\"))
 
     def make_package(self):
-        self.lg = ListGamesForPack(self.game,self.app)
+        self.lg = ListGamesForPack(self.game,self.app,self)
         self.lg.show()
 
     def save_close(self):
@@ -267,9 +270,9 @@ class EditGame(QWidget):
         print("save", newid, self.oldid)
         print(game.priority,self.games.games[self.oldid].priority)
         print(game in self.games.games.values())
-        self.games.update_game(self.game.gameid,game,force=True)
+        updated_game = self.games.update_game(self.game.gameid,game,force=True)
         self.games.save()
-        self.app.update_game_row(self.game)
+        self.app.update_game_row(updated_game)
         self.deleteLater()
         self.parent().deleteLater()
 

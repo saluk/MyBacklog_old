@@ -759,6 +759,858 @@
             }, 
             "time": "22:15:42 2015-05-15", 
             "type": "stopgame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": null, 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "m_a_x_m_a_x_2.0", 
+                "genre": "action", 
+                "hidden": 0, 
+                "icon_url": "", 
+                "import_date": "", 
+                "lastplayed": null, 
+                "name": "M A X M A X 2", 
+                "notes": "", 
+                "package_data": {
+                    "contents": [], 
+                    "source_info": {
+                        "id_within_package": "", 
+                        "package_id": "m_a_x_m_a_x_2", 
+                        "package_source": "gog"
+                    }, 
+                    "type": "bundle"
+                }, 
+                "playtime": 0, 
+                "priority": 0, 
+                "sources": [
+                    {
+                        "id": "m_a_x_m_a_x_2", 
+                        "source": "gog"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "23:53:43 2015-05-15", 
+            "type": "deletegame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "16:18:30 2015-05-15", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "alone_in_the_dark.0", 
+                "genre": "action", 
+                "hidden": 0, 
+                "icon_url": "", 
+                "import_date": "", 
+                "lastplayed": null, 
+                "name": "Alone In The Dark", 
+                "notes": "", 
+                "package_data": {
+                    "contents": [
+                        {
+                            "gameid": "alone_in_the_dark_1.0", 
+                            "name": "Alone In The Dark 1"
+                        }, 
+                        {
+                            "gameid": "alone_in_the_dark_2.0", 
+                            "name": "Alone In The Dark 2"
+                        }, 
+                        {
+                            "gameid": "alone_in_the_dark_3.0", 
+                            "name": "Alone In The Dark 3"
+                        }
+                    ], 
+                    "source_info": {
+                        "id_within_package": "alone_in_the_dark.0", 
+                        "package_id": "alone_in_the_dark", 
+                        "package_source": "gog"
+                    }, 
+                    "type": "bundle"
+                }, 
+                "playtime": 0, 
+                "priority": 0, 
+                "sources": [
+                    {
+                        "id": "alone_in_the_dark", 
+                        "source": "gog"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "23:54:05 2015-05-15", 
+            "type": "deletegame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "16:18:30 2015-05-15", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "alone_in_the_dark_1.0", 
+                "genre": "", 
+                "hidden": 0, 
+                "icon_url": "https://www.gog.com/upload/images/2011/04/bc9d5857f8462ecb5bd40858eabb38ca9d426fbb_bbC_20.jpg", 
+                "import_date": "", 
+                "lastplayed": "", 
+                "name": "Alone In The Dark 1", 
+                "notes": "", 
+                "package_data": {
+                    "parent": {
+                        "gameid": "alone_in_the_dark.0", 
+                        "name": "Alone In The Dark"
+                    }, 
+                    "source_info": {
+                        "id_within_package": "alone_in_the_dark_1.0", 
+                        "package_id": "alone_in_the_dark", 
+                        "package_source": "gog"
+                    }, 
+                    "type": "content"
+                }, 
+                "playtime": 0, 
+                "priority": 0, 
+                "sources": [
+                    {
+                        "id": "alone_in_the_dark", 
+                        "source": "gog"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "23:54:08 2015-05-15", 
+            "type": "deletegame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "16:18:30 2015-05-15", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "alone_in_the_dark_2.0", 
+                "genre": "", 
+                "hidden": 0, 
+                "icon_url": "https://www.gog.com/upload/images/2011/04/bc9d5857f8462ecb5bd40858eabb38ca9d426fbb_bbC_20.jpg", 
+                "import_date": "", 
+                "lastplayed": "", 
+                "name": "Alone In The Dark 2", 
+                "notes": "", 
+                "package_data": {
+                    "parent": {
+                        "gameid": "alone_in_the_dark.0", 
+                        "name": "Alone In The Dark"
+                    }, 
+                    "source_info": {
+                        "id_within_package": "alone_in_the_dark_2.0", 
+                        "package_id": "alone_in_the_dark", 
+                        "package_source": "gog"
+                    }, 
+                    "type": "content"
+                }, 
+                "playtime": 0, 
+                "priority": 0, 
+                "sources": [
+                    {
+                        "id": "alone_in_the_dark", 
+                        "source": "gog"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "23:54:11 2015-05-15", 
+            "type": "deletegame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "16:18:30 2015-05-15", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "alone_in_the_dark_3.0", 
+                "genre": "", 
+                "hidden": 0, 
+                "icon_url": "https://www.gog.com/upload/images/2011/04/bc9d5857f8462ecb5bd40858eabb38ca9d426fbb_bbC_20.jpg", 
+                "import_date": "", 
+                "lastplayed": "", 
+                "name": "Alone In The Dark 3", 
+                "notes": "", 
+                "package_data": {
+                    "parent": {
+                        "gameid": "alone_in_the_dark.0", 
+                        "name": "Alone In The Dark"
+                    }, 
+                    "source_info": {
+                        "id_within_package": "alone_in_the_dark_3.0", 
+                        "package_id": "alone_in_the_dark", 
+                        "package_source": "gog"
+                    }, 
+                    "type": "content"
+                }, 
+                "playtime": 0, 
+                "priority": 0, 
+                "sources": [
+                    {
+                        "id": "alone_in_the_dark", 
+                        "source": "gog"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "23:54:13 2015-05-15", 
+            "type": "deletegame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "lastplayed", 
+                        "ov": null, 
+                        "v": "None"
+                    }, 
+                    {
+                        "k": "name", 
+                        "ov": "Northland", 
+                        "v": "Cultures: Northland"
+                    }
+                ]
+            }, 
+            "game": {
+                "data_changed_date": "09:45:39 2015-03-27", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "northland.0", 
+                "genre": "", 
+                "hidden": 0, 
+                "icon_url": "https://www.gog.com/upload/images/2015/03/edba02c330adaa0c5280e6447ff8c952e7701b3f_bbC_20.jpg", 
+                "import_date": "09:45:39 2015-03-27", 
+                "lastplayed": "None", 
+                "name": "Cultures: Northland", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 0.0, 
+                "priority": 0, 
+                "sources": [
+                    {
+                        "id": "northland", 
+                        "source": "gog"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "23:58:27 2015-05-15", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "lastplayed", 
+                        "ov": null, 
+                        "v": "None"
+                    }, 
+                    {
+                        "k": "name", 
+                        "ov": "8th Wonder Of The World", 
+                        "v": "Cultures: 8th Wonder Of The World"
+                    }
+                ]
+            }, 
+            "game": {
+                "data_changed_date": "09:45:39 2015-03-27", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "8th_wonder_of_the_world.0", 
+                "genre": "strategy", 
+                "hidden": 0, 
+                "icon_url": "https://www.gog.com/upload/images/2015/03/5c55ac8c774f14c532f2e3a43cb2c2628d8ed72e_bbC_20.jpg", 
+                "import_date": "09:45:39 2015-03-27", 
+                "lastplayed": "None", 
+                "name": "Cultures: 8th Wonder Of The World", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 0.0, 
+                "priority": 0, 
+                "sources": [
+                    {
+                        "id": "8th_wonder_of_the_world", 
+                        "source": "gog"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "23:58:46 2015-05-15", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "name", 
+                        "ov": "8th Wonder Of The World", 
+                        "v": "Cultures: 8th Wonder Of The World"
+                    }
+                ]
+            }, 
+            "game": {
+                "data_changed_date": "23:58:46 2015-05-15", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "8th_wonder_of_the_world.0", 
+                "genre": "strategy", 
+                "hidden": 0, 
+                "icon_url": "https://www.gog.com/upload/images/2015/03/5c55ac8c774f14c532f2e3a43cb2c2628d8ed72e_bbC_20.jpg", 
+                "import_date": "09:45:39 2015-03-27", 
+                "lastplayed": "None", 
+                "name": "Cultures: 8th Wonder Of The World", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 0.0, 
+                "priority": 0, 
+                "sources": [
+                    {
+                        "id": "8th_wonder_of_the_world", 
+                        "source": "gog"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "23:59:06 2015-05-15", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "name", 
+                        "ov": "8th Wonder Of The World", 
+                        "v": "Cultures: 8th Wonder Of The World"
+                    }
+                ]
+            }, 
+            "game": {
+                "data_changed_date": "23:59:06 2015-05-15", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "8th_wonder_of_the_world.0", 
+                "genre": "strategy", 
+                "hidden": 0, 
+                "icon_url": "https://www.gog.com/upload/images/2015/03/5c55ac8c774f14c532f2e3a43cb2c2628d8ed72e_bbC_20.jpg", 
+                "import_date": "09:45:39 2015-03-27", 
+                "lastplayed": "None", 
+                "name": "Cultures: 8th Wonder Of The World", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 0.0, 
+                "priority": 0, 
+                "sources": [
+                    {
+                        "id": "8th_wonder_of_the_world", 
+                        "source": "gog"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "00:01:05 2015-05-16", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "name", 
+                        "ov": "Northland", 
+                        "v": "Cultures: Northland"
+                    }
+                ]
+            }, 
+            "game": {
+                "data_changed_date": "23:58:27 2015-05-15", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "northland.0", 
+                "genre": "", 
+                "hidden": 0, 
+                "icon_url": "https://www.gog.com/upload/images/2015/03/edba02c330adaa0c5280e6447ff8c952e7701b3f_bbC_20.jpg", 
+                "import_date": "09:45:39 2015-03-27", 
+                "lastplayed": "None", 
+                "name": "Cultures: Northland", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 0.0, 
+                "priority": 0, 
+                "sources": [
+                    {
+                        "id": "northland", 
+                        "source": "gog"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "00:02:31 2015-05-16", 
+            "type": "updategame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "09:45:39 2015-03-27", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "quest_for_glory1_ega.0", 
+                "genre": "adventure", 
+                "hidden": 0, 
+                "icon_url": "https://www.gog.com/upload/images/2015/03/a65eff67a6d5259bdd36a9269a121a6eeded3657_bbC_20.jpg", 
+                "import_date": "09:45:39 2015-03-27", 
+                "lastplayed": null, 
+                "name": "Quest for Glory1 EGA", 
+                "notes": "", 
+                "package_data": {
+                    "parent": {
+                        "gameid": "quest_for_glory_vga_remake.0", 
+                        "name": "Quest For Glory Vga Remake"
+                    }, 
+                    "source_info": {
+                        "id_within_package": "quest_for_glory_vga_remake.0", 
+                        "package_id": "quest_for_glory_vga_remake", 
+                        "package_source": "gog"
+                    }, 
+                    "type": "content"
+                }, 
+                "playtime": 0, 
+                "priority": 0, 
+                "sources": [
+                    {
+                        "id": "quest_for_glory_vga_remake", 
+                        "source": "gog"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "00:12:53 2015-05-16", 
+            "type": "addgame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "09:45:39 2015-03-27", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "quest_for_glory1_vga.0", 
+                "genre": "adventure", 
+                "hidden": 0, 
+                "icon_url": "https://www.gog.com/upload/images/2015/03/a65eff67a6d5259bdd36a9269a121a6eeded3657_bbC_20.jpg", 
+                "import_date": "09:45:39 2015-03-27", 
+                "lastplayed": null, 
+                "name": "Quest for Glory1 VGA", 
+                "notes": "", 
+                "package_data": {
+                    "parent": {
+                        "gameid": "quest_for_glory_vga_remake.0", 
+                        "name": "Quest For Glory Vga Remake"
+                    }, 
+                    "source_info": {
+                        "id_within_package": "quest_for_glory_vga_remake.0", 
+                        "package_id": "quest_for_glory_vga_remake", 
+                        "package_source": "gog"
+                    }, 
+                    "type": "content"
+                }, 
+                "playtime": 0, 
+                "priority": 0, 
+                "sources": [
+                    {
+                        "id": "quest_for_glory_vga_remake", 
+                        "source": "gog"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "00:12:53 2015-05-16", 
+            "type": "addgame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "00:12:53 2015-05-16", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "quest_for_glory1_ega.0", 
+                "genre": "adventure", 
+                "hidden": 0, 
+                "icon_url": "https://www.gog.com/upload/images/2015/03/a65eff67a6d5259bdd36a9269a121a6eeded3657_bbC_20.jpg", 
+                "import_date": "09:45:39 2015-03-27", 
+                "lastplayed": null, 
+                "name": "Quest for Glory1 EGA", 
+                "notes": "", 
+                "package_data": {
+                    "parent": {
+                        "gameid": "quest_for_glory_vga_remake.0", 
+                        "name": "Quest For Glory Vga Remake"
+                    }, 
+                    "source_info": {
+                        "id_within_package": "quest_for_glory_vga_remake.0", 
+                        "package_id": "quest_for_glory_vga_remake", 
+                        "package_source": "gog"
+                    }, 
+                    "type": "content"
+                }, 
+                "playtime": 0, 
+                "priority": 0, 
+                "sources": [
+                    {
+                        "id": "quest_for_glory_vga_remake", 
+                        "source": "gog"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "00:23:39 2015-05-16", 
+            "type": "deletegame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "00:12:53 2015-05-16", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "quest_for_glory1_vga.0", 
+                "genre": "adventure", 
+                "hidden": 0, 
+                "icon_url": "https://www.gog.com/upload/images/2015/03/a65eff67a6d5259bdd36a9269a121a6eeded3657_bbC_20.jpg", 
+                "import_date": "09:45:39 2015-03-27", 
+                "lastplayed": null, 
+                "name": "Quest for Glory1 VGA", 
+                "notes": "", 
+                "package_data": {
+                    "parent": {
+                        "gameid": "quest_for_glory_vga_remake.0", 
+                        "name": "Quest For Glory Vga Remake"
+                    }, 
+                    "source_info": {
+                        "id_within_package": "quest_for_glory_vga_remake.0", 
+                        "package_id": "quest_for_glory_vga_remake", 
+                        "package_source": "gog"
+                    }, 
+                    "type": "content"
+                }, 
+                "playtime": 0, 
+                "priority": 0, 
+                "sources": [
+                    {
+                        "id": "quest_for_glory_vga_remake", 
+                        "source": "gog"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "00:23:43 2015-05-16", 
+            "type": "deletegame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "lastplayed", 
+                        "ov": null, 
+                        "v": "None"
+                    }, 
+                    {
+                        "k": "name", 
+                        "ov": "Quest For Glory Vga Remake", 
+                        "v": "Quest For Glory 1"
+                    }
+                ]
+            }, 
+            "game": {
+                "data_changed_date": "09:45:39 2015-03-27", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "quest_for_glory_vga_remake.0", 
+                "genre": "adventure", 
+                "hidden": 0, 
+                "icon_url": "https://www.gog.com/upload/images/2015/03/a65eff67a6d5259bdd36a9269a121a6eeded3657_bbC_20.jpg", 
+                "import_date": "09:45:39 2015-03-27", 
+                "lastplayed": "None", 
+                "name": "Quest For Glory 1", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 0.0, 
+                "priority": 0, 
+                "sources": [
+                    {
+                        "id": "quest_for_glory_vga_remake", 
+                        "source": "gog"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "00:24:16 2015-05-16", 
+            "type": "updategame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "00:24:16 2015-05-16", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "quest_for_glory_ega.0", 
+                "genre": "adventure", 
+                "hidden": 0, 
+                "icon_url": "https://www.gog.com/upload/images/2015/03/a65eff67a6d5259bdd36a9269a121a6eeded3657_bbC_20.jpg", 
+                "import_date": "09:45:39 2015-03-27", 
+                "lastplayed": "None", 
+                "name": "Quest for Glory EGA", 
+                "notes": "", 
+                "package_data": {
+                    "parent": {
+                        "gameid": "quest_for_glory_vga_remake.0", 
+                        "name": "Quest For Glory 1"
+                    }, 
+                    "source_info": {
+                        "id_within_package": "quest_for_glory_vga_remake.0", 
+                        "package_id": "quest_for_glory_vga_remake", 
+                        "package_source": "gog"
+                    }, 
+                    "type": "content"
+                }, 
+                "playtime": 0.0, 
+                "priority": 0, 
+                "sources": [
+                    {
+                        "id": "quest_for_glory_vga_remake", 
+                        "source": "gog"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "00:24:32 2015-05-16", 
+            "type": "addgame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "00:24:16 2015-05-16", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "quest_for_glory_vga.0", 
+                "genre": "adventure", 
+                "hidden": 0, 
+                "icon_url": "https://www.gog.com/upload/images/2015/03/a65eff67a6d5259bdd36a9269a121a6eeded3657_bbC_20.jpg", 
+                "import_date": "09:45:39 2015-03-27", 
+                "lastplayed": "None", 
+                "name": "Quest for Glory VGA", 
+                "notes": "", 
+                "package_data": {
+                    "parent": {
+                        "gameid": "quest_for_glory_vga_remake.0", 
+                        "name": "Quest For Glory 1"
+                    }, 
+                    "source_info": {
+                        "id_within_package": "quest_for_glory_vga_remake.0", 
+                        "package_id": "quest_for_glory_vga_remake", 
+                        "package_source": "gog"
+                    }, 
+                    "type": "content"
+                }, 
+                "playtime": 0.0, 
+                "priority": 0, 
+                "sources": [
+                    {
+                        "id": "quest_for_glory_vga_remake", 
+                        "source": "gog"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "00:24:32 2015-05-16", 
+            "type": "addgame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "00:24:32 2015-05-16", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "quest_for_glory_ega.0", 
+                "genre": "adventure", 
+                "hidden": 0, 
+                "icon_url": "https://www.gog.com/upload/images/2015/03/a65eff67a6d5259bdd36a9269a121a6eeded3657_bbC_20.jpg", 
+                "import_date": "09:45:39 2015-03-27", 
+                "lastplayed": "None", 
+                "name": "Quest for Glory EGA", 
+                "notes": "", 
+                "package_data": {
+                    "parent": {
+                        "gameid": "quest_for_glory_vga_remake.0", 
+                        "name": "Quest For Glory 1"
+                    }, 
+                    "source_info": {
+                        "id_within_package": "quest_for_glory_vga_remake.0", 
+                        "package_id": "quest_for_glory_vga_remake", 
+                        "package_source": "gog"
+                    }, 
+                    "type": "content"
+                }, 
+                "playtime": 0.0, 
+                "priority": 0, 
+                "sources": [
+                    {
+                        "id": "quest_for_glory_vga_remake", 
+                        "source": "gog"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "00:24:56 2015-05-16", 
+            "type": "deletegame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "00:24:32 2015-05-16", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "quest_for_glory_vga.0", 
+                "genre": "adventure", 
+                "hidden": 0, 
+                "icon_url": "https://www.gog.com/upload/images/2015/03/a65eff67a6d5259bdd36a9269a121a6eeded3657_bbC_20.jpg", 
+                "import_date": "09:45:39 2015-03-27", 
+                "lastplayed": "None", 
+                "name": "Quest for Glory VGA", 
+                "notes": "", 
+                "package_data": {
+                    "parent": {
+                        "gameid": "quest_for_glory_vga_remake.0", 
+                        "name": "Quest For Glory 1"
+                    }, 
+                    "source_info": {
+                        "id_within_package": "quest_for_glory_vga_remake.0", 
+                        "package_id": "quest_for_glory_vga_remake", 
+                        "package_source": "gog"
+                    }, 
+                    "type": "content"
+                }, 
+                "playtime": 0.0, 
+                "priority": 0, 
+                "sources": [
+                    {
+                        "id": "quest_for_glory_vga_remake", 
+                        "source": "gog"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "00:25:11 2015-05-16", 
+            "type": "deletegame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "00:24:16 2015-05-16", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "quest_for_glory_1_ega.0", 
+                "genre": "adventure", 
+                "hidden": 0, 
+                "icon_url": "https://www.gog.com/upload/images/2015/03/a65eff67a6d5259bdd36a9269a121a6eeded3657_bbC_20.jpg", 
+                "import_date": "09:45:39 2015-03-27", 
+                "lastplayed": "None", 
+                "name": "Quest for Glory 1 EGA", 
+                "notes": "", 
+                "package_data": {
+                    "parent": {
+                        "gameid": "quest_for_glory_vga_remake.0", 
+                        "name": "Quest For Glory 1"
+                    }, 
+                    "source_info": {
+                        "id_within_package": "quest_for_glory_vga_remake.0", 
+                        "package_id": "quest_for_glory_vga_remake", 
+                        "package_source": "gog"
+                    }, 
+                    "type": "content"
+                }, 
+                "playtime": 0.0, 
+                "priority": 0, 
+                "sources": [
+                    {
+                        "id": "quest_for_glory_vga_remake", 
+                        "source": "gog"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "00:28:23 2015-05-16", 
+            "type": "addgame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "00:24:16 2015-05-16", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "quest_for_glory_1_vga.0", 
+                "genre": "adventure", 
+                "hidden": 0, 
+                "icon_url": "https://www.gog.com/upload/images/2015/03/a65eff67a6d5259bdd36a9269a121a6eeded3657_bbC_20.jpg", 
+                "import_date": "09:45:39 2015-03-27", 
+                "lastplayed": "None", 
+                "name": "Quest for Glory 1 VGA", 
+                "notes": "", 
+                "package_data": {
+                    "parent": {
+                        "gameid": "quest_for_glory_vga_remake.0", 
+                        "name": "Quest For Glory 1"
+                    }, 
+                    "source_info": {
+                        "id_within_package": "quest_for_glory_vga_remake.0", 
+                        "package_id": "quest_for_glory_vga_remake", 
+                        "package_source": "gog"
+                    }, 
+                    "type": "content"
+                }, 
+                "playtime": 0.0, 
+                "priority": 0, 
+                "sources": [
+                    {
+                        "id": "quest_for_glory_vga_remake", 
+                        "source": "gog"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "00:28:23 2015-05-16", 
+            "type": "addgame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "00:24:16 2015-05-16", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "quest_for_glory_vga_remake.0", 
+                "genre": "adventure", 
+                "hidden": 0, 
+                "icon_url": "https://www.gog.com/upload/images/2015/03/a65eff67a6d5259bdd36a9269a121a6eeded3657_bbC_20.jpg", 
+                "import_date": "09:45:39 2015-03-27", 
+                "lastplayed": "None", 
+                "name": "Quest For Glory 1", 
+                "notes": "", 
+                "package_data": {
+                    "contents": [
+                        {
+                            "gameid": "quest_for_glory_1_ega.0", 
+                            "name": "Quest for Glory 1 EGA"
+                        }, 
+                        {
+                            "gameid": "quest_for_glory_1_vga.0", 
+                            "name": "Quest for Glory 1 VGA"
+                        }
+                    ], 
+                    "source_info": {
+                        "id_within_package": "quest_for_glory_vga_remake.0", 
+                        "package_id": "quest_for_glory_vga_remake", 
+                        "package_source": "gog"
+                    }, 
+                    "type": "bundle"
+                }, 
+                "playtime": 0.0, 
+                "priority": 0, 
+                "sources": [
+                    {
+                        "id": "quest_for_glory_vga_remake", 
+                        "source": "gog"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "00:28:23 2015-05-16", 
+            "type": "addgame"
         }
     ], 
     "games": {
@@ -821,7 +1673,7 @@
             "website": ""
         }, 
         "8th_wonder_of_the_world.0": {
-            "data_changed_date": "09:45:39 2015-03-27", 
+            "data_changed_date": "00:01:05 2015-05-16", 
             "finish_date": "", 
             "finished": 0, 
             "gameid": "8th_wonder_of_the_world.0", 
@@ -829,11 +1681,11 @@
             "hidden": 0, 
             "icon_url": "https://www.gog.com/upload/images/2015/03/5c55ac8c774f14c532f2e3a43cb2c2628d8ed72e_bbC_20.jpg", 
             "import_date": "09:45:39 2015-03-27", 
-            "lastplayed": null, 
-            "name": "8th Wonder Of The World", 
+            "lastplayed": "None", 
+            "name": "Cultures: 8th Wonder Of The World", 
             "notes": "", 
             "package_data": {}, 
-            "playtime": 0, 
+            "playtime": 0.0, 
             "priority": 0, 
             "sources": [
                 {
@@ -1347,152 +2199,6 @@
             "sources": [
                 {
                     "id": "aliens_versus_predator_classic_2000", 
-                    "source": "gog"
-                }
-            ], 
-            "website": ""
-        }, 
-        "alone_in_the_dark.0": {
-            "data_changed_date": "16:18:30 2015-05-15", 
-            "finish_date": "", 
-            "finished": 0, 
-            "gameid": "alone_in_the_dark.0", 
-            "genre": "action", 
-            "hidden": 0, 
-            "icon_url": "", 
-            "import_date": "", 
-            "lastplayed": null, 
-            "name": "Alone In The Dark", 
-            "notes": "", 
-            "package_data": {
-                "contents": [
-                    {
-                        "gameid": "alone_in_the_dark_1.0", 
-                        "name": "Alone In The Dark 1"
-                    }, 
-                    {
-                        "gameid": "alone_in_the_dark_2.0", 
-                        "name": "Alone In The Dark 2"
-                    }, 
-                    {
-                        "gameid": "alone_in_the_dark_3.0", 
-                        "name": "Alone In The Dark 3"
-                    }
-                ], 
-                "source_info": {
-                    "id_within_package": "alone_in_the_dark.0", 
-                    "package_id": "alone_in_the_dark", 
-                    "package_source": "gog"
-                }, 
-                "type": "bundle"
-            }, 
-            "playtime": 0, 
-            "priority": 0, 
-            "sources": [
-                {
-                    "id": "alone_in_the_dark", 
-                    "source": "gog"
-                }
-            ], 
-            "website": ""
-        }, 
-        "alone_in_the_dark_1.0": {
-            "data_changed_date": "16:18:30 2015-05-15", 
-            "finish_date": "", 
-            "finished": 0, 
-            "gameid": "alone_in_the_dark_1.0", 
-            "genre": "", 
-            "hidden": 0, 
-            "icon_url": "https://www.gog.com/upload/images/2011/04/bc9d5857f8462ecb5bd40858eabb38ca9d426fbb_bbC_20.jpg", 
-            "import_date": "", 
-            "lastplayed": "", 
-            "name": "Alone In The Dark 1", 
-            "notes": "", 
-            "package_data": {
-                "parent": {
-                    "gameid": "alone_in_the_dark.0", 
-                    "name": "Alone In The Dark"
-                }, 
-                "source_info": {
-                    "id_within_package": "alone_in_the_dark_1.0", 
-                    "package_id": "alone_in_the_dark", 
-                    "package_source": "gog"
-                }, 
-                "type": "content"
-            }, 
-            "playtime": 0, 
-            "priority": 0, 
-            "sources": [
-                {
-                    "id": "alone_in_the_dark", 
-                    "source": "gog"
-                }
-            ], 
-            "website": ""
-        }, 
-        "alone_in_the_dark_2.0": {
-            "data_changed_date": "16:18:30 2015-05-15", 
-            "finish_date": "", 
-            "finished": 0, 
-            "gameid": "alone_in_the_dark_2.0", 
-            "genre": "", 
-            "hidden": 0, 
-            "icon_url": "https://www.gog.com/upload/images/2011/04/bc9d5857f8462ecb5bd40858eabb38ca9d426fbb_bbC_20.jpg", 
-            "import_date": "", 
-            "lastplayed": "", 
-            "name": "Alone In The Dark 2", 
-            "notes": "", 
-            "package_data": {
-                "parent": {
-                    "gameid": "alone_in_the_dark.0", 
-                    "name": "Alone In The Dark"
-                }, 
-                "source_info": {
-                    "id_within_package": "alone_in_the_dark_2.0", 
-                    "package_id": "alone_in_the_dark", 
-                    "package_source": "gog"
-                }, 
-                "type": "content"
-            }, 
-            "playtime": 0, 
-            "priority": 0, 
-            "sources": [
-                {
-                    "id": "alone_in_the_dark", 
-                    "source": "gog"
-                }
-            ], 
-            "website": ""
-        }, 
-        "alone_in_the_dark_3.0": {
-            "data_changed_date": "16:18:30 2015-05-15", 
-            "finish_date": "", 
-            "finished": 0, 
-            "gameid": "alone_in_the_dark_3.0", 
-            "genre": "", 
-            "hidden": 0, 
-            "icon_url": "https://www.gog.com/upload/images/2011/04/bc9d5857f8462ecb5bd40858eabb38ca9d426fbb_bbC_20.jpg", 
-            "import_date": "", 
-            "lastplayed": "", 
-            "name": "Alone In The Dark 3", 
-            "notes": "", 
-            "package_data": {
-                "parent": {
-                    "gameid": "alone_in_the_dark.0", 
-                    "name": "Alone In The Dark"
-                }, 
-                "source_info": {
-                    "id_within_package": "alone_in_the_dark_3.0", 
-                    "package_id": "alone_in_the_dark", 
-                    "package_source": "gog"
-                }, 
-                "type": "content"
-            }, 
-            "playtime": 0, 
-            "priority": 0, 
-            "sources": [
-                {
-                    "id": "alone_in_the_dark", 
                     "source": "gog"
                 }
             ], 
@@ -16494,37 +17200,6 @@
             ], 
             "website": ""
         }, 
-        "m_a_x_m_a_x_2.0": {
-            "data_changed_date": null, 
-            "finish_date": "", 
-            "finished": 0, 
-            "gameid": "m_a_x_m_a_x_2.0", 
-            "genre": "action", 
-            "hidden": 0, 
-            "icon_url": "", 
-            "import_date": "", 
-            "lastplayed": null, 
-            "name": "M A X M A X 2", 
-            "notes": "", 
-            "package_data": {
-                "contents": [], 
-                "source_info": {
-                    "id_within_package": "", 
-                    "package_id": "m_a_x_m_a_x_2", 
-                    "package_source": "gog"
-                }, 
-                "type": "bundle"
-            }, 
-            "playtime": 0, 
-            "priority": 0, 
-            "sources": [
-                {
-                    "id": "m_a_x_m_a_x_2", 
-                    "source": "gog"
-                }
-            ], 
-            "website": ""
-        }, 
         "macguffins_curse.0": {
             "data_changed_date": "00:00:00 2012-12-04", 
             "finish_date": "", 
@@ -18563,7 +19238,7 @@
             "website": ""
         }, 
         "northland.0": {
-            "data_changed_date": "09:45:39 2015-03-27", 
+            "data_changed_date": "00:02:31 2015-05-16", 
             "finish_date": "", 
             "finished": 0, 
             "gameid": "northland.0", 
@@ -18571,11 +19246,11 @@
             "hidden": 0, 
             "icon_url": "https://www.gog.com/upload/images/2015/03/edba02c330adaa0c5280e6447ff8c952e7701b3f_bbC_20.jpg", 
             "import_date": "09:45:39 2015-03-27", 
-            "lastplayed": null, 
-            "name": "Northland", 
+            "lastplayed": "None", 
+            "name": "Cultures: Northland", 
             "notes": "", 
             "package_data": {}, 
-            "playtime": 0, 
+            "playtime": 0.0, 
             "priority": 0, 
             "sources": [
                 {
@@ -20579,6 +21254,74 @@
             ], 
             "website": ""
         }, 
+        "quest_for_glory_1_ega.0": {
+            "data_changed_date": "00:28:23 2015-05-16", 
+            "finish_date": "", 
+            "finished": 0, 
+            "gameid": "quest_for_glory_1_ega.0", 
+            "genre": "adventure", 
+            "hidden": 0, 
+            "icon_url": "https://www.gog.com/upload/images/2015/03/a65eff67a6d5259bdd36a9269a121a6eeded3657_bbC_20.jpg", 
+            "import_date": "09:45:39 2015-03-27", 
+            "lastplayed": "None", 
+            "name": "Quest for Glory 1 EGA", 
+            "notes": "", 
+            "package_data": {
+                "parent": {
+                    "gameid": "quest_for_glory_vga_remake.0", 
+                    "name": "Quest For Glory 1"
+                }, 
+                "source_info": {
+                    "id_within_package": "quest_for_glory_vga_remake.0", 
+                    "package_id": "quest_for_glory_vga_remake", 
+                    "package_source": "gog"
+                }, 
+                "type": "content"
+            }, 
+            "playtime": 0.0, 
+            "priority": 0, 
+            "sources": [
+                {
+                    "id": "quest_for_glory_vga_remake", 
+                    "source": "gog"
+                }
+            ], 
+            "website": ""
+        }, 
+        "quest_for_glory_1_vga.0": {
+            "data_changed_date": "00:28:23 2015-05-16", 
+            "finish_date": "", 
+            "finished": 0, 
+            "gameid": "quest_for_glory_1_vga.0", 
+            "genre": "adventure", 
+            "hidden": 0, 
+            "icon_url": "https://www.gog.com/upload/images/2015/03/a65eff67a6d5259bdd36a9269a121a6eeded3657_bbC_20.jpg", 
+            "import_date": "09:45:39 2015-03-27", 
+            "lastplayed": "None", 
+            "name": "Quest for Glory 1 VGA", 
+            "notes": "", 
+            "package_data": {
+                "parent": {
+                    "gameid": "quest_for_glory_vga_remake.0", 
+                    "name": "Quest For Glory 1"
+                }, 
+                "source_info": {
+                    "id_within_package": "quest_for_glory_vga_remake.0", 
+                    "package_id": "quest_for_glory_vga_remake", 
+                    "package_source": "gog"
+                }, 
+                "type": "content"
+            }, 
+            "playtime": 0.0, 
+            "priority": 0, 
+            "sources": [
+                {
+                    "id": "quest_for_glory_vga_remake", 
+                    "source": "gog"
+                }
+            ], 
+            "website": ""
+        }, 
         "quest_for_glory_2.0": {
             "data_changed_date": "09:45:39 2015-03-27", 
             "finish_date": "", 
@@ -20672,7 +21415,7 @@
             "website": ""
         }, 
         "quest_for_glory_vga_remake.0": {
-            "data_changed_date": "09:45:39 2015-03-27", 
+            "data_changed_date": "00:28:23 2015-05-16", 
             "finish_date": "", 
             "finished": 0, 
             "gameid": "quest_for_glory_vga_remake.0", 
@@ -20680,11 +21423,28 @@
             "hidden": 0, 
             "icon_url": "https://www.gog.com/upload/images/2015/03/a65eff67a6d5259bdd36a9269a121a6eeded3657_bbC_20.jpg", 
             "import_date": "09:45:39 2015-03-27", 
-            "lastplayed": null, 
-            "name": "Quest For Glory Vga Remake", 
+            "lastplayed": "None", 
+            "name": "Quest For Glory 1", 
             "notes": "", 
-            "package_data": {}, 
-            "playtime": 0, 
+            "package_data": {
+                "contents": [
+                    {
+                        "gameid": "quest_for_glory_1_ega.0", 
+                        "name": "Quest for Glory 1 EGA"
+                    }, 
+                    {
+                        "gameid": "quest_for_glory_1_vga.0", 
+                        "name": "Quest for Glory 1 VGA"
+                    }
+                ], 
+                "source_info": {
+                    "id_within_package": "quest_for_glory_vga_remake.0", 
+                    "package_id": "quest_for_glory_vga_remake", 
+                    "package_source": "gog"
+                }, 
+                "type": "bundle"
+            }, 
+            "playtime": 0.0, 
             "priority": 0, 
             "sources": [
                 {
@@ -31206,195 +31966,9 @@
         }
     }, 
     "multipack": {
-        "alone_in_the_dark": [
-            "alone in the dark 1", 
-            "alone in the dark 2", 
-            "alone in the dark 3"
-        ], 
-        "betrayal_at_krondor": [
-            "betrayal at krondor", 
-            "betrayal at antara"
-        ], 
-        "blackwell_bundle": [
-            "blackwell legacy", 
-            "blackwell unbound", 
-            "blackwell convergence", 
-            "blackwell deception"
-        ], 
-        "castles_castles_2": [
-            "castles 1", 
-            "castles 2"
-        ], 
-        "commandos_2_3": [
-            "commandos 2", 
-            "commandos 3"
-        ], 
-        "cossacks_anthology": [
-            "cossacks euro wars", 
-            "cossacks art of war", 
-            "cossacks back to war"
-        ], 
-        "cultures_12": [
-            "cultures 1", 
-            "cultures 2"
-        ], 
-        "cultures_34": [
-            "cultures 3", 
-            "cultures 4"
-        ], 
-        "descent_1_descent_2": [
-            "descent 1", 
-            "descent 2"
-        ], 
-        "dracula_trilogy": [
-            "dracula 1", 
-            "dracula 2", 
-            "dracula 3"
-        ], 
-        "drod_1_2_3": [
-            "drod_1", 
-            "drod_2", 
-            "drod_3"
-        ], 
-        "gobliiins_pack": [
-            "goblins 1", 
-            "gobliins 2", 
-            "gobliiins 3"
-        ], 
-        "ishar_compilation": [
-            "ishar crystals", 
-            "ishar legend", 
-            "ishar 2", 
-            "ishar 3"
-        ], 
-        "kings_quest_1_2_3": [
-            "king's quest 1", 
-            "king's quest 2", 
-            "king's quest 3"
-        ], 
-        "kings_quest_4_5_6": [
-            "king's quest 4", 
-            "king's quest 5", 
-            "king's quest 6"
-        ], 
-        "kings_quest_7_8": [
-            "king's quest 7", 
-            "king's quest 8"
-        ], 
-        "lands_of_lore_1_2": [
-            "lands of lore 1", 
-            "lands of lore 2"
-        ], 
-        "leisure_suit_larry": [
-            "leisure suit larry 1", 
-            "leisure suit larry 2", 
-            "leisure suit larry 3", 
-            "leisure suit larry 4", 
-            "leisure suit larry 5", 
-            "leisure suit larry 6", 
-            "softporn adventures"
-        ], 
-        "masters_of_orion_1_2": [
-            "masters of orion 1", 
-            "masters of orion 2"
-        ], 
-        "megarace_1_2": [
-            "megarace 1", 
-            "megarace 2"
-        ], 
-        "might_and_magic_6_limited_edition": [
-            "might_and_magic_iii:_isles_of_terra", 
-            "might_and_magic_vi:_the_mandate_of_heaven", 
-            "might_and_magic_ii:_gates_to_another_world", 
-            "might_and_magic_book_one:_the_secret_of_the_inner_sanctum", 
-            "might_and_magic_iv+v:_world_of_xeen"
-        ], 
-        "patrician_1_2": [
-            "patrician 1", 
-            "patrician 2"
-        ], 
-        "police_quest_1_2_3_4": [
-            "police quest 1", 
-            "police quest 2", 
-            "police quest 3", 
-            "police quest 4"
-        ], 
-        "police_quest_swat_1_2": [
-            "police quest: swat 1", 
-            "police quest: swat 2"
-        ], 
-        "quest_for_glory": [
-            "quest for glory 1", 
-            "quest for glory 2", 
-            "quest for glory 3", 
-            "quest for glory 4", 
-            "quest for glory 5"
-        ], 
-        "realms_of_arkania_1_2": [
-            "realms of arkania 1", 
-            "realms of arkania 2"
-        ], 
-        "red_baron_pack": [
-            "red baron 1", 
-            "red baron 3d"
-        ], 
-        "robinsons_requiem_collection": [
-            "robinsons requiem", 
-            "deus"
-        ], 
-        "space_quest_1_2_3": [
-            "space quest 1", 
-            "space quest 2", 
-            "space quest 3"
-        ], 
-        "space_quest_4_5_6": [
-            "space quest 4", 
-            "space quest 5", 
-            "space quest 6"
-        ], 
-        "starflight_1_2": [
-            "starflight 1", 
-            "starflight 2"
-        ], 
-        "tex_murphy_1_2": [
-            "tex murphy mean streets", 
-            "tex murphy martian memorandum"
-        ], 
-        "the_incredible_machine_mega_pack": [
-            "the incredible machine 1", 
-            "the incredible machine 3", 
-            "the incredible machine contraptions", 
-            "the incredible machine even more contraptions"
-        ], 
-        "the_zork_anthology": [
-            "zork 1", 
-            "zork 2", 
-            "zork 3", 
-            "beyond zork", 
-            "zork zero", 
-            "planetfall"
-        ], 
-        "ultima_1_2_3": [
-            "ultima 1", 
-            "ultima 2", 
-            "ultima 3"
-        ], 
-        "ultima_456": [
-            "ultima 4", 
-            "ultima 5", 
-            "ultima 6"
-        ], 
-        "ultima_underworld_1_2": [
-            "ultima underworld 1", 
-            "ultima underworld 2"
-        ], 
-        "wing_commander_1_2": [
-            "wing commander 1", 
-            "wing commander 2"
-        ], 
-        "wizardry_6_7": [
-            "wizardry 6", 
-            "wizardry 7"
+        "quest_for_glory_vga_remake": [
+            "quest_for_glory_1_ega.0", 
+            "quest_for_glory_1_vga.0"
         ]
     }
 }

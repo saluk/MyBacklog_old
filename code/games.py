@@ -439,6 +439,8 @@ class Games:
             self.games[gameid] = game
             return game
         previous_data = cur_game.dict()
+        if game.name != cur_game.name:
+            cur_game.name = game.name
         if game.icon_url:
             cur_game.icon_url = game.icon_url
         if game.playtime > cur_game.playtime:
