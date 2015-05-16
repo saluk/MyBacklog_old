@@ -669,6 +669,96 @@
             }, 
             "time": "16:18:30 2015-05-15", 
             "type": "addgame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "genre", 
+                        "ov": "", 
+                        "v": "adventure"
+                    }
+                ]
+            }, 
+            "game": {
+                "data_changed_date": "00:00:00 2012-05-29", 
+                "finish_date": "", 
+                "finished": 1, 
+                "gameid": "lume.0", 
+                "genre": "adventure", 
+                "hidden": 0, 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/105100/cc5fb367330aef923d37515ce8edf9b60b70c31b.jpg", 
+                "import_date": "", 
+                "lastplayed": "00:00:00 2012-05-29", 
+                "name": "Lume", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 25320.0, 
+                "priority": 0, 
+                "sources": [
+                    {
+                        "id": 105100, 
+                        "source": "steam"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "20:12:07 2015-05-15", 
+            "type": "updategame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "10:26:44 2013-08-03", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "shadowrun_returns.0", 
+                "genre": "rpg", 
+                "hidden": 0, 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/234650/13c8e62b9b079fba385a2d959ed4e8ce2c378c8c.jpg", 
+                "import_date": "", 
+                "lastplayed": "10:26:44 2013-08-03", 
+                "name": "Shadowrun Returns", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 11520.0, 
+                "priority": 0, 
+                "sources": [
+                    {
+                        "id": 234650, 
+                        "source": "steam"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "21:01:08 2015-05-15", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "10:26:44 2013-08-03", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "shadowrun_returns.0", 
+                "genre": "rpg", 
+                "hidden": 0, 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/234650/13c8e62b9b079fba385a2d959ed4e8ce2c378c8c.jpg", 
+                "import_date": "", 
+                "lastplayed": "10:26:44 2013-08-03", 
+                "name": "Shadowrun Returns", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 11520.0, 
+                "priority": 0, 
+                "sources": [
+                    {
+                        "id": 234650, 
+                        "source": "steam"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "22:15:42 2015-05-15", 
+            "type": "stopgame"
         }
     ], 
     "games": {
@@ -16336,7 +16426,7 @@
             "website": ""
         }, 
         "lume.0": {
-            "data_changed_date": "00:00:00 2012-05-29", 
+            "data_changed_date": "20:12:07 2015-05-15", 
             "finish_date": "", 
             "finished": 1, 
             "gameid": "lume.0", 
@@ -22721,12 +22811,12 @@
             "hidden": 0, 
             "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/234650/13c8e62b9b079fba385a2d959ed4e8ce2c378c8c.jpg", 
             "import_date": "", 
-            "lastplayed": "10:26:44 2013-08-03", 
+            "lastplayed": "22:15:43 2015-05-15", 
             "name": "Shadowrun Returns", 
             "notes": "", 
             "package_data": {}, 
-            "playtime": 11520.0, 
-            "priority": 0, 
+            "playtime": 15994.047872066498, 
+            "priority": -1, 
             "sources": [
                 {
                     "id": 234650, 

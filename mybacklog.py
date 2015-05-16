@@ -632,12 +632,14 @@ class GamelistForm(QWidget):
         self.games_list_widget.setIconSize(QSize(48,48))
         self.games_list_widget.horizontalHeader().setVisible(True)
         self.games_list_widget.verticalHeader().setVisible(False)
-        self.games_list_widget.setRowCount(len(self.gamelist))
+        self.games_list_widget.setRowCount(len(self.gamelist)+1)
         self.games_list_widget.setColumnCount(6)
         self.games_list_widget.itemSelectionChanged.connect(self.selected_row)
         for i,g in enumerate(self.gamelist):
             self.update_game_row(g["game"],i)
+        self.update_game_row(games.Game(name="Total Time Played"),i+1)
         self.dosearch()
+
         self.game_scroller.verticalScrollBar().setValue(0)
         self.games_list_widget.setHorizontalHeaderLabels([x[0] for x in self.columns])
         self.games_list_widget.resizeColumnsToContents()
@@ -814,6 +816,8 @@ class GamelistForm(QWidget):
             item = self.games_list_widget.selectedItems()[0]
             row = item.row()
             gameid = self.games_list_widget.item(row,0).data(DATA_GAMEID)
+            if gameid not in self.games.games:
+                return
             game = self.games.games[gameid]
             self.update_game_options(game)
 
@@ -823,6 +827,8 @@ class GamelistForm(QWidget):
 
     def cell_changed(self,row,col):
         gameid = self.games_list_widget.item(row,0).data(DATA_GAMEID)
+        if gameid not in self.games.games:
+            return
         game = self.games.games[gameid]
         self.games_list_widget.item(row,col).setBackground(QColor(200,10,10))
         if self.columns[col][2]:
@@ -858,12 +864,14 @@ class GamelistForm(QWidget):
         self.show_edit_widget(game,None,self,new=True)
 
     def dosearch(self,text=None):
+        played = 0
+
         sn = self.search_name.text().lower()
         sg = self.search_genre.text().lower()
         sp = self.search_platform.text().lower()
         if sp == "emu":
             sp = "gba or snes or n64 or nds"
-        for row in range(self.games_list_widget.rowCount()):
+        for row in range(self.games_list_widget.rowCount()-1):
             gameid = self.games_list_widget.item(row,0).data(DATA_GAMEID)
             game = self.games.games[gameid]
             self.games_list_widget.setRowHidden(row,False)
@@ -887,6 +895,21 @@ class GamelistForm(QWidget):
             (sp and not match(sp," ".join([s["source"] for s in game.sources]))):
                 self.games_list_widget.setRowHidden(row,True)
                 continue
+
+            played += game.playtime
+
+        #Total playtime
+        total_hours = QTableWidgetItem("GAME HOURS")
+        min = played/60.0
+        hour = int(min/60.0)
+        min = min-hour*60.0
+        day = int(hour/24.0)
+        if day:
+            hour = hour-day*24.0
+            total_hours.setText("%.2dd%.2d:%.2d"%(day,hour,min))
+        else:
+            total_hours.setText("%.2d:%.2d"%(hour,min))
+        self.games_list_widget.setItem(row+1,4,total_hours)
  
 if __name__ == '__main__':
     import sys

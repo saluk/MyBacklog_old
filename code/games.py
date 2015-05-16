@@ -229,7 +229,8 @@ class Game:
         return {}
     def get_path(self):
         """If possible, return path to the main exe or file which launches the game"""
-        assert self.games
+        if not self.games:
+            return ""
         files = self.games.local.get("game_data",{}).get(self.gameid,{}).get("files",[])
         for f in files:
             if f["primary"]:
