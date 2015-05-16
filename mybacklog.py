@@ -58,6 +58,11 @@ class RunGameThread(QThread):
         while self.process and self.process.returncode is None:
             self.process.communicate()
 
+class ProcessIconsThread(QThread):
+    app = None
+    def run(self):
+        self.app.process_icons()
+
 
 class Cookies(QNetworkCookieJar):
     def __init__(self):
@@ -285,39 +290,53 @@ class EditGame(QWidget):
         if row:
             self.app.games_list_widget.setRowHidden(row,True)
 
-def icon_for_game(game,size,icon_cache):
+def path_to_icon(game):
     if game.icon_url:
-        fpath = "cache/icons/"+game.icon_url.replace("http","").replace("https","").replace(":","").replace("/","")
+        return "cache/icons/"+game.icon_url.replace("http","").replace("https","").replace(":","").replace("/",""),"download",game.icon_url
+    elif game.get_exe():
+        exe_path = game.get_exe()
+        return "cache/icons/"+exe_path.replace("http","").replace("https","").replace(":","").replace("/","").replace("\\",""),"extract",exe_path
+    elif game.get_gba():
+        gba_path = game.get_gba()
+        return "cache/icons/"+gba_path.replace("http","").replace(":","").replace("/","").replace("\\",""),"gba",gba_path
+    else:
+        return "icons/blank.png",None,""
+
+def icon_in_cache(game,cache):
+    fpath,mode,url = path_to_icon(game)
+    if fpath in cache:
+        return QIcon(cache[fpath])
+    return None
+
+def icon_for_game(game,size,icon_cache):
+    fpath,mode,url = path_to_icon(game)
+    if mode == "download":
         if not os.path.exists(fpath):
+            print("Download icon:",game.icon_url)
             r = requests.get(game.icon_url)
             f = open(fpath,"wb")
             f.write(r.content)
             f.close()
-    elif game.get_exe():
-        exe_path = game.get_exe()
-        fpath = "cache/icons/"+exe_path.replace("http","").replace("https","").replace(":","").replace("/","").replace("\\","")
+    elif mode == "extract":
         if not os.path.exists(fpath):
-            p = extract_icons.get_icon(exe_path)
+            print("Extract icon:",url)
+            p = extract_icons.get_icon(url)
             import shutil
             if p:
                 shutil.copy(p,fpath)
-    elif game.get_gba():
-        gba_path = game.get_gba()
-        fpath = "cache/icons/"+gba_path.replace("http","").replace(":","").replace("/","").replace("\\","")
+    elif mode == "gba":
         if not os.path.exists(fpath):
-            p = extract_icons.get_gba(gba_path)
+            print("Download gba icon:",url)
+            p = extract_icons.get_gba(url)
             import shutil
             if p:
                 shutil.copy(p,fpath)
-    else:
-        fpath = "icons/blank.png"
     if os.path.exists(fpath) and not fpath+"_%d"%size in icon_cache:
         qp = QPixmap(fpath)
         if not qp.isNull():
-            qp = qp.scaled(size,size)
+            qp = qp.scaled(size,size,Qt.IgnoreAspectRatio,Qt.SmoothTransformation)
         icon_cache[fpath] = qp
-    if fpath in icon_cache:
-        return QIcon(icon_cache[fpath])
+    return icon_in_cache(game,icon_cache)
 
 class GameOptions(QWidget):
     def __init__(self, game, app):
@@ -496,6 +515,9 @@ class GamelistForm(QWidget):
             if source not in self.icons:
                 self.icons[source] = QPixmap("icons/blank.png")
         self.gicons = {}
+        self.icon_processes = []
+        self.icon_thread = ProcessIconsThread()
+        self.icon_thread.app = self
 
         self.timer = QTimer(self)
         self.timer.setInterval(300000)
@@ -554,6 +576,23 @@ class GamelistForm(QWidget):
             gameid = self.games_list_widget.item(row,0).data(DATA_GAMEID)
             if gameid == game.gameid:
                 return row
+
+    def process_icons(self):
+        for widget,game,size in self.icon_processes:
+            icon = icon_for_game(game,48,self.gicons)
+            if icon:
+                try:
+                    widget.setIcon(icon)
+                    widget.repaint()
+                except:
+                    pass
+
+    def set_icon(self,widget,game,size):
+        cached = icon_in_cache(game,self.gicons)
+        if cached:
+            widget.setIcon(cached)
+            return
+        self.icon_processes.append((widget,game,48))
         
     def update_game_row(self,game,row=None):
         if row is None:
@@ -597,9 +636,8 @@ class GamelistForm(QWidget):
             
         label = QTableWidgetItem("")
         label.setBackground(bg)
-        icon = icon_for_game(game,48,self.gicons)
-        if icon:
-            label.setIcon(icon)
+        self.set_icon(label,game,48)
+        self.icon_thread.start()
         self.games_list_widget.setItem(row,1,label)
             
         name = QTableWidgetItem("GAME NAME")
@@ -685,15 +723,11 @@ class GamelistForm(QWidget):
     def import_gog(self):
         #self.browser = Browser("https://secure.gog.com/account/games",self)
         try:
-            self.gog.better_get_shelf()
+            games = self.gog.better_get_shelf(self.games.multipack)
         except gogapi.BadAccount:
             self.edit_account = account.AccountForm(self,"Improper GOG account, please update gog username and password",["gog_user","gog_password"])
             self.edit_account.show()
             return
-        self.import_gog_html()
-
-    def import_gog_html(self):
-        games = self.gog.import_gog(self.games.multipack)
         self.games.add_games(games)
         self.update_gamelist_widget()
         self.games.save()

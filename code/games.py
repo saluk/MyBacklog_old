@@ -280,7 +280,6 @@ actions = {"add":{"type":"addgame","game":"","time":""},
         }
 def changed(da,db):
     """Helper for update action, returns difference of 2 dicts"""
-    print("Changed? ",da,db)
     d = {"_del_":[],"_add_":[],"_set_":[]}
     for k in da:
         if k not in db:
@@ -296,7 +295,6 @@ def changed(da,db):
         del d["_add_"]
     if not d["_set_"]:
         del d["_set_"]
-    print(d)
     return d
 def add_action(t,**d):
     a = actions[t].copy()
@@ -451,12 +449,14 @@ class Games:
             cur_game.finished = 1
         if game.lastplayed and (not cur_game.lastplayed or stot(game.lastplayed)>stot(cur_game.lastplayed)):
             cur_game.lastplayed = game.lastplayed
+        if game.sources != cur_game.sources:
+            cur_game.sources = game.sources
         cur_game.package_data = game.package_data.copy()
         diff = changed(previous_data,cur_game.dict())
         if diff:
             cur_game.data_changed_date = now()
             self.actions.append(add_action("update",game=game.dict(),changes=diff))
-            print("update 2",cur_game.gameid,cur_game.source_match,">",game.name,game.source_match)
+            print("update 2",cur_game.gameid,cur_game.source_match,">",game.name.encode("utf8"),game.source_match)
         return cur_game
     def list(self,sort="priority"):
         v = self.games.values()

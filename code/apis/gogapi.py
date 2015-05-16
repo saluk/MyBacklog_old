@@ -2,6 +2,7 @@
 import time
 import requests
 import re
+import os
 from .. import games
 import json
 
@@ -113,19 +114,20 @@ def import_gog(multipack={}):
                 }
                 package.package_data["contents"].append({"gameid":game.gameid,"name":game.name})
             imported_games.append(game)
+    crash
     return imported_games
 
 class Browser:
     def __init__(self):
         self.cookies = {}
-        #self.cookies = {"guc_al":"0","sessions_gog_com":"0","__utma":"95732803.1911890316.1399672018.1399672018.1399672018.1","__utmb":"95732803.5.9.1399672201295","__utmz":"95732803.1399672018.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)"}
         self.headers = {"Accept":"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8","Accept-Encoding":"gzip, deflate","Accept-Language":"en-us,ko;q=0.7,en;q=0.3",
-"User-Agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:28.0) Gecko/20100101 Firefox/28.0",
-"Referer":"http://www.gog.com"}
-    def post(self,url,data={},params={}):
+            "User-Agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:28.0) Gecko/20100101 Firefox/28.0",
+            "Referer":"https://www.humblebundle.com/",
+            "X-Requested-With":"XMLHttpRequest"}
+    def post(self,url,datax={},params={}):
         self.json = {}
         self.text = ""
-        answer = requests.post(url,data=data,params=params,cookies=self.cookies,headers=self.headers,allow_redirects=True)
+        answer = requests.post(url,data=datax,params=params,cookies=self.cookies,headers=self.headers,allow_redirects=True)
         self.answer = answer
         self.cookies.update(answer.cookies)
         try:
@@ -137,30 +139,68 @@ class Browser:
             self.url = answer.url
         except:
             pass
-    def get(self,url,params={}):
+    def get(self,url,params={},cache=False):
         self.json = {}
         self.text = ""
-        answer = requests.get(url,params=params,cookies=self.cookies,headers=self.headers)
-        self.cookies.update(answer.cookies)
-        try:
-            self.json = answer.json()
-        except:
-            pass
-        try:
-            self.text = answer.text
-            self.url = answer.url
-        except:
-            pass
+        if cache:
+            if not os.path.exists("cache/gogapi"):
+                os.mkdir("cache/gogapi")
+        cache_url = "cache/gogapi/"+url.replace(":","").replace("/","").replace("?","QU").replace("&","AN")
+        if not cache or not os.path.exists(cache_url):
+            answer = requests.get(url,params=params,cookies=self.cookies,headers=self.headers)
+            self.cookies.update(answer.cookies)
+            try:
+                self.json = answer.json()
+            except:
+                pass
+            try:
+                self.text = answer.text
+                self.url = answer.url
+            except:
+                pass
+            if cache:
+                f = open(cache_url,"w")
+                f.write(json.dumps({"json":self.json,"text":self.text,"url":self.url}))
+                f.close()
+        else:
+            f = open(cache_url)
+            d = json.loads(f.read())
+            f.close()
+            self.json = d["json"]
+            self.text = d["text"]
+            self.url = d["url"]
 
 class BadAccount(Exception):
     pass
+
+#Format:
+"""{"products":[
+    {"isGalaxyCompatible":true,
+    "tags":[],
+    "id":1207666333,
+    "availability":{"isAvailable":true,"isAvailableInAccount":true},
+    "title":"Dead State",
+    "image":"\/\/images-3.gog.com\/b71936e5a70a388f5e3db8c729c7e46c2278e43904c1978ab968240efbefbadf",
+    "url":"\/game\/dead_state",
+    "worksOn":{"Windows":true,"Mac":false,"Linux":false},
+    "category":"Role-playing",
+    "rating":34,
+    "isComingSoon":false,
+    "isMovie":false,
+    "isGame":true,
+    "slug":"dead_state",
+    "updates":0,
+    "isNew":true,
+    "dlcCount":0,
+    "isHidden":false}
+]}"""
 
 class Gog:
     def __init__(self,username,password):
         self.username = username
         self.password = password
         self.import_gog = import_gog
-    def better_get_shelf(self):
+    def better_get_shelf(self,multipack):
         if not self.username or not self.password:
             raise BadAccount()
         print(time.time())
@@ -225,25 +265,59 @@ class Gog:
         f = open("cache/cookies","w")
         f.write(repr(b.cookies))
         f.close()
-        count = 50
-        page=1
-        f = open("cache/mygog_shelf.html","w")
-        #b.get("https://www.gog.com/account")
-        #f.write(b.text)
-        while count:
-            b.get("https://www.gog.com/account/ajax",params={
-                "a":"gamesShelfMore",
-                "p":page,
-                "s":"date_purchased",
-                "h":0,
-                "q":"",
-                "t":"%d"%time.time()*100
-                })
-            print(b.json["count"])
-            f.write(b.json["html"])
-            page+=1
-            count=b.json["count"]
-        f.close()
+
+        url = "https://www.gog.com/account/getFilteredProducts?mediaType=1&page=%(page)s&sortBy=date_purchased"
+
+        imported_games = []
+        packs = {}
+        page = 1
+        while 1:
+            print("getting page",page)
+            b.get(url%{"page":page},cache=True)
+            for game_data in b.json["products"]:
+                if not game_data["isGame"]:
+                    continue
+                gameid = game_data["slug"]
+                gameid2 = game_data["id"]
+                gamename = game_data["title"]
+                #Add a formatter to the image to get the right size
+                #_392 = big icon
+                #_bg_1120.jpg = background of game page
+                gameicon = "http:"+game_data["image"].replace("\\/","/")+"_392.jpg"
+                game = games.Game(name=gamename,icon_url=gameicon)
+                game.sources = [{"source":"gog","id":gameid,"id2":gameid2}]
+
+                if gameid in multipack:
+                    if gameid not in packs:
+                        package = games.Game(name=gamename,icon_url=gameicon)
+                        package.sources = [{"source":"gog","id":gameid,"id2":gameid2}]
+                        package.package_data = {
+                            "type":"bundle",
+                            "contents":[],
+                            "source_info":package.create_package_data()
+                        }
+                        packs[gameid] = package
+                        imported_games.append(package)
+                    package = packs[gameid]
+                    for subgamename in multipack[gameid]:
+                        subgame = game.copy()
+                        subgame.name = subgamename
+                        subgame.gameid = subgame.name + ".0"
+                        print("packaging",subgamename,"into",subgame.gameid,subgame.create_package_data())
+                        subgame.package_data = {
+                            "type":"content",
+                            "parent":{"gameid":package.gameid,"name":package.name},
+                            "source_info":subgame.create_package_data()
+                        }
+                        package.package_data["contents"].append({"gameid":subgame.gameid,"name":subgame.name})
+                        imported_games.append(subgame)
+                else:
+                    imported_games.append(game)
+
+            if page == b.json["totalPages"]:
+                break
+            page += 1
+        return imported_games
 
 if __name__ == "__main__":
     better_get_shelf()
