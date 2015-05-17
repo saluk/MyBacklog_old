@@ -716,8 +716,8 @@ class GamelistForm(QWidget):
     def import_humble(self):
         games = humbleapi.get_humble_gamelist()
         self.games.add_games(games)
+        self.games.save()
         self.update_gamelist_widget()
-        crash
         self.games.save()
 
     def import_gog(self):
@@ -927,7 +927,7 @@ class GamelistForm(QWidget):
                 for s in searches:
                     if s in field:
                         return True
-            if (sn and not match(sn,game.name.lower())) or \
+            if (sn and not (match(sn,game.name.lower()) or match(sn,game.package_data.get("parent",{}).get("name","").lower()) )) or \
             (sg and not match(sg,game.genre.lower())) or \
             (sp and not match(sp," ".join([s["source"] for s in game.sources]))):
                 self.games_list_widget.setRowHidden(row,True)

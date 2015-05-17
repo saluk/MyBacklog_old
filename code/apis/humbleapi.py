@@ -105,6 +105,7 @@ def get_humble_gamelist():
         print (b.json)
         hdata = b.json
         package = games.Game(name=hdata["product"]["human_name"])
+        package.gameid = package.name_stripped+"_package.0"
         package.sources = [{"source":"humble","id":hdata["product"]["machine_name"],"package":hdata["gamekey"]}]
         package.package_data = {
             "type":"bundle",
@@ -116,6 +117,7 @@ def get_humble_gamelist():
             game = games.Game(name=sub["human_name"],
                                         website=sub["url"],
                                         icon_url=sub["icon"])
+            game.gameid = game.name_stripped+"_child_"+sub["machine_name"]+".0"
             game.sources = [{"source":"humble","id":sub["machine_name"],"package":hdata["gamekey"]}]
             game.package_data = {
                     "type":"content",
@@ -125,7 +127,7 @@ def get_humble_gamelist():
             imported_games.append(game)
             package.package_data["contents"].append({"gameid":game.gameid,"name":game.name})
     for g in imported_games:
-        print (g.name,g.icon_url)
+        print (g.name,g.gameid,g.package_data.keys(),g.icon_url)
     return imported_games
     
 

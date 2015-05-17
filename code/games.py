@@ -202,6 +202,8 @@ class Game:
             return False
         if self.is_in_package != other_game.is_in_package:
             return False
+        if self.is_in_package and other_game.is_package or self.is_package and other_game.is_in_package:
+            return False
         if self.is_in_package:
             if self.package_data["source_info"] != other_game.package_data["source_info"]:
                 return False
@@ -402,43 +404,71 @@ class Games:
             if game.same_game(self.games[oid]):
                 list.append(self.games[oid])
             elif game.gameid==oid:
+                print("sameid:",game.gameid)
                 list.append(self.games[oid])
         return list
-    def update_game(self,gameid,game,force=False):
+    def correct_gameid(self,oldid,gameid):
+        okey,oldi = gameid.rsplit(".",1)
+        i = int(oldi)
+        while okey+"."+str(i) in self.games:
+            i += 1
+        newid = okey+"."+str(i)
+        if newid!=oldid:
+            #TODO: kind of bad, Force all references to update their key
+            for chk_game in self.games.values():
+                for child in chk_game.package_data.get("contents",[]):
+                    if child["gameid"] == oldid:
+                        print("changed child id",child["gameid"],"to",newid,"on",chk_game.gameid)
+                        child["gameid"] = newid
+                parent = chk_game.package_data.get("parent",{})
+                if parent:
+                    print("found parent ",parent)
+                    if parent.get("gameid",{}) == oldid:
+                        print("changed parent id",parent["gameid"],"to",newid,"on",chk_game.gameid)
+                        parent["gameid"] = newid
+        return newid
+    def update_id(self,oldid,newid):
+        """Convert a game from oldid to newid,
+        if newid already exists; modify it"""
+        print("updating id",oldid,newid)
+        if oldid==newid:
+            return newid
+        return self.correct_gameid(oldid,newid)
+    def force_update_game(self,oldid,game):
+        game.gameid = self.update_id(oldid,game.gameid)
+        cur_game = self.games[game.gameid]
+        diff = changed(cur_game.dict(),game.dict())
+        if diff:
+            print("UPDATE CHANGED GAME")
+            self.actions.append(add_action("update",game=game.dict(),changes=diff))
+        else:
+            print("UPDATE... did not change game")
+        return game
+    def update_game(self,gameid,game):
         assert(isinstance(game,Game))
+        game.games = self
 
         cur_game = None
-        i = 0
         for g in self.get_similar_games(game):
             if g.same_game(game):
                 cur_game = g
                 break
-            i2 = int(g.gameid.rsplit(".",1)[1])
-            if i2>i:
-                i = i2
-        okey,oldi = gameid.rsplit(".",1)
-        gameid = okey+"."+str(i)
         assert game is not cur_game
 
-        if not cur_game or force:
-            game.games = self
-            if cur_game:
-                diff = changed(cur_game.dict(),game.dict())
-                if diff:
-                    print("UPDATE CHANGED GAME")
-                    self.actions.append(add_action("update",game=game.dict(),changes=diff))
-                    print("updating",cur_game.gameid,cur_game.source_match,">",game.gameid,game.source_match)
-                else:
-                    print("UPDATE... did not change game")
-                    return game
-            else:
-                self.actions.append(add_action("add",game=game.dict()))
-                print("ADD GAME ACTION")
-                print("adding",game.gameid,game.source_match)
+        if not cur_game:
+            game.gameid = self.correct_gameid(gameid,gameid)
+            self.actions.append(add_action("add",game=game.dict()))
+            print("ADD GAME ACTION")
+            print("adding",game.gameid,game.source_match)
             game.data_changed_date = now()
-            self.games[gameid] = game
+            self.games[game.gameid] = game
             return game
         previous_data = cur_game.dict()
+        gameid = self.update_id(cur_game.gameid,gameid)
+        if gameid!=cur_game.gameid:
+            del self.games[cur_game.gameid]
+            cur_game.gameid = gameid
+            self.games[gameid] = cur_game
         if game.name != cur_game.name:
             cur_game.name = game.name
         if game.icon_url:
@@ -457,6 +487,8 @@ class Games:
             cur_game.data_changed_date = now()
             self.actions.append(add_action("update",game=game.dict(),changes=diff))
             print("update 2",cur_game.gameid,cur_game.source_match,">",game.name.encode("utf8"),game.source_match)
+        else:
+            print("no updates to",cur_game.gameid,cur_game.source_match)
         return cur_game
     def list(self,sort="priority"):
         v = self.games.values()
