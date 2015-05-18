@@ -248,7 +248,7 @@ class Game:
     def create_package_data(self):
         def get_source_info(source):
             if source["source"] == "gog":
-                return {"package_source":"gog","package_id":source["id"],"id_within_package":self.gameid}
+                return {"package_source":"gog","package_id":source["id"],"id_within_package":self.name_stripped}
             elif source["source"] == "humble":
                 return {"package_source":"humble","package_id":source["package"],"id_within_package":source["id"]}
         for source in self.sources:
@@ -494,7 +494,7 @@ class Games:
         assert(isinstance(game,Game))
         game.games = self
 
-        cur_game = self.find_matching_game(gameid,game)
+        cur_game = self.find_matching_game(game)
         assert game is not cur_game
 
         if not cur_game:

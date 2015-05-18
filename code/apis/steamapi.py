@@ -158,8 +158,7 @@ def import_steam(apikey=MY_API_KEY,userid=MY_STEAM_ID):
             app = apps[str(g["appid"])]
             if "LastPlayed" in app:
                 lastplayed=games.sec_to_ts(int(app["LastPlayed"]))
-        library.append(
-            games.Game(name=g["name"],
+        game = games.Game(name=g["name"],
                             minutes=g["playtime_forever"],
                             finished=set_finished,
                             sources=[
@@ -168,7 +167,8 @@ def import_steam(apikey=MY_API_KEY,userid=MY_STEAM_ID):
                             lastplayed=lastplayed,
                             icon_url=icon_url
             )
-        )
+        game.generate_gameid()
+        library.append(game)
     return library
     
 def load_userdata(path="C:\\Steam\\userdata\\39390212\\config\\localconfig.vdf"):

@@ -297,21 +297,23 @@ class Gog:
                             "source_info":package.create_package_data()
                         }
                         packs[gameid] = package
+                        package.generate_gameid()
                         imported_games.append(package)
                     package = packs[gameid]
                     for subgamename in multipack[gameid]:
                         subgame = game.copy()
                         subgame.name = subgamename
-                        subgame.gameid = subgame.name + ".0"
                         print("packaging",subgamename,"into",subgame.gameid,subgame.create_package_data())
                         subgame.package_data = {
                             "type":"content",
                             "parent":{"gameid":package.gameid,"name":package.name},
                             "source_info":subgame.create_package_data()
                         }
+                        subgame.generate_gameid()
                         package.package_data["contents"].append({"gameid":subgame.gameid,"name":subgame.name})
                         imported_games.append(subgame)
                 else:
+                    game.generate_gameid()
                     imported_games.append(game)
 
             if page == b.json["totalPages"]:

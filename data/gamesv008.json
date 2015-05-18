@@ -42990,6 +42990,821 @@
             }, 
             "time": "12:27:01 2015-05-18", 
             "type": "deletegame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "package_data", 
+                        "ov": {
+                            "contents": [
+                                {
+                                    "gameid": "e235cf6375dd3175159f3aecbdfe7a2f", 
+                                    "name": "Uplink"
+                                }, 
+                                {
+                                    "gameid": "3c9fb6dafc318ec01d308b5e2d617154", 
+                                    "name": "Darwinia"
+                                }, 
+                                {
+                                    "gameid": "0fc35b42efc352273968b27f6947c654", 
+                                    "name": "DEFCON"
+                                }, 
+                                {
+                                    "gameid": "ac0b18e4b56ac880c70ab26258883887", 
+                                    "name": "Multiwinia"
+                                }, 
+                                {
+                                    "gameid": "c9fecc1ff7b4ec6e12e1a004a668e7d5", 
+                                    "name": "City Generator Tech Demo"
+                                }, 
+                                {
+                                    "gameid": "ee113a54eea927454c9ae2c644d7c404", 
+                                    "name": "Voxel Tech Demo"
+                                }, 
+                                {
+                                    "gameid": "3fab2bbfdc8f055df47cebb19cbf329a", 
+                                    "name": "Aquaria"
+                                }, 
+                                {
+                                    "gameid": "9ad2e9142d71610710c20648cc979e8e", 
+                                    "name": "Crayon Physics Deluxe"
+                                }, 
+                                {
+                                    "gameid": "0959eda2cf7bae596017aa94f927f011", 
+                                    "name": "Dungeons of Dredmor"
+                                }
+                            ], 
+                            "source_info": {
+                                "id_within_package": "introversionbundle", 
+                                "package_id": "EUxxVPRGbyaa", 
+                                "package_source": "humble"
+                            }, 
+                            "type": "bundle"
+                        }, 
+                        "v": {
+                            "contents": [
+                                {
+                                    "gameid": "e235cf6375dd3175159f3aecbdfe7a2f", 
+                                    "name": "Uplink"
+                                }, 
+                                {
+                                    "gameid": "3c9fb6dafc318ec01d308b5e2d617154", 
+                                    "name": "Darwinia"
+                                }, 
+                                {
+                                    "gameid": "0fc35b42efc352273968b27f6947c654", 
+                                    "name": "DEFCON"
+                                }, 
+                                {
+                                    "gameid": "ac0b18e4b56ac880c70ab26258883887", 
+                                    "name": "Multiwinia"
+                                }, 
+                                {
+                                    "gameid": "c9fecc1ff7b4ec6e12e1a004a668e7d5", 
+                                    "name": "City Generator Tech Demo"
+                                }, 
+                                {
+                                    "gameid": "ee113a54eea927454c9ae2c644d7c404", 
+                                    "name": "Voxel Tech Demo"
+                                }, 
+                                {
+                                    "gameid": "3fab2bbfdc8f055df47cebb19cbf329a", 
+                                    "name": "Aquaria"
+                                }, 
+                                {
+                                    "gameid": "5b8d4c749c65b348b2296b6302603eed", 
+                                    "name": "Crayon Physics Deluxe"
+                                }, 
+                                {
+                                    "gameid": "0959eda2cf7bae596017aa94f927f011", 
+                                    "name": "Dungeons of Dredmor"
+                                }
+                            ], 
+                            "source_info": {
+                                "id_within_package": "introversionbundle", 
+                                "package_id": "EUxxVPRGbyaa", 
+                                "package_source": "humble"
+                            }, 
+                            "type": "bundle"
+                        }
+                    }
+                ]
+            }, 
+            "game": {
+                "data_changed_date": "", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "fe52d685c1f622583dcb8d853a050952", 
+                "genre": "", 
+                "hidden": 0, 
+                "icon_url": "", 
+                "import_date": "", 
+                "lastplayed": "", 
+                "name": "Humble Introversion Bundle", 
+                "notes": "", 
+                "package_data": {
+                    "contents": [
+                        {
+                            "gameid": "e235cf6375dd3175159f3aecbdfe7a2f", 
+                            "name": "Uplink"
+                        }, 
+                        {
+                            "gameid": "3c9fb6dafc318ec01d308b5e2d617154", 
+                            "name": "Darwinia"
+                        }, 
+                        {
+                            "gameid": "0fc35b42efc352273968b27f6947c654", 
+                            "name": "DEFCON"
+                        }, 
+                        {
+                            "gameid": "ac0b18e4b56ac880c70ab26258883887", 
+                            "name": "Multiwinia"
+                        }, 
+                        {
+                            "gameid": "c9fecc1ff7b4ec6e12e1a004a668e7d5", 
+                            "name": "City Generator Tech Demo"
+                        }, 
+                        {
+                            "gameid": "ee113a54eea927454c9ae2c644d7c404", 
+                            "name": "Voxel Tech Demo"
+                        }, 
+                        {
+                            "gameid": "3fab2bbfdc8f055df47cebb19cbf329a", 
+                            "name": "Aquaria"
+                        }, 
+                        {
+                            "gameid": "5b8d4c749c65b348b2296b6302603eed", 
+                            "name": "Crayon Physics Deluxe"
+                        }, 
+                        {
+                            "gameid": "0959eda2cf7bae596017aa94f927f011", 
+                            "name": "Dungeons of Dredmor"
+                        }
+                    ], 
+                    "source_info": {
+                        "id_within_package": "introversionbundle", 
+                        "package_id": "EUxxVPRGbyaa", 
+                        "package_source": "humble"
+                    }, 
+                    "type": "bundle"
+                }, 
+                "playtime": 0, 
+                "priority": 0, 
+                "sources": [
+                    {
+                        "id": "introversionbundle", 
+                        "package": "EUxxVPRGbyaa", 
+                        "source": "humble"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "13:33:02 2015-05-18", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "package_data", 
+                        "ov": {
+                            "contents": [
+                                {
+                                    "gameid": "1275a73635d187c3d4856a0a286e7624", 
+                                    "name": "Costume Quest Prototype"
+                                }, 
+                                {
+                                    "gameid": "84d0a405e5da86609519e92f39975f6b", 
+                                    "name": "Happy Song Prototype"
+                                }, 
+                                {
+                                    "gameid": "34a41d0881e9ce2842a54b981b43a98d", 
+                                    "name": "Double Fine: Amnesia Fortnight 2012 Soundtrack"
+                                }, 
+                                {
+                                    "gameid": "7e7bc99ac1a993d41a202c3c6364395c", 
+                                    "name": "Autonomous Prototype"
+                                }, 
+                                {
+                                    "gameid": "5f7484525d7c369b1f4ded011082372a", 
+                                    "name": "Black Lake Prototype"
+                                }, 
+                                {
+                                    "gameid": "a2c83aafa1b43f53e719fd398f3313ad", 
+                                    "name": "Hack n' Slash Prototype"
+                                }, 
+                                {
+                                    "gameid": "de1ed95f89f0d3980653c8c4bb75c2cb", 
+                                    "name": "Spacebase DF-9 Prototype"
+                                }, 
+                                {
+                                    "gameid": "309f0440c5cb2caf60abec32756a6ee9", 
+                                    "name": "The White Birch Prototype"
+                                }, 
+                                {
+                                    "gameid": "9ac3b07692de76dd094e5a735072863a", 
+                                    "name": "Brazen Prototype"
+                                }, 
+                                {
+                                    "gameid": "c32475903ebd9b729bf07da0be05089f", 
+                                    "name": "2 Player Productions Daily Videos"
+                                }
+                            ], 
+                            "source_info": {
+                                "id_within_package": "amnesiafortnight_store", 
+                                "package_id": "RFcA4ydMabrY", 
+                                "package_source": "humble"
+                            }, 
+                            "type": "bundle"
+                        }, 
+                        "v": {
+                            "contents": [
+                                {
+                                    "gameid": "1275a73635d187c3d4856a0a286e7624", 
+                                    "name": "Costume Quest Prototype"
+                                }, 
+                                {
+                                    "gameid": "84d0a405e5da86609519e92f39975f6b", 
+                                    "name": "Happy Song Prototype"
+                                }, 
+                                {
+                                    "gameid": "6aab2747d57a8ca0c51c6e4384fe3d83", 
+                                    "name": "Double Fine: Amnesia Fortnight 2012 Soundtrack"
+                                }, 
+                                {
+                                    "gameid": "eaa97d98631b9bebbaeeeeb34cd28f0f", 
+                                    "name": "Autonomous Prototype"
+                                }, 
+                                {
+                                    "gameid": "60c1754c04b61b59594fe457fc0b54d5", 
+                                    "name": "Black Lake Prototype"
+                                }, 
+                                {
+                                    "gameid": "fa365c37476e277d55159a928bc9b879", 
+                                    "name": "Hack n' Slash Prototype"
+                                }, 
+                                {
+                                    "gameid": "8fa285dcf4352f84b36959a77468a951", 
+                                    "name": "Spacebase DF-9 Prototype"
+                                }, 
+                                {
+                                    "gameid": "9f203dc7ac4e797ec66155f971e663a1", 
+                                    "name": "The White Birch Prototype"
+                                }, 
+                                {
+                                    "gameid": "9ac3b07692de76dd094e5a735072863a", 
+                                    "name": "Brazen Prototype"
+                                }, 
+                                {
+                                    "gameid": "c32475903ebd9b729bf07da0be05089f", 
+                                    "name": "2 Player Productions Daily Videos"
+                                }
+                            ], 
+                            "source_info": {
+                                "id_within_package": "amnesiafortnight_store", 
+                                "package_id": "RFcA4ydMabrY", 
+                                "package_source": "humble"
+                            }, 
+                            "type": "bundle"
+                        }
+                    }
+                ]
+            }, 
+            "game": {
+                "data_changed_date": "", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "9cd51012a24400cdd54958e5fef3bfaa", 
+                "genre": "", 
+                "hidden": 0, 
+                "icon_url": "", 
+                "import_date": "", 
+                "lastplayed": "", 
+                "name": "Amnesia Fortnight 2012", 
+                "notes": "", 
+                "package_data": {
+                    "contents": [
+                        {
+                            "gameid": "1275a73635d187c3d4856a0a286e7624", 
+                            "name": "Costume Quest Prototype"
+                        }, 
+                        {
+                            "gameid": "84d0a405e5da86609519e92f39975f6b", 
+                            "name": "Happy Song Prototype"
+                        }, 
+                        {
+                            "gameid": "6aab2747d57a8ca0c51c6e4384fe3d83", 
+                            "name": "Double Fine: Amnesia Fortnight 2012 Soundtrack"
+                        }, 
+                        {
+                            "gameid": "eaa97d98631b9bebbaeeeeb34cd28f0f", 
+                            "name": "Autonomous Prototype"
+                        }, 
+                        {
+                            "gameid": "60c1754c04b61b59594fe457fc0b54d5", 
+                            "name": "Black Lake Prototype"
+                        }, 
+                        {
+                            "gameid": "fa365c37476e277d55159a928bc9b879", 
+                            "name": "Hack n' Slash Prototype"
+                        }, 
+                        {
+                            "gameid": "8fa285dcf4352f84b36959a77468a951", 
+                            "name": "Spacebase DF-9 Prototype"
+                        }, 
+                        {
+                            "gameid": "9f203dc7ac4e797ec66155f971e663a1", 
+                            "name": "The White Birch Prototype"
+                        }, 
+                        {
+                            "gameid": "9ac3b07692de76dd094e5a735072863a", 
+                            "name": "Brazen Prototype"
+                        }, 
+                        {
+                            "gameid": "c32475903ebd9b729bf07da0be05089f", 
+                            "name": "2 Player Productions Daily Videos"
+                        }
+                    ], 
+                    "source_info": {
+                        "id_within_package": "amnesiafortnight_store", 
+                        "package_id": "RFcA4ydMabrY", 
+                        "package_source": "humble"
+                    }, 
+                    "type": "bundle"
+                }, 
+                "playtime": 0, 
+                "priority": 0, 
+                "sources": [
+                    {
+                        "id": "amnesiafortnight_store", 
+                        "package": "RFcA4ydMabrY", 
+                        "source": "humble"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "13:33:02 2015-05-18", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "name", 
+                        "ov": "Resident Evil 5", 
+                        "v": "Resident Evil 5 / Biohazard 5"
+                    }
+                ]
+            }, 
+            "game": {
+                "data_changed_date": "", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "3de083564785114f6e282517f9124f5f", 
+                "genre": "", 
+                "hidden": 0, 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/21690/26108f5caff3638c9f522dd79ee84a12761f373a.jpg", 
+                "import_date": "", 
+                "lastplayed": null, 
+                "name": "Resident Evil 5 / Biohazard 5", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 2580.0, 
+                "priority": 0, 
+                "sources": [
+                    {
+                        "id": 21690, 
+                        "source": "steam"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "13:45:00 2015-05-18", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "name", 
+                        "ov": "Red Faction: Guerrilla ", 
+                        "v": "Red Faction: Guerrilla Steam Edition"
+                    }
+                ]
+            }, 
+            "game": {
+                "data_changed_date": "", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "f82c07a0593f87c6bfd794e296da89ca", 
+                "genre": "", 
+                "hidden": 0, 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/20500/e7f356bc74c871f6955c9caec5d38a8d56f49490.jpg", 
+                "import_date": "", 
+                "lastplayed": null, 
+                "name": "Red Faction: Guerrilla Steam Edition", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 33540.0, 
+                "priority": 0, 
+                "sources": [
+                    {
+                        "id": 20500, 
+                        "source": "steam"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "13:45:00 2015-05-18", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "name", 
+                        "ov": "NecrovisioN: Lost Company", 
+                        "v": "NecroVisioN: Lost Company"
+                    }
+                ]
+            }, 
+            "game": {
+                "data_changed_date": "", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "7053d8b545a256bd89e1722cdc3140c8", 
+                "genre": "", 
+                "hidden": 0, 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/46250/c8ca098ec4e2eadab65b3075a3b2fd0679498188.jpg", 
+                "import_date": "", 
+                "lastplayed": null, 
+                "name": "NecroVisioN: Lost Company", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 0.0, 
+                "priority": 0, 
+                "sources": [
+                    {
+                        "id": 46250, 
+                        "source": "steam"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "13:45:00 2015-05-18", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "name", 
+                        "ov": "Grand Theft Auto III - Mac", 
+                        "v": "Grand Theft Auto III"
+                    }
+                ]
+            }, 
+            "game": {
+                "data_changed_date": "", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "b4c4bcb980348fa5c1efb82c956ceb28", 
+                "genre": "", 
+                "hidden": 0, 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/12230/.jpg", 
+                "import_date": "", 
+                "lastplayed": null, 
+                "name": "Grand Theft Auto III", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 0.0, 
+                "priority": 0, 
+                "sources": [
+                    {
+                        "id": 12230, 
+                        "source": "steam"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "13:45:00 2015-05-18", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "name", 
+                        "ov": "Grand Theft Auto: Vice City - Mac", 
+                        "v": "Grand Theft Auto: Vice City"
+                    }
+                ]
+            }, 
+            "game": {
+                "data_changed_date": "", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "9879d40b09dd7ff452946be36bdbd703", 
+                "genre": "", 
+                "hidden": 0, 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/12240/.jpg", 
+                "import_date": "", 
+                "lastplayed": null, 
+                "name": "Grand Theft Auto: Vice City", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 0.0, 
+                "priority": 0, 
+                "sources": [
+                    {
+                        "id": 12240, 
+                        "source": "steam"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "13:45:00 2015-05-18", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "name", 
+                        "ov": "Grand Theft Auto: San Andreas - Mac", 
+                        "v": "Grand Theft Auto: San Andreas"
+                    }
+                ]
+            }, 
+            "game": {
+                "data_changed_date": "", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "73c0dba63a4864d4add7066f53ff6d49", 
+                "genre": "", 
+                "hidden": 0, 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/12250/.jpg", 
+                "import_date": "", 
+                "lastplayed": null, 
+                "name": "Grand Theft Auto: San Andreas", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 0.0, 
+                "priority": 0, 
+                "sources": [
+                    {
+                        "id": 12250, 
+                        "source": "steam"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "13:45:00 2015-05-18", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "name", 
+                        "ov": "Retro City Rampage\u2122", 
+                        "v": "Retro City Rampage\u2122 DX"
+                    }
+                ]
+            }, 
+            "game": {
+                "data_changed_date": "", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "b0aa8fc371a5a3d1bf1078d4a97ab240", 
+                "genre": "", 
+                "hidden": 0, 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/204630/423b87d4a5a00ff6e807558e565b0b515fadf61b.jpg", 
+                "import_date": "", 
+                "lastplayed": null, 
+                "name": "Retro City Rampage\u2122 DX", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 2280.0, 
+                "priority": 0, 
+                "sources": [
+                    {
+                        "id": 204630, 
+                        "source": "steam"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "13:45:00 2015-05-18", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "name", 
+                        "ov": "Assassin\u2019s Creed\u00ae III", 
+                        "v": "Assassin's Creed\u00ae III"
+                    }
+                ]
+            }, 
+            "game": {
+                "data_changed_date": "", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "ee5bd411e8d11de0c2cc72291a48eadf", 
+                "genre": "", 
+                "hidden": 0, 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/208480/5d13ffd781fa7658903fbd762b51a76f8c734d2b.jpg", 
+                "import_date": "", 
+                "lastplayed": null, 
+                "name": "Assassin's Creed\u00ae III", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 260280.0, 
+                "priority": 0, 
+                "sources": [
+                    {
+                        "id": 208480, 
+                        "source": "steam"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "13:45:00 2015-05-18", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "name", 
+                        "ov": "Surgeon Simulator 2013", 
+                        "v": "Surgeon Simulator"
+                    }
+                ]
+            }, 
+            "game": {
+                "data_changed_date": "", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "5768bde8652046d1942bd5874c34a769", 
+                "genre": "", 
+                "hidden": 0, 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/233720/77e5bb562902be4a5a49b114d7370138696b1595.jpg", 
+                "import_date": "", 
+                "lastplayed": null, 
+                "name": "Surgeon Simulator", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 5760.0, 
+                "priority": 0, 
+                "sources": [
+                    {
+                        "id": 233720, 
+                        "source": "steam"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "13:45:00 2015-05-18", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "playtime", 
+                        "ov": 15994.047872066498, 
+                        "v": 16020.0
+                    }
+                ]
+            }, 
+            "game": {
+                "data_changed_date": "", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "df3bd25048e38daeff96cb1be07fdde5", 
+                "genre": "", 
+                "hidden": 0, 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/234650/13c8e62b9b079fba385a2d959ed4e8ce2c378c8c.jpg", 
+                "import_date": "", 
+                "lastplayed": null, 
+                "name": "Shadowrun Returns", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 16020.0, 
+                "priority": 0, 
+                "sources": [
+                    {
+                        "id": 234650, 
+                        "source": "steam"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "13:45:00 2015-05-18", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "name", 
+                        "ov": "Paranautical Activity", 
+                        "v": "Paranautical Activity: Deluxe Atonement Edition"
+                    }
+                ]
+            }, 
+            "game": {
+                "data_changed_date": "", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "e1d474426d8ce374289fce04fb3c8e20", 
+                "genre": "", 
+                "hidden": 0, 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/250580/be09508b45c587bea1a7a5379eaeea6a12b60d86.jpg", 
+                "import_date": "", 
+                "lastplayed": null, 
+                "name": "Paranautical Activity: Deluxe Atonement Edition", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 1140.0, 
+                "priority": 0, 
+                "sources": [
+                    {
+                        "id": 250580, 
+                        "source": "steam"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "13:45:00 2015-05-18", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "name", 
+                        "ov": "The Long Dark -- Sandbox Alpha", 
+                        "v": "The Long Dark"
+                    }
+                ]
+            }, 
+            "game": {
+                "data_changed_date": "", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "656c5aab086205259324db207ab27a03", 
+                "genre": "", 
+                "hidden": 0, 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/305620/f5eb9ac9b90c6bd364c1de4aabd938239aa622cd.jpg", 
+                "import_date": "", 
+                "lastplayed": null, 
+                "name": "The Long Dark", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 1380.0, 
+                "priority": 0, 
+                "sources": [
+                    {
+                        "id": 305620, 
+                        "source": "steam"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "13:45:00 2015-05-18", 
+            "type": "updategame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "1e81c81011b038c9e02c1a1dd09fc046", 
+                "genre": "", 
+                "hidden": 0, 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/45760/473fcea2eb516528608dff7f9e3e61009d76a282.jpg", 
+                "import_date": "", 
+                "lastplayed": null, 
+                "name": "Ultra Street Fighter IV", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 0.0, 
+                "priority": 0, 
+                "sources": [
+                    {
+                        "id": 45760, 
+                        "source": "steam"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "13:45:00 2015-05-18", 
+            "type": "addgame"
         }
     ], 
     "games": {
@@ -47336,6 +48151,29 @@
             ], 
             "website": ""
         }, 
+        "1e81c81011b038c9e02c1a1dd09fc046": {
+            "data_changed_date": "13:45:00 2015-05-18", 
+            "finish_date": "", 
+            "finished": 0, 
+            "gameid": "1e81c81011b038c9e02c1a1dd09fc046", 
+            "genre": "", 
+            "hidden": 0, 
+            "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/45760/473fcea2eb516528608dff7f9e3e61009d76a282.jpg", 
+            "import_date": "", 
+            "lastplayed": null, 
+            "name": "Ultra Street Fighter IV", 
+            "notes": "", 
+            "package_data": {}, 
+            "playtime": 0.0, 
+            "priority": 0, 
+            "sources": [
+                {
+                    "id": 45760, 
+                    "source": "steam"
+                }
+            ], 
+            "website": ""
+        }, 
         "1e878297413c2e8665bc4c5f1ee1d490": {
             "data_changed_date": null, 
             "finish_date": "", 
@@ -51024,7 +51862,7 @@
             "website": ""
         }, 
         "3de083564785114f6e282517f9124f5f": {
-            "data_changed_date": "16:37:53 2014-05-02", 
+            "data_changed_date": "13:45:00 2015-05-18", 
             "finish_date": "", 
             "finished": 0, 
             "gameid": "3de083564785114f6e282517f9124f5f", 
@@ -51033,7 +51871,7 @@
             "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/21690/26108f5caff3638c9f522dd79ee84a12761f373a.jpg", 
             "import_date": "", 
             "lastplayed": "16:37:53 2014-05-02", 
-            "name": "Resident Evil 5", 
+            "name": "Resident Evil 5 / Biohazard 5", 
             "notes": "", 
             "package_data": {}, 
             "playtime": 2580.0, 
@@ -53828,7 +54666,7 @@
             "website": ""
         }, 
         "5768bde8652046d1942bd5874c34a769": {
-            "data_changed_date": "19:16:41 2013-08-26", 
+            "data_changed_date": "13:45:00 2015-05-18", 
             "finish_date": "", 
             "finished": 0, 
             "gameid": "5768bde8652046d1942bd5874c34a769", 
@@ -53837,7 +54675,7 @@
             "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/233720/77e5bb562902be4a5a49b114d7370138696b1595.jpg", 
             "import_date": "", 
             "lastplayed": "19:16:41 2013-08-26", 
-            "name": "Surgeon Simulator 2013", 
+            "name": "Surgeon Simulator", 
             "notes": "", 
             "package_data": {}, 
             "playtime": 5760.0, 
@@ -55517,7 +56355,7 @@
             "website": ""
         }, 
         "656c5aab086205259324db207ab27a03": {
-            "data_changed_date": "01:33:05 2014-09-11", 
+            "data_changed_date": "13:45:00 2015-05-18", 
             "finish_date": "", 
             "finished": 0, 
             "gameid": "656c5aab086205259324db207ab27a03", 
@@ -55526,7 +56364,7 @@
             "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/305620/f5eb9ac9b90c6bd364c1de4aabd938239aa622cd.jpg", 
             "import_date": "00:18:20 2014-09-11", 
             "lastplayed": "01:33:05 2014-09-11", 
-            "name": "The Long Dark -- Sandbox Alpha", 
+            "name": "The Long Dark", 
             "notes": "", 
             "package_data": {}, 
             "playtime": 1400.4020690917969, 
@@ -56662,7 +57500,7 @@
             "website": ""
         }, 
         "7053d8b545a256bd89e1722cdc3140c8": {
-            "data_changed_date": null, 
+            "data_changed_date": "13:45:00 2015-05-18", 
             "finish_date": "", 
             "finished": 0, 
             "gameid": "7053d8b545a256bd89e1722cdc3140c8", 
@@ -56671,7 +57509,7 @@
             "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/46250/c8ca098ec4e2eadab65b3075a3b2fd0679498188.jpg", 
             "import_date": "", 
             "lastplayed": null, 
-            "name": "NecrovisioN: Lost Company", 
+            "name": "NecroVisioN: Lost Company", 
             "notes": "", 
             "package_data": {}, 
             "playtime": 0.0, 
@@ -57190,7 +58028,7 @@
             "website": ""
         }, 
         "73c0dba63a4864d4add7066f53ff6d49": {
-            "data_changed_date": null, 
+            "data_changed_date": "13:45:00 2015-05-18", 
             "finish_date": "", 
             "finished": 0, 
             "gameid": "73c0dba63a4864d4add7066f53ff6d49", 
@@ -57199,7 +58037,7 @@
             "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/12250/.jpg", 
             "import_date": "", 
             "lastplayed": null, 
-            "name": "Grand Theft Auto: San Andreas - Mac", 
+            "name": "Grand Theft Auto: San Andreas", 
             "notes": "", 
             "package_data": {}, 
             "playtime": 3.040520191192627, 
@@ -62284,7 +63122,7 @@
             "website": ""
         }, 
         "9879d40b09dd7ff452946be36bdbd703": {
-            "data_changed_date": null, 
+            "data_changed_date": "13:45:00 2015-05-18", 
             "finish_date": "", 
             "finished": 0, 
             "gameid": "9879d40b09dd7ff452946be36bdbd703", 
@@ -62293,7 +63131,7 @@
             "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/12240/.jpg", 
             "import_date": "", 
             "lastplayed": null, 
-            "name": "Grand Theft Auto: Vice City - Mac", 
+            "name": "Grand Theft Auto: Vice City", 
             "notes": "", 
             "package_data": {}, 
             "playtime": 0.0, 
@@ -62940,7 +63778,7 @@
             "website": "http://www.dungeondashers.com"
         }, 
         "9cd51012a24400cdd54958e5fef3bfaa": {
-            "data_changed_date": "10:22:27 2015-05-17", 
+            "data_changed_date": "13:33:02 2015-05-18", 
             "finish_date": "", 
             "finished": 0, 
             "gameid": "9cd51012a24400cdd54958e5fef3bfaa", 
@@ -62962,27 +63800,27 @@
                         "name": "Happy Song Prototype"
                     }, 
                     {
-                        "gameid": "34a41d0881e9ce2842a54b981b43a98d", 
+                        "gameid": "6aab2747d57a8ca0c51c6e4384fe3d83", 
                         "name": "Double Fine: Amnesia Fortnight 2012 Soundtrack"
                     }, 
                     {
-                        "gameid": "7e7bc99ac1a993d41a202c3c6364395c", 
+                        "gameid": "eaa97d98631b9bebbaeeeeb34cd28f0f", 
                         "name": "Autonomous Prototype"
                     }, 
                     {
-                        "gameid": "5f7484525d7c369b1f4ded011082372a", 
+                        "gameid": "60c1754c04b61b59594fe457fc0b54d5", 
                         "name": "Black Lake Prototype"
                     }, 
                     {
-                        "gameid": "a2c83aafa1b43f53e719fd398f3313ad", 
+                        "gameid": "fa365c37476e277d55159a928bc9b879", 
                         "name": "Hack n' Slash Prototype"
                     }, 
                     {
-                        "gameid": "de1ed95f89f0d3980653c8c4bb75c2cb", 
+                        "gameid": "8fa285dcf4352f84b36959a77468a951", 
                         "name": "Spacebase DF-9 Prototype"
                     }, 
                     {
-                        "gameid": "309f0440c5cb2caf60abec32756a6ee9", 
+                        "gameid": "9f203dc7ac4e797ec66155f971e663a1", 
                         "name": "The White Birch Prototype"
                     }, 
                     {
@@ -65528,7 +66366,7 @@
             "website": ""
         }, 
         "b0aa8fc371a5a3d1bf1078d4a97ab240": {
-            "data_changed_date": "00:00:00 2013-03-22", 
+            "data_changed_date": "13:45:00 2015-05-18", 
             "finish_date": "", 
             "finished": 0, 
             "gameid": "b0aa8fc371a5a3d1bf1078d4a97ab240", 
@@ -65537,7 +66375,7 @@
             "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/204630/423b87d4a5a00ff6e807558e565b0b515fadf61b.jpg", 
             "import_date": "", 
             "lastplayed": "00:00:00 2013-03-22", 
-            "name": "Retro City Rampage\u2122", 
+            "name": "Retro City Rampage\u2122 DX", 
             "notes": "", 
             "package_data": {}, 
             "playtime": 2280.0, 
@@ -66144,7 +66982,7 @@
             "website": ""
         }, 
         "b4c4bcb980348fa5c1efb82c956ceb28": {
-            "data_changed_date": null, 
+            "data_changed_date": "13:45:00 2015-05-18", 
             "finish_date": "", 
             "finished": 0, 
             "gameid": "b4c4bcb980348fa5c1efb82c956ceb28", 
@@ -66153,7 +66991,7 @@
             "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/12230/.jpg", 
             "import_date": "", 
             "lastplayed": null, 
-            "name": "Grand Theft Auto III - Mac", 
+            "name": "Grand Theft Auto III", 
             "notes": "", 
             "package_data": {}, 
             "playtime": 0.0, 
@@ -72104,7 +72942,7 @@
             "website": ""
         }, 
         "df3bd25048e38daeff96cb1be07fdde5": {
-            "data_changed_date": "10:26:44 2013-08-03", 
+            "data_changed_date": "13:45:00 2015-05-18", 
             "finish_date": "", 
             "finished": 0, 
             "gameid": "df3bd25048e38daeff96cb1be07fdde5", 
@@ -72116,7 +72954,7 @@
             "name": "Shadowrun Returns", 
             "notes": "", 
             "package_data": {}, 
-            "playtime": 15994.047872066498, 
+            "playtime": 16020.0, 
             "priority": -1, 
             "sources": [
                 {
@@ -72373,7 +73211,7 @@
             "website": ""
         }, 
         "e1d474426d8ce374289fce04fb3c8e20": {
-            "data_changed_date": "14:11:33 2013-11-27", 
+            "data_changed_date": "13:45:00 2015-05-18", 
             "finish_date": "", 
             "finished": 0, 
             "gameid": "e1d474426d8ce374289fce04fb3c8e20", 
@@ -72382,7 +73220,7 @@
             "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/250580/be09508b45c587bea1a7a5379eaeea6a12b60d86.jpg", 
             "import_date": "", 
             "lastplayed": "14:11:33 2013-11-27", 
-            "name": "Paranautical Activity", 
+            "name": "Paranautical Activity: Deluxe Atonement Edition", 
             "notes": "", 
             "package_data": {}, 
             "playtime": 1140.0, 
@@ -73820,7 +74658,7 @@
             "website": ""
         }, 
         "ee5bd411e8d11de0c2cc72291a48eadf": {
-            "data_changed_date": "16:55:59 2013-11-26", 
+            "data_changed_date": "13:45:00 2015-05-18", 
             "finish_date": "", 
             "finished": 1, 
             "gameid": "ee5bd411e8d11de0c2cc72291a48eadf", 
@@ -73829,7 +74667,7 @@
             "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/208480/5d13ffd781fa7658903fbd762b51a76f8c734d2b.jpg", 
             "import_date": "", 
             "lastplayed": "16:55:59 2013-11-26", 
-            "name": "Assassin\u2019s Creed\u00ae III", 
+            "name": "Assassin's Creed\u00ae III", 
             "notes": "", 
             "package_data": {}, 
             "playtime": 260280.0, 
@@ -75020,7 +75858,7 @@
             "website": ""
         }, 
         "f82c07a0593f87c6bfd794e296da89ca": {
-            "data_changed_date": "00:04:42 2011-03-14", 
+            "data_changed_date": "13:45:00 2015-05-18", 
             "finish_date": "", 
             "finished": 0, 
             "gameid": "f82c07a0593f87c6bfd794e296da89ca", 
@@ -75029,7 +75867,7 @@
             "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/20500/e7f356bc74c871f6955c9caec5d38a8d56f49490.jpg", 
             "import_date": "", 
             "lastplayed": "00:04:42 2011-03-14", 
-            "name": "Red Faction: Guerrilla ", 
+            "name": "Red Faction: Guerrilla Steam Edition", 
             "notes": "", 
             "package_data": {}, 
             "playtime": 33540.0, 
@@ -75819,7 +76657,7 @@
             "website": ""
         }, 
         "fe52d685c1f622583dcb8d853a050952": {
-            "data_changed_date": "10:22:27 2015-05-17", 
+            "data_changed_date": "13:33:02 2015-05-18", 
             "finish_date": "", 
             "finished": 0, 
             "gameid": "fe52d685c1f622583dcb8d853a050952", 
@@ -75861,7 +76699,7 @@
                         "name": "Aquaria"
                     }, 
                     {
-                        "gameid": "9ad2e9142d71610710c20648cc979e8e", 
+                        "gameid": "5b8d4c749c65b348b2296b6302603eed", 
                         "name": "Crayon Physics Deluxe"
                     }, 
                     {
