@@ -469,9 +469,11 @@ class GamelistForm(QWidget):
         self.games.load()
         self.gamelist = []
 
-        account = {"steam": {"api": "", "shortcut_folder": "", "id": ""}, "gog": {"user": "", "pass": ""}}
+        account = {"steam": {"api": "", "shortcut_folder": "", "id": ""},
+                   "gog": {"user": "", "pass": ""},
+                   "humble": {"username": "", "password": ""}}
         if os.path.exists("data/account.json"):
-            account = json.loads(open("data/account.json").read())
+            account.update(json.loads(open("data/account.json").read()))
         self.set_accounts(account)
 
         self.columns = [("s",None,None),("icon",None,None),("name","widget_name","name"),
@@ -550,8 +552,10 @@ class GamelistForm(QWidget):
     def set_accounts(self,account):
         self.gog = gogapi.Gog(account["gog"]["user"],account["gog"]["pass"])
         self.steam = steamapi.Steam(account["steam"]["api"],account["steam"]["id"],account["steam"]["shortcut_folder"])
+        self.humble = humbleapi.Humble(account["humble"]["username"],account["humble"]["password"])
         games.sources.SteamSource.api = self.steam
         games.sources.GogSource.api = self.gog
+        games.sources.HumbleSource.api = self.humble
 
     def disable_edit_notify(self):
         try:
@@ -725,7 +729,7 @@ class GamelistForm(QWidget):
         self.steam.create_nonsteam_shortcuts(self.games.games)
 
     def import_humble(self):
-        games = humbleapi.get_humble_gamelist()
+        games = self.humble.get_gamelist()
         self.games.add_games(games)
         self.update_gamelist_widget()
         self.games.save()

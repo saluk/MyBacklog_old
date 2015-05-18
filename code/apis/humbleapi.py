@@ -60,7 +60,7 @@ class Browser:
 
 import time
 
-def get_humble_gamelist():
+def get_humble_gamelist(username,password):
     b = Browser()
     logged_in = False
     b.get("https://www.humblebundle.com/")
@@ -81,10 +81,10 @@ def get_humble_gamelist():
             "authy-token":"",
             "_le_csrf_token":b.cookies["csrf_cookie"],
             "goto":"/home",
-            "password":"blurontian",
+            "password":password,
             "qs":"",
             "submit-data":"",
-            "username":"saluk64007@gmail.com"})
+            "username":username})
         print ("loggedin",b.url)
         print (b.cookies)
 
@@ -129,7 +129,13 @@ def get_humble_gamelist():
     for g in imported_games:
         print (g.name,g.gameid,g.package_data.keys(),g.icon_url)
     return imported_games
-    
+
+class Humble:
+    def __init__(self,username,password):
+        self.username = username
+        self.password = password
+    def get_gamelist(self):
+        return get_humble_gamelist(self.username,self.password)
 
 if __name__ == "__main__":
     get_humble_gamelist()

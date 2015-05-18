@@ -31,7 +31,7 @@ class AccountForm(QWidget):
             pass
 
         #Fields
-        self.fields = {"steam":{},"gog":{}}
+        self.fields = {"steam":{},"gog":{},"humble":{}}
         w = QLabel("Steam ID")
         s = "In steam, if you view your profile, the url will look like 'http://steamcommunity.com/id/[your_account_id]/'. Enter the value for [your_account_id] here."
         w.setToolTip(s)
@@ -81,9 +81,25 @@ class AccountForm(QWidget):
         layout.addWidget(w,6,1)
         self.fields["gog"]["pass"] = w
 
+        w = QLabel("Humble Username")
+        if "humble_username" in highlight_fields:
+            highlight(w)
+        layout.addWidget(w,7,0)
+        w = QLineEdit(self.app.humble.username)
+        layout.addWidget(w,7,1)
+        self.fields["humble"]["username"] = w
+
+        w = QLabel("Humble Password")
+        if "humble_password" in highlight_fields:
+            highlight(w)
+        layout.addWidget(w,8,0)
+        w = QLineEdit(self.app.humble.password)
+        layout.addWidget(w,8,1)
+        self.fields["humble"]["password"] = w
+
         #Save button
         button = QPushButton("Save")
-        layout.addWidget(button,7,0)
+        layout.addWidget(button,9,0)
         button.clicked.connect(self.save_close)
 
         print(self.fields)
