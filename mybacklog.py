@@ -191,7 +191,7 @@ class ListGamesForPack(QWidget):
         self.game.package_data = {"type":"bundle",
                                   "contents":pack_games,
                                   "source_info":self.game.create_package_data()}
-        self.app.games.update_game(self.game.gameid,self.game,force=True)
+        self.app.games.force_update_game(self.game.gameid,self.game)
         self.app.games.save()
         self.app.update_gamelist_widget()
         self.deleteLater()
@@ -207,6 +207,7 @@ class EditGame(QWidget):
         self.oldid = None
         if not new:
             self.oldid = game.gameid
+        self.new = new
         
         #Layout
         layout = QGridLayout()
@@ -267,28 +268,27 @@ class EditGame(QWidget):
             elif t == "f":
                 value = float(value)
             setattr(game,field,value)
+        game.generate_gameid()
         newid = game.gameid
-        if newid!=self.oldid:
-            if self.oldid in self.games.games:
-                self.games.games[newid] = self.games.games[self.oldid]
-                del self.games.games[self.oldid]
         print("save", newid, self.oldid)
-        print(game.priority,self.games.games[self.oldid].priority)
+        if self.oldid and self.oldid in self.games.games:
+            print("Updated old:",game.priority,self.games.games[self.oldid].priority)
         print(game in self.games.games.values())
-        updated_game = self.games.update_game(self.game.gameid,game,force=True)
-        self.games.save()
-        self.app.update_game_row(updated_game)
+        updated_game = self.games.force_update_game(self.oldid,game)
+        #self.app.update_game_row(updated_game)
+        self.app.update_gamelist_widget()
         self.deleteLater()
         self.parent().deleteLater()
 
     def delete(self):
         self.games.delete(self.game)
-        self.games.save()
         self.deleteLater()
         self.parent().deleteLater()
         row = self.app.get_row_for_game(self.game)
         if row:
-            self.app.games_list_widget.setRowHidden(row,True)
+            self.app.games_list_widget.removeRow(row)
+        self.app.dosearch()
+        self.games.save()
 
 def path_to_icon(game):
     if game.icon_url:
@@ -402,10 +402,19 @@ class MyBacklog(QMainWindow):
             for x in dir(self.main_form):
                 if x.startswith(folder+"_"):
                     name = " ".join([y.capitalize() for y in x.split("_")[1:]])
-                    menus[folder].addAction(QAction("&"+name,self,triggered=getattr(self.main_form,x)))
+                    action = QAction("&"+name,self,triggered=getattr(self.main_form,x))
+                    if "show_" in x:
+                        action.setCheckable(True)
+                    menus[folder].addAction(action)
         menus["view"] = self.menuBar().addMenu("&Add Game")
         for source in games.sources.all:
-            menus["view"].addAction(QAction("&"+source,self,triggered=lambda : self.main_form.add_game(source)))
+            print("Create menu to add",source)
+            def gen_func():
+                def ag(*args,**kwargs):
+                    self.main_form.add_game(ag.source)
+                ag.source = source
+                return ag
+            menus["view"].addAction(QAction("&"+source,self,triggered=gen_func()))
 
         menus["file"].addAction(QAction("&Exit",self,triggered=self.really_close))
         self.exit_requested = False
@@ -598,7 +607,9 @@ class GamelistForm(QWidget):
         if row is None:
             row = self.get_row_for_game(game)
         if row is None:
-            return
+            #Add a row
+            row = self.games_list_widget.rowCount()
+            self.games_list_widget.setRowCount(row+1)
 
         def abreve(t,l):
             if len(t)<l:
@@ -716,7 +727,6 @@ class GamelistForm(QWidget):
     def import_humble(self):
         games = humbleapi.get_humble_gamelist()
         self.games.add_games(games)
-        self.games.save()
         self.update_gamelist_widget()
         self.games.save()
 
@@ -896,11 +906,12 @@ class GamelistForm(QWidget):
         game.download_method()
 
     def add_game(self,source):
-        game = games.Game(source=source)
+        print("adding game with source:",source)
+        game = games.Game(sources=[{"source":source}])
         self.gamelist.append({"game":game,"widget":None})
-        self.show_edit_widget(game,None,self,new=True)
+        self.show_edit_widget(game,self,new=True)
 
-    def dosearch(self,text=None):
+    def dosearch(self):
         played = 0
 
         sn = self.search_name.text().lower()

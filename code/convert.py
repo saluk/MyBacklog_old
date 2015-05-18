@@ -318,17 +318,82 @@ def v006_to_v007(inp):
     print(len(out_games["games"]),len(inp["games"]))
     return out_games,out_local
 
+def v007_to_v008(gdb_inp,ldb_inp):
+    """
+    Converts
+    """
+
+    gamelist = games.Games()
+    gamelist.translate_json(json.dumps(gdb_inp))
+
+    out_games = {}
+    out_local = {"game_data":{},"emulators":{}}
+    out_games["multipack"] = gdb_inp["multipack"]
+    out_games["actions"] = gdb_inp["actions"]
+    out_games["games"] = {}
+    print("starting:",len(gdb_inp["games"]))
+    ran = 0
+    collisions = 0
+    changed_keys = {}
+    for key in gdb_inp["games"]:
+        ran += 1
+        game = gdb_inp["games"][key]
+        if not game["name"]:
+            print("ERROR",key)
+            continue
+
+        new = copy.deepcopy(game)
+
+        game = games.Game(**game)
+        orig = game.dict()
+        oldid = game.gameid
+        game.generate_gameid()
+        new["gameid"] = game.gameid
+
+        changed_keys[oldid] = new["gameid"]
+
+        cur_local = ldb_inp["game_data"].get(oldid,None)
+
+        if game.gameid in out_games["games"]:
+            collisions += 1
+            print("COLLISION:")
+            print(new)
+            print(out_games["games"][game.gameid])
+        out_games["games"][game.gameid] = new
+        if cur_local:
+            out_local["game_data"][game.gameid] = cur_local
+
+    for key in out_games["games"]:
+        game = out_games["games"][key]
+        if not game["package_data"]:
+            continue
+        if game["package_data"]["type"] == "bundle":
+            for child in game["package_data"]["contents"]:
+                child["gameid"] = changed_keys[child["gameid"]]
+        elif game["package_data"]["type"] == "content":
+            parent = game["package_data"]["parent"]
+            if parent["gameid"] in changed_keys:
+                parent["gameid"] = changed_keys[parent["gameid"]]
+
+    print("looped",ran,"times")
+    print(len(out_games["games"]),len(gdb_inp["games"]))
+    print(collisions,len(gdb_inp["games"])-collisions)
+    return out_games,out_local
 
 import json
-f = open("../data/gamesv006.json")
-old_data = json.loads(f.read())
+f = open("../data/gamesv007.json")
+gdb = json.loads(f.read())
 f.close()
 
-gdb,ldb = v006_to_v007(old_data)
-g = open("../data/gamesv007.json","w")
+l = open("../data/localv001.json")
+ldb = json.loads(l.read())
+l.close()
+
+gdb,ldb = v007_to_v008(gdb,ldb)
+g = open("../data/gamesv008.json","w")
 g.write(json.dumps(gdb,indent=4,sort_keys=True))
 g.close()
 
-l = open("../data/localv001.json","w")
+l = open("../data/localv002.json","w")
 l.write(json.dumps(ldb,indent=4,sort_keys=True))
 l.close()

@@ -3,6 +3,7 @@ import os
 import time
 import datetime
 import json
+import hmac
 from code import sources
 
 fmt = "%H:%M:%S %Y-%m-%d"
@@ -22,8 +23,8 @@ def ttos(t):
 #    return ttos(time.localtime(sec))
 
 PRIORITIES = {-1:"now playing",0:"unprioritized",1:"soon",2:"later",3:"much later",5:"next year",99:"probably never"}
-GAME_DB = "data/gamesv007.json"
-LOCAL_DB = "data/localv001.json"
+GAME_DB = "data/gamesv008.json"
+LOCAL_DB = "data/localv002.json"
 
 def get_source(s):
     return sources.all[s]()
@@ -33,7 +34,7 @@ class Game:
     ("notes","s"),("priority","i"),("website","s"),("import_date","s"),("finish_date","s")]
     def __init__(self,**kwargs):
         dontsavekeys = set(dir(self))
-        self.gameid = ""
+        self.gameid = Exception("Do not save me")
 
         self.name = ""
         self.playtime = 0
@@ -55,8 +56,6 @@ class Game:
         for k in kwargs:
             if hasattr(self,k):
                 setattr(self,k,kwargs[k])
-        if not self.gameid:
-            self.gameid = self.generate_gameid()
         if "minutes" in kwargs:
             self.playtime = datetime.timedelta(minutes=kwargs["minutes"]).total_seconds()
         self.games = None
@@ -71,7 +70,33 @@ class Game:
         return s
     def generate_gameid(self):
         """Used to generate the intial gameid, before collisions are checked when checking into the db"""
-        return self.name_stripped + ".0"
+        pool = hmac.new(b"")
+        if self.sources:
+            for s in self.sources:
+                pool.update(bytes(s["source"],"utf8"))
+                if s.get("id"):
+                    pool.update(bytes(str(s["id"]),"utf8"))
+                else:
+                    #Need SOME way to uniquely identify this game that's not attributed anywhere
+                    #It probably does NOT have package_data
+                    #Go with the name...
+                    pool.update(bytes(self.name_stripped,"utf8"))
+        if self.package_data:
+            pool.update(bytes(self.package_data["type"],"utf8"))
+            if self.package_data["type"] == "bundle":
+                pool.update(bytes(self.package_data["source_info"]["package_source"],"utf8"))
+                pool.update(bytes(str(self.package_data["source_info"]["package_id"]),"utf8"))
+            elif self.package_data["type"] == "content":
+                pool.update(bytes(self.package_data["source_info"]["package_source"],"utf8"))
+                pool.update(bytes(str(self.package_data["source_info"]["package_id"]),"utf8"))
+                try:
+                    pool.update(bytes(str(self.package_data["source_info"]["id_within_package"]),"utf8"))
+                except:
+                    print(self.package_data)
+                    crash
+        if not self.sources and not self.package_data:
+            pool.update(bytes(self.name_stripped,"utf8"))
+        self.gameid = pool.hexdigest()
     @property
     def is_in_package(self):
         return self.package_data.get("type","")=="content"
@@ -197,6 +222,8 @@ class Game:
 
         match1 = self.source_match
         match2 = other_game.source_match
+
+        print(match1,match2)
 
         if self.is_package != other_game.is_package:
             return False
@@ -392,13 +419,10 @@ class Games:
             for g in self.source_map.get(s["source"]+"_"+str(s.get("id","")),[]):
                 ids.append(g.gameid)
 
-        okey,i = game.gameid.rsplit(".",1)
-        while 1:
-            nkey = okey+"."+str(i)
-            if nkey not in self.games:
-                break
-            ids.append(okey+"."+str(i))
-            i=int(i)+1
+        print(game.gameid,"should be in self.games")
+        if game.gameid in self.games:
+            print(game.gameid,"is in games")
+            ids.append(game.gameid)
 
         for oid in ids:
             if game.same_game(self.games[oid]):
@@ -406,13 +430,16 @@ class Games:
             elif game.gameid==oid:
                 print("sameid:",game.gameid)
                 list.append(self.games[oid])
+        print("similar games:",list)
         return list
     def correct_gameid(self,oldid,gameid):
-        okey,oldi = gameid.rsplit(".",1)
-        i = int(oldi)
-        while okey+"."+str(i) in self.games:
-            i += 1
-        newid = okey+"."+str(i)
+        newid = gameid
+        next=0
+        while newid in self.games:
+            collision = hmac.new(bytes("","utf8"))
+            collision.update(bytes(str(oldid)+str(next),"utf8"))
+            next+=1
+            newid = collision.hexdigest()
         if newid!=oldid:
             #TODO: kind of bad, Force all references to update their key
             for chk_game in self.games.values():
@@ -422,10 +449,12 @@ class Games:
                         child["gameid"] = newid
                 parent = chk_game.package_data.get("parent",{})
                 if parent:
-                    print("found parent ",parent)
                     if parent.get("gameid",{}) == oldid:
                         print("changed parent id",parent["gameid"],"to",newid,"on",chk_game.gameid)
                         parent["gameid"] = newid
+            if oldid in self.local["game_data"]:
+                self.local["game_data"][newid] = self.local["game_data"][oldid]
+                del self.local["game_data"][oldid]
         return newid
     def update_id(self,oldid,newid):
         """Convert a game from oldid to newid,
@@ -434,25 +463,38 @@ class Games:
         if oldid==newid:
             return newid
         return self.correct_gameid(oldid,newid)
+    def find_matching_game(self,game):
+        for g in self.get_similar_games(game):
+            if g.same_game(game):
+                return g
     def force_update_game(self,oldid,game):
-        game.gameid = self.update_id(oldid,game.gameid)
-        cur_game = self.games[game.gameid]
-        diff = changed(cur_game.dict(),game.dict())
-        if diff:
-            print("UPDATE CHANGED GAME")
-            self.actions.append(add_action("update",game=game.dict(),changes=diff))
+        if oldid in self.games:
+            cur_game = self.games[oldid]
         else:
-            print("UPDATE... did not change game")
+            cur_game = self.find_matching_game(game)
+        game.gameid = self.update_id(oldid,game.gameid)
+        if cur_game:
+            diff = changed(cur_game.dict(),game.dict())
+            if diff:
+                print("UPDATE CHANGED GAME")
+                self.actions.append(add_action("update",game=game.dict(),changes=diff))
+                if oldid in self.games:
+                    del self.games[oldid]
+                self.games[game.gameid] = game
+            else:
+                print("UPDATE... did not change game")
+        else:
+            self.actions.append(add_action("add",game=game.dict()))
+            print("ADD GAME ACTION")
+            print("adding",game.gameid,game.source_match)
+            game.data_changed_date = now()
+            self.games[game.gameid] = game
         return game
     def update_game(self,gameid,game):
         assert(isinstance(game,Game))
         game.games = self
 
-        cur_game = None
-        for g in self.get_similar_games(game):
-            if g.same_game(game):
-                cur_game = g
-                break
+        cur_game = self.find_matching_game(gameid,game)
         assert game is not cur_game
 
         if not cur_game:

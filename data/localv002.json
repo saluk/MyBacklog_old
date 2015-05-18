@@ -1,0 +1,833 @@
+{
+    "emulators": {}, 
+    "game_data": {
+        "020efb6db2baee8ddfbd0154f6b96188": {
+            "files": [
+                {
+                    "path": "C:\\GOG Games\\Two Worlds\\Launch Two Worlds.lnk", 
+                    "primary": true, 
+                    "source": {
+                        "id": "two_worlds", 
+                        "source": "gog"
+                    }, 
+                    "type": "exe"
+                }
+            ]
+        }, 
+        "0906d45f01f23faac06ebce8b82690b6": {
+            "files": [
+                {
+                    "path": "C:\\GOG Games\\Dracula 5\\Launch Dracula 5.lnk", 
+                    "primary": true, 
+                    "source": {
+                        "id": "dracula_5_the_blood_legacy", 
+                        "source": "gog"
+                    }, 
+                    "type": "exe"
+                }
+            ]
+        }, 
+        "0c3476b998249c86adffbcf88d2aa155": {
+            "files": [
+                {
+                    "path": "C:\\games\\sui generis combat alpha\\SGCombat.exe", 
+                    "primary": true, 
+                    "source": {
+                        "source": "none"
+                    }, 
+                    "type": "exe"
+                }
+            ]
+        }, 
+        "0c6eed418ea1e88fdc562bef23aef23c": {
+            "files": [
+                {
+                    "path": "C:\\GOG Games\\Dracula 4 - Shadow of the Dragon\\Launch Dracula 4.lnk", 
+                    "primary": true, 
+                    "source": {
+                        "id": "dracula_4_game", 
+                        "source": "gog"
+                    }, 
+                    "type": "exe"
+                }
+            ]
+        }, 
+        "141589df7903efc8bb8f5e1f180f9991": {
+            "files": [
+                {
+                    "path": "C:\\emu\\snes\\roms\\Dragon Quest III - Soshite Densetsu he... (Japan).sfc", 
+                    "primary": true, 
+                    "source": {
+                        "source": "snes"
+                    }, 
+                    "type": "rom"
+                }
+            ]
+        }, 
+        "14aa5bee9085ab68fe06e12a32678ed2": {
+            "files": [
+                {
+                    "path": "C:\\GOG Games\\Might and Magic IX\\Launch Might and Magic IX.lnk", 
+                    "primary": true, 
+                    "source": {
+                        "id": "might_and_magic_9", 
+                        "source": "gog"
+                    }, 
+                    "type": "exe"
+                }
+            ]
+        }, 
+        "153f8fae67f2265a70043f31c785219a": {
+            "files": [
+                {
+                    "path": "C:\\emu\\snes\\roms\\Final Fantasy IV (Japan) (Rev 1) [En by J2e v3.21] [Bug Fix by Deathlike2 v1.0a] (Yang's HP Fix).sfc", 
+                    "primary": true, 
+                    "source": {
+                        "source": "snes"
+                    }, 
+                    "type": "rom"
+                }
+            ]
+        }, 
+        "1f56a96efa84f9cc162486cd4efffbdd": {
+            "files": [
+                {
+                    "path": "C:\\games\\mealmate\\Mealmate\u2122.exe", 
+                    "primary": true, 
+                    "source": {
+                        "source": "none"
+                    }, 
+                    "type": "exe"
+                }
+            ]
+        }, 
+        "241440a2e1b366a6322d073de5283ef0": {
+            "files": [
+                {
+                    "path": "C:\\games\\Tobias and the Dark Sceptres\\Tobias and the Dark Sceptres.exe", 
+                    "primary": true, 
+                    "source": {
+                        "source": "none"
+                    }, 
+                    "type": "exe"
+                }
+            ]
+        }, 
+        "242bdcf252d366c3c966d32f7c9c4833": {
+            "files": [
+                {
+                    "path": "C:\\emu\\nds\\roms\\3424 - Dragon Quest V - Hand of the Heavenly Bride (US)(M3)(XenoPhobia).nds", 
+                    "primary": true, 
+                    "source": {
+                        "source": "nds"
+                    }, 
+                    "type": "rom"
+                }
+            ]
+        }, 
+        "27f3ae1510ead85390347998dc225cee": {
+            "files": [
+                {
+                    "path": "C:\\emu\\nds\\roms\\2673 - Dragon Quest IV - Chapters of the Chosen (U)(GUARDiAN).nds", 
+                    "primary": true, 
+                    "source": {
+                        "source": "nds"
+                    }, 
+                    "type": "rom"
+                }
+            ]
+        }, 
+        "294191df60fb537573698a1274f4ef85": {
+            "files": [
+                {
+                    "path": "C:\\Program Files (x86)\\Origin Games\\Dragon Age II\\bin_ship\\DragonAge2.exe", 
+                    "primary": true, 
+                    "source": {
+                        "source": "origin"
+                    }, 
+                    "type": "exe"
+                }
+            ]
+        }, 
+        "2a91a61a4689a15f81fda434e84d1037": {
+            "files": [
+                {
+                    "path": "C:\\games\\StarCitizen\\Launcher\\StarCitizenLauncher.exe", 
+                    "primary": true, 
+                    "source": {
+                        "source": "none"
+                    }, 
+                    "type": "exe"
+                }
+            ]
+        }, 
+        "333922a1d295e8f1fc29a20f743f313d": {
+            "files": [
+                {
+                    "path": "C:\\Guild Wars 2\\Gw2.exe", 
+                    "primary": true, 
+                    "source": {
+                        "source": "none"
+                    }, 
+                    "type": "exe"
+                }
+            ]
+        }, 
+        "359da076f770e552f209046bf945e574": {
+            "files": [
+                {
+                    "path": "C:\\gamersgate\\FEAR\\FEAR.exe", 
+                    "primary": true, 
+                    "source": {
+                        "source": "gamersgate"
+                    }, 
+                    "type": "exe"
+                }
+            ]
+        }, 
+        "396a27728a61093341c72a7e8862e0c1": {
+            "files": [
+                {
+                    "path": "C:\\GOG Games\\Tesla Effect - A Tex Murphy Adventure\\Launch Tesla Effect - A Tex Murphy Adventure.lnk", 
+                    "primary": true, 
+                    "source": {
+                        "id": "tesla_effect_a_tex_murphy_adventure", 
+                        "source": "gog"
+                    }, 
+                    "type": "exe"
+                }
+            ]
+        }, 
+        "43bde25231bb82172137c28656a624e6": {
+            "files": [
+                {
+                    "path": "C:\\emu\\snes\\roms\\Dragon Quest I & II (Japan) [En by RPGOne v2.0] (Dragon Quest Version).sfc", 
+                    "primary": true, 
+                    "source": {
+                        "source": "snes"
+                    }, 
+                    "type": "rom"
+                }
+            ]
+        }, 
+        "465f01afea44bfb25ed174f2e7d8f05f": {
+            "files": [
+                {
+                    "path": "C:\\GOG Games\\Wing Commander 1 and 2\\WC\\Launch Wing Commander.lnk", 
+                    "primary": true, 
+                    "source": {
+                        "id": "wing_commander", 
+                        "source": "gog"
+                    }, 
+                    "type": "exe"
+                }
+            ]
+        }, 
+        "4c4baac8e728d613782fc91cbcd26ae9": {
+            "files": [
+                {
+                    "path": "C:\\GOG Games\\Dreamfall\\dreamfall.exe", 
+                    "primary": true, 
+                    "source": {
+                        "id": "dreamfall_the_longest_journey", 
+                        "source": "gog"
+                    }, 
+                    "type": "exe"
+                }
+            ]
+        }, 
+        "4cfca3c10411bdde2f1f72361829f653": {
+            "files": [
+                {
+                    "path": "C:\\GOG Games\\A Story About My Uncle\\Launch A Story About My Uncle.lnk", 
+                    "primary": true, 
+                    "source": {
+                        "id": "story_about_my_uncle_a", 
+                        "source": "gog"
+                    }, 
+                    "type": "exe"
+                }
+            ]
+        }, 
+        "4e244f51cccef58fed272beaa8925f60": {
+            "files": [
+                {
+                    "path": "C:\\GOG Games\\The Blackwell Epiphany\\Launch The Blackwell Epiphany.lnk", 
+                    "primary": true, 
+                    "source": {
+                        "id": "blackwell_epiphany_the", 
+                        "source": "gog"
+                    }, 
+                    "type": "exe"
+                }
+            ]
+        }, 
+        "4eeeb811df58ad2806b9bb1ea6a64f85": {
+            "files": [
+                {
+                    "path": "C:\\GOG Games\\Knights and Merchants - The Peasants Rebellion\\KaM Remake\\KaM_Remake.exe", 
+                    "primary": true, 
+                    "source": {
+                        "id": "knights_and_merchants_the_peasants_rebellion", 
+                        "source": "gog"
+                    }, 
+                    "type": "exe"
+                }
+            ]
+        }, 
+        "4f2f86c799e2906d49ceaf89d6efd254": {
+            "files": [
+                {
+                    "path": "C:\\GOG Games\\Might and Magic VI Limited Edition\\Might and Magic 1\\Launch Might and Magic 1 - Book I.lnk", 
+                    "primary": true, 
+                    "source": {
+                        "id": "might_and_magic_1_book_i", 
+                        "source": "gog"
+                    }, 
+                    "type": "exe"
+                }
+            ]
+        }, 
+        "53ed597955111c9fb2b39ac03f61603e": {
+            "files": [
+                {
+                    "path": "C:\\games\\SpaceEngine 0.971\\system\\SpaceEngine.exe", 
+                    "primary": true, 
+                    "source": {
+                        "source": "none"
+                    }, 
+                    "type": "exe"
+                }
+            ]
+        }, 
+        "5a563ffddde2ac27331e9d4ecbc1d3fd": {
+            "files": [
+                {
+                    "path": "C:\\games\\motoo_win64\\motoo.exe", 
+                    "primary": true, 
+                    "source": {
+                        "source": "none"
+                    }, 
+                    "type": "exe"
+                }
+            ]
+        }, 
+        "60e7739a07b6f97b1b02e504e88b3284": {
+            "files": [
+                {
+                    "path": "C:\\GOG Games\\Baldur's Gate\\Launch Baldur's Gate - The Original Saga.lnk", 
+                    "primary": true, 
+                    "source": {
+                        "id": "baldurs_gate_the_original_saga", 
+                        "source": "gog"
+                    }, 
+                    "type": "exe"
+                }
+            ]
+        }, 
+        "631933d2c16c718fb3c1f02810bd0a26": {
+            "files": [
+                {
+                    "path": "C:\\games\\Assassin's Creed Unity\\ACU.exe", 
+                    "primary": true, 
+                    "source": {
+                        "source": "none"
+                    }, 
+                    "type": "exe"
+                }
+            ]
+        }, 
+        "7017d7b046759090f88179385b0191bb": {
+            "files": [
+                {
+                    "path": "C:\\games\\The Fourth Wall\\The Fourth Wall.exe", 
+                    "primary": true, 
+                    "source": {
+                        "source": "none"
+                    }, 
+                    "type": "exe"
+                }
+            ]
+        }, 
+        "719379d949a894441da4afa7dbbec8e7": {
+            "files": [
+                {
+                    "path": "C:\\GOG Games\\Atlantis2\\atlantis2.exe", 
+                    "primary": true, 
+                    "source": {
+                        "id": "atlantis_2_beyond_atlantis", 
+                        "source": "gog"
+                    }, 
+                    "type": "exe"
+                }
+            ]
+        }, 
+        "739df9a414a01d42bee8e1790ecb2046": {
+            "files": [
+                {
+                    "path": "C:\\emu\\nds\\roms\\5560 - Dragon Quest VI - Realms of Revelation  (U).nds", 
+                    "primary": true, 
+                    "source": {
+                        "source": "nds"
+                    }, 
+                    "type": "rom"
+                }
+            ]
+        }, 
+        "7b5b35f3c99df4f9faac956359296834": {
+            "files": [
+                {
+                    "path": "C:\\GOG Games\\The Pandora Directive\\Launch The Pandora Directive.lnk", 
+                    "primary": true, 
+                    "source": {
+                        "id": "tex_murphy_the_pandora_directive", 
+                        "source": "gog"
+                    }, 
+                    "type": "exe"
+                }
+            ]
+        }, 
+        "7cd5dfe159f4203851a48a313a66d229": {
+            "files": [
+                {
+                    "path": "C:\\games\\Iridescence_windows\\Iridescence.exe", 
+                    "primary": true, 
+                    "source": {
+                        "source": "itch"
+                    }, 
+                    "type": "exe"
+                }
+            ]
+        }, 
+        "7ce1d9b8af70f1d66e769156e86c50c1": {
+            "files": [
+                {
+                    "path": "C:\\GOG Games\\POD GOLD\\Launch POD GOLD.lnk", 
+                    "primary": true, 
+                    "source": {
+                        "id": "pod_gold", 
+                        "source": "gog"
+                    }, 
+                    "type": "exe"
+                }
+            ]
+        }, 
+        "84aebe9883f8d7f4e14e5092572db7d6": {
+            "files": [
+                {
+                    "path": "C:\\GOG Games\\Bad Mojo\\launcher.exe", 
+                    "primary": true, 
+                    "source": {
+                        "id": "bad_mojo_redux", 
+                        "source": "gog"
+                    }, 
+                    "type": "exe"
+                }
+            ]
+        }, 
+        "891dbaa8b19229b2d8ec89be684ddba1": {
+            "files": [
+                {
+                    "path": "C:\\games\\trion\\Glyph\\GlyphClient.exe", 
+                    "primary": true, 
+                    "source": {
+                        "source": "none"
+                    }, 
+                    "type": "exe"
+                }
+            ]
+        }, 
+        "8ab6f3a0bf7a84385ed976186a270a4b": {
+            "files": [
+                {
+                    "path": "C:\\GOG Games\\Might and Magic VII - For Blood and Honor\\Launch Might and Magic VII - For Blood and Honor.lnk", 
+                    "primary": true, 
+                    "source": {
+                        "id": "might_and_magic_7_for_blood_and_honor", 
+                        "source": "gog"
+                    }, 
+                    "type": "exe"
+                }
+            ]
+        }, 
+        "8d053b64295e4e14001d74b7aed8c6ae": {
+            "files": [
+                {
+                    "path": "C:\\GOG Games\\Jack Orlando Director's Cut\\Launch Jack Orlando Director's Cut.lnk", 
+                    "primary": true, 
+                    "source": {
+                        "id": "jack_orlando_a_cinematic_adventure_dc", 
+                        "source": "gog"
+                    }, 
+                    "type": "exe"
+                }
+            ]
+        }, 
+        "937b69d8fa614fdc5ac6ab76f2c1e940": {
+            "files": [
+                {
+                    "path": "C:\\GOG Games\\Divine Divinity\\rundiv.bat", 
+                    "primary": true, 
+                    "source": {
+                        "id": "divine_divinity", 
+                        "source": "gog"
+                    }, 
+                    "type": "exe"
+                }
+            ]
+        }, 
+        "93df29abde253cb55c4912f04d77cf2f": {
+            "files": [
+                {
+                    "path": "C:\\emu\\n64\\Paper Mario (U) [!].zip", 
+                    "primary": true, 
+                    "source": {
+                        "source": "n64"
+                    }, 
+                    "type": "rom"
+                }
+            ]
+        }, 
+        "9549eff9514f2092fc0131a594c71792": {
+            "files": [
+                {
+                    "path": "C:\\GOG Games\\Depths of Peril\\Launch Depths of Peril.lnk", 
+                    "primary": true, 
+                    "source": {
+                        "id": "depths_of_peril", 
+                        "source": "gog"
+                    }, 
+                    "type": "exe"
+                }
+            ]
+        }, 
+        "96233ba697fd348ec85ba5febf691320": {
+            "files": [
+                {
+                    "path": "C:\\GOG Games\\Divinity 2 Developer's Cut\\bin\\Divinity2.exe", 
+                    "primary": true, 
+                    "source": {
+                        "id": "divinity_2_developers_cut", 
+                        "source": "gog"
+                    }, 
+                    "type": "exe"
+                }
+            ]
+        }, 
+        "986ba14e502f1781bc6a89d9f05d6e62": {
+            "files": [
+                {
+                    "path": "C:\\GOG Games\\Stonekeep\\Launch Stonekeep.lnk", 
+                    "primary": true, 
+                    "source": {
+                        "id": "stonekeep", 
+                        "source": "gog"
+                    }, 
+                    "type": "exe"
+                }
+            ]
+        }, 
+        "a791eb20430a0492039017c7af024bd2": {
+            "files": [
+                {
+                    "path": "C:\\GOG Games\\La-Mulana\\Launch La Mulana.lnk", 
+                    "primary": true, 
+                    "source": {
+                        "id": "la_mulana", 
+                        "source": "gog"
+                    }, 
+                    "type": "exe"
+                }
+            ]
+        }, 
+        "b392c8b97655b76e9be7c0b20be41d28": {
+            "files": [
+                {
+                    "path": "C:\\games\\Cornerstone Roguelike\\Cornerstone Roguelike V.0.5.exe", 
+                    "primary": true, 
+                    "source": {
+                        "source": "none"
+                    }, 
+                    "type": "exe"
+                }
+            ]
+        }, 
+        "b5f5c8451125a5baee521af689b3a63c": {
+            "files": [
+                {
+                    "path": "C:\\emu\\snes\\roms\\Dragon Quest I & II (Japan) [En by RPGOne v2.0] (Dragon Quest Version).sfc", 
+                    "primary": true, 
+                    "source": {
+                        "source": "snes"
+                    }, 
+                    "type": "rom"
+                }
+            ]
+        }, 
+        "b65fba84b54669a397b9d343ded780ca": {
+            "files": [
+                {
+                    "path": "C:\\Program Files (x86)\\Origin Games\\Dragon Age Inquisition\\DragonAgeInquisition.exe -GameTime.MaxSimFps 60 -GameTime.ForceSimRate 60+", 
+                    "primary": true, 
+                    "source": {
+                        "source": "origin"
+                    }, 
+                    "type": "exe"
+                }
+            ]
+        }, 
+        "b6a5719702901e0781e9db732b24769f": {
+            "files": [
+                {
+                    "path": "C:\\emu\\snes\\roms\\Super Mario RPG - Legend of the Seven Stars (USA).sfc", 
+                    "primary": true, 
+                    "source": {
+                        "source": "snes"
+                    }, 
+                    "type": "rom"
+                }
+            ]
+        }, 
+        "ba41043e820031da2a5160ca37cf138c": {
+            "files": [
+                {
+                    "path": "C:\\GOG Games\\Anvil of Dawn\\Launch Anvil of Dawn.lnk", 
+                    "primary": true, 
+                    "source": {
+                        "id": "anvil_of_dawn", 
+                        "source": "gog"
+                    }, 
+                    "type": "exe"
+                }
+            ]
+        }, 
+        "bdba9f0417198618fe78d5e7e9d84716": {
+            "files": [
+                {
+                    "path": "C:\\games\\Rodina\\Rodina.exe", 
+                    "primary": true, 
+                    "source": {
+                        "source": "none"
+                    }, 
+                    "type": "exe"
+                }
+            ]
+        }, 
+        "bdc162bbe347971e925f5f8b5aeb70ac": {
+            "files": [
+                {
+                    "path": "C:\\Program Files (x86)\\Origin Games\\Titanfall\\Titanfall.exe", 
+                    "primary": true, 
+                    "source": {
+                        "source": "origin"
+                    }, 
+                    "type": "exe"
+                }
+            ]
+        }, 
+        "be34a97b924d745a0e79aa5d9a1e627a": {
+            "files": [
+                {
+                    "path": "C:\\games\\Exanima\\Exanima.exe", 
+                    "primary": true, 
+                    "source": {
+                        "source": "none"
+                    }, 
+                    "type": "exe"
+                }
+            ]
+        }, 
+        "c0d29c07e49fc3b6a7f6e5d88bb1b0d7": {
+            "files": [
+                {
+                    "path": "C:\\games\\In The Kingdom Windows\\In The Kingdom 64 Bit\\In The Kingdom_x64.exe", 
+                    "primary": true, 
+                    "source": {
+                        "source": "none"
+                    }, 
+                    "type": "exe"
+                }
+            ]
+        }, 
+        "c3268dce903350d45dd9f5f8e3fa4b85": {
+            "files": [
+                {
+                    "path": "C:\\GOG Games\\STAR WARS - X-Wing (1998)\\XWING95.EXE", 
+                    "primary": true, 
+                    "source": {
+                        "id": "gm22", 
+                        "source": "gog"
+                    }, 
+                    "type": "exe"
+                }
+            ]
+        }, 
+        "c4e154f4c16f8750829057ffe7cc0424": {
+            "files": [
+                {
+                    "path": "C:\\emu\\gb\\mother12.gba", 
+                    "primary": true, 
+                    "source": {
+                        "source": "gba"
+                    }, 
+                    "type": "rom"
+                }
+            ]
+        }, 
+        "d206a1e14f5d3ab238e37fc1e7b9adf5": {
+            "files": [
+                {
+                    "path": "C:\\GOG Games\\Lands Of Lore 1 and 2\\Lands of Lore 2\\Launch Lands Of Lore - Guardians of Destiny - 3dfx.lnk", 
+                    "primary": true, 
+                    "source": {
+                        "id": "lands_of_lore_guardians_of_destiny", 
+                        "source": "gog"
+                    }, 
+                    "type": "exe"
+                }
+            ]
+        }, 
+        "d234ea96b3ce05f3833100b44f29710d": {
+            "files": [
+                {
+                    "path": "C:\\GOG Games\\Shadow Man\\Launch Shadow Man.lnk", 
+                    "primary": true, 
+                    "source": {
+                        "id": "shadow_man", 
+                        "source": "gog"
+                    }, 
+                    "type": "exe"
+                }
+            ]
+        }, 
+        "d8ad3991495561e5f3dd2d1ae67eb461": {
+            "files": [
+                {
+                    "path": "C:\\games\\EDLaunch\\EDLaunch.exe", 
+                    "primary": true, 
+                    "source": {
+                        "source": "none"
+                    }, 
+                    "type": "exe"
+                }
+            ]
+        }, 
+        "df9047acbede00b911f7c10fea614398": {
+            "files": [
+                {
+                    "path": "C:\\games\\Road Redemption\\RoadRedemption.exe", 
+                    "primary": true, 
+                    "source": {
+                        "id": "roadredemption", 
+                        "package": "z5Am7ke6Rk4V6yt4", 
+                        "source": "humble"
+                    }, 
+                    "type": "exe"
+                }
+            ]
+        }, 
+        "e98fd60dec1076a5f9dc5b5b163df147": {
+            "files": [
+                {
+                    "path": "C:\\GOG Games\\Beyond Divinity\\rundiv.bat", 
+                    "primary": true, 
+                    "source": {
+                        "id": "beyond_divinity", 
+                        "source": "gog"
+                    }, 
+                    "type": "exe"
+                }
+            ]
+        }, 
+        "edbd133f3e7cb87ceceec85579ed4b5c": {
+            "files": [
+                {
+                    "path": "C:\\GOG Games\\Defender's Quest\\DefendersQuest.exe", 
+                    "primary": true, 
+                    "source": {
+                        "id": "defenders_quest", 
+                        "source": "gog"
+                    }, 
+                    "type": "exe"
+                }
+            ]
+        }, 
+        "f5f276acb657789c210251e4f3e01f89": {
+            "files": [
+                {
+                    "path": "C:\\GOG Games\\Might and Magic VIII - Day of the Destroyer\\Launch Might and Magic VIII - Day of the Destroyer.lnk", 
+                    "primary": true, 
+                    "source": {
+                        "id": "might_and_magic_8_day_of_the_destroyer", 
+                        "source": "gog"
+                    }, 
+                    "type": "exe"
+                }
+            ]
+        }, 
+        "f8d2ad6641166732784e9694b20ba65d": {
+            "files": [
+                {
+                    "path": "C:\\games\\Momodora 1.5\\momodora1_v1.5.exe", 
+                    "primary": true, 
+                    "source": {
+                        "source": "itch"
+                    }, 
+                    "type": "exe"
+                }
+            ]
+        }, 
+        "f92cdf8d223eb856004efb7e4e83067a": {
+            "files": [
+                {
+                    "path": "C:\\GOG Games\\Wing Commander III - Heart of the Tiger\\Launch Wing Commander III.lnk", 
+                    "primary": true, 
+                    "source": {
+                        "id": "wing_commander_3_heart_of_the_tiger", 
+                        "source": "gog"
+                    }, 
+                    "type": "exe"
+                }
+            ]
+        }, 
+        "fa4f82725227ffa7e9709dfcfca19bb4": {
+            "files": [
+                {
+                    "path": "C:\\GOG Games\\Atlantis - The Lost Tales\\Launch Atlantis - The Lost Tales.lnk", 
+                    "primary": true, 
+                    "source": {
+                        "id": "atlantis_the_lost_tales", 
+                        "source": "gog"
+                    }, 
+                    "type": "exe"
+                }
+            ]
+        }, 
+        "fcd931dc62c8d25575e2de7fdcaf07e8": {
+            "files": [
+                {
+                    "path": "C:\\GOG Games\\Omikron - The Nomad Soul\\Launch Omikron - The Nomad Soul.lnk", 
+                    "primary": true, 
+                    "source": {
+                        "id": "omikron_the_nomad_soul", 
+                        "source": "gog"
+                    }, 
+                    "type": "exe"
+                }
+            ]
+        }, 
+        "ff91290e65cdda36c609c760a1586cc9": {
+            "files": [
+                {
+                    "path": "C:\\GOG Games\\I Have No Mouth, and I Must Scream\\Launch I Have No Mouth, and I Must Scream.lnk", 
+                    "primary": true, 
+                    "source": {
+                        "id": "i_have_no_mouth_and_i_must_scream", 
+                        "source": "gog"
+                    }, 
+                    "type": "exe"
+                }
+            ]
+        }
+    }
+}
