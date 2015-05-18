@@ -43805,6 +43805,172 @@
             }, 
             "time": "13:45:00 2015-05-18", 
             "type": "addgame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "package_data", 
+                        "ov": {
+                            "contents": [
+                                {
+                                    "gameid": "62d77f65385a4bcba9ce60a5ebcaaf04", 
+                                    "name": "Quest for Glory 1 EGA"
+                                }, 
+                                {
+                                    "gameid": "cea512286e55a9df9cb9c55be6aaa8e0", 
+                                    "name": "Quest for Glory 1 VGA"
+                                }
+                            ], 
+                            "source_info": {
+                                "id_within_package": "quest_for_glory_includes_vga_remake.0", 
+                                "package_id": "quest_for_glory_vga_remake", 
+                                "package_source": "gog"
+                            }, 
+                            "type": "bundle"
+                        }, 
+                        "v": {
+                            "contents": [
+                                {
+                                    "gameid": "accf183d2bda0455b79d518c6d623d42", 
+                                    "name": "Quest for Glory 1 EGA"
+                                }, 
+                                {
+                                    "gameid": "f3866a80e67e9d0595e6bc7ff1f9feb8", 
+                                    "name": "Quest for Glory 1 VGA"
+                                }
+                            ], 
+                            "source_info": {
+                                "id_within_package": "quest_for_glory_includes_vga_remake", 
+                                "package_id": "quest_for_glory_vga_remake", 
+                                "package_source": "gog"
+                            }, 
+                            "type": "bundle"
+                        }
+                    }
+                ]
+            }, 
+            "game": {
+                "data_changed_date": "", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "35ea1bed87940d5f17e28493ad1845a5", 
+                "genre": "", 
+                "hidden": 0, 
+                "icon_url": "http://images-2.gog.com/0cdd0a60d0ac3840e936ea06c8005d54c8bf8fa105db1ec7590178c3456971f4_392.jpg", 
+                "import_date": "", 
+                "lastplayed": "", 
+                "name": "Quest for Glory (includes VGA Remake)", 
+                "notes": "", 
+                "package_data": {
+                    "contents": [
+                        {
+                            "gameid": "accf183d2bda0455b79d518c6d623d42", 
+                            "name": "Quest for Glory 1 EGA"
+                        }, 
+                        {
+                            "gameid": "f3866a80e67e9d0595e6bc7ff1f9feb8", 
+                            "name": "Quest for Glory 1 VGA"
+                        }
+                    ], 
+                    "source_info": {
+                        "id_within_package": "quest_for_glory_includes_vga_remake", 
+                        "package_id": "quest_for_glory_vga_remake", 
+                        "package_source": "gog"
+                    }, 
+                    "type": "bundle"
+                }, 
+                "playtime": 0, 
+                "priority": 0, 
+                "sources": [
+                    {
+                        "id": "quest_for_glory_vga_remake", 
+                        "id2": 1207661313, 
+                        "source": "gog"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "13:47:34 2015-05-18", 
+            "type": "updategame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "accf183d2bda0455b79d518c6d623d42", 
+                "genre": "", 
+                "hidden": 0, 
+                "icon_url": "http://images-2.gog.com/0cdd0a60d0ac3840e936ea06c8005d54c8bf8fa105db1ec7590178c3456971f4_392.jpg", 
+                "import_date": "", 
+                "lastplayed": "", 
+                "name": "Quest for Glory 1 EGA", 
+                "notes": "", 
+                "package_data": {
+                    "parent": {
+                        "gameid": "35ea1bed87940d5f17e28493ad1845a5", 
+                        "name": "Quest for Glory (includes VGA Remake)"
+                    }, 
+                    "source_info": {
+                        "id_within_package": "quest_for_glory_1_ega", 
+                        "package_id": "quest_for_glory_vga_remake", 
+                        "package_source": "gog"
+                    }, 
+                    "type": "content"
+                }, 
+                "playtime": 0, 
+                "priority": 0, 
+                "sources": [
+                    {
+                        "id": "quest_for_glory_vga_remake", 
+                        "id2": 1207661313, 
+                        "source": "gog"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "13:47:34 2015-05-18", 
+            "type": "addgame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "f3866a80e67e9d0595e6bc7ff1f9feb8", 
+                "genre": "", 
+                "hidden": 0, 
+                "icon_url": "http://images-2.gog.com/0cdd0a60d0ac3840e936ea06c8005d54c8bf8fa105db1ec7590178c3456971f4_392.jpg", 
+                "import_date": "", 
+                "lastplayed": "", 
+                "name": "Quest for Glory 1 VGA", 
+                "notes": "", 
+                "package_data": {
+                    "parent": {
+                        "gameid": "35ea1bed87940d5f17e28493ad1845a5", 
+                        "name": "Quest for Glory (includes VGA Remake)"
+                    }, 
+                    "source_info": {
+                        "id_within_package": "quest_for_glory_1_vga", 
+                        "package_id": "quest_for_glory_vga_remake", 
+                        "package_source": "gog"
+                    }, 
+                    "type": "content"
+                }, 
+                "playtime": 0, 
+                "priority": 0, 
+                "sources": [
+                    {
+                        "id": "quest_for_glory_vga_remake", 
+                        "id2": 1207661313, 
+                        "source": "gog"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "13:47:34 2015-05-18", 
+            "type": "addgame"
         }
     ], 
     "games": {
@@ -50832,7 +50998,7 @@
             "website": ""
         }, 
         "35ea1bed87940d5f17e28493ad1845a5": {
-            "data_changed_date": "11:55:52 2015-05-16", 
+            "data_changed_date": "13:47:34 2015-05-18", 
             "finish_date": "", 
             "finished": 0, 
             "gameid": "35ea1bed87940d5f17e28493ad1845a5", 
@@ -50846,16 +51012,16 @@
             "package_data": {
                 "contents": [
                     {
-                        "gameid": "62d77f65385a4bcba9ce60a5ebcaaf04", 
+                        "gameid": "accf183d2bda0455b79d518c6d623d42", 
                         "name": "Quest for Glory 1 EGA"
                     }, 
                     {
-                        "gameid": "cea512286e55a9df9cb9c55be6aaa8e0", 
+                        "gameid": "f3866a80e67e9d0595e6bc7ff1f9feb8", 
                         "name": "Quest for Glory 1 VGA"
                     }
                 ], 
                 "source_info": {
-                    "id_within_package": "quest_for_glory_includes_vga_remake.0", 
+                    "id_within_package": "quest_for_glory_includes_vga_remake", 
                     "package_id": "quest_for_glory_vga_remake", 
                     "package_source": "gog"
                 }, 
@@ -55951,41 +56117,6 @@
                 {
                     "id": 239350, 
                     "source": "steam"
-                }
-            ], 
-            "website": ""
-        }, 
-        "62d77f65385a4bcba9ce60a5ebcaaf04": {
-            "data_changed_date": "11:55:52 2015-05-16", 
-            "finish_date": "", 
-            "finished": 0, 
-            "gameid": "62d77f65385a4bcba9ce60a5ebcaaf04", 
-            "genre": "", 
-            "hidden": 0, 
-            "icon_url": "http://images-2.gog.com/0cdd0a60d0ac3840e936ea06c8005d54c8bf8fa105db1ec7590178c3456971f4_392.jpg", 
-            "import_date": "", 
-            "lastplayed": "", 
-            "name": "Quest for Glory 1 EGA", 
-            "notes": "", 
-            "package_data": {
-                "parent": {
-                    "gameid": "35ea1bed87940d5f17e28493ad1845a5", 
-                    "name": "Quest for Glory (includes VGA Remake)"
-                }, 
-                "source_info": {
-                    "id_within_package": "Quest for Glory 1 EGA.0", 
-                    "package_id": "quest_for_glory_vga_remake", 
-                    "package_source": "gog"
-                }, 
-                "type": "content"
-            }, 
-            "playtime": 0, 
-            "priority": 0, 
-            "sources": [
-                {
-                    "id": "quest_for_glory_vga_remake", 
-                    "id2": 1207661313, 
-                    "source": "gog"
                 }
             ], 
             "website": ""
@@ -66105,6 +66236,41 @@
             ], 
             "website": ""
         }, 
+        "accf183d2bda0455b79d518c6d623d42": {
+            "data_changed_date": "13:47:34 2015-05-18", 
+            "finish_date": "", 
+            "finished": 0, 
+            "gameid": "accf183d2bda0455b79d518c6d623d42", 
+            "genre": "", 
+            "hidden": 0, 
+            "icon_url": "http://images-2.gog.com/0cdd0a60d0ac3840e936ea06c8005d54c8bf8fa105db1ec7590178c3456971f4_392.jpg", 
+            "import_date": "", 
+            "lastplayed": "", 
+            "name": "Quest for Glory 1 EGA", 
+            "notes": "", 
+            "package_data": {
+                "parent": {
+                    "gameid": "35ea1bed87940d5f17e28493ad1845a5", 
+                    "name": "Quest for Glory (includes VGA Remake)"
+                }, 
+                "source_info": {
+                    "id_within_package": "quest_for_glory_1_ega", 
+                    "package_id": "quest_for_glory_vga_remake", 
+                    "package_source": "gog"
+                }, 
+                "type": "content"
+            }, 
+            "playtime": 0, 
+            "priority": 0, 
+            "sources": [
+                {
+                    "id": "quest_for_glory_vga_remake", 
+                    "id2": 1207661313, 
+                    "source": "gog"
+                }
+            ], 
+            "website": ""
+        }, 
         "ad13ee658171f9683dfad385ec23f2c4": {
             "data_changed_date": "10:24:17 2015-04-02", 
             "finish_date": "", 
@@ -70719,41 +70885,6 @@
             ], 
             "website": ""
         }, 
-        "cea512286e55a9df9cb9c55be6aaa8e0": {
-            "data_changed_date": "11:55:52 2015-05-16", 
-            "finish_date": "", 
-            "finished": 0, 
-            "gameid": "cea512286e55a9df9cb9c55be6aaa8e0", 
-            "genre": "", 
-            "hidden": 0, 
-            "icon_url": "http://images-2.gog.com/0cdd0a60d0ac3840e936ea06c8005d54c8bf8fa105db1ec7590178c3456971f4_392.jpg", 
-            "import_date": "", 
-            "lastplayed": "", 
-            "name": "Quest for Glory 1 VGA", 
-            "notes": "", 
-            "package_data": {
-                "parent": {
-                    "gameid": "35ea1bed87940d5f17e28493ad1845a5", 
-                    "name": "Quest for Glory (includes VGA Remake)"
-                }, 
-                "source_info": {
-                    "id_within_package": "Quest for Glory 1 VGA.0", 
-                    "package_id": "quest_for_glory_vga_remake", 
-                    "package_source": "gog"
-                }, 
-                "type": "content"
-            }, 
-            "playtime": 0, 
-            "priority": 0, 
-            "sources": [
-                {
-                    "id": "quest_for_glory_vga_remake", 
-                    "id2": 1207661313, 
-                    "source": "gog"
-                }
-            ], 
-            "website": ""
-        }, 
         "cf253249af9ca340f3fe0e2ce3dc99f1": {
             "data_changed_date": null, 
             "finish_date": "", 
@@ -75323,6 +75454,41 @@
                 {
                     "id": "avernum_5", 
                     "id2": 1207663423, 
+                    "source": "gog"
+                }
+            ], 
+            "website": ""
+        }, 
+        "f3866a80e67e9d0595e6bc7ff1f9feb8": {
+            "data_changed_date": "13:47:34 2015-05-18", 
+            "finish_date": "", 
+            "finished": 0, 
+            "gameid": "f3866a80e67e9d0595e6bc7ff1f9feb8", 
+            "genre": "", 
+            "hidden": 0, 
+            "icon_url": "http://images-2.gog.com/0cdd0a60d0ac3840e936ea06c8005d54c8bf8fa105db1ec7590178c3456971f4_392.jpg", 
+            "import_date": "", 
+            "lastplayed": "", 
+            "name": "Quest for Glory 1 VGA", 
+            "notes": "", 
+            "package_data": {
+                "parent": {
+                    "gameid": "35ea1bed87940d5f17e28493ad1845a5", 
+                    "name": "Quest for Glory (includes VGA Remake)"
+                }, 
+                "source_info": {
+                    "id_within_package": "quest_for_glory_1_vga", 
+                    "package_id": "quest_for_glory_vga_remake", 
+                    "package_source": "gog"
+                }, 
+                "type": "content"
+            }, 
+            "playtime": 0, 
+            "priority": 0, 
+            "sources": [
+                {
+                    "id": "quest_for_glory_vga_remake", 
+                    "id2": 1207661313, 
                     "source": "gog"
                 }
             ], 
