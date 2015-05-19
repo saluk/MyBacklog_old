@@ -555,7 +555,6 @@ class GamelistForm(QWidget):
         self.humble = humbleapi.Humble(account["humble"]["username"],account["humble"]["password"])
         games.sources.SteamSource.api = self.steam
         games.sources.GogSource.api = self.gog
-        games.sources.HumbleSource.api = self.humble
 
     def disable_edit_notify(self):
         try:

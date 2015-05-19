@@ -10,6 +10,29 @@ run_with_steam = 1
 #   When running a game, if a steam shortcut exists in cache/steamshortcuts, run that
 
 class Source:
+    def args(self):
+        return []
+    def is_installed(self,game,source):
+        return True
+    def needs_download(self,game,source):
+        if self.is_installed(game,source):
+            return False
+        return True
+    def download_link(self,game,source):
+        return ""
+    def download_method(self,game,source):
+        if game.download_link:
+            webbrowser.open(game.download_link)
+    def uninstall(self):
+        return
+    def get_run_args(self,game,source):
+        return None, None
+    def run_game(self,game,source):
+        return
+    def missing_steam_launch(self,game,source):
+        return True
+
+class ExeSource(Source):
     """Definition of a source of games"""
     def args(self):
         """Return editable arguments that are unique to this source
@@ -17,22 +40,6 @@ class Source:
         return [("install_path","s")]
     def is_installed(self,game,source):
         return game.get_path()
-    def needs_download(self,game,source):
-        if self.is_installed(game,source):
-            return False
-        return True
-    def gameid(self,game):
-        """Returns the unique id for the game according to this source
-        If a unique id cannot be generated raise an error
-        Defaults to a letters only version of the game's name"""
-        if not game.name:
-            raise InvalidIdException()
-        return game.name_stripped
-    def download_link(self,game,source):
-        return ""
-    def download_method(self,game,source):
-        if game.download_link:
-            webbrowser.open(game.download_link)
     def uninstall(self,game,source):
         if game.install_folder:
             subprocess.Popen(["explorer.exe",game.install_folder], cwd=game.install_folder, stdout=sys.stdout, stderr=sys.stderr)
@@ -95,8 +102,6 @@ class Source:
         if os.path.exists(dest_shortcut_path):
             return False
         return True
-class InvalidIdException(Exception):
-    pass
 
 class SteamSource(Source):
     """Needs .api to be set to steamapi.Steam"""
@@ -114,55 +119,16 @@ class SteamSource(Source):
         return self.api.is_installed(source["id"])
 
 
-class GogSource(Source):
+class GogSource(ExeSource):
     """Needs .api to be set to gogapi.Gog"""
-    def args(self):
-        return [("install_path","s")]
     def download_link(self,game,source):
         return "gogdownloader://%s/installer_win_en"%source["id"]
-class HumbleSource(Source):
-    def args(self):
-        return [("install_path","s")]
 
 
-class ItchSource(Source):
-    pass
-
-
-class GBASource(Source):
+class EmulatorSource(ExeSource):
     def get_run_args(self,game,source):
-        args = ["C:\\emu\\retroarch\\retroarch.exe","-c","C:\\emu\\retroarch\\retroarch-gba.cfg",game.get_path()]
+        args = self.args+[game.get_path()]
         return args,"."
-
-
-class SNESSource(Source):
-    def get_run_args(self,game,source):
-        args = ["C:\\emu\\retroarch\\retroarch.exe","-c","C:\\emu\\retroarch\\retroarch-snes.cfg",game.get_path()]
-        return args,"."
-
-
-class N64Source(Source):
-    def get_run_args(self,game,source):
-        args = ["C:\\emu\\retroarch\\retroarch.exe","-c","C:\\emu\\retroarch\\retroarch-n64.cfg",game.get_path()]
-        return args,"."
-
-
-class NDSSource(Source):
-    def get_run_args(self,game,source):
-        args = ["C:\\emu\\retroarch\\retroarch.exe","-c","C:\\emu\\retroarch\\retroarch-nds.cfg",game.get_path()]
-        return args,"."
-
-
-class NoneSource(Source):
-    pass
-
-
-class OriginSource(Source):
-    pass
-
-
-class GamersGateSource(Source):
-    pass
 
 
 class OfflineSource(Source):
@@ -172,7 +138,56 @@ class OfflineSource(Source):
         return True
 
 
+definitions = {
+    "gog":{
+        "class":"GogSource"
+    },
+    "steam":{
+        "class":"SteamSource"
+    },
+    "offline":{
+        "class":"OfflineSource",
+    },
+    "none":{
+        "class":"ExeSource"
+    },
+    "humble":{
+        "class":"ExeSource"
+    },
+    "origin":{
+        "class":"ExeSource"
+    },
+    "gamersgate":{
+        "class":"ExeSource"
+    },
+    "itch":{
+        "class":"ExeSource"
+    },
+    "offline":{
+        "class":"OfflineSource"
+    },
+    "gba":{
+        "class":"EmulatorSource",
+        "args":["C:\\emu\\retroarch\\retroarch.exe","-c","C:\\emu\\retroarch\\retroarch-gba.cfg"]
+    },
+    "snes":{
+        "class":"EmulatorSource",
+        "args":["C:\\emu\\retroarch\\retroarch.exe","-c","C:\\emu\\retroarch\\retroarch-snes.cfg"]
+    },
+    "n64":{
+        "class":"EmulatorSource",
+        "args":["C:\\emu\\retroarch\\retroarch.exe","-c","C:\\emu\\retroarch\\retroarch-n64.cfg"]
+    },
+    "nds":{
+        "class":"EmulatorSource",
+        "args":["C:\\emu\\retroarch\\retroarch.exe","-c","C:\\emu\\retroarch\\retroarch-nds.cfg"]
+    }
+}
 all = {}
-for source in dir():
-    if "Source" in source and source!="Source":
-        all[source.replace("Source","").lower()] = eval(source)
+for sourcekey in definitions:
+    source = definitions[sourcekey]
+    cls = eval(source["class"])
+    del source["class"]
+    for key in source:
+        setattr(cls,key,source[key])
+    all[sourcekey] = cls
