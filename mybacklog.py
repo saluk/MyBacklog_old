@@ -268,8 +268,8 @@ class GamelistForm(QWidget):
         self.timer.timeout.connect(self.notify)
         
         self.update_gamelist_widget()
-        self.setMinimumSize(740,600)
-        self.setMaximumWidth(1080)
+        self.setMinimumSize(600,600)
+        #self.setMaximumWidth(1080)
         self.adjustSize()
 
         self.running = None #Game currently being played
@@ -278,7 +278,7 @@ class GamelistForm(QWidget):
         self.game_options_dock.setFeatures(QDockWidget.NoDockWidgetFeatures)
         self.game_options_dock.setMaximumWidth(300)
         self.game_options_dock.setMinimumWidth(300)
-        self.game_options_dock.setMaximumHeight(400)
+        self.game_options_dock.setMaximumHeight(800)
         self.window().addDockWidget(Qt.LeftDockWidgetArea,self.game_options_dock)
 
     def set_accounts(self,account):
@@ -420,7 +420,7 @@ class GamelistForm(QWidget):
         for g in self.games.list(self.sort):
             self.gamelist.append({"game":g,"widget":None})
         self.games_list_widget.clear()
-        self.games_list_widget.setIconSize(QSize(48,48))
+        self.games_list_widget.setIconSize(QSize(28,28))
         self.games_list_widget.horizontalHeader().setVisible(True)
         self.games_list_widget.verticalHeader().setVisible(False)
         self.games_list_widget.setRowCount(len(self.gamelist)+1)
@@ -434,12 +434,13 @@ class GamelistForm(QWidget):
         self.game_scroller.verticalScrollBar().setValue(0)
         self.games_list_widget.setHorizontalHeaderLabels([x[0] for x in self.columns])
         self.games_list_widget.resizeColumnsToContents()
-        self.games_list_widget.setColumnWidth(0,48)
-        self.games_list_widget.setColumnWidth(1,48)
-        self.games_list_widget.setColumnWidth(2,350)
-        self.games_list_widget.setColumnWidth(3,50)
-        self.games_list_widget.setColumnWidth(4,50)
+        self.games_list_widget.setColumnWidth(0,34)
+        self.games_list_widget.setColumnWidth(1,34)
+        self.games_list_widget.setColumnWidth(2,200)
+        self.games_list_widget.setColumnWidth(3,80)
+        self.games_list_widget.setColumnWidth(4,60)
         self.games_list_widget.setColumnWidth(5,150)
+        self.games_list_widget.resizeRowsToContents()
 
         self.games_list_widget.setSortingEnabled(True)
 

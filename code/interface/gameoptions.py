@@ -96,32 +96,50 @@ class EditGame(QWidget):
             self.oldid = game.gameid
 
         #Layout
-        layout = QGridLayout()
+        baselayout = QGridLayout()
         if self.new:
-            layout.addWidget(QLabel("Adding new game"))
+            baselayout.addWidget(QLabel("Adding new game"))
         else:
-            layout.addWidget(QLabel("Editing:"+game.gameid))
+            baselayout.addWidget(QLabel("Editing:"+game.gameid))
+
+        layout = QGridLayout()
+        scrollwidget = QWidget()
+        layout.setContentsMargins(1,1,1,1)
+        scrollwidget.setLayout(layout)
+        scroll = QScrollArea()
+        scroll.setWidget(scrollwidget)
+
+        #layout = widget.layout()
+        #baselayout.addLayout(other_layout,1,0)
+        baselayout.addWidget(scroll)
+
+        #baselayout.addLayout(layout,1,0)
+
 
         #Fields
         self.fields = {}
         for i,prop in enumerate(game.valid_args):
             prop,proptype = prop
             label = QLabel("%s:"%prop.capitalize())
-            layout.addWidget(label,i+1,0)
+            layout.addWidget(label,i,0)
             edit = QLineEdit(str(getattr(game,prop)))
-            layout.addWidget(edit,i+1,1)
+            layout.addWidget(edit,i,1)
             self.fields[prop] = {"w":edit,"t":proptype}
 
             if prop=="install_path":
-                button = QPushButton("Set Path")
-                layout.addWidget(button,i+1,2)
+                button = QPushButton("...")
+                button.setFixedWidth(32)
+                layout.addWidget(button,i,2)
                 button.clicked.connect(make_callback(self.set_filepath,edit))
+        scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        scrollwidget.adjustSize()
 
+        buttons_layout = QGridLayout()
         name = "Make Package"
         if game.is_package:
             name = "Edit Package"
         button = QPushButton(name)
-        layout.addWidget(button, i+2, 0)
+        buttons_layout.addWidget(button, 0, 0)
         button.clicked.connect(make_callback(self.make_package))
 
         #Save button
@@ -129,15 +147,17 @@ class EditGame(QWidget):
         if self.parented:
             save_method = "Save"
         button = QPushButton(save_method)
-        layout.addWidget(button)
+        buttons_layout.addWidget(button,0,1)
         button.clicked.connect(self.save_close)
 
         #Delete button
         button = QPushButton("Delete")
-        layout.addWidget(button)
+        buttons_layout.addWidget(button,0,2)
         button.clicked.connect(self.delete)
 
-        self.setLayout(layout)
+        baselayout.addLayout(buttons_layout,2,0)
+
+        self.setLayout(baselayout)
 
     def set_filepath(self,w):
         filename = QFileDialog.getOpenFileName(self,"Open Executable",w.text(),"Executable (*.exe *.lnk *.cmd *.bat)")[0]
@@ -199,7 +219,6 @@ class GameOptions(QWidget):
         layout.setAlignment(Qt.AlignTop)
 
         label_section = QGridLayout()
-        label_section.addWidget(QLabel(game.name),1,0)
         icon = icons.icon_for_game(game,128,self.app.gicons)
         if icon:
             iconw = QLabel()
@@ -207,7 +226,10 @@ class GameOptions(QWidget):
             label_section.addWidget(iconw,0,0)
 
         layout.addLayout(label_section,0,0)
+        layout.addWidget(QLabel(game.name))
 
+        buttons = QGridLayout()
+        buttons.setAlignment(Qt.AlignTop)
         if game.is_installed():
             if not game.missing_steam_launch():
                 run = QPushButton("Play Game")
@@ -215,26 +237,26 @@ class GameOptions(QWidget):
                 run = QPushButton("Play Game (no steam)")
             run.setBackgroundRole(QPalette.Highlight)
             run.clicked.connect(make_callback(self.app.run_game,game))
-            layout.addWidget(run)
+            buttons.addWidget(run)
 
             run_no_timer = QPushButton("Play without time tracking")
             run_no_timer.clicked.connect(make_callback(self.app.run_game_notimer,game))
-            layout.addWidget(run_no_timer)
+            buttons.addWidget(run_no_timer)
 
         if game.needs_download():
             download = QPushButton("Download")
             download.clicked.connect(make_callback(self.app.download,game))
-            layout.addWidget(download)
+            buttons.addWidget(download)
 
         if game.is_installed():
             w = QPushButton("Uninstall")
             w.clicked.connect(make_callback(self.app.uninstall_game,game))
-            layout.addWidget(w)
+            buttons.addWidget(w)
+        label_section.addLayout(buttons,0,1)
 
         self.edit_widget = EditGame(game,app,parented=self)
-        scroll = QScrollArea()
-        scroll.setWidget(self.edit_widget)
-        self.edit_scroll = scroll
-        layout.addWidget(scroll)
+        #scroll = QScrollArea()
+        #scroll.setWidget(self.edit_widget)
+        layout.addWidget(self.edit_widget)
 
         self.setLayout(layout)
