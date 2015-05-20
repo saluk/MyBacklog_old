@@ -407,7 +407,7 @@ class MyBacklog(QMainWindow):
                         action.setCheckable(True)
                     menus[folder].addAction(action)
         menus["view"] = self.menuBar().addMenu("&Add Game")
-        for source in games.sources.all:
+        for source in sorted(games.sources.all):
             print("Create menu to add",source)
             def gen_func():
                 def ag(*args,**kwargs):

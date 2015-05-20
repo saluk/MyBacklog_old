@@ -10,6 +10,8 @@ run_with_steam = 1
 #   When running a game, if a steam shortcut exists in cache/steamshortcuts, run that
 
 class Source:
+    def __init__(self,name):
+        self.name = name
     def args(self):
         return []
     def is_installed(self,game,source):
@@ -129,7 +131,8 @@ class GogSource(ExeSource):
 
 class EmulatorSource(ExeSource):
     def get_run_args(self,game,source):
-        args = self.args+[game.get_path()]
+        emu_info = game.games.local["emulators"][self.name]
+        args = emu_info["args"]+[game.get_path()]
         return args,"."
 
 
@@ -140,7 +143,7 @@ class OfflineSource(Source):
         return True
 
 
-definitions = {
+default_definitions = {
     "gog":{
         "class":"GogSource"
     },
@@ -169,27 +172,26 @@ definitions = {
         "class":"OfflineSource"
     },
     "gba":{
-        "class":"EmulatorSource",
-        "args":["C:\\emu\\retroarch\\retroarch.exe","-c","C:\\emu\\retroarch\\retroarch-gba.cfg"]
+        "class":"EmulatorSource"
     },
     "snes":{
-        "class":"EmulatorSource",
-        "args":["C:\\emu\\retroarch\\retroarch.exe","-c","C:\\emu\\retroarch\\retroarch-snes.cfg"]
+        "class":"EmulatorSource"
     },
     "n64":{
-        "class":"EmulatorSource",
-        "args":["C:\\emu\\retroarch\\retroarch.exe","-c","C:\\emu\\retroarch\\retroarch-n64.cfg"]
+        "class":"EmulatorSource"
     },
     "nds":{
-        "class":"EmulatorSource",
-        "args":["C:\\emu\\retroarch\\retroarch.exe","-c","C:\\emu\\retroarch\\retroarch-nds.cfg"]
+        "class":"EmulatorSource"
     }
 }
 all = {}
-for sourcekey in definitions:
-    source = definitions[sourcekey]
-    cls = eval(source["class"])
-    del source["class"]
-    for key in source:
-        setattr(cls,key,source[key])
-    all[sourcekey] = cls
+def register_sources(definitions):
+    for sourcekey in definitions:
+        source = definitions[sourcekey]
+        cls = eval(source["class"])
+        for key in source:
+            if key in ["class"]:
+                continue
+            setattr(cls,key,source[key])
+        inst = cls(name=sourcekey)
+        all[sourcekey] = inst

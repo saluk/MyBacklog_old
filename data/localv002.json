@@ -1,5 +1,34 @@
 {
-    "emulators": {}, 
+    "emulators": {
+        "gba": {
+            "args": [
+                "C:\\emu\\retroarch\\retroarch.exe", 
+                "-c", 
+                "C:\\emu\\retroarch\\retroarch-gba.cfg"
+            ]
+        }, 
+        "n64": {
+            "args": [
+                "C:\\emu\\retroarch\\retroarch.exe", 
+                "-c", 
+                "C:\\emu\\retroarch\\retroarch-n64.cfg"
+            ]
+        }, 
+        "nds": {
+            "args": [
+                "C:\\emu\\retroarch\\retroarch.exe", 
+                "-c", 
+                "C:\\emu\\retroarch\\retroarch-nds.cfg"
+            ]
+        }, 
+        "snes": {
+            "args": [
+                "C:\\emu\\retroarch\\retroarch.exe", 
+                "-c", 
+                "C:\\emu\\retroarch\\retroarch-snes.cfg"
+            ]
+        }
+    }, 
     "game_data": {
         "020efb6db2baee8ddfbd0154f6b96188": {
             "files": [
