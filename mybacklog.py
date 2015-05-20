@@ -477,7 +477,7 @@ class GamelistForm(QWidget):
         self.set_accounts(account)
 
         self.columns = [("s",None,None),("icon",None,None),("name","widget_name","name"),
-                        ("genre","genre","genre"),("playtime",None,None),("lastplay",None,None)]
+                        ("genre","genre","genre"),("playtime",None,"playtime_hours_minutes"),("lastplay",None,None)]
         self.changed = []
 
         self.hide_packages = True
@@ -666,7 +666,7 @@ class GamelistForm(QWidget):
 
         hours = QTableWidgetItem("GAME HOURS")
         hours.setBackground(bg)
-        hours.setText("%.2d:%.2d"%game.hours_minutes)
+        hours.setText(game.playtime_hours_minutes)
         self.games_list_widget.setItem(row,4,hours)
 
         lastplayed = WILastPlayed("GAME LAST PLAYED")

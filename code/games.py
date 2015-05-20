@@ -130,12 +130,17 @@ class Game:
             a.extend(get_source(s["source"]).args())
         return a
     @property
-    def hours_minutes(self):
+    def playtime_hours_minutes(self):
         s = self.playtime
         min = s/60.0
         hour = int(min/60.0)
         min = min-hour*60.0
-        return hour,min
+        return "%.2d:%.2d"%(hour,min)
+    @playtime_hours_minutes.setter
+    def playtime_hours_minutes(self,s):
+        hour,min = s.split(":")
+        t = int(hour)*60*60+int(min)*60
+        self.playtime = t
     @property
     def last_played_nice(self):
         if not self.lastplayed or self.lastplayed == "None":

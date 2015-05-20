@@ -43971,6 +43971,310 @@
             }, 
             "time": "13:47:34 2015-05-18", 
             "type": "addgame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "12:39:34 2015-05-15", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "bf723d4bc809f9a599962b9d057a6df6", 
+                "genre": "", 
+                "hidden": 0, 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/316790/4e9da606cb52dfebf296dc8d3b0bc6ba81065a52.jpg", 
+                "import_date": "", 
+                "lastplayed": "01:46:33 2015-05-16", 
+                "name": "Grim Fandango Remastered", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 9531.624804735184, 
+                "priority": -1, 
+                "sources": [
+                    {
+                        "id": 316790, 
+                        "source": "steam"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "17:02:44 2015-05-18", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "12:39:34 2015-05-15", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "bf723d4bc809f9a599962b9d057a6df6", 
+                "genre": "", 
+                "hidden": 0, 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/316790/4e9da606cb52dfebf296dc8d3b0bc6ba81065a52.jpg", 
+                "import_date": "", 
+                "lastplayed": "01:46:33 2015-05-16", 
+                "name": "Grim Fandango Remastered", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 9531.624804735184, 
+                "priority": -1, 
+                "sources": [
+                    {
+                        "id": 316790, 
+                        "source": "steam"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "18:15:46 2015-05-18", 
+            "type": "stopgame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "11:16:17 2015-05-16", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "332cc57ded88dc9360ed513f485651f5", 
+                "genre": "", 
+                "hidden": 0, 
+                "icon_url": "http://images-3.gog.com/c6c05519492501088063513acba104cb1c5b23e2b54b50d013cca80bb209f0d2_392.jpg", 
+                "import_date": "17:32:45 2015-05-01", 
+                "lastplayed": "", 
+                "name": "Witcher 3: Wild Hunt, The", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 15960, 
+                "priority": 0, 
+                "sources": [
+                    {
+                        "id": "the_witcher_3_wild_hunt", 
+                        "id2": 1207664643, 
+                        "source": "gog"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "10:52:10 2015-05-19", 
+            "type": "stopgame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "11:16:17 2015-05-16", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "332cc57ded88dc9360ed513f485651f5", 
+                "genre": "", 
+                "hidden": 0, 
+                "icon_url": "http://images-3.gog.com/c6c05519492501088063513acba104cb1c5b23e2b54b50d013cca80bb209f0d2_392.jpg", 
+                "import_date": "17:32:45 2015-05-01", 
+                "lastplayed": "10:52:11 2015-05-19", 
+                "name": "Witcher 3: Wild Hunt, The", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 15972.401802778244, 
+                "priority": -1, 
+                "sources": [
+                    {
+                        "id": "the_witcher_3_wild_hunt", 
+                        "id2": 1207664643, 
+                        "source": "gog"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "10:52:36 2015-05-19", 
+            "type": "stopgame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "11:16:17 2015-05-16", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "332cc57ded88dc9360ed513f485651f5", 
+                "genre": "", 
+                "hidden": 0, 
+                "icon_url": "http://images-3.gog.com/c6c05519492501088063513acba104cb1c5b23e2b54b50d013cca80bb209f0d2_392.jpg", 
+                "import_date": "17:32:45 2015-05-01", 
+                "lastplayed": "10:52:37 2015-05-19", 
+                "name": "Witcher 3: Wild Hunt, The", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 15993.595418930054, 
+                "priority": -1, 
+                "sources": [
+                    {
+                        "id": "the_witcher_3_wild_hunt", 
+                        "id2": 1207664643, 
+                        "source": "gog"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "10:53:39 2015-05-19", 
+            "type": "stopgame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "11:16:17 2015-05-16", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "332cc57ded88dc9360ed513f485651f5", 
+                "genre": "", 
+                "hidden": 0, 
+                "icon_url": "http://images-3.gog.com/c6c05519492501088063513acba104cb1c5b23e2b54b50d013cca80bb209f0d2_392.jpg", 
+                "import_date": "17:32:45 2015-05-01", 
+                "lastplayed": "10:53:40 2015-05-19", 
+                "name": "Witcher 3: Wild Hunt, The", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 16004.914734840393, 
+                "priority": -1, 
+                "sources": [
+                    {
+                        "id": "the_witcher_3_wild_hunt", 
+                        "id2": 1207664643, 
+                        "source": "gog"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "10:55:05 2015-05-19", 
+            "type": "stopgame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "11:16:17 2015-05-16", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "332cc57ded88dc9360ed513f485651f5", 
+                "genre": "", 
+                "hidden": 0, 
+                "icon_url": "http://images-3.gog.com/c6c05519492501088063513acba104cb1c5b23e2b54b50d013cca80bb209f0d2_392.jpg", 
+                "import_date": "17:32:45 2015-05-01", 
+                "lastplayed": "10:55:06 2015-05-19", 
+                "name": "Witcher 3: Wild Hunt, The", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 16006.858950853348, 
+                "priority": -1, 
+                "sources": [
+                    {
+                        "id": "the_witcher_3_wild_hunt", 
+                        "id2": 1207664643, 
+                        "source": "gog"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "10:55:41 2015-05-19", 
+            "type": "stopgame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "11:16:17 2015-05-16", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "332cc57ded88dc9360ed513f485651f5", 
+                "genre": "", 
+                "hidden": 0, 
+                "icon_url": "http://images-3.gog.com/c6c05519492501088063513acba104cb1c5b23e2b54b50d013cca80bb209f0d2_392.jpg", 
+                "import_date": "17:32:45 2015-05-01", 
+                "lastplayed": "10:55:42 2015-05-19", 
+                "name": "Witcher 3: Wild Hunt, The", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 16009.68289399147, 
+                "priority": -1, 
+                "sources": [
+                    {
+                        "id": "the_witcher_3_wild_hunt", 
+                        "id2": 1207664643, 
+                        "source": "gog"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "11:00:06 2015-05-19", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "11:16:17 2015-05-16", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "332cc57ded88dc9360ed513f485651f5", 
+                "genre": "", 
+                "hidden": 0, 
+                "icon_url": "http://images-3.gog.com/c6c05519492501088063513acba104cb1c5b23e2b54b50d013cca80bb209f0d2_392.jpg", 
+                "import_date": "17:32:45 2015-05-01", 
+                "lastplayed": "10:55:42 2015-05-19", 
+                "name": "Witcher 3: Wild Hunt, The", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 16009.68289399147, 
+                "priority": -1, 
+                "sources": [
+                    {
+                        "id": "the_witcher_3_wild_hunt", 
+                        "id2": 1207664643, 
+                        "source": "gog"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "13:47:42 2015-05-19", 
+            "type": "stopgame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "12:39:34 2015-05-15", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "bf723d4bc809f9a599962b9d057a6df6", 
+                "genre": "", 
+                "hidden": 0, 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/316790/4e9da606cb52dfebf296dc8d3b0bc6ba81065a52.jpg", 
+                "import_date": "", 
+                "lastplayed": "18:15:47 2015-05-18", 
+                "name": "Grim Fandango Remastered", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 13913.787472724915, 
+                "priority": -1, 
+                "sources": [
+                    {
+                        "id": 316790, 
+                        "source": "steam"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "16:46:56 2015-05-19", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "12:39:34 2015-05-15", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "bf723d4bc809f9a599962b9d057a6df6", 
+                "genre": "", 
+                "hidden": 0, 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/316790/4e9da606cb52dfebf296dc8d3b0bc6ba81065a52.jpg", 
+                "import_date": "", 
+                "lastplayed": "18:15:47 2015-05-18", 
+                "name": "Grim Fandango Remastered", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 13913.787472724915, 
+                "priority": -1, 
+                "sources": [
+                    {
+                        "id": 316790, 
+                        "source": "steam"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "18:17:01 2015-05-19", 
+            "type": "stopgame"
         }
     ], 
     "games": {
@@ -50610,12 +50914,12 @@
             "hidden": 0, 
             "icon_url": "http://images-3.gog.com/c6c05519492501088063513acba104cb1c5b23e2b54b50d013cca80bb209f0d2_392.jpg", 
             "import_date": "17:32:45 2015-05-01", 
-            "lastplayed": "", 
+            "lastplayed": "13:47:43 2015-05-19", 
             "name": "Witcher 3: Wild Hunt, The", 
             "notes": "", 
             "package_data": {}, 
-            "playtime": 0, 
-            "priority": 0, 
+            "playtime": 26065.91435289383, 
+            "priority": -1, 
             "sources": [
                 {
                     "id": "the_witcher_3_wild_hunt", 
@@ -68828,11 +69132,11 @@
             "hidden": 0, 
             "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/316790/4e9da606cb52dfebf296dc8d3b0bc6ba81065a52.jpg", 
             "import_date": "", 
-            "lastplayed": "01:46:33 2015-05-16", 
+            "lastplayed": "18:17:02 2015-05-19", 
             "name": "Grim Fandango Remastered", 
             "notes": "", 
             "package_data": {}, 
-            "playtime": 9531.624804735184, 
+            "playtime": 19318.30343770981, 
             "priority": -1, 
             "sources": [
                 {

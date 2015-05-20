@@ -54,8 +54,10 @@ class ExeSource(Source):
         path = game.get_path()
         if path.endswith(".lnk"):
             with winshell.shortcut(path) as link:
+                print(dir(link))
                 args = [link.path] + shlex.split(link.arguments)
                 folder = link.working_directory
+                print(folder)
         else:
             #Make batch file to run
             if 1:#not os.path.exists("cache/batches/"+game.gameid+".bat"):

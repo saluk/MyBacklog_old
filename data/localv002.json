@@ -161,6 +161,20 @@
                 }
             ]
         }, 
+        "332cc57ded88dc9360ed513f485651f5": {
+            "files": [
+                {
+                    "path": "C:\\GOG Games\\The Witcher 3 Wild Hunt\\Witcher3.lnk", 
+                    "primary": true, 
+                    "source": {
+                        "id": "the_witcher_3_wild_hunt", 
+                        "id2": 1207664643, 
+                        "source": "gog"
+                    }, 
+                    "type": "exe"
+                }
+            ]
+        }, 
         "333922a1d295e8f1fc29a20f743f313d": {
             "files": [
                 {
@@ -721,6 +735,20 @@
                         "id": "roadredemption", 
                         "package": "z5Am7ke6Rk4V6yt4", 
                         "source": "humble"
+                    }, 
+                    "type": "exe"
+                }
+            ]
+        }, 
+        "e5fc5a4f59f43cb7815556d0b3dde261": {
+            "files": [
+                {
+                    "path": "C:\\GOG Games\\Wing Commander 1 and 2\\WC2\\Launch Wing Commander II.lnk", 
+                    "primary": true, 
+                    "source": {
+                        "id": "wing_commander_ii", 
+                        "id2": 1207662653, 
+                        "source": "gog"
                     }, 
                     "type": "exe"
                 }
