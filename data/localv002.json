@@ -241,6 +241,18 @@
                 }
             ]
         }, 
+        "3b908a77feaffcb042072318dbc2cc11": {
+            "files": [
+                {
+                    "path": "C:\\emu\\gb\\mother12.gba", 
+                    "primary": true, 
+                    "source": {
+                        "source": "gba"
+                    }, 
+                    "type": "rom"
+                }
+            ]
+        }, 
         "43bde25231bb82172137c28656a624e6": {
             "files": [
                 {
@@ -702,18 +714,6 @@
                         "source": "gog"
                     }, 
                     "type": "exe"
-                }
-            ]
-        }, 
-        "c4e154f4c16f8750829057ffe7cc0424": {
-            "files": [
-                {
-                    "path": "C:\\emu\\gb\\mother12.gba", 
-                    "primary": true, 
-                    "source": {
-                        "source": "gba"
-                    }, 
-                    "type": "rom"
                 }
             ]
         }, 
