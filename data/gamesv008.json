@@ -45009,6 +45009,194 @@
             }, 
             "time": "10:55:58 2015-05-20", 
             "type": "deletegame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "name", 
+                        "ov": "Mother 1", 
+                        "v": "Mother 2"
+                    }, 
+                    {
+                        "k": "gameid", 
+                        "ov": "3b908a77feaffcb042072318dbc2cc11", 
+                        "v": "445594f1428a0104e48f59106aad12f0"
+                    }
+                ]
+            }, 
+            "game": {
+                "data_changed_date": "10:51:47 2015-05-20", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "445594f1428a0104e48f59106aad12f0", 
+                "genre": "rpg", 
+                "hidden": 0, 
+                "icon_url": "", 
+                "import_date": "", 
+                "lastplayed": "23:12:45 2015-05-19", 
+                "name": "Mother 2", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 52478.49901676178, 
+                "priority": -1, 
+                "sources": [
+                    {
+                        "source": "gba"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "12:17:30 2015-05-20", 
+            "type": "updategame"
+        }, 
+        {
+            "changes": {
+                "_set_": [
+                    {
+                        "k": "name", 
+                        "ov": "Mother 2", 
+                        "v": "Mother 1"
+                    }, 
+                    {
+                        "k": "gameid", 
+                        "ov": "445594f1428a0104e48f59106aad12f0", 
+                        "v": "c4e154f4c16f8750829057ffe7cc0424"
+                    }
+                ]
+            }, 
+            "game": {
+                "data_changed_date": "10:51:47 2015-05-20", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "c4e154f4c16f8750829057ffe7cc0424", 
+                "genre": "rpg", 
+                "hidden": 0, 
+                "icon_url": "", 
+                "import_date": "", 
+                "lastplayed": "23:12:45 2015-05-19", 
+                "name": "Mother 1", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 52478.49901676178, 
+                "priority": -1, 
+                "sources": [
+                    {
+                        "source": "gba"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "12:17:35 2015-05-20", 
+            "type": "updategame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "3fba677dfaaf79cc6be2715c25668a22", 
+                "genre": "", 
+                "hidden": 0, 
+                "icon_url": "", 
+                "import_date": "", 
+                "lastplayed": "", 
+                "name": "test", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 0.0, 
+                "priority": 0, 
+                "sources": [
+                    {
+                        "source": "none"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "12:18:57 2015-05-20", 
+            "type": "addgame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "12:18:57 2015-05-20", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "3fba677dfaaf79cc6be2715c25668a22", 
+                "genre": "", 
+                "hidden": 0, 
+                "icon_url": "", 
+                "import_date": "", 
+                "lastplayed": "", 
+                "name": "test", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 0.0, 
+                "priority": 0, 
+                "sources": [
+                    {
+                        "source": "none"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "12:19:19 2015-05-20", 
+            "type": "deletegame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "11:16:17 2015-05-16", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "332cc57ded88dc9360ed513f485651f5", 
+                "genre": "", 
+                "hidden": 0, 
+                "icon_url": "http://images-3.gog.com/c6c05519492501088063513acba104cb1c5b23e2b54b50d013cca80bb209f0d2_392.jpg", 
+                "import_date": "17:32:45 2015-05-01", 
+                "lastplayed": "22:37:11 2015-05-19", 
+                "name": "Witcher 3: Wild Hunt, The", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 30221.798622846603, 
+                "priority": -1, 
+                "sources": [
+                    {
+                        "id": "the_witcher_3_wild_hunt", 
+                        "id2": 1207664643, 
+                        "source": "gog"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "12:51:24 2015-05-20", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "11:16:17 2015-05-16", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "332cc57ded88dc9360ed513f485651f5", 
+                "genre": "", 
+                "hidden": 0, 
+                "icon_url": "http://images-3.gog.com/c6c05519492501088063513acba104cb1c5b23e2b54b50d013cca80bb209f0d2_392.jpg", 
+                "import_date": "17:32:45 2015-05-01", 
+                "lastplayed": "22:37:11 2015-05-19", 
+                "name": "Witcher 3: Wild Hunt, The", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 30221.798622846603, 
+                "priority": -1, 
+                "sources": [
+                    {
+                        "id": "the_witcher_3_wild_hunt", 
+                        "id2": 1207664643, 
+                        "source": "gog"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "16:19:37 2015-05-20", 
+            "type": "stopgame"
         }
     ], 
     "games": {
@@ -51648,11 +51836,11 @@
             "hidden": 0, 
             "icon_url": "http://images-3.gog.com/c6c05519492501088063513acba104cb1c5b23e2b54b50d013cca80bb209f0d2_392.jpg", 
             "import_date": "17:32:45 2015-05-01", 
-            "lastplayed": "22:37:11 2015-05-19", 
+            "lastplayed": "16:19:38 2015-05-20", 
             "name": "Witcher 3: Wild Hunt, The", 
             "notes": "", 
             "package_data": {}, 
-            "playtime": 30221.798622846603, 
+            "playtime": 42714.07019686699, 
             "priority": -1, 
             "sources": [
                 {
@@ -52660,28 +52848,6 @@
                     "id": "arma_gold_edition", 
                     "id2": 1207658975, 
                     "source": "gog"
-                }
-            ], 
-            "website": ""
-        }, 
-        "3b908a77feaffcb042072318dbc2cc11": {
-            "data_changed_date": "10:51:47 2015-05-20", 
-            "finish_date": "", 
-            "finished": 0, 
-            "gameid": "3b908a77feaffcb042072318dbc2cc11", 
-            "genre": "rpg", 
-            "hidden": 0, 
-            "icon_url": "", 
-            "import_date": "", 
-            "lastplayed": "23:12:45 2015-05-19", 
-            "name": "Mother 1", 
-            "notes": "", 
-            "package_data": {}, 
-            "playtime": 52478.49901676178, 
-            "priority": -1, 
-            "sources": [
-                {
-                    "source": "gba"
                 }
             ], 
             "website": ""
@@ -70804,6 +70970,28 @@
                     "id": "amnesiafortnight2014_soundtrack", 
                     "package": "KkWPcT2NyCaSprH4", 
                     "source": "humble"
+                }
+            ], 
+            "website": ""
+        }, 
+        "c4e154f4c16f8750829057ffe7cc0424": {
+            "data_changed_date": "10:51:47 2015-05-20", 
+            "finish_date": "", 
+            "finished": 0, 
+            "gameid": "c4e154f4c16f8750829057ffe7cc0424", 
+            "genre": "rpg", 
+            "hidden": 0, 
+            "icon_url": "", 
+            "import_date": "", 
+            "lastplayed": "23:12:45 2015-05-19", 
+            "name": "Mother 1", 
+            "notes": "", 
+            "package_data": {}, 
+            "playtime": 52478.49901676178, 
+            "priority": -1, 
+            "sources": [
+                {
+                    "source": "gba"
                 }
             ], 
             "website": ""

@@ -191,6 +191,9 @@ b.setData(DATA_SORT,"b")
 assert a<b
 assert b>a
 
+def make_callback(f, *args):
+    return lambda: f(*args)
+
 class GamelistForm(QWidget):
     def __init__(self, parent=None):
         super(GamelistForm, self).__init__(parent)
