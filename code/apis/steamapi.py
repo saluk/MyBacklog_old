@@ -171,7 +171,9 @@ def import_steam(apikey=MY_API_KEY,userid=MY_STEAM_ID):
         library.append(game)
     return library
     
-def load_userdata(path="C:\\Steam\\userdata\\39390212\\config\\localconfig.vdf"):
+def load_userdata(path=""):
+    if not path:
+        return {}
     from code.apis import vdf
 
     f = open(path)
@@ -208,8 +210,8 @@ class Steam:
         self.profile_name = user_id
         self.user_id = user_id
         self.shortcut_folder = shortcut_folder
-        self.userdata = self.userdata = load_userdata()
-        self.installed_apps = self.userdata["UserLocalConfigStore"]["Software"]["Valve"]["Steam"]["apps"]
+        self.userdata = load_userdata()
+        self.installed_apps = self.userdata.get("UserLocalConfigStore",{}).get("Software",{}).get("Valve",{}).get("Steam",{}).get("apps",{})
     def import_steam(self):
         try:
             return import_steam(self.api_key,self.user_id)
