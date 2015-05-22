@@ -125,7 +125,7 @@ class MyBacklog(QMainWindow):
         #super(MainWindow,self).__init__(None,Qt.WindowStaysOnTopHint)
         super(MyBacklog,self).__init__(None)
         self.setWindowTitle("MyBacklog")
-        self.setWindowIcon(QIcon(QPixmap("icons/steam.png")))
+        self.setWindowIcon(QIcon(QPixmap("icons/main.png")))
         self.main_form = GamelistForm(self)
 
         menus = {}
@@ -153,7 +153,7 @@ class MyBacklog(QMainWindow):
 
         self.setCentralWidget(self.main_form)
 
-        self.trayicon = QSystemTrayIcon(QIcon(QPixmap("icons/steam.png")))
+        self.trayicon = QSystemTrayIcon(QIcon(QPixmap("icons/main.png")))
         self.trayicon.show()
         self.trayicon.activated.connect(self.click_tray_icon)
     def click_tray_icon(self):
