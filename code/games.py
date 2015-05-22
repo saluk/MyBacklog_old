@@ -27,7 +27,7 @@ GAME_DB = "data/gamesv008.json"
 LOCAL_DB = "data/localv002.json"
 
 def get_source(s):
-    return sources.all[s]()
+    return sources.all[s]
 
 class Game:
     args = [("name","s"),("playtime","f"),("lastplayed","s"),("finished","i"),("genre","s"),("hidden","i"),("icon_url","s"),
@@ -343,6 +343,7 @@ class Games:
         self.actions = []
         self.multipack = {}
         self.local = {}
+        self.source_definitions = {}
         try:
             self.multipack = json.loads(open("gog_packages.json").read())
         except:
@@ -350,6 +351,7 @@ class Games:
     def load(self,game_db_file=GAME_DB,local_db_file=LOCAL_DB):
         self.load_games(game_db_file)
         self.load_local(local_db_file)
+        sources.register_sources(self.source_definitions)
     def load_games(self,file=GAME_DB):
         if not os.path.exists(file):
             print("Warning, no save file to load:",file)
@@ -367,6 +369,8 @@ class Games:
         if not self.multipack:
             self.multipack = load_data.get("multipack",{})
         self.actions = load_data.get("actions",[])
+        self.source_definitions.update(sources.default_definitions.copy())
+        self.source_definitions.update(load_data.get("source_definitions",{}).copy())
     def load_local(self,file=LOCAL_DB):
         if not os.path.exists(file):
             print("Warning, no local save file to load:",file)
@@ -385,6 +389,7 @@ class Games:
             save_data["games"][k] = self.games[k].dict()
         save_data["actions"] = self.actions
         save_data["multipack"] = self.multipack
+        save_data["source_definitions"] = self.source_definitions
         return json.dumps(save_data,sort_keys=True,indent=4)
     def save_games(self,file=GAME_DB):
         sd = self.save_games_data()
@@ -397,8 +402,8 @@ class Games:
         f.write(sd)
         f.close()
     def save(self,game_db_file=GAME_DB,local_db_file=LOCAL_DB):
-        self.save_games()
-        self.save_local()
+        self.save_games(game_db_file)
+        self.save_local(local_db_file)
     def build_source_map(self):
         """Builds a dictionary map of source_id:game to make it easier to search for a game from
         a given source"""
