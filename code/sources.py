@@ -27,12 +27,8 @@ class Source:
             webbrowser.open(game.download_link)
     def uninstall(self):
         return
-    def get_run_args(self,game,source):
-        return None, None
-    def run_game(self,game,source):
+    def run_game(self,game,source,cache_root):
         return
-    def missing_steam_launch(self,game,source):
-        return True
 
 class ExeSource(Source):
     """Definition of a source of games"""
@@ -45,7 +41,7 @@ class ExeSource(Source):
     def uninstall(self,game,source):
         if game.install_folder:
             subprocess.Popen(["explorer.exe",game.install_folder], cwd=game.install_folder, stdout=sys.stdout, stderr=sys.stderr)
-    def get_run_args(self,game,source):
+    def get_run_args(self,game,source,cache_root):
         """Returns the method to run the game. Defaults to using a batch file to run the install_path exe"""
         folder = game.install_folder #Navigate to executable's directory
         startupinfo = subprocess.STARTUPINFO()
@@ -63,25 +59,21 @@ class ExeSource(Source):
         else:
             #Make batch file to run
             if 1:#not os.path.exists("cache/batches/"+game.gameid+".bat"):
-                with open("cache/batches/"+game.gameid+".bat", "w") as f:
+                with open(cache_root+"/cache/batches/"+game.gameid+".bat", "w") as f:
                     f.write('cd "%s"\n'%folder)
                     filepath = path.split("\\")[-1]
                     exe,args = filepath.split(".exe")
                     exe = exe+".exe"
                     f.write('"%s" %s\n'%(exe,args))
             args = [game.gameid+".bat"]
-            folder = os.path.abspath("cache\\batches\\")
-            if not self.missing_steam_launch(game):
-            #HACKY - run game through steam
-                args = ["cache\\steamshortcuts\\%s.url"%game.shortcut_name]
-                folder = os.path.abspath("")
+            folder = os.path.abspath(cache_root+"/cache/batches/")
         return args,folder
-    def run_game(self,game,source):
+    def run_game(self,game,source,cache_root):
         creationflags = 0
         shell = True
         if sys.platform=='darwin':
             shell = False
-        args,folder = self.get_run_args(game,source)
+        args,folder = self.get_run_args(game,source,cache_root)
         print("run args:",args,folder)
 
         if args and folder:
@@ -92,26 +84,12 @@ class ExeSource(Source):
             self.running = subprocess.Popen(args, cwd=folder, stdout=sys.stdout, stderr=sys.stderr, creationflags=creationflags, shell=shell)
             print("subprocess open")
             os.chdir(curdir)
-    def missing_steam_launch(self,game,source):
-        """Returns True if the game type wants a steam launcher and it doesn't exist"""
-        if not run_with_steam:
-            return False
-        dest_shortcut_path = "cache/steamshortcuts/%s.url"%game.shortcut_name
-        userhome = os.path.expanduser("~")
-        desktop = userhome + "/Desktop/"
-        shortcut_path = desktop+"%s.url"%game.shortcut_name
-        if os.path.exists(shortcut_path):
-            import shutil
-            shutil.move(shortcut_path,dest_shortcut_path)
-        if os.path.exists(dest_shortcut_path):
-            return False
-        return True
 
 class SteamSource(Source):
     """Needs .api to be set to steamapi.Steam"""
     def args(self):
         return []
-    def run_game(self,game,source):
+    def run_game(self,game,source,cache_root):
         webbrowser.open("steam://rungameid/%d"%source["id"])
     def missing_steam_launch(self,game,source):
         return False
@@ -137,8 +115,6 @@ class EmulatorSource(ExeSource):
 
 
 class OfflineSource(Source):
-    def get_run_args(self,game,source):
-        return None,None
     def is_installed(self,game,source):
         return True
 

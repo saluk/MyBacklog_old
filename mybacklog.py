@@ -9,7 +9,7 @@ import requests
 
 #backloglib
 from code.apis import giantbomb, steamapi, gogapi, humbleapi, thegamesdb
-from code.interface import account, gameoptions
+from code.interface import account, gameoptions, base_paths
 from code import games
 
 from code.resources import icons
@@ -20,7 +20,7 @@ from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5 import QtWebKit
-from PyQt5.QtWebKitWidgets import *
+#from PyQt5.QtWebKitWidgets import *
 from PyQt5.QtNetwork import *
 
 #steam_session = steamapi.login_for_chat()
@@ -58,13 +58,19 @@ class RunGameThread(QThread):
 class ProcessIconsThread(QThread):
     app = None
     def run(self):
-        self.app.process_icons()
+        print("running icons")
+        try:
+            self.app.process_icons()
+        except:
+            import traceback
+            traceback.print_exc()
 
 
 class Cookies(QNetworkCookieJar):
     def __init__(self):
         super(Cookies, self).__init__()
         self.cookies = {}
+        #TODO: change path to cache path if browser is reinstated
         if os.path.exists("cache/qtcookies"):
             with open("cache/qtcookies", "r") as f:
                 self.cookies = json.loads(f.read())
@@ -87,6 +93,7 @@ class Cookies(QNetworkCookieJar):
                 "value": c.value().data().decode("utf8"),
                 "domain": c.domain()}
         print(self.cookies)
+        #TODO: change path to cache path if browser is reinstated
         with open("cache/qtcookies", "w") as f:
             f.write(json.dumps(self.cookies))
 
@@ -200,15 +207,19 @@ class GamelistForm(QWidget):
         
         self.timer_started = 0
         
+        self.init_config()
+        
         self.games = games.Games()
-        self.games.load()
+        self.games.load(self.config["games"],self.config["local"])
         self.gamelist = []
 
-        account = {"steam": {"api": "", "shortcut_folder": "", "id": ""},
+        account = {"steam": {"api": "", "shortcut_folder": "", "id": "","userfile":""},
                    "gog": {"user": "", "pass": ""},
                    "humble": {"username": "", "password": ""}}
         if os.path.exists("data/account.json"):
-            account.update(json.loads(open("data/account.json").read()))
+            saved_accounts = json.loads(open("data/account.json").read())
+            for k in saved_accounts:
+                account[k].update(saved_accounts[k])
         self.set_accounts(account)
 
         self.columns = [("s",None,None),("icon",None,None),("name","widget_name","name"),
@@ -283,10 +294,37 @@ class GamelistForm(QWidget):
         self.game_options_dock.setMinimumWidth(300)
         self.game_options_dock.setMaximumHeight(800)
         self.window().addDockWidget(Qt.LeftDockWidgetArea,self.game_options_dock)
+        
+    def init_config(self):
+        from code.appdirs import appdirs
+        self.path_base = appdirs.user_data_dir("MyBacklog").replace("\\","/")
+        if not os.path.exists(self.path_base):
+            os.makedirs(self.path_base)
+        root = {"games":self.path_base+"/games.json",
+                    "local":self.path_base+"/local.json",
+                    "accounts":self.path_base+"/accounts.json",
+                    "root_config":self.path_base+"/root.json",
+                    "root":self.path_base}
+        if os.path.exists(root["root_config"]):
+            f = open(root["root_config"])
+            d = json.loads(f.read())
+            f.close()
+            root.update(d)
+        self.config = root
+        self.save_config()
+        
+        for path in ["/cache","/cache/batches","/cache/icons","/cache/extract"]:
+            if not os.path.exists(root["root"]+path):
+                os.mkdir(root["root"]+path)
+        
+    def save_config(self):
+        f = open(self.config["root_config"],"w")
+        f.write(json.dumps(self.config,indent=4,sort_keys=True))
+        f.close()
 
     def set_accounts(self,account):
         self.gog = gogapi.Gog(account["gog"]["user"],account["gog"]["pass"])
-        self.steam = steamapi.Steam(account["steam"]["api"],account["steam"]["id"],account["steam"]["shortcut_folder"])
+        self.steam = steamapi.Steam(account["steam"]["api"],account["steam"]["id"],account["steam"]["userfile"],account["steam"]["shortcut_folder"])
         self.humble = humbleapi.Humble(account["humble"]["username"],account["humble"]["password"])
         games.sources.SteamSource.api = self.steam
         games.sources.GogSource.api = self.gog
@@ -299,10 +337,10 @@ class GamelistForm(QWidget):
 
     def enable_edit_notify(self):
         self.games_list_widget.cellChanged.connect(self.cell_changed)
-
-    def file_save(self):
+        
+    def save(self):
         self.disable_edit_notify()
-        self.games.save()
+        self.games.save(self.config["games"],self.config["local"])
         for row in range(self.games_list_widget.rowCount()):
             gameid = self.games_list_widget.item(row,0).data(DATA_GAMEID)
             if gameid in self.changed:
@@ -310,9 +348,37 @@ class GamelistForm(QWidget):
         self.changed = []
         self.enable_edit_notify()
 
+    def file_save(self):
+        self.save()
+
     def file_options(self):
-        self.edit_account = account.AccountForm(self)
-        self.edit_account.show()
+        print("start")
+        self.edit_account = account.AccountForm(self,dock=True)
+        self.edit_paths = base_paths.PathsForm(self,dock=True)
+        self.options_window = w = QMainWindow()
+        dock1 = QDockWidget("Accounts",self)
+        dock1.setFeatures(QDockWidget.NoDockWidgetFeatures)
+        dock1.setWidget(self.edit_account)
+        w.addDockWidget(Qt.LeftDockWidgetArea,dock1)
+        dock2 = QDockWidget("Paths",self)
+        dock2.setWidget(self.edit_paths)
+        dock2.setFeatures(QDockWidget.NoDockWidgetFeatures)
+        w.addDockWidget(Qt.LeftDockWidgetArea,dock2)
+        
+        def save_all():
+            self.edit_account.save_close()
+            self.edit_paths.save_close()
+            self.options_window.deleteLater()
+        
+        button = QPushButton("Save")
+        dock2.widget().layout().addWidget(button,15,1)
+        button.clicked.connect(save_all)
+
+        print("showing widget")
+        w.setWindowTitle("Options")
+        w.window().setWindowFlags(Qt.WindowStaysOnTopHint)
+        w.show()
+        
 
     def notify(self):
         if self.running:
@@ -330,16 +396,15 @@ class GamelistForm(QWidget):
 
     def process_icons(self):
         for widget,game,size in self.icon_processes:
-            icon = icons.icon_for_game(game,48,self.gicons)
+            icon = icons.icon_for_game(game,48,self.gicons,self.config["root"])
             if icon:
                 try:
                     widget.setIcon(icon)
-                    widget.repaint()
                 except:
                     pass
 
     def set_icon(self,widget,game,size):
-        cached = icons.icon_in_cache(game,self.gicons)
+        cached = icons.icon_in_cache(game,self.gicons,self.config["root"])
         if cached:
             widget.setIcon(cached)
             return
@@ -376,7 +441,7 @@ class GamelistForm(QWidget):
             bg = QColor(100,100,200)
         else:
             b = max(100,215-game.priority*40)
-            bg = QColor(b,b,b)
+            bg = QColor(285-b,285-b,285-b)
             #bg = QColor(self.palette().Background)
 
         source = QTableWidgetItem("")
@@ -429,6 +494,7 @@ class GamelistForm(QWidget):
         self.games_list_widget.setRowCount(len(self.gamelist)+1)
         self.games_list_widget.setColumnCount(6)
         self.games_list_widget.itemSelectionChanged.connect(self.selected_row)
+        i = -1
         for i,g in enumerate(self.gamelist):
             self.update_game_row(g["game"],i)
         self.update_game_row(games.Game(name="Total Time Played"),i+1)
@@ -462,7 +528,7 @@ class GamelistForm(QWidget):
             return
         self.games.add_games(games)
         self.update_gamelist_widget()
-        self.games.save()
+        self.save()
         
     def cleanup_add_steam_shortcuts(self):
         self.steam.create_nonsteam_shortcuts(self.games.games)
@@ -471,7 +537,7 @@ class GamelistForm(QWidget):
         games = self.humble.get_gamelist()
         self.games.add_games(games)
         self.update_gamelist_widget()
-        self.games.save()
+        self.save()
 
     def import_gog(self):
         #self.browser = Browser("https://secure.gog.com/account/games",self)
@@ -483,7 +549,7 @@ class GamelistForm(QWidget):
             return
         self.games.add_games(games)
         self.update_gamelist_widget()
-        self.games.save()
+        self.save()
 
     def sync_uploadgames(self):
         uploadrequest(self.games)
@@ -492,7 +558,7 @@ class GamelistForm(QWidget):
         games = downloadrequest()
         self.games = games.Games()
         self.games.translate_json(games)
-        self.games.save()
+        self.save()
         self.update_gamelist_widget()
 
     def cleanup_gamesdb(self):
@@ -511,7 +577,7 @@ class GamelistForm(QWidget):
                     if coop:
                         g.genre = g.genre+"; co-op"
                     print(g.genre)
-        self.games.save()
+        self.save()
 
     def cleanup_giantbomb(self):
         for g in self.games.games.values():
@@ -529,7 +595,7 @@ class GamelistForm(QWidget):
                     if coop:
                         g.genre = g.genre+"; co-op"
                     print(g.genre)
-        self.games.save()
+        self.save()
 
     def view_sort_by_added(self):
         self.sort = "added"
@@ -572,7 +638,7 @@ class GamelistForm(QWidget):
             self.stop_playing_button.clicked.connect(make_callback(self.stop_playing,game))
 
         self.running = game
-        game.run_game()
+        game.run_game(self.config["root"])
         self.games.play(game)
         playrequest(game)
 
@@ -591,7 +657,7 @@ class GamelistForm(QWidget):
         game.played()
         game.playtime += elapsed_time
         game.priority = -1
-        self.games.save()
+        self.save()
         self.update_gamelist_widget()
 
     def show_edit_widget(self,*args,**kwargs):
@@ -662,6 +728,7 @@ class GamelistForm(QWidget):
         sp = self.search_platform.text().lower()
         if sp == "emu":
             sp = "gba or snes or n64 or nds"
+        row = -1 #For when game list is empty
         for row in range(self.games_list_widget.rowCount()-1):
             gameid = self.games_list_widget.item(row,0).data(DATA_GAMEID)
             game = self.games.games[gameid]
@@ -702,29 +769,40 @@ class GamelistForm(QWidget):
             total_hours.setText("%.2d:%.2d"%(hour,min))
         self.games_list_widget.setItem(row+1,4,total_hours)
  
-if __name__ == '__main__':
+def run():
     import sys
- 
-    app = QApplication(sys.argv)
+    import PyQt5.Qt
 
-    # app.setStyle('Fusion')
-    # palette = QPalette()
-    # palette.setColor(QPalette.Window, QColor(53,53,53))
-    # palette.setColor(QPalette.WindowText, Qt.white)
-    # palette.setColor(QPalette.Base, QColor(15,15,15))
-    # palette.setColor(QPalette.AlternateBase, QColor(53,53,53))
-    # palette.setColor(QPalette.ToolTipBase, Qt.white)
-    # palette.setColor(QPalette.ToolTipText, Qt.white)
-    # palette.setColor(QPalette.Text, Qt.white)
-    # palette.setColor(QPalette.Button, QColor(53,53,53))
-    # palette.setColor(QPalette.ButtonText, Qt.white)
-    # palette.setColor(QPalette.BrightText, Qt.red)
-    #
-    # palette.setColor(QPalette.Highlight, QColor(142,45,197).lighter())
-    # palette.setColor(QPalette.HighlightedText, Qt.black)
-    # app.setPalette(palette)
+    from PyQt5 import QtCore
+    if os.path.exists("PyQt5/plugins"):
+        QtCore.QCoreApplication.addLibraryPath("PyQt5/plugins")
 
+    print("INITIALIZE")
+    app = PyQt5.Qt.QApplication(sys.argv)
+
+    app.setStyle('Fusion')
+    palette = QPalette()
+    palette.setColor(QPalette.Window, QColor(53,53,53))
+    palette.setColor(QPalette.WindowText, Qt.white)
+    palette.setColor(QPalette.Base, QColor(15,15,15))
+    palette.setColor(QPalette.AlternateBase, QColor(53,53,53))
+    palette.setColor(QPalette.ToolTipBase, Qt.white)
+    palette.setColor(QPalette.ToolTipText, Qt.white)
+    palette.setColor(QPalette.Text, Qt.white)
+    palette.setColor(QPalette.Button, QColor(53,53,53))
+    palette.setColor(QPalette.ButtonText, Qt.white)
+    palette.setColor(QPalette.BrightText, Qt.red)
+    
+    palette.setColor(QPalette.Highlight, QColor(142,45,197).lighter())
+    palette.setColor(QPalette.HighlightedText, Qt.black)
+    app.setPalette(palette)
+
+    print("Build mybacklog")
     window = MyBacklog()
+    print("Show mybacklog")
     window.show()
  
     sys.exit(app.exec_())
+
+if __name__ == '__main__':
+    run()

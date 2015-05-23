@@ -6,3 +6,5 @@ phantomjs/*
 .idea/*
 screens/*
 data/account.json
+build/exe.win32-3.3/*
+mybacklog_setup.exe

@@ -219,7 +219,7 @@ class GameOptions(QWidget):
         layout.setAlignment(Qt.AlignTop)
 
         label_section = QGridLayout()
-        icon = icons.icon_for_game(game,128,self.app.gicons)
+        icon = icons.icon_for_game(game,128,self.app.gicons,app.config["root"])
         if icon:
             iconw = QLabel()
             iconw.setPixmap(icon.pixmap(128,128))
@@ -231,10 +231,7 @@ class GameOptions(QWidget):
         buttons = QGridLayout()
         buttons.setAlignment(Qt.AlignTop)
         if game.is_installed():
-            if not game.missing_steam_launch():
-                run = QPushButton("Play Game")
-            else:
-                run = QPushButton("Play Game (no steam)")
+            run = QPushButton("Play Game")
             run.setBackgroundRole(QPalette.Highlight)
             run.clicked.connect(make_callback(self.app.run_game,game))
             buttons.addWidget(run)

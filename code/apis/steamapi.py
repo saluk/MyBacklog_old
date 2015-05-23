@@ -205,12 +205,13 @@ def create_nonsteam_shortcuts(games,shortcut_folder):
     print ("saved")
 
 class Steam:
-    def __init__(self,api_key,user_id,shortcut_folder):
+    def __init__(self,api_key,user_id,userfile,shortcut_folder):
         self.api_key = api_key
         self.profile_name = user_id
         self.user_id = user_id
+        self.userfile = userfile
         self.shortcut_folder = shortcut_folder
-        self.userdata = load_userdata()
+        self.userdata = load_userdata(self.userfile)
         self.installed_apps = self.userdata.get("UserLocalConfigStore",{}).get("Software",{}).get("Valve",{}).get("Steam",{}).get("apps",{})
     def import_steam(self):
         try:

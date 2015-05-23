@@ -7,21 +7,19 @@ import requests
 from code.systems import *
 
 
-def get_icon(exe):
+def get_icon(exe,filecache_root):
     if not EXTRACT_ICONS:
         return "icons/none.png"
-    if os.path.exists("extract"):
-        shutil.rmtree("extract")
-    print("extracting",exe)
-    os.system('tools\\ResourcesExtract.exe /Source "%s" /DestFolder "extract" /ExtractIcons 1 /ExtractCursors 0 /FileExistMode 1 /OpenDestFolder 0'%exe)
-    for f in os.listdir("extract"):
+    if os.path.exists(filecache_root+"/extract"):
+        shutil.rmtree(filecache_root+"/extract")
+    print("extracting",exe.encode("utf8"))
+    os.system('tools\\ResourcesExtract.exe /Source "%s" /DestFolder "%s" /ExtractIcons 1 /ExtractCursors 0 /FileExistMode 1 /OpenDestFolder 0'%(exe,(filecache_root+"/extract").replace("/",os.path.sep)))
+    for f in os.listdir(filecache_root+"/extract"):
         if "MAINICON" in f:
-            print ("extracted",f)
-            return "extract/"+f
-    for f in os.listdir("extract"):
+            return filecache_root+"/extract/"+f
+    for f in os.listdir(filecache_root+"/extract"):
         if ".ico" in f:
-            print ("extracted2",f)
-            return "extract/"+f
+            return filecache_root+"/extract/"+f
     return "icons/none.png"
 
 crcmap = {}

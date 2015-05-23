@@ -23,8 +23,6 @@ def ttos(t):
 #    return ttos(time.localtime(sec))
 
 PRIORITIES = {-1:"now playing",0:"unprioritized",1:"soon",2:"later",3:"much later",5:"next year",99:"probably never"}
-GAME_DB = "data/gamesv008.json"
-LOCAL_DB = "data/localv002.json"
 
 def get_source(s):
     return sources.all[s]
@@ -161,16 +159,9 @@ class Game:
     def install_folder(self):
         """Full path to folder where executable is located"""
         return self.install_path.rsplit("\\",1)[0]
-    def get_run_args(self):
-        """Returns the args and folder to pass to the subprocess to run the game, according to our source"""
+    def run_game(self,cache_root):
         for s in self.sources:
-            return get_source(s["source"]).get_run_args(self,s)
-    def run_game(self):
-        for s in self.sources:
-            return get_source(s["source"]).run_game(self,s)
-    def missing_steam_launch(self):
-        for s in self.sources:
-            return get_source(s["source"]).missing_steam_launch(self,s)
+            return get_source(s["source"]).run_game(self,s,cache_root)
     def dict(self):
         d = {}
         for k in self.savekeys:
@@ -344,15 +335,11 @@ class Games:
         self.multipack = {}
         self.local = {}
         self.source_definitions = {}
-        try:
-            self.multipack = json.loads(open("gog_packages.json").read())
-        except:
-            pass
-    def load(self,game_db_file=GAME_DB,local_db_file=LOCAL_DB):
+    def load(self,game_db_file,local_db_file):
         self.load_games(game_db_file)
         self.load_local(local_db_file)
         sources.register_sources(self.source_definitions)
-    def load_games(self,file=GAME_DB):
+    def load_games(self,file):
         if not os.path.exists(file):
             print("Warning, no save file to load:",file)
             return
@@ -371,7 +358,7 @@ class Games:
         self.actions = load_data.get("actions",[])
         self.source_definitions.update(sources.default_definitions.copy())
         self.source_definitions.update(load_data.get("source_definitions",{}).copy())
-    def load_local(self,file=LOCAL_DB):
+    def load_local(self,file):
         if not os.path.exists(file):
             print("Warning, no local save file to load:",file)
             return
@@ -380,9 +367,9 @@ class Games:
         f.close()
         self.local_translate_json(d)
     def local_translate_json(self,d):
-        self.local = {}
+        self.local = {"game_data":{}}
         load_data = json.loads(d)
-        self.local = load_data
+        self.local.update(load_data)
     def save_games_data(self):
         save_data = {"games":{}}
         for k in self.games:
@@ -391,17 +378,17 @@ class Games:
         save_data["multipack"] = self.multipack
         save_data["source_definitions"] = self.source_definitions
         return json.dumps(save_data,sort_keys=True,indent=4)
-    def save_games(self,file=GAME_DB):
+    def save_games(self,file):
         sd = self.save_games_data()
         f = open(file,"w")
         f.write(sd)
         f.close()
-    def save_local(self,file=LOCAL_DB):
+    def save_local(self,file):
         sd = json.dumps(self.local,sort_keys=True,indent=4)
         f = open(file,"w")
         f.write(sd)
         f.close()
-    def save(self,game_db_file=GAME_DB,local_db_file=LOCAL_DB):
+    def save(self,game_db_file,local_db_file):
         self.save_games(game_db_file)
         self.save_local(local_db_file)
     def build_source_map(self):

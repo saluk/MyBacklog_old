@@ -45307,6 +45307,168 @@
             }, 
             "time": "21:09:16 2015-05-21", 
             "type": "stopgame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "12:39:34 2015-05-15", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "bf723d4bc809f9a599962b9d057a6df6", 
+                "genre": "", 
+                "hidden": 0, 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/316790/4e9da606cb52dfebf296dc8d3b0bc6ba81065a52.jpg", 
+                "import_date": "", 
+                "lastplayed": "19:42:53 2015-05-21", 
+                "name": "Grim Fandango Remastered", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 24067.13197374344, 
+                "priority": -1, 
+                "sources": [
+                    {
+                        "id": 316790, 
+                        "source": "steam"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "18:14:34 2015-05-22", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "12:39:34 2015-05-15", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "bf723d4bc809f9a599962b9d057a6df6", 
+                "genre": "", 
+                "hidden": 0, 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/316790/4e9da606cb52dfebf296dc8d3b0bc6ba81065a52.jpg", 
+                "import_date": "", 
+                "lastplayed": "19:42:53 2015-05-21", 
+                "name": "Grim Fandango Remastered", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 24067.13197374344, 
+                "priority": -1, 
+                "sources": [
+                    {
+                        "id": 316790, 
+                        "source": "steam"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "18:39:35 2015-05-22", 
+            "type": "stopgame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "12:39:34 2015-05-15", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "bf723d4bc809f9a599962b9d057a6df6", 
+                "genre": "", 
+                "hidden": 0, 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/316790/4e9da606cb52dfebf296dc8d3b0bc6ba81065a52.jpg", 
+                "import_date": "", 
+                "lastplayed": "18:39:37 2015-05-22", 
+                "name": "Grim Fandango Remastered", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 25568.553114652634, 
+                "priority": -1, 
+                "sources": [
+                    {
+                        "id": 316790, 
+                        "source": "steam"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "18:39:48 2015-05-22", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "12:39:34 2015-05-15", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "bf723d4bc809f9a599962b9d057a6df6", 
+                "genre": "", 
+                "hidden": 0, 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/316790/4e9da606cb52dfebf296dc8d3b0bc6ba81065a52.jpg", 
+                "import_date": "", 
+                "lastplayed": "18:39:37 2015-05-22", 
+                "name": "Grim Fandango Remastered", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 25568.553114652634, 
+                "priority": -1, 
+                "sources": [
+                    {
+                        "id": 316790, 
+                        "source": "steam"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "18:40:22 2015-05-22", 
+            "type": "stopgame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "12:39:34 2015-05-15", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "bf723d4bc809f9a599962b9d057a6df6", 
+                "genre": "", 
+                "hidden": 0, 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/316790/4e9da606cb52dfebf296dc8d3b0bc6ba81065a52.jpg", 
+                "import_date": "", 
+                "lastplayed": "18:40:23 2015-05-22", 
+                "name": "Grim Fandango Remastered", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 25602.76477766037, 
+                "priority": -1, 
+                "sources": [
+                    {
+                        "id": 316790, 
+                        "source": "steam"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "19:31:08 2015-05-22", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "12:39:34 2015-05-15", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "bf723d4bc809f9a599962b9d057a6df6", 
+                "genre": "", 
+                "hidden": 0, 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/316790/4e9da606cb52dfebf296dc8d3b0bc6ba81065a52.jpg", 
+                "import_date": "", 
+                "lastplayed": "18:40:23 2015-05-22", 
+                "name": "Grim Fandango Remastered", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 25602.76477766037, 
+                "priority": -1, 
+                "sources": [
+                    {
+                        "id": 316790, 
+                        "source": "steam"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "19:47:00 2015-05-22", 
+            "type": "stopgame"
         }
     ], 
     "games": {
@@ -70164,11 +70326,11 @@
             "hidden": 0, 
             "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/316790/4e9da606cb52dfebf296dc8d3b0bc6ba81065a52.jpg", 
             "import_date": "", 
-            "lastplayed": "19:42:53 2015-05-21", 
+            "lastplayed": "19:47:01 2015-05-22", 
             "name": "Grim Fandango Remastered", 
             "notes": "", 
             "package_data": {}, 
-            "playtime": 24067.13197374344, 
+            "playtime": 26555.273876667023, 
             "priority": -1, 
             "sources": [
                 {
@@ -76229,7 +76391,7 @@
             "name": "Dreamfall Chapters", 
             "notes": "finished chapter 1", 
             "package_data": {}, 
-            "playtime": 23240.551903247833, 
+            "playtime": 23280, 
             "priority": -1, 
             "sources": [
                 {

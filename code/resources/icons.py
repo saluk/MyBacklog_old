@@ -5,26 +5,26 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QIcon,QPixmap
 from code.resources import extract_icons
 
-def path_to_icon(game):
+def path_to_icon(game,filecache_root):
     if game.icon_url:
-        return "cache/icons/"+game.icon_url.replace("http","").replace("https","").replace(":","").replace("/",""),"download",game.icon_url
+        return filecache_root+"/cache/icons/"+game.icon_url.replace("http","").replace("https","").replace(":","").replace("/",""),"download",game.icon_url
     elif game.get_exe():
         exe_path = game.get_exe()
-        return "cache/icons/"+exe_path.replace("http","").replace("https","").replace(":","").replace("/","").replace("\\",""),"extract",exe_path
+        return filecache_root+"/cache/icons/"+exe_path.replace("http","").replace("https","").replace(":","").replace("/","").replace("\\",""),"extract",exe_path
     elif game.get_gba():
         gba_path = game.get_gba()
-        return "cache/icons/"+gba_path.replace("http","").replace(":","").replace("/","").replace("\\",""),"gba",gba_path
+        return filecache_root+"/cache/icons/"+gba_path.replace("http","").replace(":","").replace("/","").replace("\\",""),"gba",gba_path
     else:
-        return "icons/blank.png",None,""
+        return filecache_root+"/icons/blank.png",None,""
 
-def icon_in_cache(game,cache):
-    fpath,mode,url = path_to_icon(game)
+def icon_in_cache(game,cache,filecache_root):
+    fpath,mode,url = path_to_icon(game,filecache_root)
     if fpath in cache:
         return QIcon(cache[fpath])
     return None
 
-def icon_for_game(game,size,icon_cache):
-    fpath,mode,url = path_to_icon(game)
+def icon_for_game(game,size,icon_cache,filecache_root):
+    fpath,mode,url = path_to_icon(game,filecache_root)
     if mode == "download":
         if not os.path.exists(fpath):
             print("Download icon:",game.icon_url)
@@ -34,8 +34,8 @@ def icon_for_game(game,size,icon_cache):
             f.close()
     elif mode == "extract":
         if not os.path.exists(fpath):
-            print("Extract icon:",url)
-            p = extract_icons.get_icon(url)
+            print("Extract icon:",url.encode("ascii","backslashreplace"))
+            p = extract_icons.get_icon(url,filecache_root)
             import shutil
             if p:
                 shutil.copy(p,fpath)
@@ -51,4 +51,4 @@ def icon_for_game(game,size,icon_cache):
         if not qp.isNull():
             qp = qp.scaled(size,size,Qt.IgnoreAspectRatio,Qt.SmoothTransformation)
         icon_cache[fpath] = qp
-    return icon_in_cache(game,icon_cache)
+    return icon_in_cache(game,icon_cache,filecache_root)
