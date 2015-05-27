@@ -25,6 +25,8 @@ class PathsForm(QWidget):
         #Fields
         self.fields = {"games":"","local":"","accounts":""}
         
+        self.original_paths = self.app.config.copy()
+        
         w = QLabel("Game database file")
         s = "If you put this file in a dropbox or otherwise synced location, your database will be accessible from multiple devices."
         w.setToolTip(s)
@@ -82,11 +84,16 @@ class PathsForm(QWidget):
 
     def save_close(self):
         save = {}
+        updated = False
         for field in self.fields:
             save[field] = self.fields[field].text()
+            if save[field] != self.app.config[field]:
+                updated = True
         self.app.config.update(save)
         self.app.save_config()
         self.delete()
+        if updated:
+            self.app.parent().reset_games()
 
     def delete(self):
         self.deleteLater()

@@ -45469,6 +45469,228 @@
             }, 
             "time": "19:47:00 2015-05-22", 
             "type": "stopgame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "11:16:17 2015-05-16", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "4cfca3c10411bdde2f1f72361829f653", 
+                "genre": "adventure", 
+                "hidden": 0, 
+                "icon_url": "http://images-4.gog.com/b8b7c104fdff0270ca655559767a2538f17428110fcef099bdb4e1e2fac71dc3_392.jpg", 
+                "import_date": "", 
+                "lastplayed": "13:50:04 2015-05-15", 
+                "name": "Story About My Uncle, A", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 9972.719102859497, 
+                "priority": -1, 
+                "sources": [
+                    {
+                        "id": "story_about_my_uncle_a", 
+                        "id2": 1207664673, 
+                        "source": "gog"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "00:46:05 2015-05-23", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "11:16:17 2015-05-16", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "4cfca3c10411bdde2f1f72361829f653", 
+                "genre": "adventure", 
+                "hidden": 0, 
+                "icon_url": "http://images-4.gog.com/b8b7c104fdff0270ca655559767a2538f17428110fcef099bdb4e1e2fac71dc3_392.jpg", 
+                "import_date": "", 
+                "lastplayed": "13:50:04 2015-05-15", 
+                "name": "Story About My Uncle, A", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 9972.719102859497, 
+                "priority": -1, 
+                "sources": [
+                    {
+                        "id": "story_about_my_uncle_a", 
+                        "id2": 1207664673, 
+                        "source": "gog"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "00:53:54 2015-05-23", 
+            "type": "stopgame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "11:16:17 2015-05-16", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "332cc57ded88dc9360ed513f485651f5", 
+                "genre": "", 
+                "hidden": 0, 
+                "icon_url": "http://images-3.gog.com/c6c05519492501088063513acba104cb1c5b23e2b54b50d013cca80bb209f0d2_392.jpg", 
+                "import_date": "17:32:45 2015-05-01", 
+                "lastplayed": "21:09:18 2015-05-21", 
+                "name": "Witcher 3: Wild Hunt, The", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 47882.02279686928, 
+                "priority": -1, 
+                "sources": [
+                    {
+                        "id": "the_witcher_3_wild_hunt", 
+                        "id2": 1207664643, 
+                        "source": "gog"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "01:10:43 2015-05-23", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "11:16:17 2015-05-16", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "332cc57ded88dc9360ed513f485651f5", 
+                "genre": "", 
+                "hidden": 0, 
+                "icon_url": "http://images-3.gog.com/c6c05519492501088063513acba104cb1c5b23e2b54b50d013cca80bb209f0d2_392.jpg", 
+                "import_date": "17:32:45 2015-05-01", 
+                "lastplayed": "21:09:18 2015-05-21", 
+                "name": "Witcher 3: Wild Hunt, The", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 47882.02279686928, 
+                "priority": -1, 
+                "sources": [
+                    {
+                        "id": "the_witcher_3_wild_hunt", 
+                        "id2": 1207664643, 
+                        "source": "gog"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "02:06:58 2015-05-23", 
+            "type": "stopgame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "11:16:17 2015-05-16", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "332cc57ded88dc9360ed513f485651f5", 
+                "genre": "", 
+                "hidden": 0, 
+                "icon_url": "http://images-3.gog.com/c6c05519492501088063513acba104cb1c5b23e2b54b50d013cca80bb209f0d2_392.jpg", 
+                "import_date": "17:32:45 2015-05-01", 
+                "lastplayed": "02:06:59 2015-05-23", 
+                "name": "Witcher 3: Wild Hunt, The", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 51257.55655479431, 
+                "priority": -1, 
+                "sources": [
+                    {
+                        "id": "the_witcher_3_wild_hunt", 
+                        "id2": 1207664643, 
+                        "source": "gog"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "10:02:53 2015-05-23", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "11:16:17 2015-05-16", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "332cc57ded88dc9360ed513f485651f5", 
+                "genre": "", 
+                "hidden": 0, 
+                "icon_url": "http://images-3.gog.com/c6c05519492501088063513acba104cb1c5b23e2b54b50d013cca80bb209f0d2_392.jpg", 
+                "import_date": "17:32:45 2015-05-01", 
+                "lastplayed": "02:06:59 2015-05-23", 
+                "name": "Witcher 3: Wild Hunt, The", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 51257.55655479431, 
+                "priority": -1, 
+                "sources": [
+                    {
+                        "id": "the_witcher_3_wild_hunt", 
+                        "id2": 1207664643, 
+                        "source": "gog"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "12:26:54 2015-05-23", 
+            "type": "stopgame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "23:48:01 2015-05-01", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "7018cd1873b9fba3b4a048ec54ff0131", 
+                "genre": "action", 
+                "hidden": 0, 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/12220/603a444d9092d007f2d9640d12ebba62b1efc377.jpg", 
+                "import_date": "", 
+                "lastplayed": "23:48:01 2015-05-01", 
+                "name": "Grand Theft Auto: Episodes from Liberty City", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 65760.0, 
+                "priority": -1, 
+                "sources": [
+                    {
+                        "id": 12220, 
+                        "source": "steam"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "21:10:45 2015-05-23", 
+            "type": "playgame"
+        }, 
+        {
+            "game": {
+                "data_changed_date": "23:48:01 2015-05-01", 
+                "finish_date": "", 
+                "finished": 0, 
+                "gameid": "7018cd1873b9fba3b4a048ec54ff0131", 
+                "genre": "action", 
+                "hidden": 0, 
+                "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/12220/603a444d9092d007f2d9640d12ebba62b1efc377.jpg", 
+                "import_date": "", 
+                "lastplayed": "23:48:01 2015-05-01", 
+                "name": "Grand Theft Auto: Episodes from Liberty City", 
+                "notes": "", 
+                "package_data": {}, 
+                "playtime": 65760.0, 
+                "priority": -1, 
+                "sources": [
+                    {
+                        "id": 12220, 
+                        "source": "steam"
+                    }
+                ], 
+                "website": ""
+            }, 
+            "time": "21:13:18 2015-05-23", 
+            "type": "stopgame"
         }
     ], 
     "games": {
@@ -52108,11 +52330,11 @@
             "hidden": 0, 
             "icon_url": "http://images-3.gog.com/c6c05519492501088063513acba104cb1c5b23e2b54b50d013cca80bb209f0d2_392.jpg", 
             "import_date": "17:32:45 2015-05-01", 
-            "lastplayed": "21:09:18 2015-05-21", 
+            "lastplayed": "12:26:57 2015-05-23", 
             "name": "Witcher 3: Wild Hunt, The", 
             "notes": "", 
             "package_data": {}, 
-            "playtime": 47882.02279686928, 
+            "playtime": 59898.8258600235, 
             "priority": -1, 
             "sources": [
                 {
@@ -55200,11 +55422,11 @@
             "hidden": 0, 
             "icon_url": "http://images-4.gog.com/b8b7c104fdff0270ca655559767a2538f17428110fcef099bdb4e1e2fac71dc3_392.jpg", 
             "import_date": "", 
-            "lastplayed": "13:50:04 2015-05-15", 
+            "lastplayed": "00:53:55 2015-05-23", 
             "name": "Story About My Uncle, A", 
             "notes": "", 
             "package_data": {}, 
-            "playtime": 9972.719102859497, 
+            "playtime": 10442.03014588356, 
             "priority": -1, 
             "sources": [
                 {
@@ -59090,11 +59312,11 @@
             "hidden": 0, 
             "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/12220/603a444d9092d007f2d9640d12ebba62b1efc377.jpg", 
             "import_date": "", 
-            "lastplayed": "23:48:01 2015-05-01", 
+            "lastplayed": "21:13:20 2015-05-23", 
             "name": "Grand Theft Auto: Episodes from Liberty City", 
             "notes": "", 
             "package_data": {}, 
-            "playtime": 65760.0, 
+            "playtime": 65912.4089269638, 
             "priority": -1, 
             "sources": [
                 {
@@ -70322,7 +70544,7 @@
             "finish_date": "", 
             "finished": 0, 
             "gameid": "bf723d4bc809f9a599962b9d057a6df6", 
-            "genre": "", 
+            "genre": "adventure", 
             "hidden": 0, 
             "icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/316790/4e9da606cb52dfebf296dc8d3b0bc6ba81065a52.jpg", 
             "import_date": "", 
@@ -76391,7 +76613,7 @@
             "name": "Dreamfall Chapters", 
             "notes": "finished chapter 1", 
             "package_data": {}, 
-            "playtime": 23280, 
+            "playtime": 23240.551903247833, 
             "priority": -1, 
             "sources": [
                 {

@@ -30,6 +30,7 @@ class AccountForm(QWidget):
         if "steam_id" in highlight_fields:
             highlight(w)
         layout.addWidget(w,1,0)
+        print("APP=",app)
         w = QLineEdit(self.app.steam.user_id)
         w.setToolTip(s)
         layout.addWidget(w,1,1)

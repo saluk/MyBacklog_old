@@ -163,6 +163,12 @@ class MyBacklog(QMainWindow):
         self.trayicon = QSystemTrayIcon(QIcon(QPixmap("icons/main.png")))
         self.trayicon.show()
         self.trayicon.activated.connect(self.click_tray_icon)
+    def reset_games(self):
+        #self.main_form.deleteLater()
+        #self.main_form = GamelistForm(self)
+        self.setCentralWidget(self.main_form)
+        self.main_form.init_config()
+        self.main_form.init_gamelist()
     def click_tray_icon(self):
         self.show()
     def really_close(self):
@@ -206,12 +212,6 @@ class GamelistForm(QWidget):
         super(GamelistForm, self).__init__(parent)
         
         self.timer_started = 0
-        
-        self.init_config()
-        
-        self.games = games.Games()
-        self.games.load(self.config["games"],self.config["local"])
-        self.gamelist = []
 
         account = {"steam": {"api": "", "shortcut_folder": "", "id": "","userfile":""},
                    "gog": {"user": "", "pass": ""},
@@ -281,7 +281,6 @@ class GamelistForm(QWidget):
         #self.timer.setInterval(5000)
         self.timer.timeout.connect(self.notify)
         
-        self.update_gamelist_widget()
         self.setMinimumSize(600,600)
         #self.setMaximumWidth(1080)
         self.adjustSize()
@@ -300,7 +299,12 @@ class GamelistForm(QWidget):
         self.path_base = appdirs.user_data_dir("MyBacklog").replace("\\","/")
         if not os.path.exists(self.path_base):
             os.makedirs(self.path_base)
-        root = {"games":self.path_base+"/games.json",
+        #~ root = {"games":self.path_base+"/games.json",
+                    #~ "local":self.path_base+"/local.json",
+                    #~ "accounts":self.path_base+"/accounts.json",
+                    #~ "root_config":self.path_base+"/root.json",
+                    #~ "root":self.path_base}
+        root = {"games":"",
                     "local":self.path_base+"/local.json",
                     "accounts":self.path_base+"/accounts.json",
                     "root_config":self.path_base+"/root.json",
@@ -316,6 +320,17 @@ class GamelistForm(QWidget):
         for path in ["/cache","/cache/batches","/cache/icons","/cache/extract"]:
             if not os.path.exists(root["root"]+path):
                 os.mkdir(root["root"]+path)
+
+        if not root["games"]:
+            self.options = base_paths.PathsForm(self,"Please define where to store your game database",["games"])
+            self.options.show()
+
+    def init_gamelist(self):
+        self.games = games.Games()
+        print("loading games",self.config["games"])
+        self.games.load(self.config["games"],self.config["local"])
+        self.gamelist = []
+        self.update_gamelist_widget()
         
     def save_config(self):
         f = open(self.config["root_config"],"w")
@@ -352,7 +367,7 @@ class GamelistForm(QWidget):
         self.save()
 
     def file_options(self):
-        print("start")
+        print("start","SELF=",self)
         self.edit_account = account.AccountForm(self,dock=True)
         self.edit_paths = base_paths.PathsForm(self,dock=True)
         self.options_window = w = QMainWindow()
@@ -801,6 +816,7 @@ def run():
     window = MyBacklog()
     print("Show mybacklog")
     window.show()
+    window.reset_games()
  
     sys.exit(app.exec_())
 
