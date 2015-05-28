@@ -4,6 +4,7 @@ import time
 import datetime
 import json
 import hmac
+import copy
 from code import sources
 
 fmt = "%H:%M:%S %Y-%m-%d"
@@ -166,7 +167,7 @@ class Game:
         d = {}
         for k in self.savekeys:
             d[k] = getattr(self,k)
-        d["sources"] = d["sources"].copy()
+        d["sources"] = copy.deepcopy(d["sources"])
         return d
     def copy(self):
         g = Game(**self.dict())

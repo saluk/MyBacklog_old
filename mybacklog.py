@@ -12,7 +12,7 @@ from code.apis import giantbomb, steamapi, gogapi, humbleapi, thegamesdb
 from code.interface import account, gameoptions, base_paths
 from code import games
 
-from code.resources import icons
+from code.resources import icons,enc
 
 os.environ["QT_QPA_PLATFORM_PLUGIN_PATH"] = "C:\\Python33\\Lib\\site-packages\\PyQt5\\plugins\\platforms"
 
@@ -213,6 +213,7 @@ class GamelistForm(QWidget):
         
         self.timer_started = 0
 
+        self.init_config()
         account = {"steam": {"api": "", "shortcut_folder": "", "id": "","userfile":""},
                    "gog": {"user": "", "pass": ""},
                    "humble": {"username": "", "password": ""}}
@@ -307,6 +308,7 @@ class GamelistForm(QWidget):
         self.window().addDockWidget(Qt.LeftDockWidgetArea,self.game_options_dock)
         
     def init_config(self):
+        self.crypter = enc.Crypter()
         from code.appdirs import appdirs
         self.path_base = appdirs.user_data_dir("MyBacklog").replace("\\","/")
         if not os.path.exists(self.path_base):
@@ -320,13 +322,16 @@ class GamelistForm(QWidget):
                     "local":self.path_base+"/local.json",
                     "accounts":self.path_base+"/accounts.json",
                     "root_config":self.path_base+"/root.json",
-                    "root":self.path_base}
+                    "root":self.path_base,
+                    "rk":self.crypter.root_key}
         if os.path.exists(root["root_config"]):
             f = open(root["root_config"])
             d = json.loads(f.read())
             f.close()
             root.update(d)
         self.config = root
+        print("root:",root)
+        self.crypter.root_key = self.config["rk"]
         self.save_config()
         
         for path in ["/cache","/cache/batches","/cache/icons","/cache/extract"]:
@@ -350,9 +355,9 @@ class GamelistForm(QWidget):
         f.close()
 
     def set_accounts(self,account):
-        self.gog = gogapi.Gog(account["gog"]["user"],account["gog"]["pass"])
-        self.steam = steamapi.Steam(account["steam"]["api"],account["steam"]["id"],account["steam"]["userfile"],account["steam"]["shortcut_folder"])
-        self.humble = humbleapi.Humble(account["humble"]["username"],account["humble"]["password"])
+        self.gog = gogapi.Gog(account["gog"]["user"],self.crypter.read(account["gog"]["pass"]))
+        self.steam = steamapi.Steam(self.crypter.read(account["steam"]["api"]),account["steam"]["id"],account["steam"]["userfile"],account["steam"]["shortcut_folder"])
+        self.humble = humbleapi.Humble(account["humble"]["username"],self.crypter.read(account["humble"]["password"]))
         games.sources.SteamSource.api = self.steam
         games.sources.GogSource.api = self.gog
 

@@ -7,7 +7,7 @@ def make_callback(f, *args):
     return lambda: f(*args)
 
 class AccountForm(QWidget):
-    def __init__(self, app, message="", highlight_fields=[],dock=False):
+    def __init__(self, app, message="", highlight_fields=[], dock=False):
         super(AccountForm, self).__init__()
         self.app = app
 
@@ -122,7 +122,10 @@ class AccountForm(QWidget):
         for key_type in self.fields:
             save[key_type] = {}
             for key in self.fields[key_type]:
-                save[key_type][key] = self.fields[key_type][key].text()
+                enc = self.fields[key_type][key].text()
+                if (key_type,key) in [("humble","password"),("steam","api"),("gog","pass")]:
+                    enc = self.app.crypter.write(enc)
+                save[key_type][key] = enc
         f = open("data/account.json","w")
         f.write(json.dumps(save))
         f.close()
