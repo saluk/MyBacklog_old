@@ -218,7 +218,7 @@ class GamelistForm(QWidget):
                    "gog": {"user": "", "pass": ""},
                    "humble": {"username": "", "password": ""}}
         if os.path.exists("data/account.json"):
-            saved_accounts = json.loads(open("data/account.json").read())
+            saved_accounts = json.loads(self.crypter.read(open("data/account.json").read(),"{}"))
             for k in saved_accounts:
                 account[k].update(saved_accounts[k])
         self.set_accounts(account)
@@ -355,9 +355,9 @@ class GamelistForm(QWidget):
         f.close()
 
     def set_accounts(self,account):
-        self.gog = gogapi.Gog(account["gog"]["user"],self.crypter.read(account["gog"]["pass"]))
-        self.steam = steamapi.Steam(self.crypter.read(account["steam"]["api"]),account["steam"]["id"],account["steam"]["userfile"],account["steam"]["shortcut_folder"])
-        self.humble = humbleapi.Humble(account["humble"]["username"],self.crypter.read(account["humble"]["password"]))
+        self.gog = gogapi.Gog(account["gog"]["user"],account["gog"]["pass"])
+        self.steam = steamapi.Steam(account["steam"]["api"],account["steam"]["id"],account["steam"]["userfile"],account["steam"]["shortcut_folder"])
+        self.humble = humbleapi.Humble(account["humble"]["username"],account["humble"]["password"])
         games.sources.SteamSource.api = self.steam
         games.sources.GogSource.api = self.gog
 

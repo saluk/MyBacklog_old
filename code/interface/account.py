@@ -122,12 +122,9 @@ class AccountForm(QWidget):
         for key_type in self.fields:
             save[key_type] = {}
             for key in self.fields[key_type]:
-                enc = self.fields[key_type][key].text()
-                if (key_type,key) in [("humble","password"),("steam","api"),("gog","pass")]:
-                    enc = self.app.crypter.write(enc)
-                save[key_type][key] = enc
+                save[key_type][key] = self.fields[key_type][key].text()
         f = open("data/account.json","w")
-        f.write(json.dumps(save))
+        f.write(self.app.crypter.write(json.dumps(save)))
         f.close()
         self.app.set_accounts(save)
         self.delete()

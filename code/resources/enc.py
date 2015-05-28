@@ -20,12 +20,15 @@ class Crypter:
         first_pass = write(bytes(text),key)
         second_pass = write(first_pass+";"+key,bytes(self.root_key))
         return second_pass
-    def read(self,text):
+    def read(self,text,default):
         if not text:
-            return text
-        first_pass = read(bytes(text),bytes(self.root_key))
-        second_pass,key2 = first_pass.rsplit(";",1)
-        password2 = read(bytes(second_pass),bytes(key2))
+            return default
+        try:
+            first_pass = read(bytes(text),bytes(self.root_key))
+            second_pass,key2 = first_pass.rsplit(";",1)
+            password2 = read(bytes(second_pass),bytes(key2))
+        except:
+            return default
         return password2
 
 
