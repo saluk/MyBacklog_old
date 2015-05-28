@@ -238,24 +238,36 @@ class GamelistForm(QWidget):
         buttonLayout1.addWidget(self.searchbar)
         
         self.search_name = QLineEdit()
+        self.search_name.setPlaceholderText("Search: Name")
         self.searchbarlayout.addWidget(self.search_name)
         self.search_name.textChanged.connect(self.dosearch)
         
         self.search_genre = QLineEdit()
+        self.search_genre.setPlaceholderText("Search: Genre")
         self.searchbarlayout.addWidget(self.search_genre)
         self.search_genre.textChanged.connect(self.dosearch)
 
         self.search_platform = QLineEdit()
+        self.search_platform.setPlaceholderText("Search: Source")
         self.searchbarlayout.addWidget(self.search_platform)
         self.search_platform.textChanged.connect(self.dosearch)
 
         self.sort = "priority"
         self.games_list_widget = QTableWidget()
+        self.total_played_list = QTableWidget()
+        self.total_played_list.setRowCount(1)
+        self.total_played_list.setColumnCount(5)
+        self.total_played_list.resizeColumnsToContents()
+        self.total_played_list.resizeRowsToContents()
+        self.total_played_list.horizontalHeader().setVisible(False)
+        self.total_played_list.verticalHeader().setVisible(False)
+        self.total_played_list.setFixedHeight(22)
 
         self.game_scroller = QScrollArea()
         self.game_scroller.setWidgetResizable(True)
         self.game_scroller.setWidget(self.games_list_widget)
         buttonLayout1.addWidget(self.game_scroller)
+        buttonLayout1.addWidget(self.total_played_list)
  
         self.buttonLayout1 = buttonLayout1
         mainLayout = QGridLayout()
@@ -425,13 +437,15 @@ class GamelistForm(QWidget):
             return
         self.icon_processes.append((widget,game,48))
         
-    def update_game_row(self,game,row=None):
+    def update_game_row(self,game,row=None,list_widget=None):
+        if list_widget is None:
+            list_widget = self.games_list_widget
         if row is None:
             row = self.get_row_for_game(game)
         if row is None:
             #Add a row
-            row = self.games_list_widget.rowCount()
-            self.games_list_widget.setRowCount(row+1)
+            row = list_widget.rowCount()
+            list_widget.setRowCount(row+1)
 
         def abreve(t,l):
             if len(t)<l:
@@ -465,34 +479,34 @@ class GamelistForm(QWidget):
         for s in game.sources:
             if s["source"] in self.icons:
                 source.setIcon(QIcon(self.icons[s["source"]]))
-        self.games_list_widget.setItem(row,0,source)
+        list_widget.setItem(row,0,source)
             
         label = QTableWidgetItem("")
         label.setBackground(bg)
         self.set_icon(label,game,48)
         self.icon_thread.start()
-        self.games_list_widget.setItem(row,1,label)
+        list_widget.setItem(row,1,label)
             
         name = QTableWidgetItem("GAME NAME")
         name.setBackground(bg)
         name.setText(game.widget_name)
-        self.games_list_widget.setItem(row,2,name)
+        list_widget.setItem(row,2,name)
 
         genre = QTableWidgetItem("GAME GENRE")
         genre.setBackground(bg)
         genre.setText(game.genre)
-        self.games_list_widget.setItem(row,3,genre)
+        list_widget.setItem(row,3,genre)
 
         hours = QTableWidgetItem("GAME HOURS")
         hours.setBackground(bg)
         hours.setText(game.playtime_hours_minutes)
-        self.games_list_widget.setItem(row,4,hours)
+        list_widget.setItem(row,4,hours)
 
         lastplayed = WILastPlayed("GAME LAST PLAYED")
         lastplayed.setBackground(bg)
         lastplayed.setText(game.last_played_nice)
-        lastplayed.setData(DATA_SORT,games.stot(game.lastplayed))
-        self.games_list_widget.setItem(row,5,lastplayed)
+        lastplayed.setData(DATA_SORT,time.mktime(games.stot(game.lastplayed)))
+        list_widget.setItem(row,5,lastplayed)
 
     def update_gamelist_widget(self):
         try:
@@ -512,8 +526,9 @@ class GamelistForm(QWidget):
         i = -1
         for i,g in enumerate(self.gamelist):
             self.update_game_row(g["game"],i)
-        self.update_game_row(games.Game(name="Total Time Played"),i+1)
+        self.update_game_row(games.Game(name="Total Time Played"),0,list_widget=self.total_played_list)
         self.dosearch()
+        self.total_played_list.resizeColumnsToContents()
 
         self.game_scroller.verticalScrollBar().setValue(0)
         self.games_list_widget.setHorizontalHeaderLabels([x[0] for x in self.columns])
@@ -782,7 +797,7 @@ class GamelistForm(QWidget):
             total_hours.setText("%.2dd%.2d:%.2d"%(day,hour,min))
         else:
             total_hours.setText("%.2d:%.2d"%(hour,min))
-        self.games_list_widget.setItem(row+1,4,total_hours)
+        self.total_played_list.setItem(0,4,total_hours)
  
 def run():
     import sys
