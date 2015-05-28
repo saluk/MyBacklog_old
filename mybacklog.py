@@ -291,7 +291,7 @@ class GamelistForm(QWidget):
         self.timer = QTimer(self)
         self.timer.setInterval(300000)
         #self.timer.setInterval(5000)
-        self.timer.timeout.connect(self.notify)
+        #self.timer.timeout.connect(self.notify)
         
         self.setMinimumSize(600,600)
         #self.setMaximumWidth(1080)
@@ -657,6 +657,8 @@ class GamelistForm(QWidget):
     def run_game(self,game,track_time=True):
         if getattr(self,"stop_playing_button",None):
             return
+        #self.setStyleSheet("background-color:red;")
+        self.old_style = self.parent().styleSheet()
         if track_time:
             self.timer_started = time.time()
         print ("run game",game.name,game.gameid)
@@ -666,6 +668,12 @@ class GamelistForm(QWidget):
             self.stop_playing_button = QPushButton("Stop Playing "+game.name)
             self.game_options_dock.widget().layout().addWidget(self.stop_playing_button)
             self.stop_playing_button.clicked.connect(make_callback(self.stop_playing,game))
+            self.stop_playing_button.setStyleSheet("background-color:green;")
+            self.stop_playing_button.setFixedHeight(64)
+            self.parent().setWindowIcon(QIcon(QPixmap("icons/playing.png")))
+            self.parent().trayicon.setIcon(QIcon(QPixmap("icons/playing.png")))
+            self.parent().setStyleSheet("background-color:red;")
+            self.parent().setWindowTitle("MyBacklog (Playing %s)"%game.name)
 
         self.running = game
         game.run_game(self.config["root"])
@@ -673,6 +681,10 @@ class GamelistForm(QWidget):
         playrequest(game)
 
     def stop_playing(self,game):
+        self.parent().setStyleSheet(self.old_style)
+        self.parent().setWindowIcon(QIcon(QPixmap("icons/main.png")))
+        self.parent().trayicon.setIcon(QIcon(QPixmap("icons/main.png")))
+        self.parent().setWindowTitle("MyBacklog")
         self.running = None
         self.games.stop(game)
         self.timer.stop()
@@ -709,7 +721,7 @@ class GamelistForm(QWidget):
 
             if getattr(self,"stop_playing_button",None):
                 self.game_options_dock.widget().layout().addWidget(self.stop_playing_button)
-                self.stop_playing_button.clicked.connect(make_callback(self.stop_playing,game))
+                #self.stop_playing_button.clicked.connect(make_callback(self.stop_playing,game))
 
     def cell_changed(self,row,col):
         gameid = self.games_list_widget.item(row,0).data(DATA_GAMEID)
