@@ -11,8 +11,8 @@ build_exe_options = {"packages": ["os"], "excludes": ["tkinter","mybacklog"],
 # GUI applications require a different base on Windows (the default is for a
 # console application).
 base = None
-#if sys.platform == "win32":
-#    base = "Win32GUI"
+if sys.platform == "win32":
+    base = "Win32GUI"
 
 if os.path.exists("build/exe.win32-3.3"):
     shutil.rmtree("build/exe.win32-3.3")

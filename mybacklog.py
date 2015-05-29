@@ -213,15 +213,6 @@ class GamelistForm(QWidget):
         
         self.timer_started = 0
 
-        account = {"steam": {"api": "", "shortcut_folder": "", "id": "","userfile":""},
-                   "gog": {"user": "", "pass": ""},
-                   "humble": {"username": "", "password": ""}}
-        if os.path.exists("data/account.json"):
-            saved_accounts = json.loads(open("data/account.json").read())
-            for k in saved_accounts:
-                account[k].update(saved_accounts[k])
-        self.set_accounts(account)
-
         self.columns = [("s",None,None),("icon",None,None),("name","widget_name","name"),
                         ("genre","genre","genre"),("playtime",None,"playtime_hours_minutes"),("lastplay",None,None)]
         self.changed = []
@@ -328,6 +319,15 @@ class GamelistForm(QWidget):
             root.update(d)
         self.config = root
         self.save_config()
+        
+        account = {"steam": {"api": "", "shortcut_folder": "", "id": "","userfile":""},
+                   "gog": {"user": "", "pass": ""},
+                   "humble": {"username": "", "password": ""}}
+        if os.path.exists(root["accounts"]):
+            saved_accounts = json.loads(open(root["accounts"]).read())
+            for k in saved_accounts:
+                account[k].update(saved_accounts[k])
+        self.set_accounts(account)
         
         for path in ["/cache","/cache/batches","/cache/icons","/cache/extract"]:
             if not os.path.exists(root["root"]+path):
