@@ -314,7 +314,7 @@ class GamelistForm(QWidget):
                     "accounts":self.path_base+"/accounts.json",
                     "root_config":self.path_base+"/root.json",
                     "root":self.path_base,
-                    "rk":self.crypter.root_key}
+                    "rk":str(self.crypter.root_key)}
         if os.path.exists(root["root_config"]):
             f = open(root["root_config"])
             d = json.loads(f.read())
@@ -322,14 +322,18 @@ class GamelistForm(QWidget):
             root.update(d)
         self.config = root
         print("root:",root)
-        self.crypter.root_key = self.config["rk"]
+        self.crypter.root_key = eval(self.config["rk"])
         self.save_config()
         
         account = {"steam": {"api": "", "shortcut_folder": "", "id": "","userfile":""},
                    "gog": {"user": "", "pass": ""},
                    "humble": {"username": "", "password": ""}}
         if os.path.exists(root["accounts"]):
-            saved_accounts = json.loads(open(root["accounts"]).read())
+            try:
+                saved_accounts = json.loads(self.crypter.read(open(root["accounts"]).read(),"{}"))
+            except:
+                raise
+                saved_accounts = {}
             for k in saved_accounts:
                 account[k].update(saved_accounts[k])
         self.set_accounts(account)

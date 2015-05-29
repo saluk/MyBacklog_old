@@ -123,7 +123,7 @@ class AccountForm(QWidget):
             save[key_type] = {}
             for key in self.fields[key_type]:
                 save[key_type][key] = self.fields[key_type][key].text()
-        f = open(self.app.config["accounts"],"w")
+        f = open(self.app.config["accounts"],"wb")
         f.write(self.app.crypter.write(json.dumps(save)))
         f.close()
         self.app.set_accounts(save)

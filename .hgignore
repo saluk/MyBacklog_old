@@ -2,7 +2,6 @@ syntax: glob
 __pycache__/*
 cache/*
 phantomjs/*
-*.pyc
 .idea/*
 screens/*
 data/account.json
