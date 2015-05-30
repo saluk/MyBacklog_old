@@ -33,7 +33,7 @@ def get_source(s):
 
 class Game:
     args = [("name","s"),("playtime","f"),("lastplayed","d"),("genre","s"),("icon_url","s"),
-    ("notes","s"),("priority","i"),("website","s"),("import_date","d"),("finish_date","d")]
+    ("notes","s"),("priority","p"),("website","s"),("import_date","d"),("finish_date","d")]
     def __init__(self,**kwargs):
         dontsavekeys = set(dir(self))
         self.gameid = Exception("Do not save me")
@@ -312,9 +312,11 @@ class Game:
         id2 = None
         if ";" in value:
             id1,id2 = value.split(";",1)
-        self.sources[0]["id"] = id1
+        else:
+            id1 = value
+        self.sources[0]["id"] = id1.strip()
         if id2:
-            self.sources[0]["id2"] = id2
+            self.sources[0]["id2"] = id2.strip()
 
 test1 = Game(name="blah")
 test2 = test1.copy()
@@ -558,13 +560,11 @@ class Games:
         if sort=="priority":
             return sorted(v,key=lambda g:(g.finished,g.priority,-time.mktime(stot(g.lastplayed)),g.name))
         elif sort=="added":
-            add_dates = {}
-            for a in self.actions:
-                if a["type"] == "addgame":
-                    g = Game(**a["game"])
-                    add_dates[g.gameid] = time.mktime(stot(a["time"]))
-            default = time.mktime(stot("23:39:03 1980-07-16"))
-            return sorted(v,key=lambda g:(-time.mktime(stot(g.import_date)) or default))
+            def key(game):
+                if game.import_date:
+                    return -time.mktime(stot(game.import_date))
+                return -time.mktime(stot("23:39:03 1970-07-16"))
+            return sorted(v,key=key)            
         elif sort=="changed":
             #crash
             def key(game):

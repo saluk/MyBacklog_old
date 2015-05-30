@@ -165,7 +165,8 @@ def import_steam(apikey=MY_API_KEY,userid=MY_STEAM_ID):
                                 {"source":"steam","id":g["appid"]}
                             ],
                             lastplayed=lastplayed,
-                            icon_url=icon_url
+                            icon_url=icon_url,
+                            import_date=games.now()
             )
         game.generate_gameid()
         library.append(game)

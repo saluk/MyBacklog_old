@@ -104,7 +104,7 @@ def get_humble_gamelist(username,password,cache_root):
         b.get(api_get_order%{"key":key},cache=True,cache_root=cache_root)
         print (b.json)
         hdata = b.json
-        package = games.Game(name=hdata["product"]["human_name"])
+        package = games.Game(name=hdata["product"]["human_name"],import_date=games.now())
         package.sources = [{"source":"humble","id":hdata["product"]["machine_name"],"package":hdata["gamekey"]}]
         package.package_data = {
             "type":"bundle",
@@ -116,7 +116,8 @@ def get_humble_gamelist(username,password,cache_root):
         for sub in hdata["subproducts"]:
             game = games.Game(name=sub["human_name"],
                                         website=sub["url"],
-                                        icon_url=sub["icon"])
+                                        icon_url=sub["icon"],
+                                        import_date=games.now())
             game.sources = [{"source":"humble","id":sub["machine_name"],"package":hdata["gamekey"]}]
             game.package_data = {
                     "type":"content",

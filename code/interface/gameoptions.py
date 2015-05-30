@@ -148,6 +148,14 @@ class EditGame(QWidget):
                 edit = QLineEdit("%.2f"%getattr(game,prop))
                 validator = QDoubleValidator(0.0,3153600000.0,2)
                 edit.setValidator(validator)
+            elif proptype == "p":
+                priorities = games.PRIORITIES
+                pkeys = sorted(priorities.keys())
+                edit = QComboBox()
+                for i,k in enumerate(pkeys):
+                    edit.addItem(priorities[k])
+                    if k == getattr(game,prop):
+                        edit.setCurrentIndex(i)
             else:
                 edit = QLineEdit(str(getattr(game,prop)))
             layout.addWidget(edit,i,1)
@@ -197,16 +205,22 @@ class EditGame(QWidget):
     def save_close(self):
         game = self.game.copy()
         for field in self.fields:
-            value = self.fields[field]["w"].text()
             t = self.fields[field]["t"]
             if t == "i":
-                value = int(value)
+                value = int(self.fields[field]["w"].text())
             elif t == "f":
-                value = float(value)
+                value = float(self.fields[field]["w"].text())
             elif t == "d":
                 value = qtdt_to_ts(self.fields[field]["w"].dateTime())
                 if "1969" in value:
                     value = ""
+            elif t == "p":
+                priorities = games.PRIORITIES
+                pkeys = sorted(priorities.keys())
+                i = self.fields[field]["w"].currentIndex()
+                value = pkeys[i]
+            else:
+                value = self.fields[field]["w"].text()
             setattr(game,field,value)
         game.generate_gameid()
         newid = game.gameid

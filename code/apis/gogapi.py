@@ -242,12 +242,12 @@ class Gog:
                 #_392 = big icon
                 #_bg_1120.jpg = background of game page
                 gameicon = "http:"+game_data["image"].replace("\\/","/")+"_392.jpg"
-                game = games.Game(name=gamename,icon_url=gameicon)
+                game = games.Game(name=gamename,icon_url=gameicon,import_date=games.now())
                 game.sources = [{"source":"gog","id":gameid,"id2":gameid2}]
 
                 if gameid in multipack:
                     if gameid not in packs:
-                        package = games.Game(name=gamename,icon_url=gameicon)
+                        package = games.Game(name=gamename,icon_url=gameicon,import_date=games.now())
                         package.sources = [{"source":"gog","id":gameid,"id2":gameid2}]
                         package.package_data = {
                             "type":"bundle",

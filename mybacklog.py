@@ -136,7 +136,7 @@ class MyBacklog(QMainWindow):
         self.main_form = GamelistForm(self)
 
         menus = {}
-        for folder in ["file","import","cleanup","sync","view"]:
+        for folder in ["file","import","view"]:
             menus[folder] = self.menuBar().addMenu("&"+folder.capitalize())
             for x in dir(self.main_form):
                 if x.startswith(folder+"_"):
@@ -850,7 +850,7 @@ class GamelistForm(QWidget):
 
     def add_game(self,source):
         print("adding game with source:",source)
-        game = games.Game(sources=[{"source":source}])
+        game = games.Game(sources=[{"source":source}],import_date=games.now())
         self.gamelist.append({"game":game,"widget":None})
         self.show_edit_widget(game,self,new=True)
 
