@@ -492,7 +492,7 @@ class GamelistForm(QWidget):
             #bg = QColor(self.palette().Background)
 
         source = QTableWidgetItem("")
-        source.setFlags(Qt.ItemIsEnabled)
+        source.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEnabled)
         source.setBackground(bg)
         source.setData(DATA_GAMEID,game.gameid)
         for s in game.sources:
@@ -501,7 +501,7 @@ class GamelistForm(QWidget):
         list_widget.setItem(row,0,source)
             
         label = QTableWidgetItem("")
-        label.setFlags(Qt.ItemIsEnabled)
+        label.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEnabled)
         label.setBackground(bg)
         self.set_icon(label,game,48)
         self.icon_thread.start()
@@ -509,31 +509,34 @@ class GamelistForm(QWidget):
             
         name = QTableWidgetItem("GAME NAME")
         name.setBackground(bg)
+        #TODO: Currently disabled
+        name.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEnabled)
         name.setText(game.widget_name)
         list_widget.setItem(row,2,name)
 
         genre = QTableWidgetItem("GAME GENRE")
+        #TODO: Currently disabled
+        genre.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEnabled)
         genre.setBackground(bg)
         genre.setText(game.genre)
         list_widget.setItem(row,3,genre)
 
         hours = QTableWidgetItem("GAME HOURS")
+        #TODO: CURRENTLY DISABLED
+        hours.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEnabled)
         hours.setBackground(bg)
         hours.setText(game.playtime_hours_minutes)
         list_widget.setItem(row,4,hours)
 
         lastplayed = WILastPlayed("GAME LAST PLAYED")
-        lastplayed.setFlags(Qt.ItemIsEnabled)
+        lastplayed.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEnabled)
         lastplayed.setBackground(bg)
         lastplayed.setText(game.last_played_nice)
         lastplayed.setData(DATA_SORT,time.mktime(games.stot(game.lastplayed)))
         list_widget.setItem(row,5,lastplayed)
 
     def update_gamelist_widget(self):
-        try:
-            self.games_list_widget.cellChanged.disconnect(self.cell_changed)
-        except TypeError:
-            pass
+        self.disable_edit_hooks()
         self.gamelist = []
         for g in self.games.list(self.sort):
             self.gamelist.append({"game":g,"widget":None})
@@ -545,6 +548,7 @@ class GamelistForm(QWidget):
         self.games_list_widget.setRowCount(len(self.gamelist))
         self.games_list_widget.setColumnCount(6)
         self.games_list_widget.itemSelectionChanged.connect(self.selected_row)
+        
         i = -1
         for i,g in enumerate(self.gamelist):
             self.update_game_row(g["game"],i)
@@ -565,11 +569,20 @@ class GamelistForm(QWidget):
 
         self.games_list_widget.setSortingEnabled(True)
 
-        self.games_list_widget.cellChanged.connect(self.cell_changed)
-        self.games_list_widget.cellDoubleClicked.connect(self.cell_activated)
+        self.enable_edit_hooks()
 
         self.dosearch()
         self.update()
+        
+    def disable_edit_hooks(self):
+        try:
+            self.games_list_widget.cellChanged.disconnect(self.cell_changed)
+        except TypeError:
+            pass
+            
+    def enable_edit_hooks(self):
+        self.games_list_widget.cellChanged.connect(self.cell_changed)
+        self.games_list_widget.cellDoubleClicked.connect(self.cell_activated)
 
     def import_steam(self):
         try:
@@ -732,6 +745,11 @@ class GamelistForm(QWidget):
         return self.egw
 
     def selected_row(self):
+        #Clean up from before if we messed with a field
+        if getattr(self,"editing_section",None):
+            print("FIXING EDITING SECTION")
+            self.cell_changed(*self.editing_section)
+            self.editing_section = None
         if self.games_list_widget.selectedItems():
             item = self.games_list_widget.selectedItems()[0]
             row = item.row()
@@ -746,22 +764,46 @@ class GamelistForm(QWidget):
                 #self.stop_playing_button.clicked.connect(make_callback(self.stop_playing,game))
 
     def cell_changed(self,row,col):
+        if getattr(self,"editing_section",None) == (row,col):
+            self.editing_section = None
+        print("changed",row,col)
         gameid = self.games_list_widget.item(row,0).data(DATA_GAMEID)
         if gameid not in self.games.games:
             return
+        self.disable_edit_hooks()
         game = self.games.games[gameid]
-        self.games_list_widget.item(row,col).setBackground(QColor(200,10,10))
-        if self.columns[col][2]:
-            print("setting",gameid,self.columns[col][2],"to",self.games_list_widget.item(row,col).text())
-            setattr(game,self.columns[col][2],self.games_list_widget.item(row,col).text())
-        self.selected_row()
-        self.changed.append(gameid)
+        changed = True
+        nv = self.games_list_widget.item(row,col).text()
+        #Reset title
+        if col==2:
+            changed = False
+            nv = self.games_list_widget.item(row,col).text()
+            if nv != game.name:
+                changed = True
+            print("setting widget name to",game.widget_name)
+        if changed:
+            if self.columns[col][2]:
+                print("setting",gameid,self.columns[col][2],"to",nv)
+                setattr(game,self.columns[col][2],nv)
+            self.changed.append(gameid)
+            self.update_game_row(game,row)
+            self.games_list_widget.item(row,col).setBackground(QColor(200,10,10))
+        else:
+            oldbg = self.games_list_widget.item(row,col).background()
+            self.update_game_row(game,row)
+            self.games_list_widget.item(row,col).setBackground(oldbg)
+        #self.selected_row()
+        self.enable_edit_hooks()
 
     def cell_activated(self,row,col):
+        self.disable_edit_hooks()
         if self.columns[col][2]:
             gameid = self.games_list_widget.item(row,0).data(DATA_GAMEID)
             game = self.games.games[gameid]
+            print("SETTING EDITING SECTION")
+            self.editing_section = (row,col)
             self.games_list_widget.item(row,col).setText(getattr(game,self.columns[col][2]))
+        self.enable_edit_hooks()
 
     def update_game_options(self,game):
         self.game_options = gameoptions.GameOptions(game,self)

@@ -1,11 +1,24 @@
+import time
+
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 
 from code.resources import icons
+from code import games
 
 def make_callback(f, *args):
     return lambda: f(*args)
+    
+def ts_to_qtdt(s):
+    s = time.mktime(games.stot(s))
+    qtdt = QDateTime()
+    qtdt.setTime_t(s)
+    return qtdt
+    
+def qtdt_to_ts(qtdt):
+    s = qtdt.toTime_t()
+    return games.ttos(time.localtime(s))
 
 class ListGamesForPack(QWidget):
     def __init__(self, game, app, edit_widget):
@@ -122,7 +135,13 @@ class EditGame(QWidget):
             prop,proptype = prop
             label = QLabel("%s:"%prop.capitalize())
             layout.addWidget(label,i,0)
-            edit = QLineEdit(str(getattr(game,prop)))
+            
+            if proptype == "d":
+                edit = QDateTimeEdit()
+                edit.setCalendarPopup(True)
+                edit.setDateTime(ts_to_qtdt(getattr(game,prop)))
+            else:
+                edit = QLineEdit(str(getattr(game,prop)))
             layout.addWidget(edit,i,1)
             self.fields[prop] = {"w":edit,"t":proptype}
 
@@ -176,6 +195,10 @@ class EditGame(QWidget):
                 value = int(value)
             elif t == "f":
                 value = float(value)
+            elif t == "d":
+                value = qtdt_to_ts(self.fields[field]["w"].dateTime())
+                if "1969" in value:
+                    value = ""
             setattr(game,field,value)
         game.generate_gameid()
         newid = game.gameid
@@ -185,6 +208,7 @@ class EditGame(QWidget):
         print(game in self.games.games.values())
         updated_game = self.games.force_update_game(self.oldid,game)
         #self.app.update_game_row(updated_game)
+        self.app.changed.append(updated_game.gameid)
         self.app.update_gamelist_widget()
 
         if not self.parented:

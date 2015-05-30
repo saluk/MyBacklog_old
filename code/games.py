@@ -12,7 +12,7 @@ def now():
     t = time.localtime()
     return time.strftime(fmt,t)
 def stot(s):
-    """From a string, return a datetime object"""
+    """From a string, return a struct_time"""
     if not s or s == "None":
         return time.localtime(0)
     try:
@@ -20,7 +20,7 @@ def stot(s):
     except:
         return time.localtime(0)
 def ttos(t):
-    """From a datetime object, return a string"""
+    """From a struct_time object, return a string"""
     return time.strftime(fmt,t)
 #def sec_to_ts(sec):
 #    """Convert an amount of seconds as a string into a time delta"""
@@ -32,8 +32,8 @@ def get_source(s):
     return sources.all[s]
 
 class Game:
-    args = [("name","s"),("playtime","f"),("lastplayed","s"),("finished","i"),("genre","s"),("hidden","i"),("icon_url","s"),
-    ("notes","s"),("priority","i"),("website","s"),("import_date","s"),("finish_date","s")]
+    args = [("name","s"),("playtime","f"),("lastplayed","d"),("finished","i"),("genre","s"),("hidden","i"),("icon_url","s"),
+    ("notes","s"),("priority","i"),("website","s"),("import_date","d"),("finish_date","d")]
     def __init__(self,**kwargs):
         dontsavekeys = set(dir(self))
         self.gameid = Exception("Do not save me")
