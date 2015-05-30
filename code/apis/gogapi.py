@@ -74,48 +74,6 @@ def get_gog_games_html(html):
             d["icon"] = image['src']
         gog_games[d["gameindex"]] = d
     return gog_games
-def import_gog(multipack={}):
-    packs = {}
-    imported_games = []
-    gog_games = get_gog_games_html("cache/mygog_shelf.html")
-    for key in gog_games:
-        g = gog_games[key]
-        multi = multipack.get(g["gameindex"],[""])
-        for g2 in multi:
-            original_name = g["gameindex"]
-            original_name = " ".join([x.capitalize() for x in original_name.replace("_"," ").split(" ")])
-
-            name = g["gameindex"]
-            if g2:
-                name = g2
-            name = " ".join([x.capitalize() for x in name.replace("_"," ").split(" ")])
-
-            id = g["gameindex"]
-            game = games.Game(name=name,icon_url=g["icon"])
-            game.sources = [{"source":"gog","id":id}]
-
-            if g2:
-                if not id in packs:
-                    package = games.Game(name=original_name)
-                    package.sources = [{"source":"gog","id":g["gameindex"]}]
-                    package.package_data = {
-                        "type":"bundle",
-                        "contents":[],
-                        "source_info":package.create_package_data()
-                    }
-                    packs[id] = package
-                    imported_games.append(package)
-                package = packs[id]
-                print("packaging",name,"into",id,game.create_package_data())
-                game.package_data = {
-                    "type":"content",
-                    "parent":{"gameid":package.gameid,"name":package.name},
-                    "source_info":game.create_package_data()
-                }
-                package.package_data["contents"].append({"gameid":game.gameid,"name":game.name})
-            imported_games.append(game)
-    crash
-    return imported_games
 
 class Browser:
     def __init__(self):
@@ -139,13 +97,13 @@ class Browser:
             self.url = answer.url
         except:
             pass
-    def get(self,url,params={},cache=False):
+    def get(self,url,params={},cache=False,cache_root=""):
         self.json = {}
         self.text = ""
         if cache:
-            if not os.path.exists("cache/gogapi"):
-                os.mkdir("cache/gogapi")
-        cache_url = "cache/gogapi/"+url.replace(":","").replace("/","").replace("?","QU").replace("&","AN")
+            if not os.path.exists(cache_root+"/cache/gogapi"):
+                os.mkdir(cache_root+"/cache/gogapi")
+        cache_url = cache_root+"/cache/gogapi/"+url.replace(":","").replace("/","").replace("?","QU").replace("&","AN")
         if not cache or not os.path.exists(cache_url):
             answer = requests.get(url,params=params,cookies=self.cookies,headers=self.headers)
             self.cookies.update(answer.cookies)
@@ -196,10 +154,10 @@ class BadAccount(Exception):
 ]}"""
 
 class Gog:
-    def __init__(self,username,password):
+    def __init__(self,app,username,password):
+        self.app = app
         self.username = username
         self.password = password
-        self.import_gog = import_gog
     def better_get_shelf(self,multipack):
         if not self.username or not self.password:
             raise BadAccount()
@@ -208,7 +166,7 @@ class Gog:
         #Try cookies
         logged_in = False
         try:
-            f = open("cache/cookies","r")
+            f = open(self.app.config["root"]+"/cache/cookies","r")
             b.cookies = eval(f.read())
             f.close()
             b.get("https://www.gog.com/account/ajax",params={
@@ -262,7 +220,7 @@ class Gog:
             print(b.cookies)
 
         #Should be logged in now
-        f = open("cache/cookies","w")
+        f = open(self.app.config["root"]+"/cache/cookies","w")
         f.write(repr(b.cookies))
         f.close()
 
@@ -273,7 +231,7 @@ class Gog:
         page = 1
         while 1:
             print("getting page",page)
-            b.get(url%{"page":page},cache=True)
+            b.get(url%{"page":page},cache=True,cache_root=self.app.config["root"])
             for game_data in b.json["products"]:
                 if not game_data["isGame"]:
                     continue

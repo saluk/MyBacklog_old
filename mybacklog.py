@@ -146,16 +146,9 @@ class MyBacklog(QMainWindow):
                         action.setCheckable(True)
                     menus[folder].addAction(action)
         menus["view"] = self.menuBar().addMenu("&Add Game")
-        for source in sorted(games.sources.all):
-            print("Create menu to add",source)
-            def gen_func():
-                def ag(*args,**kwargs):
-                    self.main_form.add_game(ag.source)
-                ag.source = source
-                return ag
-            menus["view"].addAction(QAction("&"+source,self,triggered=gen_func()))
 
         menus["file"].addAction(QAction("&Exit",self,triggered=self.really_close))
+        self.menus = menus
         self.exit_requested = False
 
         self.setCentralWidget(self.main_form)
@@ -169,6 +162,22 @@ class MyBacklog(QMainWindow):
         self.setCentralWidget(self.main_form)
         self.main_form.init_config()
         self.main_form.init_gamelist()
+        self.build_add_game_menu()
+    def build_add_game_menu(self):
+        self.menus["view"].clear()
+        for source in sorted(games.sources.all):
+            print("Create menu to add",source)
+            def gen_func():
+                def ag(*args,**kwargs):
+                    self.main_form.add_game(ag.source)
+                ag.source = source
+                return ag
+            action = QAction("&"+source,self,triggered=gen_func())
+            i = self.main_form.icons["none"]
+            if source in self.main_form.icons:
+                i = self.main_form.icons[source]
+            action.setIcon(QIcon(i))
+            self.menus["view"].addAction(action)
     def click_tray_icon(self):
         self.show()
     def really_close(self):
@@ -359,9 +368,9 @@ class GamelistForm(QWidget):
         f.close()
 
     def set_accounts(self,account):
-        self.gog = gogapi.Gog(account["gog"]["user"],account["gog"]["pass"])
-        self.steam = steamapi.Steam(account["steam"]["api"],account["steam"]["id"],account["steam"]["userfile"],account["steam"]["shortcut_folder"])
-        self.humble = humbleapi.Humble(account["humble"]["username"],account["humble"]["password"])
+        self.gog = gogapi.Gog(self,account["gog"]["user"],account["gog"]["pass"])
+        self.steam = steamapi.Steam(self,account["steam"]["api"],account["steam"]["id"],account["steam"]["userfile"],account["steam"]["shortcut_folder"])
+        self.humble = humbleapi.Humble(self,account["humble"]["username"],account["humble"]["password"])
         games.sources.SteamSource.api = self.steam
         games.sources.GogSource.api = self.gog
 
@@ -483,6 +492,7 @@ class GamelistForm(QWidget):
             #bg = QColor(self.palette().Background)
 
         source = QTableWidgetItem("")
+        source.setFlags(Qt.ItemIsEnabled)
         source.setBackground(bg)
         source.setData(DATA_GAMEID,game.gameid)
         for s in game.sources:
@@ -491,6 +501,7 @@ class GamelistForm(QWidget):
         list_widget.setItem(row,0,source)
             
         label = QTableWidgetItem("")
+        label.setFlags(Qt.ItemIsEnabled)
         label.setBackground(bg)
         self.set_icon(label,game,48)
         self.icon_thread.start()
@@ -512,6 +523,7 @@ class GamelistForm(QWidget):
         list_widget.setItem(row,4,hours)
 
         lastplayed = WILastPlayed("GAME LAST PLAYED")
+        lastplayed.setFlags(Qt.ItemIsEnabled)
         lastplayed.setBackground(bg)
         lastplayed.setText(game.last_played_nice)
         lastplayed.setData(DATA_SORT,time.mktime(games.stot(game.lastplayed)))
@@ -525,11 +537,12 @@ class GamelistForm(QWidget):
         self.gamelist = []
         for g in self.games.list(self.sort):
             self.gamelist.append({"game":g,"widget":None})
+        self.games_list_widget.setSelectionMode(QAbstractItemView.SingleSelection)
         self.games_list_widget.clear()
         self.games_list_widget.setIconSize(QSize(28,28))
         self.games_list_widget.horizontalHeader().setVisible(True)
         self.games_list_widget.verticalHeader().setVisible(False)
-        self.games_list_widget.setRowCount(len(self.gamelist)+1)
+        self.games_list_widget.setRowCount(len(self.gamelist))
         self.games_list_widget.setColumnCount(6)
         self.games_list_widget.itemSelectionChanged.connect(self.selected_row)
         i = -1

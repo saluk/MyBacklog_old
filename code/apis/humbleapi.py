@@ -28,13 +28,13 @@ class Browser:
             self.url = answer.url
         except:
             pass
-    def get(self,url,params={},cache=False):
+    def get(self,url,params={},cache=False,cache_root=""):
         self.json = {}
         self.text = ""
         if cache:
-            if not os.path.exists("cache/humble"):
-                os.mkdir("cache/humble")
-        if not cache or not os.path.exists("cache/humble/"+url.replace(":","").replace("/","")):
+            if not os.path.exists(cache_root+"/cache/humble"):
+                os.mkdir(cache_root+"/cache/humble")
+        if not cache or not os.path.exists(cache_root+"/cache/humble/"+url.replace(":","").replace("/","")):
                 answer = requests.get(url,params=params,cookies=self.cookies,headers=self.headers)
                 self.cookies.update(answer.cookies)
                 try:
@@ -47,11 +47,11 @@ class Browser:
                 except:
                     pass
                 if cache:
-                    f = open("cache/humble/"+url.replace(":","").replace("/",""),"w")
+                    f = open(cache_root+"/cache/humble/"+url.replace(":","").replace("/",""),"w")
                     f.write(json.dumps({"json":self.json,"text":self.text,"url":self.url}))
                     f.close()
         else:
-            f = open("cache/humble/"+url.replace(":","").replace("/",""))
+            f = open(cache_root+"/cache/humble/"+url.replace(":","").replace("/",""))
             d = json.loads(f.read())
             f.close()
             self.json = d["json"]
@@ -60,13 +60,13 @@ class Browser:
 
 import time
 
-def get_humble_gamelist(username,password):
+def get_humble_gamelist(username,password,cache_root):
     b = Browser()
     logged_in = False
     b.get("https://www.humblebundle.com/")
     if not logged_in:
         try:
-            f = open("cache/hcookies","r")
+            f = open(cache_root+"/cache/hcookies","r")
             b.cookies = eval(f.read())
             f.close()
         except:
@@ -88,7 +88,7 @@ def get_humble_gamelist(username,password):
         print ("loggedin",b.url)
         print (b.cookies)
 
-    f = open("cache/hcookies","w")
+    f = open(cache_root+"/cache/hcookies","w")
     f.write(repr(b.cookies))
     f.close()
 
@@ -101,7 +101,7 @@ def get_humble_gamelist(username,password):
     imported_games = []
     for key in keys.split(","):
         key = re.findall("\"(.*?)\"",key)[0]
-        b.get(api_get_order%{"key":key},cache=True)
+        b.get(api_get_order%{"key":key},cache=True,cache_root=cache_root)
         print (b.json)
         hdata = b.json
         package = games.Game(name=hdata["product"]["human_name"])
@@ -131,11 +131,12 @@ def get_humble_gamelist(username,password):
     return imported_games
 
 class Humble:
-    def __init__(self,username,password):
+    def __init__(self,app,username,password):
+        self.app = app
         self.username = username
         self.password = password
     def get_gamelist(self):
-        return get_humble_gamelist(self.username,self.password)
+        return get_humble_gamelist(self.username,self.password,self.app.config["root"])
 
 if __name__ == "__main__":
     get_humble_gamelist()

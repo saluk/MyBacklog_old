@@ -15,7 +15,10 @@ def stot(s):
     """From a string, return a datetime object"""
     if not s or s == "None":
         return time.localtime(0)
-    return time.strptime(s,fmt)
+    try:
+        return time.strptime(s,fmt)
+    except:
+        return time.localtime(0)
 def ttos(t):
     """From a datetime object, return a string"""
     return time.strftime(fmt,t)
@@ -144,8 +147,11 @@ class Game:
     def last_played_nice(self):
         if not self.lastplayed or self.lastplayed == "None":
             return "never"
-        t = time.strptime(self.lastplayed,fmt)
-        return time.strftime("%a, %d %b %Y %H:%M:%S",t)
+        try:
+            t = time.strptime(self.lastplayed,fmt)
+            return time.strftime("%a, %d %b %Y %H:%M:%S",t)
+        except:
+            return "error"
     @property
     def download_link(self):
         for s in self.sources:

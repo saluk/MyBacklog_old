@@ -205,7 +205,8 @@ def create_nonsteam_shortcuts(games,shortcut_folder):
     print ("saved")
 
 class Steam:
-    def __init__(self,api_key,user_id,userfile,shortcut_folder):
+    def __init__(self,app,api_key,user_id,userfile,shortcut_folder):
+        self.app = app
         self.api_key = api_key
         self.profile_name = user_id
         self.user_id = user_id
