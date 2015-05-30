@@ -140,6 +140,10 @@ class EditGame(QWidget):
                 edit = QDateTimeEdit()
                 edit.setCalendarPopup(True)
                 edit.setDateTime(ts_to_qtdt(getattr(game,prop)))
+            elif proptype == "f":
+                edit = QLineEdit("%.2f"%getattr(game,prop))
+                validator = QDoubleValidator(0.0,3153600000.0,2)
+                edit.setValidator(validator)
             else:
                 edit = QLineEdit(str(getattr(game,prop)))
             layout.addWidget(edit,i,1)
