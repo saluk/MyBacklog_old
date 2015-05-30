@@ -173,7 +173,7 @@ class MyBacklog(QMainWindow):
                 ag.source = source
                 return ag
             action = QAction("&"+source,self,triggered=gen_func())
-            i = self.main_form.icons["none"]
+            i = self.main_form.icons["blank"]
             if source in self.main_form.icons:
                 i = self.main_form.icons[source]
             action.setIcon(QIcon(i))
@@ -294,7 +294,7 @@ class GamelistForm(QWidget):
         #self.timer.setInterval(5000)
         #self.timer.timeout.connect(self.notify)
         
-        self.setMinimumSize(600,600)
+        self.setMinimumSize(600,640)
         #self.setMaximumWidth(1080)
         self.adjustSize()
 
@@ -498,6 +498,8 @@ class GamelistForm(QWidget):
         for s in game.sources:
             if s["source"] in self.icons:
                 source.setIcon(QIcon(self.icons[s["source"]]))
+            else:
+                source.setIcon(QIcon(self.icons["blank"]))
         list_widget.setItem(row,0,source)
             
         label = QTableWidgetItem("")
@@ -816,6 +818,32 @@ class GamelistForm(QWidget):
 
     def uninstall_game(self,game):
         game.uninstall()
+        
+    def hide_game(self,game):
+        game.hidden = 1
+        self.save()
+        self.update_gamelist_widget()
+        self.update_game_options(game)
+        
+    def unhide_game(self,game):
+        game.hidden = 0
+        self.save()
+        self.update_gamelist_widget()
+        self.update_game_options(game)
+        
+    def finish_game(self,game):
+        game.finished = 1
+        game.finish_date = games.now()
+        self.save()
+        self.update_gamelist_widget()
+        self.update_game_options(game)
+        
+    def unfinish_game(self,game):
+        game.finished = 0
+        game.finish_date = ""
+        self.save()
+        self.update_gamelist_widget()
+        self.update_game_options(game)
 
     def download(self,game):
         game.download_method()

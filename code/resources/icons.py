@@ -15,7 +15,7 @@ def path_to_icon(game,filecache_root):
         gba_path = game.get_gba()
         return filecache_root+"/cache/icons/"+gba_path.replace("http","").replace(":","").replace("/","").replace("\\",""),"gba",gba_path
     else:
-        return filecache_root+"/icons/blank.png",None,""
+        return "icons/blank.png",None,""
 
 def icon_in_cache(game,cache,filecache_root):
     fpath,mode,url = path_to_icon(game,filecache_root)

@@ -12,8 +12,9 @@ run_with_steam = 1
 class Source:
     def __init__(self,name):
         self.name = name
+        self.extra_args = []
     def args(self):
-        return []
+        return self.extra_args
     def is_installed(self,game,source):
         return True
     def needs_download(self,game,source):
@@ -35,7 +36,7 @@ class ExeSource(Source):
     def args(self):
         """Return editable arguments that are unique to this source
         Defaults to install_path as that is pretty common"""
-        return [("install_path","s")]
+        return [("install_path","s")]+self.extra_args
     def is_installed(self,game,source):
         return game.get_path()
     def uninstall(self,game,source):
@@ -88,7 +89,7 @@ class ExeSource(Source):
 class SteamSource(Source):
     """Needs .api to be set to steamapi.Steam"""
     def args(self):
-        return []
+        return [("source_0_id","s")]+self.extra_args
     def run_game(self,game,source,cache_root):
         webbrowser.open("steam://rungameid/%d"%source["id"])
     def missing_steam_launch(self,game,source):
@@ -103,6 +104,8 @@ class SteamSource(Source):
 
 class GogSource(ExeSource):
     """Needs .api to be set to gogapi.Gog"""
+    def args(self):
+        return [("source_0_id","s"),("install_path","s")]+self.extra_args
     def download_link(self,game,source):
         return "gogdownloader://%s/installer_win_en"%source["id"]
 
@@ -133,7 +136,8 @@ default_definitions = {
         "class":"ExeSource"
     },
     "humble":{
-        "class":"ExeSource"
+        "class":"ExeSource",
+        "args":[("source_0_id","s")]
     },
     "origin":{
         "class":"ExeSource"

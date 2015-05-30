@@ -1,5 +1,5 @@
 #!python3
-import re
+import re,os
 
 import requests
 
@@ -213,7 +213,8 @@ class Steam:
         self.userfile = userfile
         self.shortcut_folder = shortcut_folder
         self.userdata = load_userdata(self.userfile)
-        self.installed_apps = self.userdata.get("UserLocalConfigStore",{}).get("Software",{}).get("Valve",{}).get("Steam",{}).get("apps",{})
+        #self.installed_apps = self.userdata.get("UserLocalConfigStore",{}).get("Software",{}).get("Valve",{}).get("Steam",{}).get("apps",{})
+        self.installed_apps = {}
     def import_steam(self):
         try:
             return import_steam(self.api_key,self.user_id)
@@ -225,7 +226,25 @@ class Steam:
             return an
     def create_nonsteam_shortcuts(self,games):
         return create_nonsteam_shortcuts(games,self.shortcut_folder)
+    def search_installed(self):
+        self.installed_apps = {}
+        path = self.userfile
+        print("PATH",path)
+        path = os.path.split(self.userfile)[0]
+        path = os.path.split(path)[0]
+        path = os.path.split(path)[0]
+        path = os.path.split(path)[0]
+        path = os.path.join(path,"SteamApps")
+        for f in os.listdir(path):
+            if "appmanifest" in f:
+                id = f.replace("appmanifest_","").replace(".acf","")
+                self.installed_apps[id] = f
     def is_installed(self,steamid):
+        if not self.installed_apps:
+            self.search_installed()
+        if str(steamid) in self.installed_apps:
+            return True
+        self.search_installed()
         if str(steamid) in self.installed_apps:
             return True
 

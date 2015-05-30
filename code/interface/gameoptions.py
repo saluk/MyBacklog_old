@@ -133,7 +133,11 @@ class EditGame(QWidget):
         self.fields = {}
         for i,prop in enumerate(game.valid_args):
             prop,proptype = prop
-            label = QLabel("%s:"%prop.capitalize())
+            
+            label_name = "%s:"%prop.capitalize()
+            if prop=="source_0_id" and game.sources:
+                label_name = game.sources[0]["source"]+"_id"
+            label = QLabel(label_name)
             layout.addWidget(label,i,0)
             
             if proptype == "d":
@@ -261,6 +265,7 @@ class GameOptions(QWidget):
         buttons.setAlignment(Qt.AlignTop)
         if game.is_installed():
             run = QPushButton("Play Game")
+            run.setFixedHeight(40)
             run.setBackgroundRole(QPalette.Highlight)
             run.clicked.connect(make_callback(self.app.run_game,game))
             buttons.addWidget(run)
@@ -277,6 +282,25 @@ class GameOptions(QWidget):
         if game.is_installed():
             w = QPushButton("Uninstall")
             w.clicked.connect(make_callback(self.app.uninstall_game,game))
+            buttons.addWidget(w)
+            
+        if game.finished:
+            w = QPushButton("Unfinish")
+            w.clicked.connect(make_callback(self.app.unfinish_game,game))
+            buttons.addWidget(w)
+        else:
+            w = QPushButton("Finish")
+            w.setStyleSheet("background-color:rgb(100,200,150);")
+            w.clicked.connect(make_callback(self.app.finish_game,game))
+            buttons.addWidget(w)
+            
+        if game.hidden:
+            w = QPushButton("Unhide")
+            w.clicked.connect(make_callback(self.app.unhide_game,game))
+            buttons.addWidget(w)
+        else:
+            w = QPushButton("Hide")
+            w.clicked.connect(make_callback(self.app.hide_game,game))
             buttons.addWidget(w)
         label_section.addLayout(buttons,0,1)
 

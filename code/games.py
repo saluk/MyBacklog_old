@@ -32,7 +32,7 @@ def get_source(s):
     return sources.all[s]
 
 class Game:
-    args = [("name","s"),("playtime","f"),("lastplayed","d"),("finished","i"),("genre","s"),("hidden","i"),("icon_url","s"),
+    args = [("name","s"),("playtime","f"),("lastplayed","d"),("genre","s"),("icon_url","s"),
     ("notes","s"),("priority","i"),("website","s"),("import_date","d"),("finish_date","d")]
     def __init__(self,**kwargs):
         dontsavekeys = set(dir(self))
@@ -298,6 +298,23 @@ class Game:
             file["type"] = "rom"
         file["path"] = value
         print("set path:",self.games.local["game_data"][self.gameid]["files"])
+    @property
+    def source_0_id(self):
+        if not self.sources:
+            return None
+        if "id2" in self.sources[0]:
+            return "%s;%s"%(self.sources[0]["id"],self.sources[0].get("id2",""))
+        return self.sources[0]["id"]
+    @source_0_id.setter
+    def source_0_id(self,value):
+        if not self.sources:
+            return
+        id2 = None
+        if ";" in value:
+            id1,id2 = value.split(";",1)
+        self.sources[0]["id"] = id1
+        if id2:
+            self.sources[0]["id2"] = id2
 
 test1 = Game(name="blah")
 test2 = test1.copy()
