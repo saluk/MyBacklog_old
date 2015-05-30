@@ -89,7 +89,7 @@ class ListGamesForPack(QWidget):
                                   "contents":pack_games,
                                   "source_info":self.game.create_package_data()}
         self.app.games.force_update_game(self.game.gameid,self.game)
-        self.app.games.save()
+        self.app.save()
         self.app.update_gamelist_widget()
         self.deleteLater()
         self.edit_widget.deleteLater()
@@ -210,6 +210,7 @@ class EditGame(QWidget):
         #self.app.update_game_row(updated_game)
         self.app.changed.append(updated_game.gameid)
         self.app.update_gamelist_widget()
+        self.app.save()
 
         if not self.parented:
             self.deleteLater()
@@ -223,7 +224,7 @@ class EditGame(QWidget):
         if row:
             self.app.games_list_widget.removeRow(row)
         self.app.dosearch()
-        self.games.save()
+        self.app.save()
 
         if not self.parented:
             self.deleteLater()
