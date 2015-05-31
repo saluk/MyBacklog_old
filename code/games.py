@@ -28,6 +28,10 @@ def ttos(t):
 
 PRIORITIES = {-1:"now playing",0:"unprioritized",1:"soon",2:"later",3:"much later",5:"next year",99:"probably never"}
 
+class InvalidId(Exception):
+    pass
+BAD_GAMEID = InvalidId("Do not save me")
+
 def get_source(s):
     return sources.all[s]
 
@@ -36,7 +40,7 @@ class Game:
     ("notes","s"),("priority","p"),("website","s"),("import_date","d"),("finish_date","d")]
     def __init__(self,**kwargs):
         dontsavekeys = set(dir(self))
-        self.gameid = Exception("Do not save me")
+        self.gameid = BAD_GAMEID
 
         self.name = ""
         self.playtime = 0
@@ -427,6 +431,8 @@ class Games:
     def save_games_data(self):
         save_data = {"games":{}}
         for k in self.games:
+            if k == BAD_GAMEID:
+                continue
             save_data["games"][k] = self.games[k].dict()
         save_data["actions"] = self.actions
         save_data["multipack"] = self.multipack
@@ -629,8 +635,9 @@ class Games:
                 gamelist.append(self.games[game["gameid"]])
         return gamelist
     def delete(self, game):
-        self.actions.append(add_action("delete",game=game.dict()))
-        del self.games[game.gameid]
+        if game.gameid in self.games:
+            self.actions.append(add_action("delete",game=game.dict()))
+            del self.games[game.gameid]
     def play(self, game):
         self.actions.append(add_action("play",game=game.dict()))
     def stop(self, game):
