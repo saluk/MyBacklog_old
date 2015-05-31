@@ -258,11 +258,12 @@ class EditGame(QWidget):
             self.parented.deleteLater()
 
 class GameOptions(QWidget):
-    def __init__(self, game, app):
+    def __init__(self, game, app, new=False):
         super(GameOptions, self).__init__()
         self.game = game.copy()
         self.app = app
         self.games = app.games
+        self.new = new
 
         #Layout
         layout = QGridLayout()
@@ -321,7 +322,7 @@ class GameOptions(QWidget):
             buttons.addWidget(w)
         label_section.addLayout(buttons,0,1)
 
-        self.edit_widget = EditGame(game,app,parented=self)
+        self.edit_widget = EditGame(game,app,parented=self,new=self.new)
         #scroll = QScrollArea()
         #scroll.setWidget(self.edit_widget)
         layout.addWidget(self.edit_widget)

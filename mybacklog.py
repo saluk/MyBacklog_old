@@ -853,8 +853,8 @@ class GamelistForm(QWidget):
             self.games_list_widget.item(row,col).setText(getattr(game,self.columns[col][2]))
         self.enable_edit_hooks()
 
-    def update_game_options(self,game):
-        self.game_options = gameoptions.GameOptions(game,self)
+    def update_game_options(self,game,new=False):
+        self.game_options = gameoptions.GameOptions(game,self,new)
         self.game_options_dock.setWidget(self.game_options)
 
         return self.game_options
@@ -898,7 +898,8 @@ class GamelistForm(QWidget):
         print("adding game with source:",source)
         game = games.Game(sources=[{"source":source}],import_date=games.now())
         self.gamelist.append({"game":game,"widget":None})
-        self.show_edit_widget(game,self,new=True)
+        #self.show_edit_widget(game,self,new=True)
+        self.update_game_options(game,new=True)
 
     def dosearch(self):
         played = 0

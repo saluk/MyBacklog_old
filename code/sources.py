@@ -92,14 +92,22 @@ class SteamSource(Source):
     def args(self):
         return [("source_0_id","s")]+self.extra_args
     def run_game(self,game,source,cache_root):
+        if "id" not in source:
+            return
         webbrowser.open("steam://rungameid/%s"%source["id"])
     def missing_steam_launch(self,game,source):
         return False
     def download_method(self,game,source):
+        if "id" not in source:
+            return
         webbrowser.open("steam://install/%s"%source["id"])
     def uninstall(self,game,source):
+        if "id" not in source:
+            return
         webbrowser.open("steam://uninstall/%s"%source["id"])
     def is_installed(self,game,source):
+        if "id" not in source:
+            return
         return self.api.is_installed(source["id"])
 
 
@@ -109,6 +117,8 @@ class GogSource(ExeSource):
     def args(self):
         return [("source_0_id","s"),("install_path","s")]+self.extra_args
     def download_link(self,game,source):
+        if "id" not in source:
+            return ""
         return "gogdownloader://%s/installer_win_en"%source["id"]
 
 
