@@ -92,13 +92,13 @@ class SteamSource(Source):
     def args(self):
         return [("source_0_id","s")]+self.extra_args
     def run_game(self,game,source,cache_root):
-        webbrowser.open("steam://rungameid/%d"%source["id"])
+        webbrowser.open("steam://rungameid/%s"%source["id"])
     def missing_steam_launch(self,game,source):
         return False
     def download_method(self,game,source):
-        webbrowser.open("steam://install/%d"%source["id"])
+        webbrowser.open("steam://install/%s"%source["id"])
     def uninstall(self,game,source):
-        webbrowser.open("steam://uninstall/%d"%source["id"])
+        webbrowser.open("steam://uninstall/%s"%source["id"])
     def is_installed(self,game,source):
         return self.api.is_installed(source["id"])
 

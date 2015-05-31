@@ -306,7 +306,7 @@ class Game:
             return None
         if "id2" in self.sources[0]:
             return "%s;%s"%(self.sources[0]["id"],self.sources[0].get("id2",""))
-        return self.sources[0]["id"]
+        return self.sources[0].get("id","")
     @source_0_id.setter
     def source_0_id(self,value):
         if not self.sources:
