@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "MyBacklog"
-#define MyAppVersion "0.5"
+#define MyAppVersion "0.25"
 #define MyAppExeName "runit.exe"
 
 [Setup]

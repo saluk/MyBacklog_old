@@ -14,7 +14,8 @@ from code import games,syslog
 
 from code.resources import icons,enc
 
-os.environ["QT_QPA_PLATFORM_PLUGIN_PATH"] = "C:\\Python33\\Lib\\site-packages\\PyQt5\\plugins\\platforms"
+#os.environ["QT_QPA_PLATFORM_PLUGIN_PATH"] = "C:\\Python33\\Lib\\site-packages\\PyQt5\\plugins\\platforms"
+VERSION = "0.25 alpha"
 
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
@@ -140,7 +141,7 @@ class MyBacklog(QMainWindow):
     def __init__(self):
         #super(MainWindow,self).__init__(None,Qt.WindowStaysOnTopHint)
         super(MyBacklog,self).__init__(None)
-        self.setWindowTitle("MyBacklog")
+        self.setWindowTitle("MyBacklog %s"%VERSION)
         self.setWindowIcon(QIcon(QPixmap("icons/main.png")))
         self.main_form = GamelistForm(self)
 
@@ -755,7 +756,7 @@ class GamelistForm(QWidget):
             self.parent().setWindowIcon(QIcon(QPixmap("icons/playing.png")))
             self.parent().trayicon.setIcon(QIcon(QPixmap("icons/playing.png")))
             self.parent().setStyleSheet("background-color:red;")
-            self.parent().setWindowTitle("MyBacklog (Playing %s)"%game.name)
+            self.parent().setWindowTitle("MyBacklog %s (Playing %s)"%(VERSION,game.name))
 
         self.running = game
         game.run_game(self.config["root"])
@@ -766,7 +767,7 @@ class GamelistForm(QWidget):
         self.parent().setStyleSheet(self.old_style)
         self.parent().setWindowIcon(QIcon(QPixmap("icons/main.png")))
         self.parent().trayicon.setIcon(QIcon(QPixmap("icons/main.png")))
-        self.parent().setWindowTitle("MyBacklog")
+        self.parent().setWindowTitle("MyBacklog %s"%VERSION)
         self.running = None
         self.games.stop(game)
         self.timer.stop()

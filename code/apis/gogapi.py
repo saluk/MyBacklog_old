@@ -231,7 +231,7 @@ class Gog:
         page = 1
         while 1:
             print("getting page",page)
-            b.get(url%{"page":page},cache=True,cache_root=self.app.config["root"])
+            b.get(url%{"page":page},cache=False,cache_root=self.app.config["root"])
             for game_data in b.json["products"]:
                 if not game_data["isGame"]:
                     continue
