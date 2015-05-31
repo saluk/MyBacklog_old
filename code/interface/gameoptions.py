@@ -135,8 +135,11 @@ class EditGame(QWidget):
             prop,proptype = prop
             
             label_name = "%s:"%prop.capitalize()
+            print(prop)
             if prop=="source_0_id" and game.sources:
                 label_name = game.sources[0]["source"]+"_id"
+            if prop=="source_0_name" and game.sources:
+                label_name = "Id-less source"
             label = QLabel(label_name)
             layout.addWidget(label,i,0)
             

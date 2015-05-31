@@ -5,7 +5,7 @@ import datetime
 import json
 import hmac
 import copy
-from code import sources
+from code import sources,syslog
 
 fmt = "%H:%M:%S %Y-%m-%d"
 def now():
@@ -129,6 +129,8 @@ class Game:
     def valid_args(self):
         a = self.args[:]
         for s in self.sources:
+            print(get_source(s["source"]))
+            print(get_source(s["source"]).extra_args)
             a.extend(get_source(s["source"]).args())
         return a
     @property
@@ -317,6 +319,14 @@ class Game:
         self.sources[0]["id"] = id1.strip()
         if id2:
             self.sources[0]["id2"] = id2.strip()
+    @property
+    def source_0_name(self):
+        if not self.sources:
+            return None
+        return self.sources[0]["source"]
+    @source_0_name.setter
+    def source_0_name(self,value):
+        return
 
 test1 = Game(name="blah")
 test2 = test1.copy()
@@ -352,15 +362,28 @@ def add_action(t,**d):
     a.update(d)
     a["time"] = now()
     return a
+def nicediff(diff):
+    s = ""
+    add = diff.get("_add_",[])
+    set = diff.get("_set_",[])
+    n = {}
+    for d in add:
+        n[d["k"]] = d
+    for d in set:
+        n[d["k"]] = d
+    for k in sorted(n.keys()):
+        s+=k+":"+str(n[k]["v"])+"  "
+    return s
 
 class Games:
-    def __init__(self):
+    def __init__(self,log=None):
         self.games = {}
         self.source_map = {}
         self.actions = []
         self.multipack = {}
         self.local = {}
         self.source_definitions = {}
+        self.log = log or syslog.SysLog()
     def load(self,game_db_file,local_db_file):
         self.load_games(game_db_file)
         self.load_local(local_db_file)
@@ -383,7 +406,12 @@ class Games:
             self.multipack = load_data.get("multipack",{})
         self.actions = load_data.get("actions",[])
         self.source_definitions.update(sources.default_definitions.copy())
-        self.source_definitions.update(load_data.get("source_definitions",{}).copy())
+        loaded_defs =load_data.get("source_definitions",{}).copy()
+        for source in loaded_defs:
+            if source not in self.source_definitions:
+                self.source_definitions[source] = loaded_defs[source]
+            self.source_definitions[source].update(loaded_defs[source])
+        self.log.write("source definitions: ",self.source_definitions)
     def load_local(self,file):
         if not os.path.exists(file):
             print("Warning, no local save file to load:",file)
@@ -504,6 +532,7 @@ class Games:
                 if oldid in self.games:
                     del self.games[oldid]
                 self.games[game.gameid] = game
+                self.log.write("GAMEDB: Update ",cur_game.gameid," ",nicediff(diff))
             else:
                 print("UPDATE... did not change game")
         else:
@@ -512,6 +541,7 @@ class Games:
             print("adding",game.gameid,game.source_match)
             game.data_changed_date = now()
             self.games[game.gameid] = game
+            self.log.write("GAMEDB: Add (",game.gameid,",",game.name,")")
         return game
     def update_game(self,gameid,game):
         assert(isinstance(game,Game))
@@ -527,6 +557,7 @@ class Games:
             print("adding",game.gameid,game.source_match)
             game.data_changed_date = now()
             self.games[game.gameid] = game
+            self.log.write("GAMEDB: Add (",game.gameid,",",game.name,")")
             return game
         previous_data = cur_game.dict()
         gameid = self.update_id(cur_game.gameid,gameid)
@@ -552,6 +583,7 @@ class Games:
             cur_game.data_changed_date = now()
             self.actions.append(add_action("update",game=game.dict(),changes=diff))
             print("update 2",cur_game.gameid,cur_game.source_match,">",game.name.encode("utf8"),game.source_match)
+            self.log.write("GAMEDB: Update ",previous_data["gameid"]," ",nicediff(diff))
         else:
             print("no updates to",cur_game.gameid,cur_game.source_match)
         return cur_game

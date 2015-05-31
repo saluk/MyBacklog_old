@@ -10,9 +10,9 @@ run_with_steam = 1
 #   When running a game, if a steam shortcut exists in cache/steamshortcuts, run that
 
 class Source:
+    extra_args = [("source_0_name","s")]
     def __init__(self,name):
         self.name = name
-        self.extra_args = []
     def args(self):
         return self.extra_args
     def is_installed(self,game,source):
@@ -88,6 +88,7 @@ class ExeSource(Source):
 
 class SteamSource(Source):
     """Needs .api to be set to steamapi.Steam"""
+    extra_args = []
     def args(self):
         return [("source_0_id","s")]+self.extra_args
     def run_game(self,game,source,cache_root):
@@ -104,6 +105,7 @@ class SteamSource(Source):
 
 class GogSource(ExeSource):
     """Needs .api to be set to gogapi.Gog"""
+    extra_args = []
     def args(self):
         return [("source_0_id","s"),("install_path","s")]+self.extra_args
     def download_link(self,game,source):
@@ -111,6 +113,8 @@ class GogSource(ExeSource):
 
 
 class EmulatorSource(ExeSource):
+    def args(self):
+        return self.extra_args
     def get_run_args(self,game,source):
         emu_info = game.games.local["emulators"][self.name]
         args = emu_info["args"]+[game.get_path()]
@@ -118,6 +122,8 @@ class EmulatorSource(ExeSource):
 
 
 class OfflineSource(Source):
+    def args(self):
+        return self.extra_args
     def is_installed(self,game,source):
         return True
 
@@ -137,7 +143,7 @@ default_definitions = {
     },
     "humble":{
         "class":"ExeSource",
-        "args":[("source_0_id","s")]
+        "extra_args":[("source_0_id","s")]
     },
     "origin":{
         "class":"ExeSource"
@@ -169,9 +175,9 @@ def register_sources(definitions):
     for sourcekey in definitions:
         source = definitions[sourcekey]
         cls = eval(source["class"])
+        inst = cls(name=sourcekey)
         for key in source:
             if key in ["class"]:
                 continue
-            setattr(cls,key,source[key])
-        inst = cls(name=sourcekey)
+            setattr(inst,key,source[key])
         all[sourcekey] = inst

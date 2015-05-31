@@ -9,8 +9,8 @@ import requests
 
 #backloglib
 from code.apis import giantbomb, steamapi, gogapi, humbleapi, thegamesdb
-from code.interface import account, gameoptions, base_paths
-from code import games
+from code.interface import account, gameoptions, base_paths, logwindow
+from code import games,syslog
 
 from code.resources import icons,enc
 
@@ -64,7 +64,16 @@ class ProcessIconsThread(QThread):
         except:
             import traceback
             traceback.print_exc()
-
+            
+class ImportThread(QThread):
+    app = None
+    func = None
+    def run(self):
+        try:
+            self.func()
+        except:
+            import traceback
+            traceback.print_exc()
 
 class Cookies(QNetworkCookieJar):
     def __init__(self):
@@ -223,6 +232,10 @@ class GamelistForm(QWidget):
         self.timer_started = 0
 
         self.init_config()
+        self.log = syslog.SysLog(self.config["root"]+"/log.txt")
+        self.log.add_callback(self.log_if_window)
+        self.log.write("Root config:",self.config)
+        
         self.columns = [("s",None,None),("icon",None,None),("name","widget_name","name"),
                         ("genre","genre","genre"),("playtime",None,"playtime_hours_minutes"),("lastplay",None,None)]
         self.changed = []
@@ -288,6 +301,8 @@ class GamelistForm(QWidget):
         self.icon_processes = []
         self.icon_thread = ProcessIconsThread()
         self.icon_thread.app = self
+        
+        self.importer_threads = {"gog":ImportThread(),"steam":ImportThread(),"humble":ImportThread()}
 
         self.timer = QTimer(self)
         self.timer.setInterval(300000)
@@ -306,6 +321,10 @@ class GamelistForm(QWidget):
         self.game_options_dock.setMinimumWidth(300)
         self.game_options_dock.setMaximumHeight(800)
         self.window().addDockWidget(Qt.LeftDockWidgetArea,self.game_options_dock)
+        
+    def log_if_window(self,text):
+        if hasattr(self,"log_window") and self.log_window.isVisible():
+            self.log_window.add_text(text)
         
     def init_config(self):
         self.crypter = enc.Crypter()
@@ -330,7 +349,6 @@ class GamelistForm(QWidget):
             f.close()
             root.update(d)
         self.config = root
-        print("root:",root)
         self.crypter.root_key = eval(self.config["rk"])
         self.save_config()
         
@@ -356,7 +374,7 @@ class GamelistForm(QWidget):
             self.options.show()
 
     def init_gamelist(self):
-        self.games = games.Games()
+        self.games = games.Games(self.log)
         print("loading games",self.config["games"])
         self.games.load(self.config["games"],self.config["local"])
         self.gamelist = []
@@ -437,7 +455,7 @@ class GamelistForm(QWidget):
 
     def select_game(self,game):
         row = self.get_row_for_game(game)
-        self.games_list_widget.selectRow(row)
+        self.games_list_widget.setCurrentCell(row,2)
 
     def process_icons(self):
         for widget,game,size in self.icon_processes:
@@ -585,45 +603,68 @@ class GamelistForm(QWidget):
     def enable_edit_hooks(self):
         self.games_list_widget.cellChanged.connect(self.cell_changed)
         self.games_list_widget.cellDoubleClicked.connect(self.cell_activated)
+        
+    def import_all(self):
+        self.import_steam()
+        self.import_gog()
+        self.import_humble()
 
     def import_steam(self):
-        try:
-            games = self.steam.import_steam()
-        except steamapi.ApiError:
-            self.edit_account = account.AccountForm(self,"Steam API error - check settings",["steam_id","steam_api"])
-            self.edit_account.show()
-            return
-        self.games.add_games(games)
-        self.update_gamelist_widget()
-        self.save()
-        
-    def cleanup_add_steam_shortcuts(self):
-        self.steam.create_nonsteam_shortcuts(self.games.games)
+        self.view_log()
+        def f():
+            self.log.write("STEAM IMPORT BEGUN... please wait...")
+            try:
+                games = self.steam.import_steam()
+            except steamapi.ApiError:
+                self.edit_account = account.AccountForm(self,"Steam API error - check settings",["steam_id","steam_api"])
+                self.edit_account.show()
+                return
+            self.games.add_games(games)
+            self.update_gamelist_widget()
+            self.save()
+            self.log.write("STEAM IMPORT FINISHED")
+        self.importer_threads["steam"].func = f
+        self.importer_threads["steam"].start()
 
     def import_humble(self):
-        games = self.humble.get_gamelist()
-        self.games.add_games(games)
-        self.update_gamelist_widget()
-        self.save()
+        self.view_log()
+        def f():
+            self.log.write("HUMBLE IMPORT BEGUN... please wait...")
+            games = self.humble.get_gamelist()
+            self.games.add_games(games)
+            self.update_gamelist_widget()
+            self.save()
+            self.log.write("HUMBLE IMPORT FINISHED")
+        self.importer_threads["humble"].func = f
+        self.importer_threads["humble"].start()
 
     def import_gog(self):
         #self.browser = Browser("https://secure.gog.com/account/games",self)
-        try:
-            games = self.gog.better_get_shelf(self.games.multipack)
-        except gogapi.BadAccount:
-            self.edit_account = account.AccountForm(self,"Improper GOG account, please update gog username and password",["gog_user","gog_password"])
-            self.edit_account.show()
-            return
-        self.games.add_games(games)
-        self.update_gamelist_widget()
-        self.save()
+        self.view_log()
+        def f():
+            self.log.write("GOG IMPORT BEGUN... please wait...")
+            try:
+                games = self.gog.better_get_shelf(self.games.multipack)
+            except gogapi.BadAccount:
+                self.edit_account = account.AccountForm(self,"Improper GOG account, please update gog username and password",["gog_user","gog_password"])
+                self.edit_account.show()
+                return
+            self.games.add_games(games)
+            self.update_gamelist_widget()
+            self.save()
+            self.log.write("GOG IMPORT FINISHED")
+        self.importer_threads["gog"].func = f
+        self.importer_threads["gog"].start()
+        
+    def cleanup_add_steam_shortcuts(self):
+        self.steam.create_nonsteam_shortcuts(self.games.games)
 
     def sync_uploadgames(self):
         uploadrequest(self.games)
 
     def sync_downloadgames(self):
         games = downloadrequest()
-        self.games = games.Games()
+        self.games = games.Games(self.log)
         self.games.translate_json(games)
         self.save()
         self.update_gamelist_widget()
@@ -663,6 +704,10 @@ class GamelistForm(QWidget):
                         g.genre = g.genre+"; co-op"
                     print(g.genre)
         self.save()
+        
+    def view_log(self):
+        self.log_window = logwindow.LogForm(self)
+        self.log_window.show()
 
     def view_sort_by_added(self):
         self.sort = "added"
