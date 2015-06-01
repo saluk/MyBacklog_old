@@ -185,6 +185,7 @@ class Gog:
             pass
 
         if not logged_in:
+            self.app.log.write("gog logging in...")
             b.get("https://www.gog.com/")
             login_auth = re.findall("(https\:\/\/auth\.gog\.com.*?)(\"|')",b.text)
             print(login_auth)
@@ -218,6 +219,8 @@ class Gog:
             if "login" in b.url.replace("on_login_success",""):
                 raise BadAccount()
             print(b.cookies)
+            
+        self.app.log.write("gog logged in: success")
 
         #Should be logged in now
         f = open(self.app.config["root"]+"/cache/cookies","w")
@@ -230,13 +233,14 @@ class Gog:
         packs = {}
         page = 1
         while 1:
+            self.app.log.write("gog download page: %s"%page)
             print("getting page",page)
             b.get(url%{"page":page},cache=False,cache_root=self.app.config["root"])
             for game_data in b.json["products"]:
                 if not game_data["isGame"]:
                     continue
-                gameid = game_data["slug"]
-                gameid2 = game_data["id"]
+                gameid = str(game_data["slug"])
+                gameid2 = str(game_data["id"])
                 gamename = game_data["title"]
                 #Add a formatter to the image to get the right size
                 #_392 = big icon

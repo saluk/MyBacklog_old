@@ -6,6 +6,9 @@ import os
 from code import games
 import json
 
+class ApiError(Exception):
+    pass
+
 class Browser:
     def __init__(self):
         self.cookies = {}
@@ -60,10 +63,11 @@ class Browser:
 
 import time
 
-def get_humble_gamelist(username,password,cache_root):
+def get_humble_gamelist(log,username,password,cache_root):
     b = Browser()
     logged_in = False
     b.get("https://www.humblebundle.com/")
+    log.write("humble logging in...")
     if not logged_in:
         try:
             f = open(cache_root+"/cache/hcookies","r")
@@ -93,19 +97,26 @@ def get_humble_gamelist(username,password,cache_root):
     f.close()
 
     #Should be logged in now
+    log.write("humble login: success")
     api_get_order = "https://www.humblebundle.com/api/v1/order/%(key)s"
     #print (b.url,b.text)
     b.get("https://www.humblebundle.com/home")
-    keys = re.findall("gamekeys \=.*?\[(.*?)\]",b.text)[0]
+    if "error_id" in b.text:
+        raise ApiError()
+    try:
+        keys = re.findall("gamekeys \=.*?\[(.*?)\]",b.text)[0]
+    except:
+        raise ApiError()
     print (keys)
     imported_games = []
+    log.write("humble download info for %s packages"%len(keys.split(",")))
     for key in keys.split(","):
         key = re.findall("\"(.*?)\"",key)[0]
         b.get(api_get_order%{"key":key},cache=True,cache_root=cache_root)
         print (b.json)
         hdata = b.json
         package = games.Game(name=hdata["product"]["human_name"],import_date=games.now())
-        package.sources = [{"source":"humble","id":hdata["product"]["machine_name"],"package":hdata["gamekey"]}]
+        package.sources = [{"source":"humble","id":str(hdata["product"]["machine_name"]),"package":hdata["gamekey"]}]
         package.package_data = {
             "type":"bundle",
             "contents":[],
@@ -113,12 +124,13 @@ def get_humble_gamelist(username,password,cache_root):
         }
         package.generate_gameid()
         imported_games.append(package)
+        log.write("humble download info for %s products"%len(hdata["subproducts"]))
         for sub in hdata["subproducts"]:
             game = games.Game(name=sub["human_name"],
                                         website=sub["url"],
                                         icon_url=sub["icon"],
                                         import_date=games.now())
-            game.sources = [{"source":"humble","id":sub["machine_name"],"package":hdata["gamekey"]}]
+            game.sources = [{"source":"humble","id":str(sub["machine_name"]),"package":hdata["gamekey"]}]
             game.package_data = {
                     "type":"content",
                     "parent":{"gameid":package.gameid,"name":package.name},
@@ -137,7 +149,7 @@ class Humble:
         self.username = username
         self.password = password
     def get_gamelist(self):
-        return get_humble_gamelist(self.username,self.password,self.app.config["root"])
+        return get_humble_gamelist(self.app.log,self.username,self.password,self.app.config["root"])
 
 if __name__ == "__main__":
     get_humble_gamelist()

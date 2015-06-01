@@ -4,6 +4,7 @@
 import json
 import os
 import time
+import threading
 
 import requests
 
@@ -235,6 +236,8 @@ class GamelistForm(QWidget):
         self.init_config()
         self.log = syslog.SysLog(self.config["root"]+"/log.txt")
         self.log.add_callback(self.log_if_window)
+        self.logwindow_lock = threading.Lock()
+        self.logwindow_messages = []
         self.log.write("Root config:",self.config)
         
         self.columns = [("s",None,None),("icon",None,None),("name","widget_name","name"),
@@ -325,8 +328,11 @@ class GamelistForm(QWidget):
         self.window().addDockWidget(Qt.LeftDockWidgetArea,self.game_options_dock)
         
     def log_if_window(self,text):
+        self.logwindow_lock.acquire()
         if hasattr(self,"log_window") and self.log_window.isVisible():
             self.log_window.add_text(text)
+            time.sleep(0.1)
+        self.logwindow_lock.release()
         
     def init_config(self):
         self.crypter = enc.Crypter()
@@ -377,6 +383,7 @@ class GamelistForm(QWidget):
 
     def init_gamelist(self):
         self.games = games.Games(self.log)
+        self.games_lock = threading.Lock()
         print("loading games",self.config["games"])
         self.games.load(self.config["games"],self.config["local"])
         self.gamelist = []
@@ -618,10 +625,7 @@ class GamelistForm(QWidget):
             try:
                 games = self.steam.import_steam()
             except steamapi.ApiError:
-                self.edit_account = account.AccountForm(self,"Steam API error - check settings",["steam_id","steam_api"],True)
-                self.edit_account.setParent(self)
-                self.edit_account.show()
-                self.log.write("STEAM IMPORT... ERROR")
+                self.log.write("STEAM IMPORT... ERROR. Check options.")
                 return
             self.games.add_games(games)
             self.update_gamelist_widget()
@@ -634,7 +638,11 @@ class GamelistForm(QWidget):
         self.view_log()
         def f(self):
             self.log.write("HUMBLE IMPORT BEGUN... please wait...")
-            games = self.humble.get_gamelist()
+            try:
+                games = self.humble.get_gamelist()
+            except humbleapi.ApiError:
+                self.log.write("HUMBLE IMPORT... ERROR. Check options.")
+                return
             self.games.add_games(games)
             self.update_gamelist_widget()
             self.save()
@@ -650,8 +658,7 @@ class GamelistForm(QWidget):
             try:
                 games = self.gog.better_get_shelf(self.games.multipack)
             except gogapi.BadAccount:
-                self.edit_account = account.AccountForm(self,"Improper GOG account, please update gog username and password",["gog_user","gog_password"])
-                self.edit_account.show()
+                self.log.write("GOG IMPORT... ERROR. Check options.")
                 return
             self.games.add_games(games)
             self.update_gamelist_widget()

@@ -165,7 +165,7 @@ def import_steam(apikey=MY_API_KEY,userid=MY_STEAM_ID):
                             minutes=g["playtime_forever"],
                             finished=set_finished,
                             sources=[
-                                {"source":"steam","id":g["appid"]}
+                                {"source":"steam","id":str(g["appid"])}
                             ],
                             lastplayed=lastplayed,
                             icon_url=icon_url,
