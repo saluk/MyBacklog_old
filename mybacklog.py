@@ -71,7 +71,7 @@ class ImportThread(QThread):
     func = None
     def run(self):
         try:
-            self.func()
+            self.func(self.app)
         except:
             import traceback
             traceback.print_exc()
@@ -303,6 +303,7 @@ class GamelistForm(QWidget):
         self.icon_thread = ProcessIconsThread()
         self.icon_thread.app = self
         
+        ImportThread.app = self
         self.importer_threads = {"gog":ImportThread(),"steam":ImportThread(),"humble":ImportThread()}
 
         self.timer = QTimer(self)
@@ -612,13 +613,15 @@ class GamelistForm(QWidget):
 
     def import_steam(self):
         self.view_log()
-        def f():
+        def f(self):
             self.log.write("STEAM IMPORT BEGUN... please wait...")
             try:
                 games = self.steam.import_steam()
             except steamapi.ApiError:
-                self.edit_account = account.AccountForm(self,"Steam API error - check settings",["steam_id","steam_api"])
+                self.edit_account = account.AccountForm(self,"Steam API error - check settings",["steam_id","steam_api"],True)
+                self.edit_account.setParent(self)
                 self.edit_account.show()
+                self.log.write("STEAM IMPORT... ERROR")
                 return
             self.games.add_games(games)
             self.update_gamelist_widget()
@@ -629,7 +632,7 @@ class GamelistForm(QWidget):
 
     def import_humble(self):
         self.view_log()
-        def f():
+        def f(self):
             self.log.write("HUMBLE IMPORT BEGUN... please wait...")
             games = self.humble.get_gamelist()
             self.games.add_games(games)
@@ -642,7 +645,7 @@ class GamelistForm(QWidget):
     def import_gog(self):
         #self.browser = Browser("https://secure.gog.com/account/games",self)
         self.view_log()
-        def f():
+        def f(self):
             self.log.write("GOG IMPORT BEGUN... please wait...")
             try:
                 games = self.gog.better_get_shelf(self.games.multipack)

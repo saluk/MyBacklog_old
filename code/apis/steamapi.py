@@ -112,7 +112,10 @@ def get_user_id(custom_name):
     r = requests.get("http://steamcommunity.com/profiles/%s"%custom_name)
     if "Steam Community :: Error" in r.text:
         r = requests.get("http://steamcommunity.com/id/%s?xml=1"%custom_name)
-        user_id = re.findall("steamID64\>(\d+)\<\/steamID64",r.text)[0]
+        try:
+            user_id = re.findall("steamID64\>(\d+)\<\/steamID64",r.text)[0]
+        except IndexError:
+            raise ApiError()
         return user_id
     else:
         return custom_name

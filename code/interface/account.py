@@ -1,5 +1,6 @@
 import json
 
+from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 
@@ -35,6 +36,17 @@ class AccountForm(QWidget):
         w.setToolTip(s)
         layout.addWidget(w,1,1)
         self.fields["steam"]["id"] = w
+        
+        help = QPushButton("?")
+        def h(parent,s=s):
+            d = QDialog(self)
+            d.setLayout(QGridLayout())
+            text = QLabel(s)
+            text.setTextInteractionFlags(Qt.TextSelectableByMouse|Qt.TextSelectableByKeyboard)
+            d.layout().addWidget(text)
+            d.show()
+        help.clicked.connect(h)
+        layout.addWidget(help,1,2)
 
         s = "You can register for a web api key here: http://steamcommunity.com/dev/apikey"
         w = QLabel("Steam API Key")
@@ -47,6 +59,17 @@ class AccountForm(QWidget):
         layout.addWidget(w,2,1)
         w.setEchoMode(QLineEdit.PasswordEchoOnEdit)
         self.fields["steam"]["api"] = w
+        
+        help = QPushButton("?")
+        def h(parent,s=s):
+            d = QDialog(self)
+            d.setLayout(QGridLayout())
+            text = QLabel(s)
+            text.setTextInteractionFlags(Qt.TextSelectableByMouse|Qt.TextSelectableByKeyboard)
+            d.layout().addWidget(text)
+            d.show()
+        help.clicked.connect(h)
+        layout.addWidget(help,2,2)
         
         w = QLabel("Steam user file")
         if "steam_userfile" in highlight_fields:
