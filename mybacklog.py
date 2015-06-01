@@ -228,6 +228,8 @@ def make_callback(f, *args):
     return lambda: f(*args)
 
 class GamelistForm(QWidget):
+    log_trigger = pyqtSignal(str)
+    error_trigger = pyqtSignal(str)
     def __init__(self, parent=None):
         super(GamelistForm, self).__init__(parent)
         
@@ -238,7 +240,10 @@ class GamelistForm(QWidget):
         self.log.add_callback(self.log_if_window)
         self.logwindow_lock = threading.Lock()
         self.logwindow_messages = []
+        self.log_trigger.connect(self.handle_log_message)
         self.log.write("Root config:",self.config)
+        
+        self.error_trigger.connect(self.handle_error)
         
         self.columns = [("s",None,None),("icon",None,None),("name","widget_name","name"),
                         ("genre","genre","genre"),("playtime",None,"playtime_hours_minutes"),("lastplay",None,None)]
@@ -330,9 +335,21 @@ class GamelistForm(QWidget):
     def log_if_window(self,text):
         self.logwindow_lock.acquire()
         if hasattr(self,"log_window") and self.log_window.isVisible():
-            self.log_window.add_text(text)
-            time.sleep(0.1)
+            self.log_trigger.emit(text)
         self.logwindow_lock.release()
+        
+    def handle_log_message(self,text):
+        self.log_window.add_text(text)
+        
+    def handle_error(self,text):
+        message = {"steam":"Steam api key or account name may be invalid",
+                        "gog":"Gog username or password may be invalid",
+                        "humble":"Humble username or password may be invalid"}[text]
+        highlight_fields = {"steam":["steam_id","steam_api"],
+                                "gog":["gog_user","gog_password"],
+                                "humble":["humble_username","humble_password"]}[text]
+        af = account.AccountForm(self,message,highlight_fields)
+        af.show()
         
     def init_config(self):
         self.crypter = enc.Crypter()
@@ -626,6 +643,7 @@ class GamelistForm(QWidget):
                 games = self.steam.import_steam()
             except steamapi.ApiError:
                 self.log.write("STEAM IMPORT... ERROR. Check options.")
+                self.error_trigger.emit("steam")
                 return
             self.games.add_games(games)
             self.update_gamelist_widget()
@@ -642,6 +660,7 @@ class GamelistForm(QWidget):
                 games = self.humble.get_gamelist()
             except humbleapi.ApiError:
                 self.log.write("HUMBLE IMPORT... ERROR. Check options.")
+                self.error_trigger.emit("humble")
                 return
             self.games.add_games(games)
             self.update_gamelist_widget()
@@ -659,6 +678,7 @@ class GamelistForm(QWidget):
                 games = self.gog.better_get_shelf(self.games.multipack)
             except gogapi.BadAccount:
                 self.log.write("GOG IMPORT... ERROR. Check options.")
+                self.error_trigger.emit("gog")
                 return
             self.games.add_games(games)
             self.update_gamelist_widget()
@@ -717,7 +737,10 @@ class GamelistForm(QWidget):
         self.save()
         
     def view_log(self):
+        #self.log_dock = QDockWidget("Log Window",self)
         self.log_window = logwindow.LogForm(self)
+        #self.window().addDockWidget(Qt.BottomDockWidgetArea,self.log_dock)
+        #self.log_dock.setWidget(self.log_window)
         self.log_window.show()
 
     def view_sort_by_added(self):

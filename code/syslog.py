@@ -6,7 +6,7 @@ class SysLog:
         self.callbacks = []
         self.logfile = None
         if logfile:
-            self.logfile = open(logfile,"w")
+            self.logfile = open(logfile,"w",errors="ignore")
             self.callbacks.append(self.logfile_write)
         self.lock = threading.Lock()
     def add_callback(self,f):

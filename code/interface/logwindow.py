@@ -13,7 +13,7 @@ class LogForm(QWidget):
 
         #Layout
         layout = QGridLayout()
-        layout.addWidget(QLabel("Log Window"))
+        #layout.addWidget(QLabel("Log Window"))
         
         w = QTextEdit()
         layout.addWidget(w)

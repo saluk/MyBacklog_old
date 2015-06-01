@@ -97,12 +97,12 @@ def get_humble_gamelist(log,username,password,cache_root):
     f.close()
 
     #Should be logged in now
-    log.write("humble login: success")
     api_get_order = "https://www.humblebundle.com/api/v1/order/%(key)s"
     #print (b.url,b.text)
     b.get("https://www.humblebundle.com/home")
     if "error_id" in b.text:
         raise ApiError()
+    log.write("humble login: success")
     try:
         keys = re.findall("gamekeys \=.*?\[(.*?)\]",b.text)[0]
     except:
