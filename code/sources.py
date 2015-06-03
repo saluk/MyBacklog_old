@@ -125,10 +125,12 @@ class GogSource(ExeSource):
 class EmulatorSource(ExeSource):
     def args(self):
         return self.extra_args
-    def get_run_args(self,game,source):
+    def get_run_args(self,game,source,cache_root):
         emu_info = game.games.local["emulators"][self.name]
         args = emu_info["args"]+[game.get_path()]
-        return args,"."
+        exe = args[0]
+        path = os.path.split(exe)[0]
+        return args,path
 
 
 class OfflineSource(Source):
@@ -140,20 +142,24 @@ class OfflineSource(Source):
 
 default_definitions = {
     "gog":{
-        "class":"GogSource"
+        "class":"GogSource",
+        "editable":False
     },
     "steam":{
-        "class":"SteamSource"
+        "class":"SteamSource",
+        "editable":False
     },
     "offline":{
         "class":"OfflineSource",
     },
     "none":{
-        "class":"ExeSource"
+        "class":"ExeSource",
+        "editable":False
     },
     "humble":{
         "class":"ExeSource",
-        "extra_args":[("source_0_id","s")]
+        "extra_args":[("source_0_id","s")],
+        "editable":False
     },
     "origin":{
         "class":"ExeSource"
@@ -191,3 +197,10 @@ def register_sources(definitions):
                 continue
             setattr(inst,key,source[key])
         all[sourcekey] = inst
+        
+classes = []
+for x in dir():
+    if "Source" in x and not x == "Source":
+        classes.append(x)
+        
+assert(classes)

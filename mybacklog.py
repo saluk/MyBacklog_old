@@ -10,7 +10,7 @@ import requests
 
 #backloglib
 from code.apis import giantbomb, steamapi, gogapi, humbleapi, thegamesdb
-from code.interface import account, gameoptions, base_paths, logwindow
+from code.interface import account, gameoptions, base_paths, logwindow, sourcesform, emulatorform
 from code import games,syslog
 
 from code.resources import icons,enc
@@ -147,7 +147,7 @@ class MyBacklog(QMainWindow):
         self.main_form = GamelistForm(self)
 
         menus = {}
-        for folder in ["file","import","view"]:
+        for folder in ["file","edit","import","view"]:
             menus[folder] = self.menuBar().addMenu("&"+folder.capitalize())
             for x in dir(self.main_form):
                 if x.startswith(folder+"_"):
@@ -630,6 +630,14 @@ class GamelistForm(QWidget):
         self.games_list_widget.cellChanged.connect(self.cell_changed)
         self.games_list_widget.cellDoubleClicked.connect(self.cell_activated)
         
+    def edit_emulators(self):
+        self.emulator_form = emulatorform.EmulatorForm(self)
+        self.emulator_form.show()
+        
+    def edit_sources(self):
+        self.sources_form = sourcesform.SourcesForm(self)
+        self.sources_form.show()
+        
     def import_all(self):
         self.import_steam()
         self.import_gog()
@@ -891,9 +899,6 @@ class GamelistForm(QWidget):
         self.game_options_dock.setWidget(self.game_options)
 
         return self.game_options
-
-    def edit_game(self,game):
-        self.show_edit_widget(game,self)
 
     def uninstall_game(self,game):
         game.uninstall()
