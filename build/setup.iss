@@ -34,7 +34,7 @@ Source: "C:\Users\saluk\Desktop\dev\mybacklog\build\exe.win32-3.3\*"; DestDir: "
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
-Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
+Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; 
 Name: "{group}\{cm:UninstallProgram,{#MyAppName}}"; Filename: "{uninstallexe}"
 Name: "{commondesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon
 
@@ -46,4 +46,3 @@ Name: "{app}\data"; Flags: uninsneveruninstall
 Name: "{app}\cache"; Flags: uninsalwaysuninstall
 Name: "{app}\cache\icons"; Flags: uninsalwaysuninstall
 Name: "{app}\cache\batches"; Flags: uninsalwaysuninstall
-

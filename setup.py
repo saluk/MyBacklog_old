@@ -20,7 +20,7 @@ setup(name = "mybacklog",
         version = "0.5",
         description = "MyBacklog game database",
         options = {"build_exe": build_exe_options},
-        executables = [Executable("runit.py", base=base)])
+        executables = [Executable("runit.py", base=base,icon="icons\\main.ico")])
 
 shutil.copy("mybacklog.py","build/exe.win32-3.3")
 shutil.copytree("code","build/exe.win32-3.3/code")
@@ -29,3 +29,5 @@ shutil.copytree("tools","build/exe.win32-3.3/tools")
 shutil.copytree("build/requests","build/exe.win32-3.3/requests")
 shutil.copytree("build/PyQt5","build/exe.win32-3.3/PyQt5")
 shutil.copytree("build/Crypto","build/exe.win32-3.3/Crypto")
+
+os.system('"c:\program files (x86)\inno setup 5\iscc.exe" build\\setup.iss')
