@@ -948,7 +948,7 @@ class GamelistForm(QWidget):
         if sp == "emu":
             sp = "gba or snes or n64 or nds"
         row = -1 #For when game list is empty
-        for row in range(self.games_list_widget.rowCount()-1):
+        for row in range(self.games_list_widget.rowCount()):
             gameid = self.games_list_widget.item(row,0).data(DATA_GAMEID)
             game = self.games.games[gameid]
             self.games_list_widget.setRowHidden(row,False)
