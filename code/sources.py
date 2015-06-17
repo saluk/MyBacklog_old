@@ -124,7 +124,7 @@ class GogSource(ExeSource):
 
 class EmulatorSource(ExeSource):
     def args(self):
-        return self.extra_args
+        return [("install_path","s")]+self.extra_args
     def get_run_args(self,game,source,cache_root):
         emu_info = game.games.local["emulators"][self.name]
         args = emu_info["args"]+[game.get_path()]
