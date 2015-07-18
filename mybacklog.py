@@ -934,7 +934,7 @@ class GamelistForm(QWidget):
 
     def add_game(self,source):
         print("adding game with source:",source)
-        game = games.Game(sources=[{"source":source}],import_date=games.now())
+        game = games.Game(sources=[{"source":source}],import_date=games.now(),games=self.games)
         self.gamelist.append({"game":game,"widget":None})
         #self.show_edit_widget(game,self,new=True)
         self.update_game_options(game,new=True)

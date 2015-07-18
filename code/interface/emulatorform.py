@@ -39,7 +39,14 @@ class EmulatorForm(QWidget):
                 highlight(w)
             layout.addWidget(w,i,0)
 
-            w = QLineEdit(self.fields[emu].get("args",[""])[0])
+            emu_args = self.fields[emu].get("args",[])
+            if not emu_args:
+                arg0 = ""
+                argrest = []
+            else:
+                arg0 = emu_args[0]
+                argrest = emu_args[1:]
+            w = QLineEdit(arg0)
             layout.addWidget(w,i,1)
             self.fields[emu]["w1"] = w
             
@@ -47,7 +54,7 @@ class EmulatorForm(QWidget):
             layout.addWidget(button,i,2)
             button.clicked.connect(make_callback(self.set_exepath,w))
             
-            w = QLineEdit(" ".join(self.fields[emu].get("args",[""])[1:]))
+            w = QLineEdit(" ".join(argrest))
             layout.addWidget(w,i+1,1)
             self.fields[emu]["w2"] = w
             
