@@ -58,7 +58,12 @@ class EmulatorForm(QWidget):
             layout.addWidget(w,i+1,1)
             self.fields[emu]["w2"] = w
             
-            i+=2
+            rom_extension = self.fields[emu].get("rom_extension","*.*")
+            w = QLineEdit(rom_extension)
+            layout.addWidget(w,i+2,1)
+            self.fields[emu]["w3"] = w
+            
+            i+=3
 
         #Save button
         if not dock:
@@ -76,7 +81,7 @@ class EmulatorForm(QWidget):
     def save_close(self):
         for emu in self.fields:
             args = [x for x in [self.fields[emu]["w1"].text()]+self.fields[emu]["w2"].text().split(" ") if x.strip()]
-            self.app.games.local["emulators"][emu] = {"args":args}
+            self.app.games.local["emulators"][emu] = {"args":args,"rom_extension":self.fields[emu]["w3"].text()}
         self.app.save()
         self.delete()
 

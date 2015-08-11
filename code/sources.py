@@ -30,6 +30,8 @@ class Source:
         return
     def run_game(self,game,source,cache_root):
         return
+    def rom_extension(self,game):
+        return ""
 
 class ExeSource(Source):
     """Definition of a source of games"""
@@ -131,7 +133,9 @@ class EmulatorSource(ExeSource):
         exe = args[0]
         path = os.path.split(exe)[0]
         return args,path
-
+    def rom_extension(self,game):
+        emu_info = game.games.local["emulators"][self.name]
+        return emu_info.get("rom_extension","*.*")
 
 class OfflineSource(Source):
     def args(self):

@@ -175,6 +175,13 @@ class Game:
     def run_game(self,cache_root):
         for s in self.sources:
             return get_source(s["source"]).run_game(self,s,cache_root)
+    @property
+    def rom_extension(self):
+        """What extensions roms have"""
+        ext = ""
+        for s in self.sources:
+            ext+=get_source(s["source"]).rom_extension(self)
+        return ext
     def dict(self):
         d = {}
         for k in self.savekeys:

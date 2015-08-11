@@ -198,7 +198,7 @@ class EditGame(QWidget):
         self.setLayout(baselayout)
 
     def set_filepath(self,w):
-        filename = QFileDialog.getOpenFileName(self,"Open Executable",w.text(),"Executable (*.exe *.lnk *.cmd *.bat)")[0]
+        filename = QFileDialog.getOpenFileName(self,"Open Executable",w.text(),"Executable/Rom (*.exe *.lnk *.cmd *.bat %s)"%self.game.rom_extension)[0]
         w.setText(filename.replace("/","\\"))
 
     def make_package(self):
