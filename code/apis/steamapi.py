@@ -1,9 +1,14 @@
 #!python3
 import re,os
+import random
 
 import requests
+from bs4 import BeautifulSoup
 
-from .. import games
+try:
+    from .. import games
+except:
+    pass
 
 #import vdf
 
@@ -119,6 +124,45 @@ def get_user_id(custom_name):
         return user_id
     else:
         return custom_name
+        
+def scrape_app_page(appid,cache_root=""):
+    url = "http://store.steampowered.com/app/"+str(appid)
+    
+    if not os.path.exists(cache_root+"/cache/steamapi"):
+        os.mkdir(cache_root+"/cache/steamapi")
+    cache_url = cache_root+"/cache/steamapi/"+url.replace(":","").replace("/","").replace("?","QU").replace("&","AN")
+    if not os.path.exists(cache_url):
+        r = requests.get(url)
+        html = r.text
+        if "agecheck" in r.url:
+            r = requests.post("http://store.steampowered.com/agecheck/app/"+str(appid)+"/",{
+                    "snr":"1_agecheck_agecheck__age-gate",
+                    "ageDay":str(random.randint(1,28)),
+                    "ageMonth":random.choice(["February","September"]),
+                    "ageYear":str(random.randint(1950,1995))
+                })
+            html = r.text
+        f = open(cache_url,"w",encoding="utf8")
+        f.write(html)
+        f.close()
+        print("Caching data for",appid)
+    else:
+        f = open(cache_url,encoding="utf8")
+        html = f.read()
+        f.close()
+    tags=categories=[]
+    
+    #print("Scrape",appid)
+    soup = BeautifulSoup(html,"html.parser")
+    
+    tag_html = soup.find(class_="popular_tags")
+    if tag_html:
+        tags = [x.text.strip() for x in tag_html.find_all("a")]
+    
+    category_html = soup.find(id="category_block")
+    if category_html:
+        categories = [x.text.strip() for x in category_html.find_all("a") if x.text.strip()]
+    return {"tags":tags,"categories":categories}
 
 def get_games(apikey=MY_API_KEY,userid=MY_STEAM_ID):
     url = STEAM_GAMES_URL
@@ -144,7 +188,7 @@ def match_finished_games(games,finished):
         matched.append(matches[0])
     return matched
     
-def import_steam(apikey=MY_API_KEY,userid=MY_STEAM_ID):
+def import_steam(apikey=MY_API_KEY,userid=MY_STEAM_ID,cache_root="."):
     #apps = load_userdata()["UserLocalConfigStore"]["Software"]["Valve"]["Steam"]["apps"]
     apps = {}
     is_finished = []#match_finished_games(games,finished)
@@ -172,6 +216,15 @@ def import_steam(apikey=MY_API_KEY,userid=MY_STEAM_ID):
                             import_date=games.now()
             )
         game.generate_gameid()
+        extra_data = scrape_app_page(g["appid"],cache_root)
+        genre = ""
+        for cat in extra_data["categories"]:
+            if "co-op" in cat.lower() and not genre:
+                genre = "co-op"
+            if "local co-op" in cat.lower():
+                genre = "local co-op"
+        if genre:
+            game.genre = genre
         library.append(game)
     return library
     
@@ -221,10 +274,10 @@ class Steam:
         self.installed_apps = {}
     def import_steam(self):
         try:
-            return import_steam(self.api_key,self.user_id)
+            return import_steam(self.api_key,self.user_id,self.app.config["root"])
         except ApiError:
             user_id = get_user_id(self.profile_name)
-            an = import_steam(self.api_key,user_id)
+            an = import_steam(self.api_key,user_id,self.app.config["root"])
             if user_id != self.user_id:
                 self.user_id = user_id
             return an
@@ -252,7 +305,7 @@ class Steam:
         if str(steamid) in self.installed_apps:
             return True
 
-#~ if __name__=="__main__":
-    #~ import json
-    #~ for game in import_steam():
-        #~ print (game.name,game.icon_url)
+def import_all():
+    import json
+    for game in import_steam():
+        print (game.name,game.icon_url)

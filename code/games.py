@@ -596,6 +596,15 @@ class Games:
             cur_game.lastplayed = game.lastplayed
         if game.sources != cur_game.sources:
             cur_game.sources = game.sources
+        genres = []
+        for g in [game,cur_game]:
+            for x in g.genre.split(";"):
+                x = x.strip().lower()
+                if not x:
+                    continue
+                if x not in genres:
+                    genres.append(x)
+        cur_game.genre = "; ".join(genres)
         cur_game.package_data = game.package_data.copy()
         diff = changed(previous_data,cur_game.dict())
         if diff:
