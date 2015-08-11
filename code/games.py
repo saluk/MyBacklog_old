@@ -34,6 +34,9 @@ BAD_GAMEID = InvalidId("Do not save me")
 
 def get_source(s):
     return sources.all[s]
+    
+def source_id(s):
+    return s["source"] + "_" + str(s.get("id2",s.get("id","")))
 
 class Game:
     args = [("name","s"),("playtime","f"),("lastplayed","d"),("genre","s"),("icon_url","s"),
@@ -218,7 +221,7 @@ class Game:
     def source_match(self):
         string = ""
         for s in sorted(self.sources):
-            string += s["source"] + "_" + str(s.get("id","")) + ";"
+            string += source_id(s) + ";"
         return string
     def same_game(self,other_game):
         """Is this game logically the same game as other_game?
@@ -469,7 +472,7 @@ class Games:
             game = self.games[gameid]
             keys = []
             for s in game.sources:
-                keys.append(s["source"]+"_"+str(s.get("id","")))
+                keys.append(source_id(s))
             for key in keys:
                 if key not in self.source_map:
                     self.source_map[key] = []
@@ -483,7 +486,7 @@ class Games:
 
         ids = []
         for s in game.sources:
-            for g in self.source_map.get(s["source"]+"_"+str(s.get("id","")),[]):
+            for g in self.source_map.get(source_id(s),[]):
                 ids.append(g.gameid)
 
         print(game.gameid,"should be in self.games")
@@ -497,7 +500,7 @@ class Games:
             elif game.gameid==oid:
                 print("sameid:",game.gameid)
                 list.append(self.games[oid])
-        print("similar games:",list)
+        #print("similar games:",list)
         return list
     def correct_gameid(self,oldid,gameid):
         newid = gameid
