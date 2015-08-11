@@ -338,6 +338,9 @@ class Game:
     @source_0_name.setter
     def source_0_name(self,value):
         return
+    def update_dynamic_fields(self):
+        if not self.website and self.sources and get_source(self.sources[0]["source"]).generate_website:
+            self.website = get_source(self.sources[0]["source"]).generate_website(self,self.sources[0])
 
 test1 = Game(name="blah")
 test2 = test1.copy()

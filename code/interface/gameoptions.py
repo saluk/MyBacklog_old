@@ -103,6 +103,8 @@ class EditGame(QWidget):
         self.new = new
         self.init(game)
     def init(self,game):
+        game.update_dynamic_fields()
+        
         self.game = game.copy()
         self.oldid = None
         if not self.new:

@@ -11,6 +11,7 @@ run_with_steam = 1
 
 class Source:
     extra_args = [("source_0_name","s")]
+    generate_website = None
     def __init__(self,name):
         self.name = name
     def args(self):
@@ -111,6 +112,8 @@ class SteamSource(Source):
         if "id" not in source:
             return
         return self.api.is_installed(source["id"])
+    def generate_website(self,game,source):
+        return "http://store.steampowered.com/app/"+source["id"]
 
 
 class GogSource(ExeSource):
