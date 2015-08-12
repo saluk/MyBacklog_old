@@ -2,6 +2,7 @@
 import re,os,time
 import random
 import threading
+from concurrent import futures
 import queue
 
 import requests
@@ -133,6 +134,7 @@ def scrape_app_page(appid,cache_root=""):
     if not os.path.exists(cache_root+"/cache/steamapi"):
         os.mkdir(cache_root+"/cache/steamapi")
     cache_url = cache_root+"/cache/steamapi/"+url.replace(":","").replace("/","").replace("?","QU").replace("&","AN")
+    dat = {}
     if not os.path.exists(cache_url):
         r = requests.get(url)
         html = r.text
@@ -144,29 +146,34 @@ def scrape_app_page(appid,cache_root=""):
                     "ageYear":str(random.randint(1950,1995))
                 })
             html = r.text
-        f = open(cache_url,"w",encoding="utf8")
-        f.write(html)
+
+        tags=categories=[]
+
+        #print("Scrape",appid)
+        soup = BeautifulSoup(html,"html.parser")
+
+        tag_html = soup.find(class_="popular_tags")
+        if tag_html:
+            tags = [x.text.strip() for x in tag_html.find_all("a")]
+
+        category_html = soup.find(id="category_block")
+        if category_html:
+            categories = [x.text.strip() for x in category_html.find_all("a") if x.text.strip()]
+
+        dat = {"tags":tags,"categories":categories}
+
+        f = open(cache_url,"w")
+        f.write(repr(dat))
         f.close()
+
         print("Caching data for",appid)
         time.sleep(0.1)
     else:
         print("Loading data for",appid)
-        f = open(cache_url,encoding="utf8")
-        html = f.read()
+        f = open(cache_url)
+        dat = eval(f.read())
         f.close()
-    tags=categories=[]
-    
-    #print("Scrape",appid)
-    soup = BeautifulSoup(html,"html.parser")
-    
-    tag_html = soup.find(class_="popular_tags")
-    if tag_html:
-        tags = [x.text.strip() for x in tag_html.find_all("a")]
-    
-    category_html = soup.find(id="category_block")
-    if category_html:
-        categories = [x.text.strip() for x in category_html.find_all("a") if x.text.strip()]
-    return {"tags":tags,"categories":categories}
+    return dat
 
 def get_games(apikey=MY_API_KEY,userid=MY_STEAM_ID):
     url = STEAM_GAMES_URL
@@ -192,7 +199,7 @@ def match_finished_games(games,finished):
         matched.append(matches[0])
     return matched
     
-def import_steam(apikey=MY_API_KEY,userid=MY_STEAM_ID,cache_root="."):
+def import_steam(apikey=MY_API_KEY,userid=MY_STEAM_ID,cache_root=".",logger=None):
     #apps = load_userdata()["UserLocalConfigStore"]["Software"]["Valve"]["Steam"]["apps"]
     apps = {}
     db = {}
@@ -221,6 +228,7 @@ def import_steam(apikey=MY_API_KEY,userid=MY_STEAM_ID,cache_root="."):
             )
         game.generate_gameid()
         db[str(g["appid"])] = game
+
     def get_extra_data(game):
         extra_data = scrape_app_page(game.sources[0]["id"],cache_root)
         genre = ""
@@ -232,23 +240,14 @@ def import_steam(apikey=MY_API_KEY,userid=MY_STEAM_ID,cache_root="."):
         if genre:
             game.genre = genre
 
-    q = queue.Queue()
-    def worker():
-        while True:
-            game = q.get()
-            get_extra_data(game)
-            q.task_done()
-    
-    for i in range(10):
-        t = threading.Thread(target=worker)
-        t.daemon = True
-        t.start()
-        
-    for game in db.values():
-        q.put(game)
-    
-    print("starting queue")
-    q.join()
+    num_data = len(db)
+
+    with futures.ThreadPoolExecutor(20) as executor:
+        tasks = [executor.submit(get_extra_data,game) for game in db.values()]
+        for i,f in enumerate(futures.as_completed(tasks)):
+            if logger:
+                logger.write("Read data for game %s of %s"%(i+1,num_data))
+
     return db
     
 def load_userdata(path=""):
@@ -307,10 +306,10 @@ class Steam:
     def import_steam(self):
         games = {}
         try:
-            games = import_steam(self.api_key,self.user_id,self.app.config["root"])
+            games = import_steam(self.api_key,self.user_id,self.app.config["root"],self.app.log)
         except ApiError:
             user_id = get_user_id(self.profile_name)
-            games = import_steam(self.api_key,user_id,self.app.config["root"])
+            games = import_steam(self.api_key,user_id,self.app.config["root"],self.app.log)
             if user_id != self.user_id:
                 self.user_id = user_id
         self.update_local_games(games)
