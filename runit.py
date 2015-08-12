@@ -20,6 +20,8 @@ import http.cookies
 import winshell
 import hashlib
 import ssl
+from concurrent import futures
+from bs4 import BeautifulSoup
 
 import mybacklog
 mybacklog.run()

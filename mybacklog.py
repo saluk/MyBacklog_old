@@ -16,7 +16,7 @@ from code import games,syslog
 from code.resources import icons,enc
 
 #os.environ["QT_QPA_PLATFORM_PLUGIN_PATH"] = "C:\\Python33\\Lib\\site-packages\\PyQt5\\plugins\\platforms"
-VERSION = "0.25 alpha"
+VERSION = "0.26 alpha"
 
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
