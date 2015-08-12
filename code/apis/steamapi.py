@@ -1,6 +1,8 @@
 #!python3
-import re,os
+import re,os,time
 import random
+import threading
+import queue
 
 import requests
 from bs4 import BeautifulSoup
@@ -146,7 +148,9 @@ def scrape_app_page(appid,cache_root=""):
         f.write(html)
         f.close()
         print("Caching data for",appid)
+        time.sleep(0.1)
     else:
+        print("Loading data for",appid)
         f = open(cache_url,encoding="utf8")
         html = f.read()
         f.close()
@@ -191,8 +195,8 @@ def match_finished_games(games,finished):
 def import_steam(apikey=MY_API_KEY,userid=MY_STEAM_ID,cache_root="."):
     #apps = load_userdata()["UserLocalConfigStore"]["Software"]["Valve"]["Steam"]["apps"]
     apps = {}
+    db = {}
     is_finished = []#match_finished_games(games,finished)
-    library = []
     for g in get_games(apikey,userid):
         set_finished = 0
         if g in is_finished:
@@ -216,7 +220,9 @@ def import_steam(apikey=MY_API_KEY,userid=MY_STEAM_ID,cache_root="."):
                             import_date=games.now()
             )
         game.generate_gameid()
-        extra_data = scrape_app_page(g["appid"],cache_root)
+        db[str(g["appid"])] = game
+    def get_extra_data(game):
+        extra_data = scrape_app_page(game.sources[0]["id"],cache_root)
         genre = ""
         for cat in extra_data["categories"]:
             if "co-op" in cat.lower() and not genre:
@@ -225,8 +231,25 @@ def import_steam(apikey=MY_API_KEY,userid=MY_STEAM_ID,cache_root="."):
                 genre = "local co-op"
         if genre:
             game.genre = genre
-        library.append(game)
-    return library
+
+    q = queue.Queue()
+    def worker():
+        while True:
+            game = q.get()
+            get_extra_data(game)
+            q.task_done()
+    
+    for i in range(10):
+        t = threading.Thread(target=worker)
+        t.daemon = True
+        t.start()
+        
+    for game in db.values():
+        q.put(game)
+    
+    print("starting queue")
+    q.join()
+    return db
     
 def load_userdata(path=""):
     if not path:
@@ -272,19 +295,7 @@ class Steam:
         self.userdata = load_userdata(self.userfile)
         #self.installed_apps = self.userdata.get("UserLocalConfigStore",{}).get("Software",{}).get("Valve",{}).get("Steam",{}).get("apps",{})
         self.installed_apps = {}
-    def import_steam(self):
-        try:
-            return import_steam(self.api_key,self.user_id,self.app.config["root"])
-        except ApiError:
-            user_id = get_user_id(self.profile_name)
-            an = import_steam(self.api_key,user_id,self.app.config["root"])
-            if user_id != self.user_id:
-                self.user_id = user_id
-            return an
-    def create_nonsteam_shortcuts(self,games):
-        return create_nonsteam_shortcuts(games,self.shortcut_folder)
-    def search_installed(self):
-        self.installed_apps = {}
+    def get_steamapp_path(self):
         path = self.userfile
         print("PATH",path)
         path = os.path.split(self.userfile)[0]
@@ -292,6 +303,40 @@ class Steam:
         path = os.path.split(path)[0]
         path = os.path.split(path)[0]
         path = os.path.join(path,"SteamApps")
+        return path
+    def import_steam(self):
+        games = {}
+        try:
+            games = import_steam(self.api_key,self.user_id,self.app.config["root"])
+        except ApiError:
+            user_id = get_user_id(self.profile_name)
+            games = import_steam(self.api_key,user_id,self.app.config["root"])
+            if user_id != self.user_id:
+                self.user_id = user_id
+        self.update_local_games(games)
+        return games.values()
+    def update_local_games(self,db):
+        from code.apis import vdf
+        path = self.get_steamapp_path()
+        for p in os.listdir(path):
+            if "appmanifest" in p:
+                f = open(os.path.join(path,p))
+                vdf_data = vdf.parse(f)
+                f.close()
+                appid = str(vdf_data["AppState"]["appID"])
+                name = vdf_data["AppState"].get("name","")
+                if not name:
+                    name = vdf_data["AppState"].get("UserConfig",{}).get("name","")
+                if name and appid not in db:
+                    name = name.encode("latin-1","ignore").decode("utf8","ignore")
+                    db[appid] = games.Game(name=name,sources=[{"source":"steam","id":str(appid)}],import_date=games.now())
+                    db[appid].generate_gameid()
+        return db
+    def create_nonsteam_shortcuts(self,games):
+        return create_nonsteam_shortcuts(games,self.shortcut_folder)
+    def search_installed(self):
+        path = self.get_steamapp_path()
+        self.installed_apps = {}
         for f in os.listdir(path):
             if "appmanifest" in f:
                 id = f.replace("appmanifest_","").replace(".acf","")
