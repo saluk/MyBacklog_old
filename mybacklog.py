@@ -778,7 +778,10 @@ class GamelistForm(QWidget):
     def run_game_notimer(self,game):
         return self.run_game(game,track_time=False)
 
-    def run_game(self,game,track_time=True):
+    def run_game_track_only(self,game):
+        return self.run_game(game,track_time=True,launch=False)
+
+    def run_game(self,game,track_time=True,launch=True):
         if getattr(self,"stop_playing_button",None):
             return
         #self.setStyleSheet("background-color:red;")
@@ -800,7 +803,8 @@ class GamelistForm(QWidget):
             self.parent().setWindowTitle("MyBacklog %s (Playing %s)"%(VERSION,game.name))
 
         self.running = game
-        game.run_game(self.config["root"])
+        if launch:
+            game.run_game(self.config["root"])
         self.games.play(game)
         playrequest(game)
 

@@ -293,6 +293,12 @@ class GameOptions(QWidget):
             run_no_timer = QPushButton("Play without time tracking")
             run_no_timer.clicked.connect(make_callback(self.app.run_game_notimer,game))
             buttons.addWidget(run_no_timer)
+        else:
+            run = QPushButton("Track Time")
+            run.setFixedHeight(40)
+            run.setBackgroundRole(QPalette.Highlight)
+            run.clicked.connect(make_callback(self.app.run_game_track_only,game))
+            buttons.addWidget(run)
 
         if game.needs_download():
             download = QPushButton("Download")
