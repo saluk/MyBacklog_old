@@ -283,22 +283,29 @@ class GameOptions(QWidget):
 
         buttons = QGridLayout()
         buttons.setAlignment(Qt.AlignTop)
-        if game.is_installed():
-            run = QPushButton("Play Game")
-            run.setFixedHeight(40)
-            run.setBackgroundRole(QPalette.Highlight)
-            run.clicked.connect(make_callback(self.app.run_game,game))
-            buttons.addWidget(run)
 
-            run_no_timer = QPushButton("Play without time tracking")
-            run_no_timer.clicked.connect(make_callback(self.app.run_game_notimer,game))
-            buttons.addWidget(run_no_timer)
-        else:
-            run = QPushButton("Track Time")
-            run.setFixedHeight(40)
-            run.setBackgroundRole(QPalette.Highlight)
-            run.clicked.connect(make_callback(self.app.run_game_track_only,game))
-            buttons.addWidget(run)
+        play_options = []
+        if game.is_installed():
+            play_options.append(("Play",make_callback(self.app.run_game,game)))
+            play_options.append(("Launch",make_callback(self.app.run_game_notimer,game)))
+        play_options.append(("Track Time",make_callback(self.app.run_game_track_only,game)))
+
+        run = QToolButton()
+        run.setText(play_options[0][0])
+        run.clicked.connect(play_options[0][1])
+        run.setToolButtonStyle(Qt.ToolButtonTextOnly)
+        run.setPopupMode(QToolButton.MenuButtonPopup)
+        run.setFixedHeight(40)
+        run.setMinimumWidth(100)
+        run.setBackgroundRole(QPalette.Highlight)
+        if play_options[1:]:
+            m = QMenu()
+            run.setMenu(m)
+        for opt in play_options[1:]:
+            action = m.addAction(opt[0])
+            action.triggered.connect(opt[1])
+        buttons.addWidget(run)
+
 
         if game.needs_download():
             download = QPushButton("Download")
