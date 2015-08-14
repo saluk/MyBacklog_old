@@ -1,19 +1,17 @@
 #!python3
 import re,os,time
 import random
-import threading
 from concurrent import futures
-import queue
 
 import requests
 from bs4 import BeautifulSoup
 
 try:
     from .. import games
+    from code.apis import vdf
+    from code import systems
 except:
     pass
-
-#import vdf
 
 MY_API_KEY = ""
 MY_STEAM_ID = ""
@@ -253,7 +251,6 @@ def import_steam(apikey=MY_API_KEY,userid=MY_STEAM_ID,cache_root=".",logger=None
 def load_userdata(path=""):
     if not path:
         return {}
-    from code.apis import vdf
 
     f = open(path)
     data = vdf.parse(f)
@@ -283,10 +280,31 @@ def create_nonsteam_shortcuts(games,shortcut_folder):
     shortcuts.save()
     print ("saved")
 
+def find_steam_files():
+    """Iterate through common steam installation paths to find user files"""
+    users = {}
+    for path in systems.steam_paths:
+        p2 = path+"/userdata"
+        if not os.path.exists(p2):
+            continue
+        for user_id in os.listdir(p2):
+            p3 = p2+"/"+user_id+"/config"
+            lc = p3+"/localconfig.vdf"
+            if not os.path.exists(p3):
+                continue
+            f = open(lc)
+            dat = vdf.parse(f)
+            f.close()
+            username = dat["UserLocalConfigStore"]["friends"][user_id]["name"]
+            users[username] = {"local":lc,"shortcut":p3+"/shortcuts.vdf","account_id":int(user_id)+76561197960265728}
+    return users
+
 class Steam:
     def __init__(self,app,api_key,user_id,userfile,shortcut_folder):
         self.app = app
         self.api_key = api_key
+        if not api_key:
+            self.api_key = "98934075AAB5F4E1223BEC4C40E88AA8"
         self.profile_name = user_id
         self.user_id = user_id
         self.userfile = userfile
