@@ -18,6 +18,16 @@ MY_STEAM_ID = ""
 
 STEAM_GAMES_URL = "http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=%(apikey)s&steamid=%(steamid)s&format=json&include_appinfo=1&include_played_free_games=1"
 
+def get_vdf_url(dat,*keys):
+    o = dat
+    traverse = list(keys)
+    while traverse:
+        k = traverse.pop(0)
+        if k not in o:
+            k = k.lower()
+        o = o[k]
+    return o
+
 def login_for_chat():
     sess = requests.session()
     sess.headers["Accept"] = "application/json, text/javascript;q=0.9, */*;q=0.5"
@@ -345,10 +355,11 @@ class Steam:
         path = self.get_steamapp_path()
         for p in os.listdir(path):
             if "appmanifest" in p:
+                print("Scanning",os.path.join(path,p))
                 f = open(os.path.join(path,p))
                 vdf_data = vdf.parse(f)
                 f.close()
-                appid = str(vdf_data["AppState"]["appID"])
+                appid = get_vdf_url(vdf_data,"AppState","appID")
                 name = vdf_data["AppState"].get("name","")
                 if not name:
                     name = vdf_data["AppState"].get("UserConfig",{}).get("name","")

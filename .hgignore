@@ -1,10 +1,12 @@
 syntax: glob
+*.pyc
 __pycache__/*
 cache/*
 phantomjs/*
 .idea/*
 screens/*
 data/account.json
+data/local_*.json
 build/exe.win32-3.3/*
 mybacklog_setup.exe
 icons/Thumbs.db

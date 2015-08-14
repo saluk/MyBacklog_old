@@ -162,10 +162,10 @@ class AccountForm(QWidget):
             text.setTextInteractionFlags(Qt.TextSelectableByMouse|Qt.TextSelectableByKeyboard)
             d.layout().addWidget(text)
             d.show()
-        if len(users)>1:
+        if users:
             d = QDialog(self)
             d.setLayout(QGridLayout())
-            text = QLabel("Multiple steam users found, which steam user to link?")
+            text = QLabel("Steam user(s) found, which steam user to link?")
             text.setTextInteractionFlags(Qt.TextSelectableByMouse|Qt.TextSelectableByKeyboard)
             d.layout().addWidget(text)
             for un in users:
