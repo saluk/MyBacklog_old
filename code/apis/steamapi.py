@@ -252,10 +252,17 @@ def load_userdata(path=""):
     if not path:
         return {}
 
-    f = open(path)
+    if path in load_userdata.cache and (time.time()-load_userdata.cache["_time_"])<10:
+        return load_userdata.cache[path]
+
+    f = open(systems.fullpath(path))
     data = vdf.parse(f)
     f.close()
+
+    load_userdata.cache[path] = data
+    load_userdata.cache["_time_"] = time.time()
     return data
+load_userdata.cache = {}
     
 def create_nonsteam_shortcuts(games,shortcut_folder):
     """Given a list of games create shortcuts in steam for them"""
@@ -311,10 +318,11 @@ class Steam:
         self.shortcut_folder = shortcut_folder
         self.userdata = load_userdata(self.userfile)
         #self.installed_apps = self.userdata.get("UserLocalConfigStore",{}).get("Software",{}).get("Valve",{}).get("Steam",{}).get("apps",{})
+
         self.installed_apps = {}
+        self.last_install_search = 0
     def get_steamapp_path(self):
         path = self.userfile
-        print("PATH",path)
         path = os.path.split(self.userfile)[0]
         path = os.path.split(path)[0]
         path = os.path.split(path)[0]
@@ -363,7 +371,11 @@ class Steam:
             self.search_installed()
         if str(steamid) in self.installed_apps:
             return True
-        self.search_installed()
+
+        if time.time()-self.last_install_search>10:
+            self.search_installed()
+            self.last_install_search = time.time()
+
         if str(steamid) in self.installed_apps:
             return True
 
