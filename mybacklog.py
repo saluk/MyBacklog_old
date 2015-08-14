@@ -254,26 +254,42 @@ class GamelistForm(QWidget):
         self.show_installed = False #If True, games not installed are hidden
  
         buttonLayout1 = QVBoxLayout()
+        buttonLayout1.setSpacing(0)
         
         self.searchbar = QWidget()
-        self.searchbarlayout = QHBoxLayout()
+        self.searchbarlayout = QGridLayout()
+        self.searchbarlayout.setVerticalSpacing(0)
         self.searchbar.setLayout(self.searchbarlayout)
         buttonLayout1.addWidget(self.searchbar)
         
         self.search_name = QLineEdit()
         self.search_name.setPlaceholderText("Search: Name")
-        self.searchbarlayout.addWidget(self.search_name)
+        self.searchbarlayout.addWidget(self.search_name,0,0)
         self.search_name.textChanged.connect(self.dosearch)
         
         self.search_genre = QLineEdit()
         self.search_genre.setPlaceholderText("Search: Genre")
-        self.searchbarlayout.addWidget(self.search_genre)
+        self.searchbarlayout.addWidget(self.search_genre,0,1)
         self.search_genre.textChanged.connect(self.dosearch)
 
         self.search_platform = QLineEdit()
         self.search_platform.setPlaceholderText("Search: Source")
-        self.searchbarlayout.addWidget(self.search_platform)
+        self.searchbarlayout.addWidget(self.search_platform,0,2)
         self.search_platform.textChanged.connect(self.dosearch)
+
+        sizer = QWidget()
+        sizer.setMaximumWidth(48)
+        layout = QHBoxLayout()
+        layout.setSpacing(0)
+        sizer.setLayout(layout)
+        self.icon_size_less = QPushButton("-")
+        self.icon_size_more = QPushButton("+")
+        self.icon_size_less.clicked.connect(make_callback(self.zoom_icon,-12))
+        self.icon_size_more.clicked.connect(make_callback(self.zoom_icon,12))
+        [x.setMaximumWidth(24) for x in [self.icon_size_less,self.icon_size_more]]
+        layout.addWidget(self.icon_size_less)
+        layout.addWidget(self.icon_size_more)
+        self.searchbarlayout.addWidget(sizer,1,0)
 
         self.sort = "priority"
         self.games_list_widget = QTableWidget()
@@ -294,6 +310,7 @@ class GamelistForm(QWidget):
  
         self.buttonLayout1 = buttonLayout1
         mainLayout = QGridLayout()
+        mainLayout.setSpacing(0)
         # mainLayout.addWidget(nameLabel, 0, 0)
         mainLayout.addLayout(buttonLayout1, 0, 1)
 
@@ -331,6 +348,12 @@ class GamelistForm(QWidget):
         self.game_options_dock.setMinimumWidth(300)
         self.game_options_dock.setMaximumHeight(800)
         self.window().addDockWidget(Qt.LeftDockWidgetArea,self.game_options_dock)
+
+    def zoom_icon(self,amt):
+        self.icon_size += amt
+        self.config["icon_size"] = self.icon_size
+        self.save_config()
+        self.update_gamelist_widget()
         
     def log_if_window(self,text):
         self.logwindow_lock.acquire()
@@ -367,7 +390,9 @@ class GamelistForm(QWidget):
                     "accounts":self.path_base+"/accounts.json",
                     "root_config":self.path_base+"/root.json",
                     "root":self.path_base,
-                    "rk":str(self.crypter.root_key)}
+                    "rk":str(self.crypter.root_key),
+                    "icon_size":300
+                }
         if os.path.exists(root["root_config"]):
             f = open(root["root_config"])
             d = json.loads(f.read())
@@ -397,6 +422,8 @@ class GamelistForm(QWidget):
         if not root["games"]:
             self.options = base_paths.PathsForm(self,"Please define where to store your game database",["games"])
             self.options.show()
+
+        self.icon_size = root["icon_size"]
 
     def init_gamelist(self):
         self.games = games.Games(self.log)
@@ -485,7 +512,7 @@ class GamelistForm(QWidget):
 
     def process_icons(self):
         for widget,game,size in self.icon_processes:
-            icon = icons.icon_for_game(game,48,self.gicons,self.config["root"])
+            icon = icons.icon_for_game(game,self.icon_size,self.gicons,self.config["root"])
             if icon:
                 try:
                     widget.setIcon(icon)
@@ -497,7 +524,7 @@ class GamelistForm(QWidget):
         if cached:
             widget.setIcon(cached)
             return
-        self.icon_processes.append((widget,game,48))
+        self.icon_processes.append((widget,game,self.icon_size))
         
     def update_game_row(self,game,row=None,list_widget=None):
         if list_widget is None:
@@ -549,7 +576,7 @@ class GamelistForm(QWidget):
         label = QTableWidgetItem("")
         label.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEnabled)
         label.setBackground(bg)
-        self.set_icon(label,game,48)
+        self.set_icon(label,game,self.icon_size)
         self.icon_thread.start()
         list_widget.setItem(row,1,label)
             
@@ -588,7 +615,7 @@ class GamelistForm(QWidget):
             self.gamelist.append({"game":g,"widget":None})
         self.games_list_widget.setSelectionMode(QAbstractItemView.SingleSelection)
         self.games_list_widget.clear()
-        self.games_list_widget.setIconSize(QSize(28,28))
+        self.games_list_widget.setIconSize(QSize(self.icon_size,self.icon_size))
         self.games_list_widget.horizontalHeader().setVisible(True)
         self.games_list_widget.verticalHeader().setVisible(False)
         self.games_list_widget.setRowCount(len(self.gamelist))
@@ -605,8 +632,8 @@ class GamelistForm(QWidget):
         self.game_scroller.verticalScrollBar().setValue(0)
         self.games_list_widget.setHorizontalHeaderLabels([x[0] for x in self.columns])
         self.games_list_widget.resizeColumnsToContents()
-        self.games_list_widget.setColumnWidth(0,34)
-        self.games_list_widget.setColumnWidth(1,34)
+        self.games_list_widget.setColumnWidth(0,self.icon_size+6)
+        self.games_list_widget.setColumnWidth(1,self.icon_size+6)
         self.games_list_widget.setColumnWidth(2,200)
         self.games_list_widget.setColumnWidth(3,80)
         self.games_list_widget.setColumnWidth(4,60)
