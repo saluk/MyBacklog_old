@@ -144,8 +144,14 @@ class EditGame(QWidget):
                 label_name = "Id-less source"
             label = QLabel(label_name)
             layout.addWidget(label,i,0)
-            
-            if proptype == "d":
+
+            if prop=="notes":
+                edit = QLineEdit(str(getattr(game,prop)))
+                button = QPushButton("...")
+                button.setFixedWidth(32)
+                #layout.addWidget(button,i,2)
+                button.clicked.connect(make_callback(self.expand_notes,game,prop,edit,i,layout))
+            elif proptype == "d":
                 edit = QDateTimeEdit()
                 edit.setCalendarPopup(True)
                 edit.setDateTime(ts_to_qtdt(getattr(game,prop)))
@@ -199,6 +205,14 @@ class EditGame(QWidget):
 
         self.setLayout(baselayout)
 
+    def expand_notes(self,game,prop,edit,i,layout):
+        nedit = QTextEdit(str(getattr(game,prop)))
+        self.fields[prop]["w"] = nedit
+        nedit.setMinimumSize(10,20)
+        nedit.setMinimumHeight(100)
+        layout.replaceWidget(edit,nedit)
+        self.layout().update()
+
     def set_filepath(self,w):
         filename = QFileDialog.getOpenFileName(self,"Open Executable",w.text(),"Executable/Rom (*.exe *.lnk *.cmd *.bat %s)"%self.game.rom_extension)[0]
         w.setText(filename.replace("/","\\"))
@@ -211,21 +225,22 @@ class EditGame(QWidget):
         game = self.game.copy()
         for field in self.fields:
             t = self.fields[field]["t"]
+            w = self.fields[field]["w"]
             if t == "i":
-                value = int(self.fields[field]["w"].text())
+                value = int(w.text())
             elif t == "f":
-                value = float(self.fields[field]["w"].text())
+                value = float(w.text())
             elif t == "d":
-                value = qtdt_to_ts(self.fields[field]["w"].dateTime())
+                value = qtdt_to_ts(w.dateTime())
                 if "1969" in value:
                     value = ""
             elif t == "p":
                 priorities = games.PRIORITIES
                 pkeys = sorted(priorities.keys())
-                i = self.fields[field]["w"].currentIndex()
+                i = w.currentIndex()
                 value = pkeys[i]
             else:
-                value = self.fields[field]["w"].text()
+                value = getattr(w,"text",(getattr(w,"toPlainText",str)))()
             setattr(game,field,value)
         game.generate_gameid()
         newid = game.gameid
