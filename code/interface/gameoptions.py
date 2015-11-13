@@ -169,6 +169,7 @@ class EditGame(QWidget):
                         edit.setCurrentIndex(i)
             else:
                 edit = QLineEdit(str(getattr(game,prop)))
+            edit.setMaximumWidth(108)
             layout.addWidget(edit,i,1)
             self.fields[prop] = {"w":edit,"t":proptype}
 
@@ -177,6 +178,11 @@ class EditGame(QWidget):
                 button.setFixedWidth(32)
                 layout.addWidget(button,i,2)
                 button.clicked.connect(make_callback(self.set_filepath,edit))
+                
+                button = QPushButton("-->")
+                button.setFixedWidth(32)
+                layout.addWidget(button,i,3)
+                button.clicked.connect(make_callback(self.open_filepath,edit))
         scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         scrollwidget.adjustSize()
 
@@ -216,6 +222,13 @@ class EditGame(QWidget):
     def set_filepath(self,w):
         filename = QFileDialog.getOpenFileName(self,"Open Executable",w.text(),"Executable/Rom (*.exe *.lnk *.cmd *.bat %s)"%self.game.rom_extension)[0]
         w.setText(filename.replace("/","\\"))
+        
+    def open_filepath(self,w):
+        import os
+        s = w.text()
+        if not os.path.isdir(s):
+            s = os.path.split(s)[0]
+        filename = QDesktopServices.openUrl(QUrl("file:///"+s,QUrl.TolerantMode))
 
     def make_package(self):
         self.lg = ListGamesForPack(self.game,self.app,self)
