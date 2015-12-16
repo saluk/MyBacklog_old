@@ -190,12 +190,21 @@ class Gog:
             login_auth = re.findall("(https\:\/\/auth\.gog\.com.*?)(\"|')",b.text)
             print(login_auth)
             b.get(login_auth[0][0])
+            f = open(self.app.config["root"]+"/cache/goglogin.html","w",encoding="utf8")
+            f.write(b.text)
+            f.close()
+            if(re.findall("recaptcha",b.text)):
+                crash
             token = re.findall("login\[\_token\].*?>",b.text)
             print("token:",token)
             token_value = re.findall("value\=\"(.*?)\"",token[0])[0]
+            login_id = re.findall("login\[id\].*?>",b.text) + [""]
+            login_id_values = re.findall("value\=\"(.*?)\"",login_id[0]) + [None]
+            login_id_value = login_id_values[0]
             print("token_value:",token_value)
+            print("login_id_value:",login_id_value)
             print("cur url:",b.url)
-            b.post("https://login.gog.com/login_check",{
+            postdat = {
                 "login[username]":self.username,
                 "login[password]":self.password,
                 "login[_token]":token_value,
@@ -203,8 +212,10 @@ class Gog:
                 #~ "register[password]":"",
                 #~ "register[_token]":token_value,
                 "login[login]":"",
-                },
-                )
+                }
+            if login_id_value:
+                postdat.update({"login[_id]":login_id_value})
+            b.post("https://login.gog.com/login_check",postdat)
             print("new url:",b.url)
 
             #Properly follow redirect!
@@ -239,6 +250,7 @@ class Gog:
             for game_data in b.json["products"]:
                 if not game_data["isGame"]:
                     continue
+                print(game_data)
                 gameid = str(game_data["slug"])
                 gameid2 = str(game_data["id"])
                 gamename = game_data["title"]
@@ -246,7 +258,8 @@ class Gog:
                 #_392 = big icon
                 #_bg_1120.jpg = background of game page
                 gameicon = "http:"+game_data["image"].replace("\\/","/")+"_392.jpg"
-                game = games.Game(name=gamename,icon_url=gameicon,import_date=games.now())
+                genre = game_data["category"].lower()
+                game = games.Game(name=gamename,icon_url=gameicon,import_date=games.now(),genre=genre)
                 game.sources = [{"source":"gog","id":gameid,"id2":gameid2}]
 
                 if gameid in multipack:
