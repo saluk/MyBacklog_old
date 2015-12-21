@@ -446,23 +446,25 @@ class GamelistForm(QWidget):
         games.sources.GogSource.api = self.gog
 
     def disable_edit_notify(self):
+        return
         try:
             self.games_list_widget.cellChanged.disconnect(self.cell_changed)
         except:
             pass
 
     def enable_edit_notify(self):
+        return
         self.games_list_widget.cellChanged.connect(self.cell_changed)
         
     def save(self):
-        self.disable_edit_notify()
+        #self.disable_edit_notify()
         self.games.save(self.config["games"],self.config["local"])
-        for row in range(self.games_list_widget.rowCount()):
-            gameid = self.games_list_widget.item(row,0).data(DATA_GAMEID)
-            if gameid in self.changed:
-                self.update_game_row(self.games.games[gameid],row)
-        self.changed = []
-        self.enable_edit_notify()
+        #for row in range(self.games_list_widget.rowCount()):
+        #    gameid = self.games_list_widget.item(row,0).data(DATA_GAMEID)
+        #    if gameid in self.changed:
+        #        self.update_game_row(self.games.games[gameid],row)
+        #self.changed = []
+        #self.enable_edit_notify()
 
     def file_save(self):
         self.save()
@@ -886,6 +888,7 @@ class GamelistForm(QWidget):
                 #self.stop_playing_button.clicked.connect(make_callback(self.stop_playing,game))
 
     def cell_changed(self,row,col):
+        return
         if getattr(self,"editing_section",None) == (row,col):
             self.editing_section = None
         print("changed",row,col)
@@ -918,6 +921,7 @@ class GamelistForm(QWidget):
         self.enable_edit_hooks()
 
     def cell_activated(self,row,col):
+        return
         self.disable_edit_hooks()
         if self.columns[col][2]:
             gameid = self.games_list_widget.item(row,0).data(DATA_GAMEID)
@@ -983,6 +987,9 @@ class GamelistForm(QWidget):
         row = -1 #For when game list is empty
         for row in range(self.games_list_widget.rowCount()):
             gameid = self.games_list_widget.item(row,0).data(DATA_GAMEID)
+            if gameid not in self.games.games:
+                self.games_list_widget.setRowHidden(row,True)
+                continue
             game = self.games.games[gameid]
             self.games_list_widget.setRowHidden(row,False)
             if game.is_package and self.hide_packages:

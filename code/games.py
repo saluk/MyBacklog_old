@@ -450,14 +450,14 @@ class Games:
         save_data["actions"] = self.actions
         save_data["multipack"] = self.multipack
         save_data["source_definitions"] = self.source_definitions
-        return json.dumps(save_data,sort_keys=True,indent=4)
+        return json.dumps(save_data)
     def save_games(self,file):
         sd = self.save_games_data()
         f = open(file,"w")
         f.write(sd)
         f.close()
     def save_local(self,file):
-        sd = json.dumps(self.local,sort_keys=True,indent=4)
+        sd = json.dumps(self.loca)
         f = open(file,"w")
         f.write(sd)
         f.close()
