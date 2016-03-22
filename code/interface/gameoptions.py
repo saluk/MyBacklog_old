@@ -176,7 +176,7 @@ class EditGame(QWidget):
             if prop=="install_path":
                 button = QPushButton("...")
                 button.setFixedWidth(32)
-                layout.addWidget(button,i,1)
+                layout.addWidget(button,i,2)
                 button.clicked.connect(make_callback(self.set_filepath,edit))
                 
                 button = QPushButton("-->")

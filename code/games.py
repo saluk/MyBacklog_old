@@ -350,12 +350,6 @@ test2 = test1.copy()
 test2.name = "blah2"
 assert test1.name!=test2.name
 
-actions = {"add":{"type":"addgame","game":"","time":""},
-        "delete":{"type":"deletegame","game":"","time":""},
-        "update":{"type":"updategame","game":"","changes":{},"time":""},
-        "play":{"type":"playgame","game":"","time":""},
-        "stop":{"type":"stopgame","game":"","time":""}
-        }
 def changed(da,db):
     """Helper for update action, returns difference of 2 dicts"""
     d = {"_del_":[],"_add_":[],"_set_":[]}
@@ -374,11 +368,6 @@ def changed(da,db):
     if not d["_set_"]:
         del d["_set_"]
     return d
-def add_action(t,**d):
-    a = actions[t].copy()
-    a.update(d)
-    a["time"] = now()
-    return a
 def nicediff(diff):
     s = ""
     add = diff.get("_add_",[])
@@ -396,7 +385,6 @@ class Games:
     def __init__(self,log=None):
         self.games = {}
         self.source_map = {}
-        self.actions = []
         self.multipack = {}
         self.local = {}
         self.source_definitions = {}
@@ -421,7 +409,6 @@ class Games:
             self.games[k].games = self
         if not self.multipack:
             self.multipack = load_data.get("multipack",{})
-        self.actions = load_data.get("actions",[])
         self.source_definitions.update(sources.default_definitions.copy())
         loaded_defs =load_data.get("source_definitions",{}).copy()
         for source in loaded_defs:
@@ -447,7 +434,6 @@ class Games:
             if k == BAD_GAMEID:
                 continue
             save_data["games"][k] = self.games[k].dict()
-        save_data["actions"] = self.actions
         save_data["multipack"] = self.multipack
         save_data["source_definitions"] = self.source_definitions
         return json.dumps(save_data)
@@ -457,7 +443,7 @@ class Games:
         f.write(sd)
         f.close()
     def save_local(self,file):
-        sd = json.dumps(self.loca)
+        sd = json.dumps(self.local)
         f = open(file,"w")
         f.write(sd)
         f.close()
@@ -547,7 +533,6 @@ class Games:
             diff = changed(cur_game.dict(),game.dict())
             if diff:
                 print("UPDATE CHANGED GAME")
-                self.actions.append(add_action("update",game=game.dict(),changes=diff))
                 if oldid in self.games:
                     del self.games[oldid]
                 self.games[game.gameid] = game
@@ -555,7 +540,6 @@ class Games:
             else:
                 print("UPDATE... did not change game")
         else:
-            self.actions.append(add_action("add",game=game.dict()))
             print("ADD GAME ACTION")
             print("adding",game.gameid,game.source_match)
             game.data_changed_date = now()
@@ -571,7 +555,6 @@ class Games:
 
         if not cur_game:
             game.gameid = self.correct_gameid(gameid,gameid)
-            self.actions.append(add_action("add",game=game.dict()))
             print("ADD GAME ACTION")
             print("adding",game.gameid,game.source_match)
             game.data_changed_date = now()
@@ -609,7 +592,6 @@ class Games:
         diff = changed(previous_data,cur_game.dict())
         if diff:
             cur_game.data_changed_date = now()
-            self.actions.append(add_action("update",game=game.dict(),changes=diff))
             print("update 2",cur_game.gameid,cur_game.source_match,">",game.name.encode("utf8"),game.source_match)
             self.log.write("GAMEDB: Update ",previous_data["gameid"]," ",nicediff(diff))
         else:
@@ -658,9 +640,4 @@ class Games:
         return gamelist
     def delete(self, game):
         if game.gameid in self.games:
-            self.actions.append(add_action("delete",game=game.dict()))
             del self.games[game.gameid]
-    def play(self, game):
-        self.actions.append(add_action("play",game=game.dict()))
-    def stop(self, game):
-        self.actions.append(add_action("stop",game=game.dict()))

@@ -836,7 +836,6 @@ class GamelistForm(QWidget):
         self.running = game
         if launch:
             game.run_game(self.config["root"])
-        self.games.play(game)
         playrequest(game)
 
     def stop_playing(self,game):
@@ -845,7 +844,6 @@ class GamelistForm(QWidget):
         self.parent().trayicon.setIcon(QIcon(QPixmap("icons/main.png")))
         self.parent().setWindowTitle("MyBacklog %s"%VERSION)
         self.running = None
-        self.games.stop(game)
         self.timer.stop()
         #stoprequest()
         #self.buttonLayout1.removeWidget(self.stop_playing_button)
