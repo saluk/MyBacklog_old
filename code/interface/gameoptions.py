@@ -176,7 +176,7 @@ class EditGame(QWidget):
             if prop=="install_path":
                 button = QPushButton("...")
                 button.setFixedWidth(32)
-                layout.addWidget(button,i,2)
+                layout.addWidget(button,i,1)
                 button.clicked.connect(make_callback(self.set_filepath,edit))
                 
                 button = QPushButton("-->")
@@ -220,7 +220,7 @@ class EditGame(QWidget):
         self.layout().update()
 
     def set_filepath(self,w):
-        filename = QFileDialog.getOpenFileName(self,"Open Executable",w.text(),"Executable/Rom (*.exe *.lnk *.cmd *.bat %s)"%self.game.rom_extension)[0]
+        filename = QFileDialog.getOpenFileName(self,"Open Executable",w.text(),"Executable/Rom (*.app *.exe *.lnk *.cmd *.bat %s)"%self.game.rom_extension)[0]
         w.setText(filename.replace("/","\\"))
         
     def open_filepath(self,w):
