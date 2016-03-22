@@ -438,7 +438,7 @@ class Games:
         f.close()
         self.local_translate_json(d)
     def local_translate_json(self,d):
-        self.local = {"game_data":{}}
+        self.local = {"game_data":{},"emulators":{}}
         load_data = json.loads(d)
         self.local.update(load_data)
     def save_games_data(self):
