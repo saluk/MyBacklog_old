@@ -136,7 +136,7 @@ def get_user_id(custom_name):
     else:
         return custom_name
         
-def scrape_app_page(appid,cache_root=""):
+def scrape_app_page(appid,cache_root="",logger=None):
     url = "http://store.steampowered.com/app/"+str(appid)
     
     if not os.path.exists(cache_root+"/cache/steamapi"):
@@ -168,13 +168,18 @@ def scrape_app_page(appid,cache_root=""):
         if category_html:
             categories = [x.text.strip() for x in category_html.find_all("a") if x.text.strip()]
 
-        dat = {"tags":tags,"categories":categories}
+        vr = []
+        for block in soup.find_all(class_="block"):
+            if block.find_all(class_="vrsupport"):
+                vr = [x.text.strip().replace(" ","_") for x in block.find_all("a") if x.text.strip()]
 
+        dat = {"tags":tags,"categories":categories,"vr":vr}
+        
         f = open(cache_url,"w")
         f.write(repr(dat))
         f.close()
 
-        print("Caching data for",appid)
+        print("Caching data for:"+appid)
         time.sleep(0.1)
     else:
         print("Loading data for",appid)
@@ -238,23 +243,34 @@ def import_steam(apikey=MY_API_KEY,userid=MY_STEAM_ID,cache_root=".",logger=None
         db[str(g["appid"])] = game
 
     def get_extra_data(game):
-        extra_data = scrape_app_page(game.sources[0]["id"],cache_root)
+        logger.write("scraping data...")
+        extra_data = scrape_app_page(game.sources[0]["id"],cache_root,logger=logger)
+        logger.write("scraped data:"+"".join(extra_data.keys()))
         genre = ""
         for cat in extra_data["categories"]:
             if "co-op" in cat.lower() and not genre:
                 genre = "co-op"
             if "local co-op" in cat.lower():
                 genre = "local co-op"
+        for vr in extra_data["vr"]:
+            genre += "; vr_"+vr
         if genre:
             game.genre = genre
 
     num_data = len(db)
 
-    with futures.ThreadPoolExecutor(20) as executor:
-        tasks = [executor.submit(get_extra_data,game) for game in db.values()]
-        for i,f in enumerate(futures.as_completed(tasks)):
-            if logger:
-                logger.write("Read data for game %s of %s"%(i+1,num_data))
+    game_tasks = [game for game in db.values()]
+    i = 0
+    while game_tasks:
+        next_set = game_tasks[:100]
+        game_tasks = game_tasks[100:]
+        with futures.ThreadPoolExecutor(50) as executor:
+            tasks = [executor.submit(get_extra_data,game) for game in next_set]
+            for cf in futures.as_completed(tasks):
+                cf.result()
+                if logger:
+                    logger.write("Read data for game %s of %s"%(i+1,num_data))
+                i+=1
 
     return db
     
