@@ -212,9 +212,11 @@ def match_finished_games(games,finished):
         matched.append(matches[0])
     return matched
     
-def import_steam(apikey=MY_API_KEY,userid=MY_STEAM_ID,cache_root=".",logger=None):
+def import_steam(apikey=MY_API_KEY,userid=MY_STEAM_ID,cache_root=".",user_data=None,logger=None):
     #apps = load_userdata()["UserLocalConfigStore"]["Software"]["Valve"]["Steam"]["apps"]
     apps = {}
+    if user_data:
+        apps = user_data["UserLocalConfigStore"]["Software"]["Valve"]["Steam"]["apps"]
     db = {}
     is_finished = []#match_finished_games(games,finished)
     for g in get_games(apikey,userid):
@@ -358,10 +360,10 @@ class Steam:
     def import_steam(self):
         games = {}
         try:
-            games = import_steam(self.api_key,self.user_id,self.app.config["root"],self.app.log)
+            games = import_steam(self.api_key,self.user_id,self.app.config["root"],self.userdata,self.app.log)
         except ApiError:
             user_id = get_user_id(self.profile_name)
-            games = import_steam(self.api_key,user_id,self.app.config["root"],self.app.log)
+            games = import_steam(self.api_key,user_id,self.app.config["root"],self.userdata,self.app.log)
             if user_id != self.user_id:
                 self.user_id = user_id
         self.update_local_games(games)

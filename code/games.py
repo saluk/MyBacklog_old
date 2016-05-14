@@ -22,9 +22,9 @@ def stot(s):
 def ttos(t):
     """From a struct_time object, return a string"""
     return time.strftime(fmt,t)
-#def sec_to_ts(sec):
-#    """Convert an amount of seconds as a string into a time delta"""
-#    return ttos(time.localtime(sec))
+def sec_to_ts(sec):
+    """Convert an amount of seconds as a string into a time delta"""
+    return ttos(time.localtime(sec))
 
 PRIORITIES = {-1:"now playing",0:"unprioritized",1:"soon",2:"later",3:"much later",5:"next year",99:"probably never"}
 
