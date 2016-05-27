@@ -113,7 +113,7 @@ class SteamSource(Source):
             return
         return self.api.is_installed(source["id"])
     def generate_website(self,game,source):
-        return "http://store.steampowered.com/app/"+source["id"]
+        return "http://store.steampowered.com/app/%s"%source["id"]
 
 
 class GogSource(ExeSource):

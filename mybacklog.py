@@ -21,7 +21,7 @@ VERSION = "0.26 alpha"
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
-from PyQt5 import QtWebKit
+#from PyQt5 import QtWebKit
 #from PyQt5.QtWebKitWidgets import *
 from PyQt5.QtNetwork import *
 
