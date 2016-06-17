@@ -48,6 +48,7 @@ class ExeSource(Source):
     def get_run_args(self,game,source,cache_root):
         """Returns the method to run the game. Defaults to using a batch file to run the install_path exe"""
         folder = game.install_folder #Navigate to executable's directory
+        root = folder.split("\\",1)[0]
         startupinfo = subprocess.STARTUPINFO()
         startupinfo.dwFlags = subprocess.STARTF_USESHOWWINDOW
         startupinfo.wShowWindow = 0
@@ -64,7 +65,7 @@ class ExeSource(Source):
             #Make batch file to run
             if 1:#not os.path.exists("cache/batches/"+game.gameid+".bat"):
                 with open(cache_root+"/cache/batches/"+game.gameid+".bat", "w") as f:
-                    f.write('cd "%s"\n'%folder)
+                    f.write('%s\ncd "%s"\n'%(root,folder))
                     filepath = path.split("\\")[-1]
                     exe,args = filepath.split(".exe")
                     exe = exe+".exe"
