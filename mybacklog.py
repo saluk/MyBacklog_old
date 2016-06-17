@@ -205,7 +205,7 @@ class MyBacklog(QMainWindow):
 DATA_GAMEID = 101
 DATA_SORT = 12
 DATA_EDIT = 145
-class WILastPlayed(QTableWidgetItem):
+class SortableTableWidgetItem(QTableWidgetItem):
     def __lt__(self, other):
         first = self.data(DATA_SORT)
         last = other.data(DATA_SORT)
@@ -215,8 +215,8 @@ class WILastPlayed(QTableWidgetItem):
             last = 0
         return first<last
 
-a = WILastPlayed()
-b = WILastPlayed()
+a = SortableTableWidgetItem()
+b = SortableTableWidgetItem()
 a.setText("Wed")
 a.setData(DATA_SORT,"a")
 b.setText("Mon")
@@ -596,14 +596,15 @@ class GamelistForm(QWidget):
         genre.setText(game.genre)
         list_widget.setItem(row,3,genre)
 
-        hours = QTableWidgetItem("GAME HOURS")
+        hours = SortableTableWidgetItem("GAME HOURS")
         #TODO: CURRENTLY DISABLED
         hours.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEnabled)
         hours.setBackground(bg)
         hours.setText(game.playtime_hours_minutes)
+        hours.setData(DATA_SORT,game.playtime)
         list_widget.setItem(row,4,hours)
 
-        lastplayed = WILastPlayed("GAME LAST PLAYED")
+        lastplayed = SortableTableWidgetItem("GAME LAST PLAYED")
         lastplayed.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEnabled)
         lastplayed.setBackground(bg)
         lastplayed.setText(game.last_played_nice)
