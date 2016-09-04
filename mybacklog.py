@@ -231,6 +231,7 @@ class GamelistForm(QWidget):
     log_trigger = pyqtSignal(str)
     error_trigger = pyqtSignal(str)
     def __init__(self, parent=None):
+        print(QImageReader.supportedImageFormats())
         super(GamelistForm, self).__init__(parent)
         
         self.timer_started = 0
@@ -514,6 +515,7 @@ class GamelistForm(QWidget):
 
     def process_icons(self):
         for widget,game,size in self.icon_processes:
+            #print("gen icon for",repr(game.name))
             icon = icons.icon_for_game(game,self.icon_size,self.gicons,self.config["root"])
             if icon:
                 try:

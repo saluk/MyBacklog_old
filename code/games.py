@@ -39,7 +39,7 @@ def source_id(s):
     return s["source"] + "_" + str(s.get("id2",s.get("id","")))
 
 class Game:
-    args = [("name","s"),("playtime","f"),("lastplayed","d"),("genre","s"),("icon_url","s"),
+    args = [("name","s"),("playtime","f"),("lastplayed","d"),("genre","s"),("icon_url","s"),("logo_url","s"),
     ("notes","s"),("priority","p"),("website","s"),("import_date","d"),("finish_date","d")]
     def __init__(self,**kwargs):
         dontsavekeys = set(dir(self))
@@ -56,20 +56,46 @@ class Game:
         self.finish_date = ""
         self.sources = []
         self.genre = ""
-        self.icon_url = ""
+        self.images = []
         self.notes = ""
         self.priority = 0
 
         self.website = ""
         self.savekeys = set(dir(self)) - dontsavekeys
         for k in kwargs:
-            if hasattr(self,k):
+            if k == "icon_url":
+                self.images.append({"size":"icon","url":kwargs[k]})
+            elif k == "logo_url":
+                self.images.append({"size":"logo","url":kwargs[k]})
+            elif hasattr(self,k):
                 setattr(self,k,kwargs[k])
         if "minutes" in kwargs:
             self.playtime = datetime.timedelta(minutes=kwargs["minutes"]).total_seconds()
         self.games = None
         if "games" in kwargs:
             self.games = kwargs["games"]
+    @property
+    def icon_url(self):
+        for image in self.images:
+            if image["size"]=="icon": return image["url"]
+    @property
+    def logo_url(self):
+        for image in self.images:
+            if image["size"]=="logo": 
+                return image["url"]
+        return self.icon_url
+    @icon_url.setter
+    def icon_url(self,url):
+        for image in self.images:
+            if image["size"]=="icon": image["url"] = url
+            return
+        self.images.append({"size":"icon","url":url})
+    @logo_url.setter
+    def logo_url(self,url):
+        for image in self.images:
+            if image["size"]=="logo": image["url"] = url
+            return
+        self.images.append({"size":"logo","url":url})
     @property
     def name_stripped(self):
         if not self.name:
@@ -190,6 +216,7 @@ class Game:
         for k in self.savekeys:
             d[k] = getattr(self,k)
         d["sources"] = copy.deepcopy(d["sources"])
+        d["images"] = copy.deepcopy(d["images"])
         return d
     def copy(self):
         g = Game(**self.dict())
@@ -569,9 +596,9 @@ class Games:
             self.games[gameid] = cur_game
         if game.name != cur_game.name:
             cur_game.name = game.name
-        if game.icon_url:
-            cur_game.icon_url = game.icon_url
-        if game.playtime > cur_game.playtime:
+        if game.images:
+            cur_game.images = game.images[:]
+        if "desteam" not in game.notes and game.playtime > cur_game.playtime:
             cur_game.playtime = game.playtime
         if game.finished:
             cur_game.finished = 1

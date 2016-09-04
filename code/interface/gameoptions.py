@@ -300,10 +300,10 @@ class GameOptions(QWidget):
         layout.setAlignment(Qt.AlignTop)
 
         label_section = QGridLayout()
-        icon = icons.icon_for_game(game,128,self.app.gicons,app.config["root"])
+        icon = icons.icon_for_game(game,180,self.app.gicons,app.config["root"],"logo")
         if icon:
             iconw = QLabel()
-            iconw.setPixmap(icon.pixmap(128,128))
+            iconw.setPixmap(icon.pixmap(180,180))
             label_section.addWidget(iconw,0,0)
 
         layout.addLayout(label_section,0,0)

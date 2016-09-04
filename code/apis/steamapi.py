@@ -224,13 +224,17 @@ def import_steam(apikey=MY_API_KEY,userid=MY_STEAM_ID,cache_root=".",user_data=N
         if g in is_finished:
             set_finished = 1
         icon_url = ""
+        logo_url = ""
         if "img_icon_url" in g:
             icon_url  = "http://media.steampowered.com/steamcommunity/public/images/apps/%(appid)s/%(img_icon_url)s.jpg"%g
+        if "img_logo_url" in g:
+            logo_url = "http://media.steampowered.com/steamcommunity/public/images/apps/%(appid)s/%(img_logo_url)s.jpg"%g
         lastplayed = None
         if str(g["appid"]) in apps:
             app = apps[str(g["appid"])]
             if "LastPlayed" in app:
                 lastplayed=games.sec_to_ts(int(app["LastPlayed"]))
+        #print(g)
         game = games.Game(name=g["name"],
                             minutes=g["playtime_forever"],
                             finished=set_finished,
@@ -239,6 +243,7 @@ def import_steam(apikey=MY_API_KEY,userid=MY_STEAM_ID,cache_root=".",user_data=N
                             ],
                             lastplayed=lastplayed,
                             icon_url=icon_url,
+                            logo_url=logo_url,
                             import_date=games.now()
             )
         game.generate_gameid()
@@ -349,14 +354,27 @@ class Steam:
 
         self.installed_apps = {}
         self.last_install_search = 0
-    def get_steamapp_path(self):
+    def get_steamapp_paths(self):
         path = self.userfile
         path = os.path.split(self.userfile)[0]
         path = os.path.split(path)[0]
         path = os.path.split(path)[0]
         path = os.path.split(path)[0]
         path = os.path.join(path,"SteamApps")
-        return path
+        paths = [path]
+        if os.path.exists(path+"/libraryfolders.vdf"):
+            f = open(path+"/libraryfolders.vdf")
+            libraryfolders = vdf.parse(f)
+            f.close()
+            print(libraryfolders)
+            i = 1
+            while 1:
+                if str(i) not in libraryfolders["LibraryFolders"].keys():
+                    break
+                paths.append(libraryfolders["LibraryFolders"][str(i)]+"/steamapps")
+                i+=1
+        print("found steam paths:",paths)
+        return paths
     def import_steam(self):
         games = {}
         try:
@@ -370,31 +388,35 @@ class Steam:
         return games.values()
     def update_local_games(self,db):
         from code.apis import vdf
-        path = self.get_steamapp_path()
-        for p in os.listdir(path):
-            if "appmanifest" in p:
-                print("Scanning",os.path.join(path,p))
-                f = open(os.path.join(path,p))
-                vdf_data = vdf.parse(f)
-                f.close()
-                appid = get_vdf_url(vdf_data,"AppState","appID")
-                name = vdf_data["AppState"].get("name","")
-                if not name:
-                    name = vdf_data["AppState"].get("UserConfig",{}).get("name","")
-                if name and appid not in db:
-                    name = name.encode("latin-1","ignore").decode("utf8","ignore")
-                    db[appid] = games.Game(name=name,sources=[{"source":"steam","id":str(appid)}],import_date=games.now())
-                    db[appid].generate_gameid()
+        paths = self.get_steamapp_paths()
+        for path in paths:
+            for p in os.listdir(path):
+                if "appmanifest" in p:
+                    print("Scanning",os.path.join(path,p))
+                    f = open(os.path.join(path,p))
+                    vdf_data = vdf.parse(f)
+                    f.close()
+                    appid = get_vdf_url(vdf_data,"AppState","appID")
+                    name = vdf_data["AppState"].get("name","")
+                    if not name:
+                        name = vdf_data["AppState"].get("UserConfig",{}).get("name","")
+                    if name and appid not in db:
+                        name = name.encode("latin-1","ignore").decode("utf8","ignore")
+                        db[appid] = games.Game(name=name,sources=[{"source":"steam","id":str(appid)}],import_date=games.now())
+                        db[appid].generate_gameid()
         return db
     def create_nonsteam_shortcuts(self,games):
         return create_nonsteam_shortcuts(games,self.shortcut_folder)
     def search_installed(self):
-        path = self.get_steamapp_path()
+        paths = self.get_steamapp_paths()
         self.installed_apps = {}
-        for f in os.listdir(path):
-            if "appmanifest" in f:
-                id = f.replace("appmanifest_","").replace(".acf","")
-                self.installed_apps[id] = f
+        for path in paths:
+            print("checking path",path)
+            for f in os.listdir(path):
+                print(f)
+                if "appmanifest" in f:
+                    id = f.replace("appmanifest_","").replace(".acf","")
+                    self.installed_apps[id] = f
     def is_installed(self,steamid):
         if not self.installed_apps:
             self.search_installed()
