@@ -137,20 +137,26 @@ class EditGame(QWidget):
             prop,proptype = prop
             
             label_name = "%s:"%prop.capitalize()
-            print(prop)
-            if prop=="source_0_id" and game.sources:
-                label_name = game.sources[0]["source"]+"_id"
-            if prop=="source_0_name" and game.sources:
-                label_name = "Id-less source"
+            print("EDIT PROPERTY:",prop,i)
+            if prop.startswith("source_"):
+                source,si,sattr = prop.split("_")
+                if sattr == "id" and game.sources:
+                    label_name = game.sources[int(si)]["source"]+"_id"
+                if sattr == "name" and game.sources:
+                    label_name = "Id-less source"
             label = QLabel(label_name)
             layout.addWidget(label,i,0)
 
             if prop=="notes":
-                edit = QLineEdit(str(getattr(game,prop)))
+                edit = QTextEdit(str(getattr(game,prop)))
+                edit.setMinimumSize(10,20)
+                edit.setMinimumHeight(10)
+                edit.setMaximumHeight(100)
                 button = QPushButton("...")
                 button.setFixedWidth(32)
-                #layout.addWidget(button,i,2)
+                layout.addWidget(button,i,2)
                 button.clicked.connect(make_callback(self.expand_notes,game,prop,edit,i,layout))
+                self.expand_notes_button = button
             elif proptype == "d":
                 edit = QDateTimeEdit()
                 edit.setCalendarPopup(True)
@@ -163,12 +169,17 @@ class EditGame(QWidget):
                 priorities = games.PRIORITIES
                 pkeys = sorted(priorities.keys())
                 edit = QComboBox()
-                for i,k in enumerate(pkeys):
+                for pi,k in enumerate(pkeys):
                     edit.addItem(priorities[k])
                     if k == getattr(game,prop):
-                        edit.setCurrentIndex(i)
+                        edit.setCurrentIndex(pi)
             else:
-                edit = QLineEdit(str(getattr(game,prop)))
+                if not prop.startswith("source"):
+                    edit = QLineEdit(str(getattr(game,prop)))
+                else:
+                    source,si,sattr = prop.split("_")
+                    if sattr=="name": sattr = "source"
+                    edit = QLineEdit(str(game.sources[int(si)][sattr]))
             edit.setMaximumWidth(108)
             layout.addWidget(edit,i,1)
             self.fields[prop] = {"w":edit,"t":proptype}
@@ -212,11 +223,14 @@ class EditGame(QWidget):
         self.setLayout(baselayout)
 
     def expand_notes(self,game,prop,edit,i,layout):
-        nedit = QTextEdit(str(getattr(game,prop)))
-        self.fields[prop]["w"] = nedit
-        nedit.setMinimumSize(10,20)
-        nedit.setMinimumHeight(100)
-        layout.replaceWidget(edit,nedit)
+        if edit.maximumHeight()<100:
+            edit.setMinimumSize(10,20)
+            edit.setMinimumHeight(100)
+            edit.setMaximumHeight(100)
+        else:
+            edit.setMinimumHeight(10)
+            edit.setMaximumHeight(10)
+        edit.updateGeometry()
         self.layout().update()
 
     def set_filepath(self,w):
@@ -254,7 +268,12 @@ class EditGame(QWidget):
                 value = pkeys[i]
             else:
                 value = getattr(w,"text",(getattr(w,"toPlainText",str)))()
-            setattr(game,field,value)
+            if field.startswith("source_"):
+                source,si,sattr = field.split("_")
+                if sattr=="name": sattr = "source"
+                game.sources[int(si)][sattr] = value
+            else:
+                setattr(game,field,value)
         game.generate_gameid()
         newid = game.gameid
         print("save", newid, self.oldid)
@@ -363,6 +382,9 @@ class GameOptions(QWidget):
             w = QPushButton("Hide")
             w.clicked.connect(make_callback(self.app.hide_game,game))
             buttons.addWidget(w)
+        w = QPushButton("Gamesdb")
+        w.clicked.connect(make_callback(self.app.gamesdb,game))
+        buttons.addWidget(w)
         label_section.addLayout(buttons,0,1)
 
         self.edit_widget = EditGame(game,app,parented=self,new=self.new)

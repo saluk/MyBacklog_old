@@ -160,11 +160,17 @@ class Game:
         return self.name.replace(":","")
     @property
     def valid_args(self):
+        #FIXME: this is a really bad hack, especially with sources
         a = self.args[:]
-        for s in self.sources:
+        for i,s in enumerate(self.sources):
             print(get_source(s["source"]))
             print(get_source(s["source"]).extra_args)
-            a.extend(get_source(s["source"]).args())
+            args = []
+            for arg in get_source(s["source"]).args():
+                if arg[0].startswith("source_"):
+                    arg = ("source_"+str(i)+"_"+arg[0].rsplit("_",1)[1],arg[1])
+                args.append(arg)
+            a.extend(args)
         return a
     @property
     def playtime_hours_minutes(self):

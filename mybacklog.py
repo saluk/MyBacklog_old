@@ -443,6 +443,7 @@ class GamelistForm(QWidget):
         self.gog = gogapi.Gog(self,account["gog"]["user"],account["gog"]["pass"])
         self.steam = steamapi.Steam(self,account["steam"]["api"],account["steam"]["id"],account["steam"]["userfile"],account["steam"]["shortcut_folder"])
         self.humble = humbleapi.Humble(self,account["humble"]["username"],account["humble"]["password"])
+        self.thegamesdb = thegamesdb.thegamesdb(self)
         games.sources.SteamSource.api = self.steam
         games.sources.GogSource.api = self.gog
 
@@ -573,6 +574,7 @@ class GamelistForm(QWidget):
         for s in game.sources:
             if s["source"] in self.icons:
                 source.setIcon(QIcon(self.icons[s["source"]]))
+                break
             else:
                 source.setIcon(QIcon(self.icons["blank"]))
         list_widget.setItem(row,0,source)
@@ -741,6 +743,9 @@ class GamelistForm(QWidget):
         self.games.translate_json(games)
         self.save()
         self.update_gamelist_widget()
+        
+    def gamesdb(self,game):
+        self.thegamesdb.update_game_data(game)
 
     def cleanup_gamesdb(self):
         for g in self.games.games.values():

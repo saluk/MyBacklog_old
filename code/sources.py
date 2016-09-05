@@ -147,6 +147,9 @@ class OfflineSource(Source):
     def is_installed(self,game,source):
         return True
 
+class TheGamesDBSource(OfflineSource):
+    def args(self):
+        return [("source_0_id","s")]+self.extra_args
 
 default_definitions = {
     "gog":{
@@ -192,6 +195,9 @@ default_definitions = {
     },
     "nds":{
         "class":"EmulatorSource"
+    },
+    "thegamesdb":{
+        "class":"TheGamesDBSource"
     }
 }
 all = {}
