@@ -78,6 +78,7 @@ class Game:
     def icon_url(self):
         for image in self.images:
             if image["size"]=="icon": return image["url"]
+        return ""
     @property
     def logo_url(self):
         for image in self.images:
@@ -86,6 +87,7 @@ class Game:
         return self.icon_url
     @icon_url.setter
     def icon_url(self,url):
+        assert url is not None
         for image in self.images:
             if image["size"]=="icon": image["url"] = url
             return
@@ -167,8 +169,6 @@ class Game:
             print(get_source(s["source"]).extra_args)
             args = []
             for arg in get_source(s["source"]).args():
-                if arg[0].startswith("source_"):
-                    arg = ("source_"+str(i)+"_"+arg[0].rsplit("_",1)[1],arg[1])
                 args.append(arg)
             a.extend(args)
         return a
@@ -347,33 +347,6 @@ class Game:
             file["type"] = "rom"
         file["path"] = value
         print("set path:",self.games.local["game_data"][self.gameid]["files"])
-    @property
-    def source_0_id(self):
-        if not self.sources:
-            return None
-        if "id2" in self.sources[0]:
-            return "%s;%s"%(self.sources[0]["id"],self.sources[0].get("id2",""))
-        return self.sources[0].get("id","")
-    @source_0_id.setter
-    def source_0_id(self,value):
-        if not self.sources:
-            return
-        id2 = None
-        if ";" in value:
-            id1,id2 = value.split(";",1)
-        else:
-            id1 = value
-        self.sources[0]["id"] = id1.strip()
-        if id2:
-            self.sources[0]["id2"] = id2.strip()
-    @property
-    def source_0_name(self):
-        if not self.sources:
-            return None
-        return self.sources[0]["source"]
-    @source_0_name.setter
-    def source_0_name(self,value):
-        return
     def update_dynamic_fields(self):
         if not self.website and self.sources and get_source(self.sources[0]["source"]).generate_website:
             self.website = get_source(self.sources[0]["source"]).generate_website(self,self.sources[0])

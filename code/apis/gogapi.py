@@ -250,7 +250,7 @@ class Gog:
             for game_data in b.json["products"]:
                 if not game_data["isGame"]:
                     continue
-                print(game_data)
+                #print(game_data)
                 gameid = str(game_data["slug"])
                 gameid2 = str(game_data["id"])
                 gamename = game_data["title"]

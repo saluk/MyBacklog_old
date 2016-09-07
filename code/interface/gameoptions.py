@@ -133,67 +133,19 @@ class EditGame(QWidget):
 
         #Fields
         self.fields = {}
+        self.source_fields = {}
         for i,prop in enumerate(game.valid_args):
-            prop,proptype = prop
+            self.addwidget(i,game,prop,layout)
+        for i2,source in enumerate(game.sources):
+            i+=1
+            layout.addWidget(QLabel(source["source"]),i,0)
+            source_layout = QGridLayout()
+            print(source["source"],games.get_source(source["source"]),games.get_source(source["source"]).source_args)
+            for i3,prop in enumerate(games.get_source(source["source"]).source_args):
+                self.addwidget(i3,source,prop,source_layout,mode="source",source_index=i2)
+            layout.addLayout(source_layout,i+1,0,1,3)
             
-            label_name = "%s:"%prop.capitalize()
-            print("EDIT PROPERTY:",prop,i)
-            if prop.startswith("source_"):
-                source,si,sattr = prop.split("_")
-                if sattr == "id" and game.sources:
-                    label_name = game.sources[int(si)]["source"]+"_id"
-                if sattr == "name" and game.sources:
-                    label_name = "Id-less source"
-            label = QLabel(label_name)
-            layout.addWidget(label,i,0)
 
-            if prop=="notes":
-                edit = QTextEdit(str(getattr(game,prop)))
-                edit.setMinimumSize(10,20)
-                edit.setMinimumHeight(10)
-                edit.setMaximumHeight(100)
-                button = QPushButton("...")
-                button.setFixedWidth(32)
-                layout.addWidget(button,i,2)
-                button.clicked.connect(make_callback(self.expand_notes,game,prop,edit,i,layout))
-                self.expand_notes_button = button
-            elif proptype == "d":
-                edit = QDateTimeEdit()
-                edit.setCalendarPopup(True)
-                edit.setDateTime(ts_to_qtdt(getattr(game,prop)))
-            elif proptype == "f":
-                edit = QLineEdit("%.2f"%getattr(game,prop))
-                validator = QDoubleValidator(0.0,3153600000.0,2)
-                edit.setValidator(validator)
-            elif proptype == "p":
-                priorities = games.PRIORITIES
-                pkeys = sorted(priorities.keys())
-                edit = QComboBox()
-                for pi,k in enumerate(pkeys):
-                    edit.addItem(priorities[k])
-                    if k == getattr(game,prop):
-                        edit.setCurrentIndex(pi)
-            else:
-                if not prop.startswith("source"):
-                    edit = QLineEdit(str(getattr(game,prop)))
-                else:
-                    source,si,sattr = prop.split("_")
-                    if sattr=="name": sattr = "source"
-                    edit = QLineEdit(str(game.sources[int(si)][sattr]))
-            edit.setMaximumWidth(108)
-            layout.addWidget(edit,i,1)
-            self.fields[prop] = {"w":edit,"t":proptype}
-
-            if prop=="install_path":
-                button = QPushButton("...")
-                button.setFixedWidth(32)
-                layout.addWidget(button,i,2)
-                button.clicked.connect(make_callback(self.set_filepath,edit))
-                
-                button = QPushButton("-->")
-                button.setFixedWidth(32)
-                layout.addWidget(button,i,3)
-                button.clicked.connect(make_callback(self.open_filepath,edit))
         scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         scrollwidget.adjustSize()
 
@@ -221,6 +173,73 @@ class EditGame(QWidget):
         baselayout.addLayout(buttons_layout,2,0)
 
         self.setLayout(baselayout)
+        
+    def addwidget(self,i,resource,prop,layout,mode="game",source_index=None):
+        prop,proptype = prop
+        
+        def get_value(p):
+            if mode=="game":
+                return getattr(resource,prop)
+            elif mode=="source":
+                return resource[prop]
+        
+        label_name = "%s:"%prop.capitalize()
+        print("EDIT PROPERTY:",prop,i)
+
+        label = QLabel(label_name)
+        layout.addWidget(label,i,0)
+
+        if prop=="notes":
+            edit = QTextEdit(str(get_value(prop)))
+            edit.setMinimumSize(10,20)
+            edit.setMinimumHeight(10)
+            edit.setMaximumHeight(100)
+            button = QPushButton("...")
+            button.setFixedWidth(32)
+            layout.addWidget(button,i,2)
+            button.clicked.connect(make_callback(self.expand_notes,resource,prop,edit,i,layout))
+            self.expand_notes_button = button
+        elif proptype == "d":
+            edit = QDateTimeEdit()
+            edit.setCalendarPopup(True)
+            edit.setDateTime(ts_to_qtdt(get_value(prop)))
+        elif proptype == "f":
+            edit = QLineEdit("%.2f"%get_value(prop))
+            validator = QDoubleValidator(0.0,3153600000.0,2)
+            edit.setValidator(validator)
+        elif proptype == "p":
+            priorities = games.PRIORITIES
+            pkeys = sorted(priorities.keys())
+            edit = QComboBox()
+            for pi,k in enumerate(pkeys):
+                edit.addItem(priorities[k])
+                if k == get_value(prop):
+                    edit.setCurrentIndex(pi)
+        else:
+            edit = QLineEdit(str(get_value(prop)))
+        if prop == "website":
+            button = QPushButton("->")
+            button.setFixedWidth(32)
+            layout.addWidget(button,i,2)
+            button.clicked.connect(make_callback(self.goto_website,edit))
+        edit.setMaximumWidth(108)
+        layout.addWidget(edit,i,1)
+        
+        if mode=="game":
+            self.fields[prop] = {"w":edit,"t":proptype}
+        elif mode=="source":
+            self.source_fields[prop] = {"w":edit,"t":proptype,"source":resource,"source_index":source_index}
+
+        if prop=="install_path":
+            button = QPushButton("...")
+            button.setFixedWidth(32)
+            layout.addWidget(button,i,2)
+            button.clicked.connect(make_callback(self.set_filepath,edit))
+            
+            button = QPushButton("-->")
+            button.setFixedWidth(32)
+            layout.addWidget(button,i,3)
+            button.clicked.connect(make_callback(self.open_filepath,edit))
 
     def expand_notes(self,game,prop,edit,i,layout):
         if edit.maximumHeight()<100:
@@ -232,6 +251,9 @@ class EditGame(QWidget):
             edit.setMaximumHeight(10)
         edit.updateGeometry()
         self.layout().update()
+        
+    def goto_website(self,widget):
+        QDesktopServices.openUrl(QUrl(widget.text(),QUrl.TolerantMode))
 
     def set_filepath(self,w):
         filename = QFileDialog.getOpenFileName(self,"Open Executable",w.text(),"Executable/Rom (*.app *.exe *.lnk *.cmd *.bat %s)"%self.game.rom_extension)[0]
@@ -247,33 +269,13 @@ class EditGame(QWidget):
     def make_package(self):
         self.lg = ListGamesForPack(self.game,self.app,self)
         self.lg.show()
-
     def save_close(self):
-        game = self.game.copy()
+        game = self.game
         for field in self.fields:
-            t = self.fields[field]["t"]
-            w = self.fields[field]["w"]
-            if t == "i":
-                value = int(w.text())
-            elif t == "f":
-                value = float(w.text())
-            elif t == "d":
-                value = qtdt_to_ts(w.dateTime())
-                if "1969" in value:
-                    value = ""
-            elif t == "p":
-                priorities = games.PRIORITIES
-                pkeys = sorted(priorities.keys())
-                i = w.currentIndex()
-                value = pkeys[i]
-            else:
-                value = getattr(w,"text",(getattr(w,"toPlainText",str)))()
-            if field.startswith("source_"):
-                source,si,sattr = field.split("_")
-                if sattr=="name": sattr = "source"
-                game.sources[int(si)][sattr] = value
-            else:
-                setattr(game,field,value)
+            self.save_prop(field,self.fields[field])
+        new_sources = []
+        for field in self.source_fields:
+            self.save_prop(field,self.source_fields[field])
         game.generate_gameid()
         newid = game.gameid
         print("save", newid, self.oldid)
@@ -291,7 +293,32 @@ class EditGame(QWidget):
             self.parent().deleteLater()
         else:
             self.app.select_game(updated_game)
-
+    def save_prop(self,field,props):
+        t = props["t"]
+        w = props["w"]
+        source = props.get("source",None)
+        print(source)
+        if t == "i":
+            value = int(w.text())
+        elif t == "f":
+            value = float(w.text())
+        elif t == "d":
+            value = qtdt_to_ts(w.dateTime())
+            if "1969" in value:
+                value = ""
+        elif t == "p":
+            priorities = games.PRIORITIES
+            pkeys = sorted(priorities.keys())
+            i = w.currentIndex()
+            value = pkeys[i]
+        else:
+            value = getattr(w,"text",(getattr(w,"toPlainText",str)))()
+        if source:
+            i = self.game.sources.index(source)
+            source[field] = value
+            self.game.sources[i] = source
+        else:
+            setattr(self.game,field,value)
     def delete(self):
         self.games.delete(self.game)
         row = self.app.get_row_for_game(self.game)

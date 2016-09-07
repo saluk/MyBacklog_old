@@ -10,7 +10,8 @@ run_with_steam = 1
 #   When running a game, if a steam shortcut exists in cache/steamshortcuts, run that
 
 class Source:
-    extra_args = [("source_0_name","s")]
+    extra_args = []
+    source_args = []
     generate_website = None
     def __init__(self,name):
         self.name = name
@@ -89,12 +90,14 @@ class ExeSource(Source):
             self.running = subprocess.Popen(args, cwd=folder, stdout=sys.stdout, stderr=sys.stderr, creationflags=creationflags, shell=shell)
             print("subprocess open")
             os.chdir(curdir)
+            
+class HumbleSource(ExeSource):
+    source_args = [("id","s"),("package","s")]
 
 class SteamSource(Source):
     """Needs .api to be set to steamapi.Steam"""
     extra_args = []
-    def args(self):
-        return [("source_0_id","s")]+self.extra_args
+    source_args = [("id","s")]
     def run_game(self,game,source,cache_root):
         if "id" not in source:
             return
@@ -120,15 +123,24 @@ class SteamSource(Source):
 class GogSource(ExeSource):
     """Needs .api to be set to gogapi.Gog"""
     extra_args = []
+    source_args = [("id","s"),("id2","s")]
     def args(self):
-        return [("source_0_id","s"),("install_path","s")]+self.extra_args
-    def download_link(self,game,source):
+        return [("install_path","s")]+self.extra_args
+    def download_link_downloader(self,game,source):
         if "id" not in source:
             return ""
         return "gogdownloader://%s/installer_win_en"%source["id"]
+    def download_link_galaxy(self,game,source):
+        if "id2" not in source:
+            return ""
+        return "goggalaxy://openGameView/%s"%source["id2"]
+    download_link = download_link_galaxy
+    def generate_website(self,game,source):
+        return "https://www.gog.com/game/%s"%source["id"]
 
 
 class EmulatorSource(ExeSource):
+    source_args = []
     def args(self):
         return [("install_path","s")]+self.extra_args
     def get_run_args(self,game,source,cache_root):
@@ -148,8 +160,9 @@ class OfflineSource(Source):
         return True
 
 class TheGamesDBSource(OfflineSource):
-    def args(self):
-        return [("source_0_id","s")]+self.extra_args
+    source_args = [("id","s")]
+    def is_installed(self,game,source):
+        return False
 
 default_definitions = {
     "gog":{
@@ -168,8 +181,7 @@ default_definitions = {
         "editable":False
     },
     "humble":{
-        "class":"ExeSource",
-        "extra_args":[("source_0_id","s")],
+        "class":"HumbleSource",
         "editable":False
     },
     "origin":{
