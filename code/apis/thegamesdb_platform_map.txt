@@ -1,0 +1,71 @@
+3d0, 3DO, http://thegamesdb.net/banners/platform/consoleart/25.png
+amiga, Amiga, http://thegamesdb.net/banners/platform/consoleart/4911.png
+amiga, Amiga CD32, http://thegamesdb.net/banners/platform/consoleart/4947.png
+amstrad, Amstrad CPC, http://thegamesdb.net/banners/platform/consoleart/4914.png
+appleii, Apple II, http://thegamesdb.net/banners/platform/consoleart/4942.png
+arcade, Arcade, http://thegamesdb.net/banners/platform/consoleart/23.png
+atari, Atari 2600, http://thegamesdb.net/banners/platform/consoleart/22.png
+atari, Atari 5200, http://thegamesdb.net/banners/platform/consoleart/26.png
+atari, Atari 7800, http://thegamesdb.net/banners/platform/consoleart/27.png
+atari, Atari 800, http://thegamesdb.net/banners/platform/consoleart/4943.png
+jaguar, Atari Jaguar, http://thegamesdb.net/banners/platform/consoleart/28.png
+jaguar, Atari Jaguar CD, http://thegamesdb.net/banners/platform/consoleart/29.png
+lynx, Atari Lynx, http://thegamesdb.net/banners/platform/consoleart/4924.png
+atarist, Atari ST, http://thegamesdb.net/banners/platform/consoleart/4937.png
+colecovision, Colecovision, http://thegamesdb.net/banners/platform/consoleart/31.png
+commodore, Commodore 128, http://thegamesdb.net/banners/platform/consoleart/4946.png
+commodore, Commodore 64, http://thegamesdb.net/banners/platform/consoleart/40.png
+commodore, Commodore VIC-20, http://thegamesdb.net/banners/platform/consoleart/4945.png
+fairchild, Fairchild Channel F, http://thegamesdb.net/banners/platform/consoleart/4928.png
+nes, Famicom Disk System, http://thegamesdb.net/banners/platform/consoleart/4936.png
+fmtowns, FM Towns Marty, http://thegamesdb.net/banners/platform/consoleart/4932.png
+gameandwatch, Game &amp; Watch, http://thegamesdb.net/banners/platform/consoleart/4950.png
+intellivision, Intellivision, http://thegamesdb.net/banners/platform/consoleart/32.png
+none, Mac OS, http://thegamesdb.net/banners/platform/consoleart/37.png
+odyssey, Magnavox Odyssey 2, http://thegamesdb.net/banners/platform/consoleart/4927.png
+xbox, Microsoft Xbox, http://thegamesdb.net/banners/platform/consoleart/14.png
+xbox360, Microsoft Xbox 360, http://thegamesdb.net/banners/platform/consoleart/15.png
+xbone, Microsoft Xbox One, http://thegamesdb.net/banners/platform/consoleart/4920.png
+msx, MSX, http://thegamesdb.net/banners/platform/consoleart/4929.png
+ngage, N-Gage, http://thegamesdb.net/banners/platform/consoleart/4938.png
+neogeo, Neo Geo, http://thegamesdb.net/banners/platform/consoleart/24.png
+neogeocd, Neo Geo CD, http://thegamesdb.net/banners/platform/consoleart/4956.png
+neogeopocket, Neo Geo Pocket, http://thegamesdb.net/banners/platform/consoleart/4922.png
+neogeopocket, Neo Geo Pocket Color, http://thegamesdb.net/banners/platform/consoleart/4923.png
+3ds, Nintendo 3DS, http://thegamesdb.net/banners/platform/consoleart/4912.png
+n64, Nintendo 64, http://thegamesdb.net/banners/platform/consoleart/3.png
+nds, Nintendo DS, http://thegamesdb.net/banners/platform/consoleart/8.png
+nes, Nintendo Entertainment System (NES), http://thegamesdb.net/banners/platform/consoleart/7.png
+gb, Nintendo Game Boy, http://thegamesdb.net/banners/platform/consoleart/4.png
+gba, Nintendo Game Boy Advance, http://thegamesdb.net/banners/platform/consoleart/5.png
+gbc, Nintendo Game Boy Color, http://thegamesdb.net/banners/platform/consoleart/41.png
+gamecube, Nintendo GameCube, http://thegamesdb.net/banners/platform/consoleart/2.png
+virtualboy, Nintendo Virtual Boy, http://thegamesdb.net/banners/platform/consoleart/4918.png
+wii, Nintendo Wii, http://thegamesdb.net/banners/platform/consoleart/9.png
+wiiu, Nintendo Wii U, http://thegamesdb.net/banners/platform/consoleart/38.png
+nuon, Nuon, http://thegamesdb.net/banners/platform/consoleart/4935.png
+none, PC, http://thegamesdb.net/banners/platform/consoleart/1.png
+pcfx, PC-FX, http://thegamesdb.net/banners/platform/consoleart/4930.png
+cdi, Philips CD-i, http://thegamesdb.net/banners/platform/consoleart/4917.png
+32x, Sega 32X, http://thegamesdb.net/banners/platform/consoleart/33.png
+segacd, Sega CD, http://thegamesdb.net/banners/platform/consoleart/21.png
+dreamcast, Sega Dreamcast, http://thegamesdb.net/banners/platform/consoleart/16.png
+gamegear, Sega Game Gear, http://thegamesdb.net/banners/platform/consoleart/20.png
+genesis, Sega Genesis, http://thegamesdb.net/banners/platform/consoleart/18.png
+sms, Sega Master System, http://thegamesdb.net/banners/platform/consoleart/35.png
+saturn, Sega Saturn, http://thegamesdb.net/banners/platform/consoleart/17.png
+sg1000, SEGA SG-1000, http://thegamesdb.net/banners/platform/consoleart/4949.png
+zxspectrum, Sinclair ZX Spectrum, http://thegamesdb.net/banners/platform/consoleart/4913.png
+psx, Sony Playstation, http://thegamesdb.net/banners/platform/consoleart/10.png
+ps2, Sony Playstation 2, http://thegamesdb.net/banners/platform/consoleart/11.png
+ps3, Sony Playstation 3, http://thegamesdb.net/banners/platform/consoleart/12.png
+ps4, Sony Playstation 4, http://thegamesdb.net/banners/platform/consoleart/4919.png
+vita, Sony Playstation Vita, http://thegamesdb.net/banners/platform/consoleart/39.png
+psp, Sony PSP, http://thegamesdb.net/banners/platform/consoleart/13.png
+snes, Super Nintendo (SNES), http://thegamesdb.net/banners/platform/consoleart/6.png
+tg16, TurboGrafx 16, http://thegamesdb.net/banners/platform/consoleart/34.png
+tgcd, TurboGrafx CD, http://thegamesdb.net/banners/platform/consoleart/4955.png
+vectrex, Vectrex, http://thegamesdb.net/banners/platform/consoleart/4939.png
+wonderswan, WonderSwan, http://thegamesdb.net/banners/platform/consoleart/4925.png
+wonderswancolor, WonderSwan Color, http://thegamesdb.net/banners/platform/consoleart/4926.png
+x68000, X68000, http://thegamesdb.net/banners/platform/consoleart/4931.png

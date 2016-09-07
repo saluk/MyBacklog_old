@@ -5,6 +5,11 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QIcon,QPixmap
 from code.resources import extract_icons
 
+headers = {
+    'User-Agent': 'MyBacklog Game tracker and launcher v1.0',
+    'From': 'saluk64007@gmail.com'
+}
+
 def path_to_icon(game,filecache_root,size="icon"):
     url = ""
     if size=="icon": 
@@ -33,7 +38,7 @@ def icon_for_game(game,size,icon_cache,filecache_root,category="icon"):
     if mode == "download":
         if not os.path.exists(fpath):
             print("Download icon:",url)
-            r = requests.get(url)
+            r = requests.get(url,headers=headers)
             f = open(fpath,"wb")
             f.write(r.content)
             f.close()
@@ -52,7 +57,12 @@ def icon_for_game(game,size,icon_cache,filecache_root,category="icon"):
             if p:
                 shutil.copy(p,fpath)
     if os.path.exists(fpath) and not fpath+"_%d"%size in icon_cache:
-        qp = QPixmap(fpath.replace("/",os.path.sep))
+        mode = ""
+        with open(fpath.replace("/",os.path.sep),"rb") as f:
+            head = str(f.read(20))
+            if "JFIF" in head:
+                mode = "JPG"
+        qp = QPixmap(fpath.replace("/",os.path.sep),mode)
         if not qp.isNull():
             if category == "icon": mode = Qt.IgnoreAspectRatio
             if category == "logo": mode = Qt.KeepAspectRatio

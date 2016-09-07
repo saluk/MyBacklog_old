@@ -444,6 +444,7 @@ class GamelistForm(QWidget):
         self.steam = steamapi.Steam(self,account["steam"]["api"],account["steam"]["id"],account["steam"]["userfile"],account["steam"]["shortcut_folder"])
         self.humble = humbleapi.Humble(self,account["humble"]["username"],account["humble"]["password"])
         self.thegamesdb = thegamesdb.thegamesdb(self)
+        self.giantbomb = giantbomb.giantbomb(self)
         games.sources.SteamSource.api = self.steam
         games.sources.GogSource.api = self.gog
 
@@ -745,43 +746,8 @@ class GamelistForm(QWidget):
         self.update_gamelist_widget()
         
     def gamesdb(self,game):
-        self.thegamesdb.update_game_data(game)
-
-    def cleanup_gamesdb(self):
-        for g in self.games.games.values():
-            gdbg = thegamesdb.find_game(g.name)
-            if gdbg:
-                data = thegamesdb.get_game_info(gdbg["id"])
-                if data and "Game" in data:
-                    print (data["Game"])
-                    genre = data["Game"].get("Genres",{}).get("genre","")
-                    coop = data["Game"].get("Co-op","No").lower().strip()=="yes"
-                    if type(genre) not in [str,bytes]:
-                        genre = [x for x in genre if type(x) in [str,bytes]][0]
-                    print(genre,coop)
-                    g.genre = genre.lower()
-                    if coop:
-                        g.genre = g.genre+"; co-op"
-                    print(g.genre)
-        self.save()
-
-    def cleanup_giantbomb(self):
-        for g in self.games.games.values():
-            gdbg = giantbomb.find_game(g.name)
-            if gdbg:
-                data = thegamesdb.get_game_info(gdbg["id"])
-                if data and "Game" in data:
-                    print (data["Game"])
-                    genre = data["Game"]["Genres"].get("genre","")
-                    coop = data["Game"]["Co-op"]
-                    if type(genre) not in [str,bytes]:
-                        genre = [x for x in genre if type(x) in [str,bytes]][0]
-                    print(genre,coop)
-                    g.genre = genre.lower()
-                    if coop:
-                        g.genre = g.genre+"; co-op"
-                    print(g.genre)
-        self.save()
+        #self.thegamesdb.update_game_data(game)
+        self.giantbomb.update_game_data(game)
         
     def view_log(self):
         #self.log_dock = QDockWidget("Log Window",self)

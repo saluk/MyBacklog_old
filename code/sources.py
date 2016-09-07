@@ -159,7 +159,7 @@ class OfflineSource(Source):
     def is_installed(self,game,source):
         return True
 
-class TheGamesDBSource(OfflineSource):
+class LinkSource(OfflineSource):
     source_args = [("id","s")]
     def is_installed(self,game,source):
         return False
@@ -209,7 +209,10 @@ default_definitions = {
         "class":"EmulatorSource"
     },
     "thegamesdb":{
-        "class":"TheGamesDBSource"
+        "class":"LinkSource"
+    },
+    "giantbomb":{
+        "class":"LinkSource"
     }
 }
 all = {}
