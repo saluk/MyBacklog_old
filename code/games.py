@@ -40,7 +40,7 @@ def source_id(s):
 
 class Game:
     args = [("name","s"),("playtime","f"),("lastplayed","d"),("genre","s"),("icon_url","s"),("logo_url","s"),
-    ("notes","s"),("priority","p"),("website","s"),("import_date","d"),("finish_date","d")]
+    ("notes","s"),("priority","p"),("priority_date","d"),("website","s"),("import_date","d"),("finish_date","d")]
     def __init__(self,**kwargs):
         dontsavekeys = set(dir(self))
         self.gameid = BAD_GAMEID
@@ -59,6 +59,7 @@ class Game:
         self.images = []
         self.notes = ""
         self.priority = 0
+        self.priority_date = ""
 
         self.website = ""
         self.savekeys = set(dir(self)) - dontsavekeys
@@ -536,6 +537,9 @@ class Games:
             cur_game = self.find_matching_game(game)
         game.gameid = self.update_id(oldid,game.gameid)
         if cur_game:
+            if game.priority != cur_game.priority:
+                print("set priority date to",now())
+                game.priority_date = now()
             diff = changed(cur_game.dict(),game.dict())
             if diff:
                 print("UPDATE CHANGED GAME")
@@ -585,6 +589,9 @@ class Games:
             cur_game.lastplayed = game.lastplayed
         if game.sources != cur_game.sources:
             cur_game.sources = game.sources
+        if cur_game.priority_date and stot(game.lastplayed) > stot(game.priority_date):
+            cur_game.priority = -1
+            print("Set Game Priority")
         genres = []
         for g in [game,cur_game]:
             for x in g.genre.split(";"):
@@ -606,7 +613,11 @@ class Games:
     def list(self,sort="priority"):
         v = self.games.values()
         if sort=="priority":
-            return sorted(v,key=lambda g:(g.finished,g.priority,-time.mktime(stot(g.lastplayed)),g.name))
+            def k(g):
+                if g.finished:
+                    return (g.finished,0,-time.mktime(stot(g.lastplayed)),g.name)
+                return (g.finished,g.priority,-time.mktime(stot(g.lastplayed)),g.name)
+            return sorted(v,key=k)
         elif sort=="added":
             def key(game):
                 if game.import_date:

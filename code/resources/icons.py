@@ -3,6 +3,7 @@ import requests
 
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QIcon,QPixmap
+import pygame
 from code.resources import extract_icons
 
 headers = {
@@ -27,14 +28,19 @@ def path_to_icon(game,filecache_root,size="icon"):
     else:
         return "icons/blank.png",None,""
 
-def icon_in_cache(game,cache,filecache_root,size="icon"):
+def icon_in_cache(game,cache,filecache_root,size="icon",imode="qt"):
     fpath,mode,url = path_to_icon(game,filecache_root,size)
     if fpath in cache:
-        return QIcon(cache[fpath])
+        if imode=="qt":
+            return QIcon(cache[fpath])
+        return cache[fpath]
     return None
 
-def icon_for_game(game,size,icon_cache,filecache_root,category="icon"):
+def icon_for_game(game,size,icon_cache,filecache_root,category="icon",imode="qt"):
     fpath,mode,url = path_to_icon(game,filecache_root,category)
+    cur = icon_in_cache(game,icon_cache,filecache_root,category,imode)
+    if cur:
+        return cur
     if mode == "download":
         if not os.path.exists(fpath):
             print("Download icon:",url)
@@ -57,15 +63,21 @@ def icon_for_game(game,size,icon_cache,filecache_root,category="icon"):
             if p:
                 shutil.copy(p,fpath)
     if os.path.exists(fpath) and not fpath+"_%d"%size in icon_cache:
-        mode = ""
-        with open(fpath.replace("/",os.path.sep),"rb") as f:
-            head = str(f.read(20))
-            if "JFIF" in head:
-                mode = "JPG"
-        qp = QPixmap(fpath.replace("/",os.path.sep),mode)
-        if not qp.isNull():
-            if category == "icon": mode = Qt.IgnoreAspectRatio
-            if category == "logo": mode = Qt.KeepAspectRatio
-            qp = qp.scaled(size,size,mode,Qt.SmoothTransformation)
-        icon_cache[fpath] = qp
-    return icon_in_cache(game,icon_cache,filecache_root,category)
+        if imode=="qt":
+            mode = ""
+            with open(fpath.replace("/",os.path.sep),"rb") as f:
+                head = str(f.read(20))
+                if "JFIF" in head:
+                    mode = "JPG"
+            qp = QPixmap(fpath.replace("/",os.path.sep),mode)
+            if not qp.isNull():
+                if category == "icon": mode = Qt.IgnoreAspectRatio
+                if category == "logo": mode = Qt.KeepAspectRatio
+                qp = qp.scaled(size,size,mode,Qt.SmoothTransformation)
+            icon_cache[fpath] = qp
+        else:
+            try:
+                icon_cache[fpath] = pygame.transform.scale(pygame.image.load(fpath),[size,size])
+            except:
+                pass
+    return icon_in_cache(game,icon_cache,filecache_root,category,imode)

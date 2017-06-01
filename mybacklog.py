@@ -1,4 +1,4 @@
-#!python3
+#!python3.4
 
 #STDLIB
 import json
@@ -142,9 +142,11 @@ class MyBacklog(QMainWindow):
     def __init__(self):
         #super(MainWindow,self).__init__(None,Qt.WindowStaysOnTopHint)
         super(MyBacklog,self).__init__(None)
+        #self.showFullScreen()
         self.setWindowTitle("MyBacklog %s"%VERSION)
         self.setWindowIcon(QIcon(QPixmap("icons/main.png")))
         self.main_form = GamelistForm(self)
+        
 
         menus = {}
         for folder in ["file","edit","import","view"]:
@@ -410,7 +412,7 @@ class GamelistForm(QWidget):
             try:
                 saved_accounts = json.loads(self.crypter.read(open(root["accounts"]).read(),"{}"))
             except:
-                raise
+                #raise
                 saved_accounts = {}
             for k in saved_accounts:
                 account[k].update(saved_accounts[k])
@@ -613,6 +615,7 @@ class GamelistForm(QWidget):
         lastplayed.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEnabled)
         lastplayed.setBackground(bg)
         lastplayed.setText(game.last_played_nice)
+        #lastplayed.setText(game.priority_date)
         lastplayed.setData(DATA_SORT,time.mktime(games.stot(game.lastplayed)))
         list_widget.setItem(row,5,lastplayed)
 
@@ -1003,6 +1006,8 @@ class GamelistForm(QWidget):
 def run():
     import sys
     import PyQt5.Qt
+    print(PyQt5.Qt.PYQT_VERSION_STR)
+    print(sys.version)
 
     from PyQt5 import QtCore
     if os.path.exists("PyQt5/plugins"):
@@ -1010,6 +1015,7 @@ def run():
 
     print("INITIALIZE")
     app = PyQt5.Qt.QApplication(sys.argv)
+    app.setAttribute(Qt.AA_EnableHighDpiScaling)
 
     app.setStyle('Fusion')
     palette = QPalette()
