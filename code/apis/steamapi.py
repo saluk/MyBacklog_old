@@ -57,7 +57,7 @@ def login_for_chat():
     print (encodedpassword)
     b64pass = base64.b64encode(encodedpassword)
     print(b64pass)
-    
+
     #Login
     data = {"password":b64pass,"username":"saluk64007",
         "captchagid":"","captcha_text":"",
@@ -89,7 +89,7 @@ def login_for_chat():
     f.write(repr(requests.utils.dict_from_cookiejar(cookies)))
     f.close()
     return sess
-    
+
 def set_username(sess,name):
     r = sess.get("http://steamcommunity.com/profiles/76561197999655940/edit")
     sessid = re.findall("<input.*?sessionID.*?/>",r.text)[0]
@@ -116,7 +116,7 @@ def set_username(sess,name):
     f = open("steampost.html","w",encoding="utf8")
     f.write(r.text)
     f.close()
-    
+
 #~ sess = login_for_chat()
 #~ set_username(sess,"saluk")
 #~ crash
@@ -135,10 +135,10 @@ def get_user_id(custom_name):
         return user_id
     else:
         return custom_name
-        
+
 def scrape_app_page(appid,cache_root="",logger=None):
     url = "http://store.steampowered.com/app/"+str(appid)
-    
+
     if not os.path.exists(cache_root+"/cache/steamapi"):
         os.mkdir(cache_root+"/cache/steamapi")
     cache_url = cache_root+"/cache/steamapi/"+url.replace(":","").replace("/","").replace("?","QU").replace("&","AN")
@@ -174,7 +174,7 @@ def scrape_app_page(appid,cache_root="",logger=None):
                 vr = [x.text.strip().replace(" ","_") for x in block.find_all("a") if x.text.strip()]
 
         dat = {"tags":tags,"categories":categories,"vr":vr}
-        
+
         f = open(cache_url,"w")
         f.write(repr(dat))
         f.close()
@@ -182,7 +182,6 @@ def scrape_app_page(appid,cache_root="",logger=None):
         print("Caching data for:"+appid)
         time.sleep(0.1)
     else:
-        print("Loading data for",appid)
         f = open(cache_url)
         dat = eval(f.read())
         f.close()
@@ -196,7 +195,7 @@ def get_games(apikey=MY_API_KEY,userid=MY_STEAM_ID):
     except ValueError:
         raise ApiError()
     return data
-    
+
 def match_finished_games(games,finished):
     matched = []
     for f in finished:
@@ -211,12 +210,12 @@ def match_finished_games(games,finished):
         matches.sort(key=lambda match:len(match["name"]))
         matched.append(matches[0])
     return matched
-    
+
 def import_steam(apikey=MY_API_KEY,userid=MY_STEAM_ID,cache_root=".",user_data=None,logger=None):
-    #apps = load_userdata()["UserLocalConfigStore"]["Software"]["Valve"]["Steam"]["apps"]
+    #apps = load_userdata()["UserLocalConfigStore"]["Software"]["valve"]["Steam"]["apps"]
     apps = {}
     if user_data:
-        apps = user_data["UserLocalConfigStore"]["Software"]["Valve"]["Steam"]["apps"]
+        apps = user_data["UserLocalConfigStore"]["Software"]["valve"]["Steam"]["apps"]
     db = {}
     is_finished = []#match_finished_games(games,finished)
     for g in get_games(apikey,userid):
@@ -280,7 +279,7 @@ def import_steam(apikey=MY_API_KEY,userid=MY_STEAM_ID,cache_root=".",user_data=N
                 i+=1
 
     return db
-    
+
 def load_userdata(path=""):
     if not path:
         return {}
@@ -296,7 +295,7 @@ def load_userdata(path=""):
     load_userdata.cache["_time_"] = time.time()
     return data
 load_userdata.cache = {}
-    
+
 def create_nonsteam_shortcuts(games,shortcut_folder):
     """Given a list of games create shortcuts in steam for them"""
     from code.apis import steam_shortcut_manager as ssm
@@ -385,7 +384,7 @@ class Steam:
             if user_id != self.user_id:
                 self.user_id = user_id
         self.update_local_games(games)
-        return games.values()
+        return list(games.values())
     def update_local_games(self,db):
         from code.apis import vdf
         paths = self.get_steamapp_paths()

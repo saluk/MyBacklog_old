@@ -624,10 +624,12 @@ class GamelistForm(QWidget):
         self.gamelist = []
         for g in self.games.list(self.sort):
             self.gamelist.append({"game":g,"widget":None})
+        print(len(self.gamelist))
         self.games_list_widget.sortItems(-1)
         self.games_list_widget.setSortingEnabled(False)
         self.games_list_widget.setSelectionMode(QAbstractItemView.SingleSelection)
-        self.games_list_widget.clear()
+        #self.games_list_widget.clear()
+        self.games_list_widget.setRowCount(0)
         self.games_list_widget.setIconSize(QSize(self.icon_size,self.icon_size))
         self.games_list_widget.horizontalHeader().setVisible(True)
         self.games_list_widget.verticalHeader().setVisible(False)
