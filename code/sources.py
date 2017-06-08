@@ -137,7 +137,23 @@ class GogSource(ExeSource):
     download_link = download_link_galaxy
     def generate_website(self,game,source):
         return "https://www.gog.com/game/%s"%source["id"]
-
+    def run_game(self,game,source,cache_root):
+        if "id2" not in source:
+            return super(GogSource,self).run_game(game,source,cache_root)
+        webbrowser.open("goggalaxy://openGameView/%s"%source["id2"])
+    def is_installed(self,game,source):
+        if game.get_path():
+            return True
+        if "id2" not in source:
+            return False
+        import winreg
+        with winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, "SOFTWARE\\WOW6432Node\\GOG.com\\Games") as key:
+            gog_games = [winreg.EnumKey(key,i) for i in range(winreg.QueryInfoKey(key)[0])]
+        for gog_game in gog_games:
+            gamereg = winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, "SOFTWARE\\WOW6432Node\\GOG.com\\Games\\"+gog_game)
+            if winreg.QueryValueEx(gamereg,"gameID")[0] != source["id2"]:
+                continue
+            return True
 
 class EmulatorSource(ExeSource):
     source_args = []
