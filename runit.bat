@@ -1,3 +1,3 @@
 CHCP 65001
-python mybacklog.py
+python mybacklog.py -platform windows:dpiawareness=0
 pause

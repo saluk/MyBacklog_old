@@ -42,7 +42,7 @@ class ExeSource(Source):
         Defaults to install_path as that is pretty common"""
         return [("install_path","s")]+self.extra_args
     def is_installed(self,game,source):
-        return game.get_path()
+        return os.path.exists(game.get_path())
     def uninstall(self,game,source):
         if game.install_folder:
             subprocess.Popen(["explorer.exe",game.install_folder], cwd=game.install_folder, stdout=sys.stdout, stderr=sys.stderr)

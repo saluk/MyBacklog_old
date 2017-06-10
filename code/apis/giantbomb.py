@@ -3,6 +3,8 @@ import os
 import json
 import difflib
 import requests
+import time
+from code.resources import icons
 import xml.etree.cElementTree as etree
 
 apikey = "a4232ea9aea488fe5fe90f3a7c89c33439d569e2"
@@ -16,12 +18,14 @@ headers = {
 }
 
 def get_game_info(id,cache_root="."):
+    time.sleep(0.5)
     r = requests.get(gameep%{"game_id":id},params={"format":"json","api_key":apikey},headers=headers)
     json = r.json()
     return json
 
 def find_game(name,cache_root="."):
     print("looking for game",name)
+    time.sleep(0.5)
     r = requests.get(gamesearchep,params={"query":'"'+name+'"',"api_key":apikey,"resources":"game","format":"json"},headers=headers)
     result = r.json()
     #print(result)
@@ -63,7 +67,7 @@ class giantbomb:
             return
         #print(info)
         game.sources[:] = sources
-        game.sources.append({"source":"giantbomb","id":game_in_db["id"]})
+        game.sources.append({"source":"giantbomb","id":game_in_db["id"],"name":info["results"].get("name","")})
         print(game.images)
         if info["results"].get("image",None):
             for key in ["icon_url"]+list(info["results"]["image"].keys()):
@@ -74,6 +78,9 @@ class giantbomb:
                 if "icon" not in [img["size"] for img in game.images]:
                     print("adding image",url)
                     game.images.append({"size":"icon","url":url})
+                    #cache image for later
+                    time.sleep(0.5)
+                    icons.icon_for_game(game,32,{},self.app.config["root"])
                 else:
                     print("has icon")
         else:
