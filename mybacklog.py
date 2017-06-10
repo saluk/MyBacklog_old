@@ -138,8 +138,11 @@ class Browser(QWidget):
         self.deleteLater()
 
 
+
 class MyBacklog(QMainWindow):
-    def __init__(self):
+    def __init__(self,app):
+        self.app = app
+        self.set_styles()
         #super(MainWindow,self).__init__(None,Qt.WindowStaysOnTopHint)
         super(MyBacklog,self).__init__(None)
         #self.showFullScreen()
@@ -169,6 +172,23 @@ class MyBacklog(QMainWindow):
         self.trayicon = QSystemTrayIcon(QIcon(QPixmap("icons/main.png")))
         self.trayicon.show()
         self.trayicon.activated.connect(self.click_tray_icon)
+    def set_styles(self):
+        self.app.setStyle("Fusion")
+        palette = QPalette()
+        palette.setColor(QPalette.Window, QColor(53,53,53))
+        palette.setColor(QPalette.WindowText, Qt.white)
+        palette.setColor(QPalette.Base, QColor(15,15,15))
+        palette.setColor(QPalette.AlternateBase, QColor(53,53,53))
+        palette.setColor(QPalette.ToolTipBase, Qt.white)
+        palette.setColor(QPalette.ToolTipText, Qt.white)
+        palette.setColor(QPalette.Text, Qt.white)
+        palette.setColor(QPalette.Button, QColor(53,53,53))
+        palette.setColor(QPalette.ButtonText, Qt.white)
+        palette.setColor(QPalette.BrightText, Qt.red)
+        
+        palette.setColor(QPalette.Highlight, QColor(142,45,197).lighter())
+        palette.setColor(QPalette.HighlightedText, Qt.black)
+        self.app.setPalette(palette)
     def reset_games(self):
         #self.main_form.deleteLater()
         #self.main_form = GamelistForm(self)
@@ -822,6 +842,7 @@ class GamelistForm(QWidget):
         self.parent().setWindowIcon(QIcon(QPixmap("icons/main.png")))
         self.parent().trayicon.setIcon(QIcon(QPixmap("icons/main.png")))
         self.parent().setWindowTitle("MyBacklog %s"%VERSION)
+        self.parent().set_styles()
         self.running = None
         self.timer.stop()
         #stoprequest()
@@ -1018,26 +1039,9 @@ def run():
     print("INITIALIZE")
     app = PyQt5.Qt.QApplication(sys.argv)
     app.setAttribute(Qt.AA_EnableHighDpiScaling)
-
-    app.setStyle('Fusion')
-    palette = QPalette()
-    palette.setColor(QPalette.Window, QColor(53,53,53))
-    palette.setColor(QPalette.WindowText, Qt.white)
-    palette.setColor(QPalette.Base, QColor(15,15,15))
-    palette.setColor(QPalette.AlternateBase, QColor(53,53,53))
-    palette.setColor(QPalette.ToolTipBase, Qt.white)
-    palette.setColor(QPalette.ToolTipText, Qt.white)
-    palette.setColor(QPalette.Text, Qt.white)
-    palette.setColor(QPalette.Button, QColor(53,53,53))
-    palette.setColor(QPalette.ButtonText, Qt.white)
-    palette.setColor(QPalette.BrightText, Qt.red)
-    
-    palette.setColor(QPalette.Highlight, QColor(142,45,197).lighter())
-    palette.setColor(QPalette.HighlightedText, Qt.black)
-    app.setPalette(palette)
-
     print("Build mybacklog")
-    window = MyBacklog()
+    window = MyBacklog(app)
+    window.set_styles()
     print("Show mybacklog")
     window.show()
     window.reset_games()

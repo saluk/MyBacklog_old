@@ -287,7 +287,7 @@ def load_userdata(path=""):
     if path in load_userdata.cache and (time.time()-load_userdata.cache["_time_"])<10:
         return load_userdata.cache[path]
 
-    f = open(systems.fullpath(path))
+    f = open(systems.fullpath(path),encoding="utf8")
     data = vdf.parse(f)
     f.close()
 
