@@ -14,13 +14,25 @@ class EmulatorForm(QWidget):
     def __init__(self, app, message="", highlight_fields=[], dock=False):
         super(EmulatorForm, self).__init__()
         self.app = app
+        
+        layout = QGridLayout()
+        scrollwidget = QWidget()
+        layout.setContentsMargins(1,1,1,1)
+        scrollwidget.setLayout(layout)
+        scroll = QScrollArea()
+        scroll.setWidget(scrollwidget)
+        
+        baselayout = QGridLayout()
+        self.setLayout(baselayout)
 
         #Layout
-        layout = QGridLayout()
         if not message:
-            layout.addWidget(QLabel("Edit Emulators"))
+            baselayout.addWidget(QLabel("Edit Emulators"))
         else:
-            layout.addWidget(QLabel(message))
+            baselayout.addWidget(QLabel(message))
+            
+        baselayout.addWidget(scroll)
+        
 
         def highlight(w):
             w.setFont(QFont("Times",10,QFont.Bold,True))
@@ -68,11 +80,11 @@ class EmulatorForm(QWidget):
         #Save button
         if not dock:
             button = QPushButton("Save")
-            layout.addWidget(button,i,0)
+            baselayout.addWidget(button,i,0)
             button.clicked.connect(self.save_close)
 
         print(self.fields)
-        self.setLayout(layout)
+        scrollwidget.adjustSize()
 
     def set_exepath(self,w):
         filename = QFileDialog.getOpenFileName(self,"Open Executable",w.text(),"Executable (*)")[0]

@@ -21,11 +21,18 @@ class SourcesForm(QWidget):
         layout = QGridLayout()
         self.layout = layout
         if not message:
-            superlayout.addWidget(QLabel("Edit Sources"),0,0)
+            superlayout.addWidget(QLabel(message or "Edit Sources"),0,0)
         else:
             superlayout.addWidget(QLabel(message),0,0)
             
-        superlayout.addLayout(layout,1,0)
+        
+        self.layout.setContentsMargins(1,1,1,1)
+        scrollwidget = QWidget()
+        scrollwidget.setLayout(self.layout)
+        scroll = QScrollArea()
+        scroll.setWidget(scrollwidget)
+        
+        superlayout.addWidget(scroll,1,0)
 
         def highlight(w):
             w.setFont(QFont("Times",10,QFont.Bold,True))
@@ -49,6 +56,7 @@ class SourcesForm(QWidget):
 
         print(self.fields)
         self.setLayout(superlayout)
+        scrollwidget.adjustSize()
         
     def add_source(self,name="",classname="",editable=True):
         field = name
