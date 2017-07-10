@@ -189,35 +189,22 @@ def scrape_app_page(appid,cache_root="",logger=None):
 
 def get_games(apikey=MY_API_KEY,userid=MY_STEAM_ID):
     url = STEAM_GAMES_URL
-    r = requests.get(url%{"apikey":apikey,"steamid":userid})
+    access_url = url%{"apikey":apikey,"steamid":userid}
+    print("ACCESS:",access_url)
+    r = requests.get(access_url)
     try:
         data = r.json()["response"]["games"]
     except ValueError:
         raise ApiError()
     return data
 
-def match_finished_games(games,finished):
-    matched = []
-    for f in finished:
-        matches = []
-        for g in games:
-            if g["name"].lower().startswith(f.lower()):
-                matches.append(g)
-        if not matches:
-            print("no match:",f)
-            crash
-        #Choose match with shortest name (closest match)
-        matches.sort(key=lambda match:len(match["name"]))
-        matched.append(matches[0])
-    return matched
-
 def import_steam(apikey=MY_API_KEY,userid=MY_STEAM_ID,cache_root=".",user_data=None,logger=None):
     #apps = load_userdata()["UserLocalConfigStore"]["Software"]["valve"]["Steam"]["apps"]
     apps = {}
     if user_data:
-        apps = user_data["UserLocalConfigStore"]["Software"]["valve"]["Steam"]["apps"]
+        apps = user_data["userlocalconfigstore"]["software"]["valve"]["steam"]["apps"]
     db = {}
-    is_finished = []#match_finished_games(games,finished)
+    is_finished = []
     for g in get_games(apikey,userid):
         set_finished = 0
         if g in is_finished:
@@ -231,8 +218,8 @@ def import_steam(apikey=MY_API_KEY,userid=MY_STEAM_ID,cache_root=".",user_data=N
         lastplayed = None
         if str(g["appid"]) in apps:
             app = apps[str(g["appid"])]
-            if "LastPlayed" in app:
-                lastplayed=games.sec_to_ts(int(app["LastPlayed"]))
+            if "lastplayed" in app:
+                lastplayed=games.sec_to_ts(int(app["lastplayed"]))
         #print(g)
         game = games.Game(name=g["name"],
                             minutes=g["playtime_forever"],
@@ -334,7 +321,7 @@ def find_steam_files():
             f = open(lc)
             dat = vdf.parse(f)
             f.close()
-            username = dat["UserLocalConfigStore"]["friends"][user_id]["name"]
+            username = dat["userlocalconfigStore"]["friends"][user_id]["name"]
             users[username] = {"local":lc,"shortcut":p3+"/shortcuts.vdf","account_id":int(user_id)+76561197960265728}
     return users
 
@@ -368,9 +355,9 @@ class Steam:
             print(libraryfolders)
             i = 1
             while 1:
-                if str(i) not in libraryfolders["LibraryFolders"].keys():
+                if str(i) not in libraryfolders["libraryfolders"].keys():
                     break
-                paths.append(libraryfolders["LibraryFolders"][str(i)]+"/steamapps")
+                paths.append(libraryfolders["libraryfolders"][str(i)]+"/steamapps")
                 i+=1
         print("found steam paths:",paths)
         return paths
@@ -396,7 +383,7 @@ class Steam:
                     vdf_data = vdf.parse(f)
                     f.close()
                     appid = get_vdf_url(vdf_data,"AppState","appID")
-                    name = vdf_data["AppState"].get("name","")
+                    name = vdf_data["appstate"].get("name","")
                     if not name:
                         name = vdf_data["AppState"].get("UserConfig",{}).get("name","")
                     if name and appid not in db:

@@ -72,7 +72,7 @@ class keyvalues:
                     raise Exception("Unterminated string at line {}".format(line))
                 if treeType[len(treeType) - 1] == TYPE_BLOCK:
                     if keys[len(keys) - 1] == None:
-                        keys[len(keys) - 1] = resultstring
+                        keys[len(keys) - 1] = resultstring.lower()
                     else:
                         tree[len(tree) - 1][keys[len(keys) - 1]] = resultstring
                         keys[len(keys) - 1] = None
