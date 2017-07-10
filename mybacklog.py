@@ -1,4 +1,4 @@
-#!python3.4
+#!python3.4.4
 
 #STDLIB
 import json
@@ -548,7 +548,7 @@ class GamelistForm(QWidget):
                     pass
 
     def set_icon(self,widget,game,size):
-        cached = icons.icon_in_cache(game,self.gicons,self.config["root"])
+        cached = icons.icon_in_cache(game,self.icon_size,self.gicons,self.config["root"])
         if cached:
             widget.setIcon(cached)
             return
@@ -1038,7 +1038,7 @@ def run():
 
     print("INITIALIZE")
     app = PyQt5.Qt.QApplication(sys.argv)
-    app.setAttribute(Qt.AA_EnableHighDpiScaling)
+    #app.setAttribute(Qt.AA_EnableHighDpiScaling)
     print("Build mybacklog")
     window = MyBacklog(app)
     window.set_styles()

@@ -11,11 +11,11 @@ headers = {
     'From': 'saluk64007@gmail.com'
 }
 
-def path_to_icon(game,filecache_root,size="icon"):
+def path_to_icon(game,filecache_root,category="icon"):
     url = ""
-    if size=="icon": 
+    if category=="icon": 
         url = game.icon_url
-    if size=="logo": 
+    if category=="logo": 
         url = game.logo_url
     if url:
         return filecache_root+"/cache/icons/"+url.replace("http","").replace("https","").replace(":","").replace("/",""),"download",url
@@ -28,19 +28,20 @@ def path_to_icon(game,filecache_root,size="icon"):
     else:
         return "icons/blank.png",None,""
 
-def icon_in_cache(game,cache,filecache_root,size="icon",imode="qt"):
-    fpath,mode,url = path_to_icon(game,filecache_root,size)
-    if fpath in cache:
+def icon_in_cache(game,size,cache,filecache_root,category="icon",imode="qt"):
+    fpath,mode,url = path_to_icon(game,filecache_root,category)
+    if (fpath,size) in cache:
         if imode=="qt":
-            return QIcon(cache[fpath])
-        return cache[fpath]
+            return QIcon(cache[(fpath,size)])
+        return cache[(fpath,size)]
     return None
 
 def icon_for_game(game,size,icon_cache,filecache_root,category="icon",imode="qt"):
-    fpath,mode,url = path_to_icon(game,filecache_root,category)
-    cur = icon_in_cache(game,icon_cache,filecache_root,category,imode)
+    cur = icon_in_cache(game,size,icon_cache,filecache_root,category,imode)
     if cur:
         return cur
+        
+    fpath,mode,url = path_to_icon(game,filecache_root,category)
     if mode == "download":
         if not os.path.exists(fpath):
             print("Download icon:",url)
@@ -62,7 +63,7 @@ def icon_for_game(game,size,icon_cache,filecache_root,category="icon",imode="qt"
             import shutil
             if p:
                 shutil.copy(p,fpath)
-    if os.path.exists(fpath) and not fpath+"_%d"%size in icon_cache:
+    if os.path.exists(fpath) and not (fpath,size) in icon_cache:
         if imode=="qt":
             mode = ""
             with open(fpath.replace("/",os.path.sep),"rb") as f:
@@ -74,10 +75,10 @@ def icon_for_game(game,size,icon_cache,filecache_root,category="icon",imode="qt"
                 if category == "icon": mode = Qt.IgnoreAspectRatio
                 if category == "logo": mode = Qt.KeepAspectRatio
                 qp = qp.scaled(size,size,mode,Qt.SmoothTransformation)
-            icon_cache[fpath] = qp
+            icon_cache[(fpath,size)] = qp
         else:
             try:
-                icon_cache[fpath] = pygame.transform.scale(pygame.image.load(fpath),[size,size])
+                icon_cache[(fpath,size)] = pygame.transform.scale(pygame.image.load(fpath),[size,size])
             except:
                 pass
-    return icon_in_cache(game,icon_cache,filecache_root,category,imode)
+    return icon_in_cache(game,size,icon_cache,filecache_root,category,imode)

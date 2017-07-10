@@ -349,6 +349,7 @@ class GameOptions(QWidget):
         icon = icons.icon_for_game(game,180,self.app.gicons,app.config["root"],"logo")
         if icon:
             iconw = QLabel()
+            #iconw.setScaledContents(True)
             iconw.setPixmap(icon.pixmap(180,180))
             label_section.addWidget(iconw,0,0)
 
