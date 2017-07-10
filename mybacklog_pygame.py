@@ -7,7 +7,7 @@ import json
 import time
 
 from code.apis import giantbomb, steamapi, gogapi, humbleapi, thegamesdb
-from code.interface import account, gameoptions, base_paths, logwindow, sourcesform, emulatorform
+#from code.interface import account, gameoptions, base_paths, logwindow, sourcesform, emulatorform
 from code import games,syslog
 from code.resources import icons,enc
 

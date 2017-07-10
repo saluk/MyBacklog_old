@@ -2,8 +2,8 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "MyBacklog"
-#define MyAppVersion "0.26"
-#define MyAppExeName "runit.exe"
+#define MyAppVersion "0.6"
+#define MyAppExeName "MyBacklog.exe"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
@@ -16,7 +16,7 @@ AppVersion={#MyAppVersion}
 DefaultDirName={pf}\{#MyAppName}
 DefaultGroupName={#MyAppName}
 AllowNoIcons=yes
-OutputDir=C:\Users\saluk\Desktop\dev\mybacklog
+OutputDir=..\
 OutputBaseFilename=mybacklog_setup_{#MyAppVersion}
 Compression=lzma
 SolidCompression=yes
@@ -29,8 +29,8 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "C:\Users\saluk\Desktop\dev\mybacklog\build\exe.win32-3.3\runit.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\saluk\Desktop\dev\mybacklog\build\exe.win32-3.3\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "exe.win32-3.6\MyBacklog.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "exe.win32-3.6\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]

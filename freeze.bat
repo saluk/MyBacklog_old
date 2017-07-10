@@ -1,1 +1,2 @@
-c:\python33\python setup.py build
+c:\python36\python setup.py build
+pause

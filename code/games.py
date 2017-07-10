@@ -400,6 +400,16 @@ class Games:
         self.local = {}
         self.source_definitions = {}
         self.log = log or syslog.SysLog()
+    def find(self,search):
+        if search in self.games:
+            return self.games[search]
+        def match(search,game):
+            if search.lower().strip()==game.name.lower().strip():
+                return True
+        possible = [g for g in self.games.values() if match(search,g)]
+        print(possible)
+        if possible:
+            return possible[0]
     def load(self,game_db_file,local_db_file):
         self.load_games(game_db_file)
         self.load_local(local_db_file)

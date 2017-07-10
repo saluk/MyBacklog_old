@@ -813,10 +813,13 @@ class GamelistForm(QWidget):
 
     def run_game_track_only(self,game):
         return self.run_game(game,track_time=True,launch=False)
-
-    def run_game(self,game,track_time=True,launch=True):
+            
+    def run_game(self,game=None,track_time=True,launch=True,search=None):
         if getattr(self,"stop_playing_button",None):
             return
+        if(search):
+            game = self.games.find(search)
+        self.update_game_options(game)
         #self.setStyleSheet("background-color:red;")
         self.old_style = self.parent().styleSheet()
         if track_time:
@@ -861,6 +864,8 @@ class GamelistForm(QWidget):
         game.priority = -1
         self.save()
         self.update_gamelist_widget()
+        if getattr(self,"quit_on_stop",False):
+            self.window().really_close()
 
     def show_edit_widget(self,*args,**kwargs):
         self.egw = gameoptions.EditGame(*args,**kwargs)
@@ -1040,15 +1045,26 @@ def run():
         QtCore.QCoreApplication.addLibraryPath("PyQt5/plugins")
 
     print("INITIALIZE")
-    app = PyQt5.Qt.QApplication(sys.argv)
-    #app.setAttribute(Qt.AA_EnableHighDpiScaling)
+    awareness = ["-platform","windows:dpiawareness=0"]
+    #awareness = []
+    app = PyQt5.Qt.QApplication(sys.argv+awareness)
+    print(QCoreApplication.applicationDirPath())
+    app.setAttribute(Qt.AA_EnableHighDpiScaling)
     print("Build mybacklog")
     window = MyBacklog(app)
     window.set_styles()
     print("Show mybacklog")
     window.show()
     window.reset_games()
- 
+    
+    print(sys.argv)
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-p","--play")
+    args = parser.parse_args()
+    if args.play:
+        window.main_form.quit_on_stop = True
+        window.main_form.run_game(search=args.play)
     sys.exit(app.exec_())
 
 if __name__ == '__main__':

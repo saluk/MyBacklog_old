@@ -1,9 +1,17 @@
 import os
 import requests
 
-from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QIcon,QPixmap
-import pygame
+try:
+    from PyQt5.QtCore import Qt
+    from PyQt5.QtGui import QIcon,QPixmap
+except:
+    pass
+    
+try:
+    import pygame
+except:
+    pass
+
 from code.resources import extract_icons
 
 headers = {
