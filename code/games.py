@@ -351,6 +351,10 @@ class Game:
     def update_dynamic_fields(self):
         if not self.website and self.sources and get_source(self.sources[0]["source"]).generate_website:
             self.website = get_source(self.sources[0]["source"]).generate_website(self,self.sources[0])
+    def get_source(self,source_type):
+        for s in self.sources:
+            if s["source"]==source_type:
+                return s
 
 test1 = Game(name="blah")
 test2 = test1.copy()

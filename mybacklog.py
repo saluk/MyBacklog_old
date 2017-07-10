@@ -704,6 +704,9 @@ class GamelistForm(QWidget):
         self.import_steam()
         self.import_gog()
         self.import_humble()
+        
+    def import_export_steam(self):
+        self.steam.export()
 
     def import_steam(self):
         self.view_log()

@@ -6,9 +6,10 @@ from concurrent import futures
 import requests
 from bs4 import BeautifulSoup
 
+from code.apis import vdf
+
 try:
     from .. import games
-    from code.apis import vdf
     from code import systems
 except:
     pass
@@ -275,7 +276,7 @@ def load_userdata(path=""):
         return load_userdata.cache[path]
 
     f = open(systems.fullpath(path),encoding="utf8")
-    data = vdf.parse(f)
+    data = vdf.parse(f,mapper=vdf.VDFDict)
     f.close()
 
     load_userdata.cache[path] = data
@@ -319,7 +320,7 @@ def find_steam_files():
             if not os.path.exists(p3):
                 continue
             f = open(lc)
-            dat = vdf.parse(f)
+            dat = vdf.parse(f,mapper=vdf.VDFDict)
             f.close()
             username = dat["userlocalconfigStore"]["friends"][user_id]["name"]
             users[username] = {"local":lc,"shortcut":p3+"/shortcuts.vdf","account_id":int(user_id)+76561197960265728}
@@ -350,7 +351,7 @@ class Steam:
         paths = [path]
         if os.path.exists(path+"/libraryfolders.vdf"):
             f = open(path+"/libraryfolders.vdf")
-            libraryfolders = vdf.parse(f)
+            libraryfolders = vdf.parse(f,mapper=vdf.VDFDict)
             f.close()
             print(libraryfolders)
             i = 1
@@ -373,19 +374,18 @@ class Steam:
         self.update_local_games(games)
         return list(games.values())
     def update_local_games(self,db):
-        from code.apis import vdf
         paths = self.get_steamapp_paths()
         for path in paths:
             for p in os.listdir(path):
                 if "appmanifest" in p:
                     print("Scanning",os.path.join(path,p))
                     f = open(os.path.join(path,p))
-                    vdf_data = vdf.parse(f)
+                    vdf_data = vdf.parse(f,mapper=vdf.VDFDict)
                     f.close()
                     appid = get_vdf_url(vdf_data,"AppState","appID")
                     name = vdf_data["appstate"].get("name","")
                     if not name:
-                        name = vdf_data["AppState"].get("UserConfig",{}).get("name","")
+                        name = vdf_data["appstate"].get("userconfig",{}).get("name","")
                     if name and appid not in db:
                         name = name.encode("latin-1","ignore").decode("utf8","ignore")
                         db[appid] = games.Game(name=name,sources=[{"source":"steam","id":str(appid)}],import_date=games.now())
@@ -415,8 +415,66 @@ class Steam:
 
         if str(steamid) in self.installed_apps:
             return True
+    def export(self):
+        path = os.path.split(self.userfile)[0]
+        path = os.path.split(path)[0]
+        path = os.path.join(path,"7")
+        path = os.path.join(path,"remote")
+        path = os.path.join(path,"sharedconfig.vdf")
+        with open(path) as f:
+            vdict = vdf.parse(f,mapper=vdf.VDFDict,key_lower=False)
+        for game in self.app.games.list():
+            if game.get_source("steam"):
+                export_game(game,vdict)
+        with open(path,"w") as f:
+            vdf.dump(vdict,f,pretty=True)
 
 def import_all():
     import json
     for game in import_steam():
         print (game.name,game.icon_url)
+
+def tolist(klist):
+    l = [(int(k),v) for (k,v) in klist.items()]
+    l.sort(key=lambda x: x[0])
+    return [kv[1] for kv in l]
+def toklist(list):
+    d = {}
+    i=0
+    for v in list:
+       d[str(i)] = v
+       i+=1
+    return vdf.VDFDict(d)
+def export_game(game,vdict):
+    """Exports attributes from mybacklog into steam"""
+    steamid = str(game.get_source("steam")["id"])
+    
+    set_category = []
+    clear_category = []
+    if game.finished:
+        set_category.append("finished")
+        clear_category.append("unfinished")
+    else:
+        clear_category.append("finished")
+        set_category.append("unfinished")
+        
+    def add_cat(c,d):
+        for k in d:
+            if d[k]==c:
+                return
+        k = int(k)+1
+        d[k]=c
+    
+    apps = vdict["UserRoamingConfigStore"]["Software"]["Valve"]["Steam"]["apps"]
+    if not steamid in apps:
+        apps[steamid] = vdf.VDFDict({"tags":{}})
+    if not "tags" in apps[steamid]:
+        apps[steamid]["tags"] = vdf.VDFDict({})
+    cats = tolist(apps[steamid]["tags"])
+    for cat in set_category:
+        if cat not in cats:
+            cats.append(cat)
+    for cat in clear_category:
+        if cat in cats:
+            cats.remove(cat)
+    apps[steamid][(0,"tags")] = toklist(cats)
