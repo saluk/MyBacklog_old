@@ -463,6 +463,7 @@ class GamelistForm(QWidget):
 
     def set_accounts(self,account):
         self.gog = gogapi.Gog(self,account["gog"]["user"],account["gog"]["pass"])
+        print("MAKING STEAM OBJECT. Root:",self.config["root"])
         self.steam = steamapi.Steam(self,account["steam"]["api"],account["steam"]["id"],account["steam"]["userfile"],account["steam"]["shortcut_folder"])
         self.humble = humbleapi.Humble(self,account["humble"]["username"],account["humble"]["password"])
         self.thegamesdb = thegamesdb.thegamesdb(self)
@@ -1043,13 +1044,20 @@ def run():
     from PyQt5 import QtCore
     if os.path.exists("PyQt5/plugins"):
         QtCore.QCoreApplication.addLibraryPath("PyQt5/plugins")
-
+    if os.path.exists("PyQt5/Qt/plugins"):
+        QtCore.QCoreApplication.addLibraryPath("PyQt5/Qt/plugins")
+    QtCore.QCoreApplication.addLibraryPath(os.path.join(os.path.dirname(PyQt5.__file__),"Qt", "plugins", "imageformats"))
+    
     print("INITIALIZE")
     awareness = ["-platform","windows:dpiawareness=0"]
     #awareness = []
     app = PyQt5.Qt.QApplication(sys.argv+awareness)
     print(QCoreApplication.applicationDirPath())
+    print(dir(QCoreApplication))
+    print(os.environ)
+    print(os.path.dirname(PyQt5.__file__))
     app.setAttribute(Qt.AA_EnableHighDpiScaling)
+    print(os.path.join(os.path.dirname(PyQt5.__file__),"Qt", "plugins"))
     print("Build mybacklog")
     window = MyBacklog(app)
     window.set_styles()

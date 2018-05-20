@@ -1,9 +1,12 @@
 import os
 import requests
 
+from PIL import Image
+from io import BytesIO
+
 try:
     from PyQt5.QtCore import Qt
-    from PyQt5.QtGui import QIcon,QPixmap
+    from PyQt5.QtGui import QIcon,QPixmap,QImageReader
 except:
     pass
     
@@ -23,16 +26,16 @@ def path_to_icon(game,filecache_root,category="icon"):
     url = ""
     if category=="icon": 
         url = game.icon_url
-    if category=="logo": 
+    elif category=="logo": 
         url = game.logo_url
     if url:
-        return filecache_root+"/cache/icons/"+url.replace("http","").replace("https","").replace(":","").replace("/",""),"download",url
+        return filecache_root+"/cache/icons/"+url.replace("http","").replace("https","").replace(":","").replace("/","")+".png","download",url
     elif game.get_exe():
         exe_path = game.get_exe()
-        return filecache_root+"/cache/icons/"+exe_path.replace("http","").replace("https","").replace(":","").replace("/","").replace("\\",""),"extract",exe_path
+        return filecache_root+"/cache/icons/"+exe_path.replace("http","").replace("https","").replace(":","").replace("/","").replace("\\","")+".png","extract",exe_path
     elif game.get_gba():
         gba_path = game.get_gba()
-        return filecache_root+"/cache/icons/"+gba_path.replace("http","").replace(":","").replace("/","").replace("\\",""),"gba",gba_path
+        return filecache_root+"/cache/icons/"+gba_path.replace("http","").replace(":","").replace("/","").replace("\\","")+".png","gba",gba_path
     else:
         return "icons/blank.png",None,""
 
@@ -50,39 +53,42 @@ def icon_for_game(game,size,icon_cache,filecache_root,category="icon",imode="qt"
         return cur
         
     fpath,mode,url = path_to_icon(game,filecache_root,category)
-    if mode == "download":
-        if not os.path.exists(fpath):
+    if not os.path.exists(fpath):
+        p = None #p == image bytes or a local file path that Image can .open()
+        if mode == "download":
             print("Download icon:",url)
             r = requests.get(url,headers=headers)
-            f = open(fpath,"wb")
-            f.write(r.content)
-            f.close()
-    elif mode == "extract":
-        if not os.path.exists(fpath):
+            p = BytesIO(r.content)
+        elif mode == "extract":
             print("Extract icon:",url.encode("ascii","backslashreplace"))
             p = extract_icons.get_icon(url,filecache_root)
-            import shutil
-            if p:
-                shutil.copy(p,fpath)
-    elif mode == "gba":
-        if not os.path.exists(fpath):
+        elif mode == "gba":
             print("Download gba icon:",url)
             p = extract_icons.get_gba(url)
-            import shutil
-            if p:
-                shutil.copy(p,fpath)
+        if p:
+            try:
+                pil_image = Image.open(p)
+            except OSError:
+                print("None image provided, no icon loaded:",url)
+            else:
+                pil_image.save(fpath)
     if os.path.exists(fpath) and not (fpath,size) in icon_cache:
-        if imode=="qt":
+        if imode=="path":
+            return fpath.replace("/",os.path.sep)
+        elif imode=="qt":
             mode = ""
             with open(fpath.replace("/",os.path.sep),"rb") as f:
                 head = str(f.read(20))
                 if "JFIF" in head:
                     mode = "JPG"
-            qp = QPixmap(fpath.replace("/",os.path.sep),mode)
+            img = QImageReader(fpath.replace("/",os.path.sep))
+            qp = QPixmap.fromImageReader(img)
             if not qp.isNull():
                 if category == "icon": mode = Qt.IgnoreAspectRatio
                 if category == "logo": mode = Qt.KeepAspectRatio
                 qp = qp.scaled(size,size,mode,Qt.SmoothTransformation)
+            else:
+                print("error loading",repr(fpath),mode)
             icon_cache[(fpath,size)] = qp
         else:
             try:

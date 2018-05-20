@@ -25,6 +25,9 @@ def ttos(t):
 def sec_to_ts(sec):
     """Convert an amount of seconds as a string into a time delta"""
     return ttos(time.localtime(sec))
+def ts_to_sec(ts):
+    """Convert an amount of seconds as a string into a time delta"""
+    return time.mktime(stot(ts))
 
 PRIORITIES = {-1:"now playing",0:"unprioritized",1:"soon",2:"later",3:"much later",5:"next year",99:"probably never"}
 
@@ -105,6 +108,12 @@ class Game:
             return ""
         s = [x.lower() for x in self.name if x.lower() in "abcdefghijklmnopqrstuvwxyz1234567890 "]
         s = "".join(s).replace(" ","_")
+        return s
+    @property
+    def name_ascii(self):
+        if not self.name:
+            return ""
+        s = self.name.encode("ascii","ignore").decode()
         return s
     def generate_gameid(self):
         """Used to generate the intial gameid, before collisions are checked when checking into the db"""
@@ -626,7 +635,9 @@ class Games:
         return cur_game
     def list(self,sort="priority"):
         v = self.games.values()
-        if sort=="priority":
+        if not sort:
+            return v
+        elif sort=="priority":
             def k(g):
                 if g.finished:
                     return (g.finished,0,-time.mktime(stot(g.lastplayed)),g.name)

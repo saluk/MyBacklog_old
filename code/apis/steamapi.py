@@ -7,6 +7,7 @@ import requests
 from bs4 import BeautifulSoup
 
 from code.apis import vdf
+from code.resources import icons
 
 try:
     from .. import games
@@ -212,9 +213,9 @@ def import_steam(apikey=MY_API_KEY,userid=MY_STEAM_ID,cache_root=".",user_data=N
             set_finished = 1
         icon_url = ""
         logo_url = ""
-        if "img_icon_url" in g:
+        if "img_icon_url" in g and g["img_icon_url"].strip():
             icon_url  = "http://media.steampowered.com/steamcommunity/public/images/apps/%(appid)s/%(img_icon_url)s.jpg"%g
-        if "img_logo_url" in g:
+        if "img_logo_url" in g and g["img_logo_url"].strip():
             logo_url = "http://media.steampowered.com/steamcommunity/public/images/apps/%(appid)s/%(img_logo_url)s.jpg"%g
         lastplayed = None
         if str(g["appid"]) in apps:
@@ -283,29 +284,6 @@ def load_userdata(path=""):
     load_userdata.cache["_time_"] = time.time()
     return data
 load_userdata.cache = {}
-
-def create_nonsteam_shortcuts(games,shortcut_folder):
-    """Given a list of games create shortcuts in steam for them"""
-    from code.apis import steam_shortcut_manager as ssm
-    print ("Creating Steam Shortcuts")
-    shortcuts = ssm.SteamShortcutManager(shortcut_folder)
-    shortcuts.shortcuts = []
-    for game in games.values():
-        print (game.name)
-        if game.install_path and game.source != "steam":
-            print ("( ok )Valid nonsteam game")
-        else:
-            print ("(skip)Game is in steam or no install path")
-            continue
-        div = ssm.SteamShortcut(game.name,
-            game.install_path,
-            game.install_folder,
-            "","mybacklog")
-        shortcuts.add(div)
-        print ("--added")
-    print ("saving")
-    shortcuts.save()
-    print ("saved")
 
 def find_steam_files():
     """Iterate through common steam installation paths to find user files"""
@@ -391,8 +369,6 @@ class Steam:
                         db[appid] = games.Game(name=name,sources=[{"source":"steam","id":str(appid)}],import_date=games.now())
                         db[appid].generate_gameid()
         return db
-    def create_nonsteam_shortcuts(self,games):
-        return create_nonsteam_shortcuts(games,self.shortcut_folder)
     def search_installed(self):
         paths = self.get_steamapp_paths()
         self.installed_apps = {}
@@ -428,6 +404,10 @@ class Steam:
                 export_game(game,vdict)
         with open(path,"w") as f:
             vdf.dump(vdict,f,pretty=True)
+        
+        path = os.path.split(self.userfile)[0]
+        path = os.path.join(path,"shortcuts.vdf")
+        create_nonsteam_shortcuts(self.app.games.list(None),path,self.app.config["root"])
 
 def import_all():
     import json
@@ -445,6 +425,81 @@ def toklist(list):
        d[str(i)] = v
        i+=1
     return vdf.VDFDict(d)
+    
+def shortcut_id(name="Assassin's Creed Syndicate(mbl)",target='"C:\\Program Files (x86)\\MyBacklog\\MyBacklog.exe" --play b998da00d9917a242109d9069c08e1a6'):
+    """
+    Calculates the filename for a given shortcut. This filename is a 64bit
+    integer, where the first 32bits are a CRC32 based off of the name and
+    target (with the added condition that the first bit is always high), and
+    the last 32bits are 0x02000000.
+    """
+    # Following comment from: https://github.com/scottrice/Ice
+    # This will seem really strange (where I got all of these values), but I
+    # got the xor_in and xor_out from disassembling the steamui library for 
+    # OSX. The reflect_in, reflect_out, and poly I figured out via trial and
+    # error.
+    from crcmod import mkCrcFun
+    #algorithm = crc_algorithms.Crc(width = 32, poly = 0x04C11DB7, reflect_in = True, xor_in = 0xffffffff, reflect_out = True, xor_out = 0xffffffff)
+    #algorithm = mkCrcFun(poly = 0x04C11DB7, initCrc = 0xffffffff, xorOut = 0xffffffff)
+    input_string = bytes(target+name,'ascii')
+    import binascii
+    top_32 = binascii.crc32(input_string) | 0x80000000
+    full_64 = (top_32 << 32) | 0x02000000
+    return str(full_64)
+    
+def make_grid_for_shortcut(name,target,iconpath,shortcutpath):
+    if not os.path.exists(iconpath): return
+    import shutil
+    gameid = shortcut_id(name,target)
+    shutil.copy(iconpath,os.path.join(os.path.dirname(shortcutpath),"grid",gameid+".png"))
+
+def create_nonsteam_shortcuts(gamelist,shortcutpath,filecache_root=""):
+    """Given a list of games create shortcuts in steam for them"""
+    with open(shortcutpath,"rb") as f:
+        fjson = vdf.binary_loads(f.read(),mapper=vdf.VDFDict)
+        current_cuts = tolist(fjson.get("shortcuts",{}))
+    for c in current_cuts[:]:
+        if "mbl" in c["AppName"]:
+            current_cuts.remove(c)
+    print(current_cuts)
+            
+    for game in gamelist:
+        print(repr(game.name))
+        if game.is_installed() and not game.get_source("steam"):
+            if "shin megami tensei" in game.name.lower():
+                print ("( ok )Valid nonsteam game")
+        else:
+            if "shin megami tensei" in game.name.lower():
+                print (game.get_source("steam"),"(skip)Game is in steam or no install path")
+            continue
+        tags = ["mybacklog"]
+        if game.finished:
+            tags += ["finished"]
+        else:
+            tags += ["unfinished"]
+        logopath = icons.icon_for_game(game,64,{},filecache_root,category="logo",imode="path")
+        iconpath = icons.icon_for_game(game,64,{},filecache_root,category="icon",imode="path")
+        name = game.name_ascii + "(mbl)"
+        exe = '"C:\\Program Files (x86)\\MyBacklog\\MyBacklog.exe" --play %s'%game.gameid
+        make_grid_for_shortcut(name,exe,logopath,shortcutpath)
+        cut = {"AppName":name,
+            "exe":exe,
+            "StartDir":"C:\\Program Files (x86)\\MyBacklog",
+            "icon":iconpath,
+            'ShortcutPath': '', 
+            'LaunchOptions': '', 
+            'IsHidden': 0, 
+            'AllowDesktopConfig': 1, 
+            'OpenVR': 0, 
+            'LastPlayTime': games.ts_to_sec(game.lastplayed), 
+            'tags': toklist(tags)
+            }
+        current_cuts.append(cut)
+        print ("--added")
+    print ("saving",{"shortcuts":toklist(current_cuts)})
+    with open(shortcutpath,"wb") as f:
+        f.write(vdf.binary_dumps(vdf.VDFDict({"shortcuts":toklist(current_cuts)})))
+    print ("saved")
 def export_game(game,vdict):
     """Exports attributes from mybacklog into steam"""
     steamid = str(game.get_source("steam")["id"])
@@ -478,3 +533,9 @@ def export_game(game,vdict):
         if cat in cats:
             cats.remove(cat)
     apps[steamid][(0,"tags")] = toklist(cats)
+    
+    if "Hidden" in apps[steamid]:
+        del apps[steamid]["Hidden"]
+    if game.hidden:
+        apps[steamid]["Hidden"] = "1"
+        

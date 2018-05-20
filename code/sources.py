@@ -117,8 +117,9 @@ class SteamSource(Source):
             return
         return self.api.is_installed(source["id"])
     def generate_website(self,game,source):
-        return "http://store.steampowered.com/app/%s"%source["id"]
-
+        if "id" in source:
+            return "http://store.steampowered.com/app/%s"%source["id"]
+        return ""
 
 class GogSource(ExeSource):
     """Needs .api to be set to gogapi.Gog"""
@@ -136,9 +137,11 @@ class GogSource(ExeSource):
         return "goggalaxy://openGameView/%s"%source["id2"]
     download_link = download_link_galaxy
     def generate_website(self,game,source):
-        return "https://www.gog.com/game/%s"%source["id"]
+        if "id" in source:
+            return "https://www.gog.com/game/%s"%source["id"]
+        return ""
     def run_game(self,game,source,cache_root):
-        if "id2" not in source:
+        if game.get_path():
             return super(GogSource,self).run_game(game,source,cache_root)
         webbrowser.open("goggalaxy://openGameView/%s"%source["id2"])
     def is_installed(self,game,source):
@@ -173,7 +176,7 @@ class OfflineSource(Source):
     def args(self):
         return self.extra_args
     def is_installed(self,game,source):
-        return True
+        return False
 
 class LinkSource(OfflineSource):
     source_args = [("id","s")]
