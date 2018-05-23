@@ -2,6 +2,7 @@ import os
 import sys
 import subprocess
 import webbrowser
+import psutil
 
 run_with_steam = 1
 #   NEW METHOD TO RUN THROUGH STEAM:
@@ -13,6 +14,7 @@ class Source:
     extra_args = []
     source_args = []
     generate_website = None
+    runnable = True
     def __init__(self,name):
         self.name = name
     def args(self):
@@ -34,6 +36,9 @@ class Source:
         return
     def rom_extension(self,game):
         return ""
+    def game_is_running(self, game, data):
+        """By default return true and force user to control when to stop the timer"""
+        return True
 
 class ExeSource(Source):
     """Definition of a source of games"""
@@ -46,7 +51,7 @@ class ExeSource(Source):
     def uninstall(self,game,source):
         if game.install_folder:
             subprocess.Popen(["explorer.exe",game.install_folder], cwd=game.install_folder, stdout=sys.stdout, stderr=sys.stderr)
-    def get_run_args(self,game,source,cache_root):
+    def get_run_args(self,game,source,cache_root,write_batch=True):
         """Returns the method to run the game. Defaults to using a batch file to run the install_path exe"""
         folder = game.install_folder #Navigate to executable's directory
         root = folder.split("\\",1)[0]
@@ -61,25 +66,27 @@ class ExeSource(Source):
                 print(dir(link))
                 args = [link.path] + shlex.split(link.arguments)
                 folder = link.working_directory
+                search = os.path.basename(link.path)
                 print(folder)
         else:
             #Make batch file to run
-            if 1:#not os.path.exists("cache/batches/"+game.gameid+".bat"):
+            filepath = os.path.basename(path)
+            exe,args = filepath.split(".exe")
+            exe = exe+".exe"
+            search = exe
+            if write_batch:
                 with open(cache_root+"/cache/batches/"+game.gameid+".bat", "w") as f:
                     f.write('%s\ncd "%s"\n'%(root,folder))
-                    filepath = path.split("\\")[-1]
-                    exe,args = filepath.split(".exe")
-                    exe = exe+".exe"
                     f.write('"%s" %s\n'%(exe,args))
             args = [game.gameid+".bat"]
             folder = os.path.abspath(cache_root+"/cache/batches/")
-        return args,folder
+        return args,folder,search
     def run_game(self,game,source,cache_root):
         creationflags = 0
         shell = True
         if sys.platform=='darwin':
             shell = False
-        args,folder = self.get_run_args(game,source,cache_root)
+        args,folder,search = self.get_run_args(game,source,cache_root)
         print("run args:",args,folder)
 
         if args and folder:
@@ -90,6 +97,11 @@ class ExeSource(Source):
             self.running = subprocess.Popen(args, cwd=folder, stdout=sys.stdout, stderr=sys.stderr, creationflags=creationflags, shell=shell)
             print("subprocess open")
             os.chdir(curdir)
+    def game_is_running(self, game, data):
+        args,folder,search = self.get_run_args(game,data,"",write_batch=False)
+        print("search:",search)
+        procs = [proc.name() for proc in psutil.process_iter() if search.lower() in proc.name().lower()]
+        return bool(procs)
             
 class HumbleSource(ExeSource):
     source_args = [("id","s"),("package","s")]
@@ -165,9 +177,8 @@ class EmulatorSource(ExeSource):
     def get_run_args(self,game,source,cache_root):
         emu_info = game.games.local["emulators"][self.name]
         args = emu_info["args"]+[game.get_path()]
-        exe = args[0]
-        path = os.path.split(exe)[0]
-        return args,path
+        path,exe = os.path.split(args[0])
+        return args,path,exe
     def rom_extension(self,game):
         emu_info = game.games.local["emulators"][self.name]
         return emu_info.get("rom_extension","*.*")

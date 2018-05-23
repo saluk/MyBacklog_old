@@ -355,9 +355,8 @@ class GamelistForm(QWidget):
         self.importer_threads = {"gog":ImportThread(),"steam":ImportThread(),"humble":ImportThread()}
 
         self.timer = QTimer(self)
-        self.timer.setInterval(300000)
-        #self.timer.setInterval(5000)
-        #self.timer.timeout.connect(self.notify)
+        self.timer.setInterval(5000)
+        self.timer.timeout.connect(self.detect_game_end)
         
         self.setMinimumSize(600,640)
         #self.setMaximumWidth(1080)
@@ -524,10 +523,9 @@ class GamelistForm(QWidget):
         w.show()
         
 
-    def notify(self):
-        if self.running:
-            self.parent().trayicon.showMessage("Still Playing","Are you still playing %s ?"%self.running.name)
-
+    def detect_game_end(self):
+        if not self.running.game_is_running():
+            self.stop_playing(self.running)
     def get_row_for_game(self,game):
         for row in range(self.games_list_widget.rowCount()):
             gameid = self.games_list_widget.item(row,0).data(DATA_GAMEID)
@@ -858,8 +856,6 @@ class GamelistForm(QWidget):
             self.stop_playing_button.deleteLater()
         self.stop_playing_button = None
         elapsed_time = time.time()-self.timer_started
-        QMessageBox.information(self, "Success!",
-                                    "You played for %d seconds" % elapsed_time)
         game.played()
         game.playtime += elapsed_time
         game.priority = -1

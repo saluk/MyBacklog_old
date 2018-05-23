@@ -217,9 +217,19 @@ class Game:
     def install_folder(self):
         """Full path to folder where executable is located"""
         return self.install_path.rsplit("\\",1)[0]
-    def run_game(self,cache_root):
+    @property
+    def running_source(self):
+        """Get the source that will control running the game"""
         for s in self.sources:
-            return get_source(s["source"]).run_game(self,s,cache_root)
+            source = get_source(s["source"])
+            if source.runnable:
+                return source,s
+    def run_game(self,cache_root):
+        source,data = self.running_source
+        return source.run_game(self,data,cache_root)
+    def game_is_running(self):
+        source,data = self.running_source
+        return source.game_is_running(self,data)
     @property
     def rom_extension(self):
         """What extensions roms have"""
