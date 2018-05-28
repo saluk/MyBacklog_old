@@ -1,7 +1,7 @@
 import os
 import requests
 
-from PIL import Image
+from PIL import Image, ImageFont, ImageDraw
 from io import BytesIO
 
 try:
@@ -22,6 +22,14 @@ headers = {
     'From': 'saluk64007@gmail.com'
 }
 
+def generate_icon(fpath,game,filecache_root):
+    im = Image.new('RGB',[460,265])
+    draw = ImageDraw.Draw(im)
+    font = ImageFont.truetype(os.path.join("data","Muli-Light.ttf"),25)
+    draw.text((5, 25), game.name, font=font)
+    im.save(fpath)
+    
+
 def path_to_icon(game,filecache_root,category="icon"):
     url = ""
     if category=="icon": 
@@ -37,7 +45,8 @@ def path_to_icon(game,filecache_root,category="icon"):
         gba_path = game.get_gba()
         return filecache_root+"/cache/icons/"+gba_path.replace("http","").replace(":","").replace("/","").replace("\\","")+".png","gba",gba_path
     else:
-        return "icons/blank.png",None,""
+        name = "custom_"+str(game.gameid)+"_icon.png"
+        return filecache_root+"/cache/icons/"+name,"generate",name
 
 def icon_in_cache(game,size,cache,filecache_root,category="icon",imode="qt"):
     fpath,mode,url = path_to_icon(game,filecache_root,category)
@@ -65,6 +74,10 @@ def icon_for_game(game,size,icon_cache,filecache_root,category="icon",imode="qt"
         elif mode == "gba":
             print("Download gba icon:",url)
             p = extract_icons.get_gba(url)
+        elif mode == "generate":
+            print("Generate custom icon:",url)
+            generate_icon(fpath,game,filecache_root)
+        #Save all images as .png
         if p:
             try:
                 pil_image = Image.open(p)

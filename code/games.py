@@ -651,7 +651,8 @@ class Games:
             def k(g):
                 if g.finished:
                     return (g.finished,0,-time.mktime(stot(g.lastplayed)),g.name)
-                return (g.finished,g.priority,-time.mktime(stot(g.lastplayed)),g.name)
+                #return (g.finished,g.priority,-time.mktime(stot(g.lastplayed)),g.name)
+                return (g.finished,1,-time.mktime(stot(g.lastplayed)),g.name)
             return sorted(v,key=k)
         elif sort=="added":
             def key(game):
