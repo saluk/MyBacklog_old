@@ -63,6 +63,7 @@ class Game:
         self.notes = ""
         self.priority = 0
         self.priority_date = ""
+        self.local_files = []
 
         self.website = ""
         self.savekeys = set(dir(self)) - dontsavekeys
@@ -355,18 +356,14 @@ class Game:
             return
         if not self.get_path():
             file = {"source":self.sources[0],"primary":True}
-            if self.gameid not in self.games.local["game_data"]:
-                self.games.local["game_data"][self.gameid] = {"files":[]}
-            if not self.games.local["game_data"][self.gameid]["files"]:
-                self.games.local["game_data"][self.gameid]["files"] = []
-            self.games.local["game_data"][self.gameid]["files"].append(file)
+            self.local_files.append(file)
         else:
-            file = self.games.local["game_data"][self.gameid]["files"][0]
+            file = self.local_files[0]
         file["type"] = "exe"
         if self.sources[0]["source"] in ["gba","snes","n64","nds"]:
             file["type"] = "rom"
         file["path"] = value
-        print("set path:",self.games.local["game_data"][self.gameid]["files"])
+        print("set path:",self.local_files)
     def update_dynamic_fields(self):
         if not self.website and self.sources and get_source(self.sources[0]["source"]).generate_website:
             self.website = get_source(self.sources[0]["source"]).generate_website(self,self.sources[0])
@@ -374,6 +371,17 @@ class Game:
         for s in self.sources:
             if s["source"]==source_type:
                 return s
+    def update_local_data(self,local_data):
+        #If we don't have local info to save, don't save anything
+        if not self.local_files:
+            return
+        if self.gameid not in local_data:
+            local_data[self.gameid] = {}
+        local_data[self.gameid]["files"] = self.local_files
+    def inject_local_data(self,local_data):
+        if self.gameid not in local_data:
+            return
+        self.local_files = local_data[self.gameid]["files"]
 
 test1 = Game(name="blah")
 test2 = test1.copy()
@@ -430,8 +438,8 @@ class Games:
         if possible:
             return possible[0]
     def load(self,game_db_file,local_db_file):
-        self.load_games(game_db_file)
         self.load_local(local_db_file)
+        self.load_games(game_db_file)
         sources.register_sources(self.source_definitions)
     def load_games(self,file):
         if not os.path.exists(file):
@@ -447,6 +455,7 @@ class Games:
         for k in load_data["games"]:
             self.games[k] = Game(**load_data["games"][k])
             self.games[k].games = self
+            self.games[k].inject_local_data(self.local["game_data"])
         if not self.multipack:
             self.multipack = load_data.get("multipack",{})
         self.source_definitions.update(sources.default_definitions.copy())
@@ -474,22 +483,17 @@ class Games:
             if k == BAD_GAMEID:
                 continue
             save_data["games"][k] = self.games[k].dict()
+            self.games[k].update_local_data(self.local["game_data"])
         save_data["multipack"] = self.multipack
         save_data["source_definitions"] = self.source_definitions
         return json.dumps(save_data)
-    def save_games(self,file):
-        sd = self.save_games_data()
-        f = open(file,"w")
-        f.write(sd)
-        f.close()
-    def save_local(self,file):
-        sd = json.dumps(self.local)
-        f = open(file,"w")
-        f.write(sd)
-        f.close()
     def save(self,game_db_file,local_db_file):
-        self.save_games(game_db_file)
-        self.save_local(local_db_file)
+        sd = self.save_games_data()
+        with open(game_db_file,"w") as f:
+            f.write(sd)
+        sl = json.dumps(self.local)
+        with open(local_db_file,"w") as f:
+            f.write(sl)
     def build_source_map(self):
         """Builds a dictionary map of source_id:game to make it easier to search for a game from
         a given source"""
