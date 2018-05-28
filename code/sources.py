@@ -174,7 +174,7 @@ class EmulatorSource(ExeSource):
     source_args = []
     def args(self):
         return [("install_path","s")]+self.extra_args
-    def get_run_args(self,game,source,cache_root):
+    def get_run_args(self,game,source,cache_root,write_batch=False):
         emu_info = game.games.local["emulators"][self.name]
         args = emu_info["args"]+[game.get_path()]
         path,exe = os.path.split(args[0])
