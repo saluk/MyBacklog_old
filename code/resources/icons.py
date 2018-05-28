@@ -1,5 +1,6 @@
 import os
 import requests
+import textwrap
 
 from PIL import Image, ImageFont, ImageDraw
 from io import BytesIO
@@ -26,7 +27,15 @@ def generate_icon(fpath,game,filecache_root):
     im = Image.new('RGB',[460,265])
     draw = ImageDraw.Draw(im)
     font = ImageFont.truetype(os.path.join("data","Muli-Light.ttf"),25)
-    draw.text((5, 25), game.name, font=font)
+    wt = "wwww"
+    ww = draw.textsize(wt,font=font)
+    print(ww)
+    ws = int((460/ww[0])*4)
+    print(ws)
+    y = 25
+    for line in textwrap.wrap(game.name,ws):
+        draw.text((5, y), line, font=font)
+        y += ww[1]+5
     im.save(fpath)
     
 
