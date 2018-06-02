@@ -19,6 +19,7 @@ MY_API_KEY = ""
 MY_STEAM_ID = ""
 
 STEAM_GAMES_URL = "http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=%(apikey)s&steamid=%(steamid)s&format=json&include_appinfo=1&include_played_free_games=1"
+USER_DATA_URL = "http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=%(apikey)s&steamids=%(steamid)s&format=json"
 
 def get_vdf_url(dat,*keys):
     o = dat
@@ -311,7 +312,7 @@ class Steam:
         if not api_key:
             self.api_key = "98934075AAB5F4E1223BEC4C40E88AA8"
         self.profile_name = user_id
-        self.user_id = user_id
+        self.user_id = get_user_id(self.profile_name)
         self.userfile = userfile
         self.shortcut_folder = shortcut_folder
         self.userdata = load_userdata(self.userfile)
@@ -408,6 +409,13 @@ class Steam:
         path = os.path.split(self.userfile)[0]
         path = os.path.join(path,"shortcuts.vdf")
         create_nonsteam_shortcuts(self.app.games.list(None),path,self.app.config["root"])
+    def running_game_id(self):
+        url = USER_DATA_URL%{"apikey":self.api_key,"steamid":self.user_id}
+        print(url)
+        r = requests.get(USER_DATA_URL%{"apikey":self.api_key,"steamid":self.user_id})
+        data = r.json()
+        print(data)
+        return data["response"]["players"][0].get("gameid",None)
 
 def import_all():
     import json

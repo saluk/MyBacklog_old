@@ -40,6 +40,9 @@ def get_source(s):
     
 def source_id(s):
     return s["source"] + "_" + str(s.get("id2",s.get("id","")))
+    
+def operation(f):
+    return f
 
 class Game:
     args = [("name","s"),("playtime","f"),("lastplayed","d"),("genre","s"),("icon_url","s"),("logo_url","s"),
@@ -79,6 +82,12 @@ class Game:
         self.games = None
         if "games" in kwargs:
             self.games = kwargs["games"]
+    @operation
+    def set(self, key, value):
+        if key=="hidden" and value not in [0,1]:
+            return False,[0,1]
+        setattr(self,key,value)
+        return True,None
     @property
     def icon_url(self):
         for image in self.images:
@@ -159,11 +168,20 @@ class Game:
         for s in self.sources:
             if get_source(s["source"]).needs_download(self,s):
                 return True
-    def played(self):
-        """Resets lastplayed to now"""
+    @operation
+    def played(self,elapsed_time=None):
+        """Resets lastplayed to now and updates playtime"""
         self.lastplayed = now()
-    def set_played(self,t):
-        self.lastplayed = time.strftime(fmt,t)
+        self.playtime += elapsed_time
+        self.priority = -1
+    @operation
+    def finish(self):
+        self.finished = 1
+        self.finish_date = games.now()
+    @operation
+    def unfinish(self):
+        self.finished = 0
+        self.finish_date = ""
     def display_print(self):
         print (self.name)
         print ("  %.2d:%.2d"%self.hours_minutes)
@@ -437,10 +455,10 @@ class Games:
         print(possible)
         if possible:
             return possible[0]
-    def load(self,game_db_file,local_db_file):
+    def load(self,game_db_file,local_db_file,app):
         self.load_local(local_db_file)
         self.load_games(game_db_file)
-        sources.register_sources(self.source_definitions)
+        sources.register_sources(self.source_definitions,app)
     def load_games(self,file):
         if not os.path.exists(file):
             print("Warning, no save file to load:",file)

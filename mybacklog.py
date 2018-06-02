@@ -354,6 +354,7 @@ class GamelistForm(QWidget):
         ImportThread.app = self
         self.importer_threads = {"gog":ImportThread(),"steam":ImportThread(),"humble":ImportThread()}
 
+        self.detected_game_start = False
         self.timer = QTimer(self)
         self.timer.setInterval(5000)
         self.timer.timeout.connect(self.detect_game_end)
@@ -451,7 +452,7 @@ class GamelistForm(QWidget):
         self.games = games.Games(self.log)
         self.games_lock = threading.Lock()
         print("loading games",self.config["games"])
-        self.games.load(self.config["games"],self.config["local"])
+        self.games.load(self.config["games"],self.config["local"],self)
         self.gamelist = []
         self.update_gamelist_widget()
         
@@ -524,7 +525,10 @@ class GamelistForm(QWidget):
         
 
     def detect_game_end(self):
-        if not self.running.game_is_running():
+        currently_running = self.running.game_is_running()
+        if not self.detected_game_start and currently_running:
+            self.detected_game_start = True
+        elif self.detected_game_start and not currently_running:
             self.stop_playing(self.running)
     def get_row_for_game(self,game):
         for row in range(self.games_list_widget.rowCount()):
@@ -841,6 +845,13 @@ class GamelistForm(QWidget):
         if launch:
             game.run_game(self.config["root"])
         playrequest(game)
+        
+    def operation(self,message,game,*args):
+        getattr(game,message)(*args)
+        self.save()
+        self.update_gamelist_widget()
+        if self.game_options:
+            self.update_game_options(game)
 
     def stop_playing(self,game):
         self.parent().setStyleSheet(self.old_style)
@@ -856,11 +867,7 @@ class GamelistForm(QWidget):
             self.stop_playing_button.deleteLater()
         self.stop_playing_button = None
         elapsed_time = time.time()-self.timer_started
-        game.played()
-        game.playtime += elapsed_time
-        game.priority = -1
-        self.save()
-        self.update_gamelist_widget()
+        self.operation("played",game,elapsed_time)
         if getattr(self,"quit_on_stop",False):
             self.window().really_close()
 
@@ -939,35 +946,6 @@ class GamelistForm(QWidget):
         self.game_options_dock.setWidget(self.game_options)
 
         return self.game_options
-
-    def uninstall_game(self,game):
-        game.uninstall()
-        
-    def hide_game(self,game):
-        game.hidden = 1
-        self.save()
-        self.update_gamelist_widget()
-        self.update_game_options(game)
-        
-    def unhide_game(self,game):
-        game.hidden = 0
-        self.save()
-        self.update_gamelist_widget()
-        self.update_game_options(game)
-        
-    def finish_game(self,game):
-        game.finished = 1
-        game.finish_date = games.now()
-        self.save()
-        self.update_gamelist_widget()
-        self.update_game_options(game)
-        
-    def unfinish_game(self,game):
-        game.finished = 0
-        game.finish_date = ""
-        self.save()
-        self.update_gamelist_widget()
-        self.update_game_options(game)
 
     def download(self,game):
         game.download_method()

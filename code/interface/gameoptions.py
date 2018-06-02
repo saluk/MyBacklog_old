@@ -389,26 +389,26 @@ class GameOptions(QWidget):
 
         if game.is_installed():
             w = QPushButton("Uninstall")
-            w.clicked.connect(make_callback(self.app.uninstall_game,game))
+            w.clicked.connect(make_callback(game.uninstall))
             buttons.addWidget(w)
             
         if game.finished:
             w = QPushButton("Unfinish")
-            w.clicked.connect(make_callback(self.app.unfinish_game,game))
+            w.clicked.connect(make_callback(self.app.operation,game,"unfinish"))
             buttons.addWidget(w)
         else:
             w = QPushButton("Finish")
             w.setStyleSheet("background-color:rgb(100,200,150);")
-            w.clicked.connect(make_callback(self.app.finish_game,game))
+            w.clicked.connect(make_callback(self.app.operation,game,"finish"))
             buttons.addWidget(w)
             
         if game.hidden:
             w = QPushButton("Unhide")
-            w.clicked.connect(make_callback(self.app.unhide_game,game))
+            w.clicked.connect(make_callback(self.app.operation,"set",game,"hidden",0))
             buttons.addWidget(w)
         else:
             w = QPushButton("Hide")
-            w.clicked.connect(make_callback(self.app.hide_game,game))
+            w.clicked.connect(make_callback(self.app.operation,"set",game,"hidden",1))
             buttons.addWidget(w)
         w = QPushButton("Gamesdb")
         w.clicked.connect(make_callback(self.app.gamesdb,game))

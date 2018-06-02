@@ -15,8 +15,10 @@ class Source:
     source_args = []
     generate_website = None
     runnable = True
-    def __init__(self,name):
+    def __init__(self,name,app):
+        """app = app should contain fields for api's sources may need"""
         self.name = name
+        self.app = app
     def args(self):
         return self.extra_args
     def is_installed(self,game,source):
@@ -132,6 +134,9 @@ class SteamSource(Source):
         if "id" in source:
             return "http://store.steampowered.com/app/%s"%source["id"]
         return ""
+    def game_is_running(self, game, data):
+        if self.app.steam.running_game_id() == data["id"]:
+            return True
 
 class GogSource(ExeSource):
     """Needs .api to be set to gogapi.Gog"""
@@ -246,11 +251,11 @@ default_definitions = {
     }
 }
 all = {}
-def register_sources(definitions):
+def register_sources(definitions,app):
     for sourcekey in definitions:
         source = definitions[sourcekey]
         cls = eval(source["class"])
-        inst = cls(name=sourcekey)
+        inst = cls(name=sourcekey,app=app)
         for key in source:
             if key in ["class"]:
                 continue
