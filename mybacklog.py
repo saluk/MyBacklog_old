@@ -108,10 +108,11 @@ class Cookies(QNetworkCookieJar):
         with open("cache/qtcookies", "w") as f:
             f.write(json.dumps(self.cookies))
 
-
-class Browser(QWidget):
-    def __init__(self, url, app):
-        super(Browser, self).__init__()
+from PyQt5.QtWebEngineWidgets import *
+class BrowserAuth(QWidget):
+    def __init__(self, app, domain, start_url, finish_function):
+        super(BrowserAuth, self).__init__()
+        
         self.app = app
         self.domain = domain
         self.start_url = start_url
