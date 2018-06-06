@@ -174,6 +174,23 @@ class GogSource(ExeSource):
             if winreg.QueryValueEx(gamereg,"gameID")[0] != source["id2"]:
                 continue
             return True
+    def game_is_running(self, game, data):
+        import winreg
+        with winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, "SOFTWARE\\WOW6432Node\\GOG.com\\Games") as key:
+            gog_games = [winreg.EnumKey(key,i) for i in range(winreg.QueryInfoKey(key)[0])]
+        cwd,exe = None,None
+        for gog_game in gog_games:
+            gamereg = winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, "SOFTWARE\\WOW6432Node\\GOG.com\\Games\\"+gog_game)
+            if winreg.QueryValueEx(gamereg,"gameID")[0] != data["id2"]:
+                continue
+            cwd,exe = os.path.split(winreg.QueryValueEx(gamereg,"EXE")[0])
+        print("EXE",exe,"cwd",cwd)
+        procs = [proc for proc in psutil.process_iter() if exe.lower() in proc.name().lower() and proc.cwd()==cwd]
+        if procs:
+            print(dir(procs[0]))
+            print(procs[0].environ())
+            print(procs[0].cwd())
+        return bool(procs)
 
 class EmulatorSource(ExeSource):
     source_args = []
