@@ -113,30 +113,41 @@ class Browser(QWidget):
     def __init__(self, url, app):
         super(Browser, self).__init__()
         self.app = app
+        self.domain = domain
+        self.start_url = start_url
         
         layout = QGridLayout()
         self.setLayout(layout)
         
-        button = QPushButton("Do Import")
-        layout.addWidget(button)
-        button.clicked.connect(self.do_import)
+        self.button = QPushButton("Finished")
+        layout.addWidget(self.button)
         
-        #self.cookiem = Cookies()
-        self.webkit = QWebView()
-        #self.webkit.page().networkAccessManager().setCookieJar(self.cookiem)
-        layout.addWidget(self.webkit)
+        self.webview = QWebEngineView()
+        layout.addWidget(self.webview)
+        self.finish_function = finish_function
+        self.button.clicked.connect(self.finish)
         
-        self.webkit.load(QUrl(url))
+        self.webview.page().profile().setPersistentStoragePath(self.app.config["root"]+"/cache/browser")
+        self.webview.page().profile().cookieStore().cookieAdded.connect(self.cookie_added)
+        self.user_agent = self.webview.page().profile().httpUserAgent()
+        self.cookie_info = {"user_agent":self.user_agent,"cookies":{}}
+        
+        self.auth(start_url)
+    def auth(self,url):
+        self.webview.load(QUrl(url))
         self.show()
-
-    def do_import(self):
-        html = self.webkit.page().mainFrame().toHtml()
-        f = open("mygog_shelf.html","w",encoding="utf8")
-        f.write(html)
-        f.close()
-        self.app.import_gog_html()
-        self.deleteLater()
-
+    def cookie_added(self,cookie):
+        if not self.domain in cookie.domain():
+            return
+        self.cookie_info["cookies"][str(cookie.name().data())] = str(cookie.value().data())
+    def finish(self):
+        self.app.cookies[self.domain] = self.cookie_info
+        self.webview.close()
+        self.webview = None
+        self.close()
+        if self.finish_function:
+            self.finish_function()
+        self.app.browser = None
 
 
 class MyBacklog(QMainWindow):
@@ -255,6 +266,8 @@ class GamelistForm(QWidget):
     def __init__(self, parent=None):
         print(QImageReader.supportedImageFormats())
         super(GamelistForm, self).__init__(parent)
+        self.browser = None
+        self.cookies = {}
         
         self.timer_started = 0
 
@@ -387,15 +400,18 @@ class GamelistForm(QWidget):
     def handle_log_message(self,text):
         self.log_window.add_text(text)
         
-    def handle_error(self,text):
+    def handle_error(self,error_reason):
         message = {"steam":"Steam api key or account name may be invalid",
                         "gog":"Gog username or password may be invalid",
-                        "humble":"Humble username or password may be invalid"}[text]
+                        "humble":"Humble username or password may be invalid"}[error_reason]
         highlight_fields = {"steam":["steam_id","steam_api"],
                                 "gog":["gog_user","gog_password"],
-                                "humble":["humble_username","humble_password"]}[text]
-        af = account.AccountForm(self,message,highlight_fields)
-        af.show()
+                                "humble":["humble_username","humble_password"]}[error_reason]
+        if error_reason == "gog":
+            self.browser = BrowserAuth(self,"gog.com","http://www.gog.com",self.import_gog)
+        else:
+            af = account.AccountForm(self,message,highlight_fields)
+            af.show()
         
     def init_config(self):
         self.crypter = enc.Crypter()
@@ -438,7 +454,7 @@ class GamelistForm(QWidget):
                 account[k].update(saved_accounts[k])
         self.set_accounts(account)
         
-        for path in ["/cache","/cache/batches","/cache/icons","/cache/extract"]:
+        for path in ["/cache","/cache/batches","/cache/icons","/cache/extract","/cache/browser"]:
             if not os.path.exists(root["root"]+path):
                 os.mkdir(root["root"]+path)
 
@@ -746,12 +762,11 @@ class GamelistForm(QWidget):
         self.importer_threads["humble"].start()
 
     def import_gog(self):
-        #self.browser = Browser("https://secure.gog.com/account/games",self)
         self.view_log()
         def f(self):
             self.log.write("GOG IMPORT BEGUN... please wait...")
             try:
-                games = self.gog.better_get_shelf(self.games.multipack)
+                games = self.gog.get_shelf(self.games.multipack, self.cookies.get("gog.com",{}))
             except gogapi.BadAccount:
                 self.log.write("GOG IMPORT... ERROR. Check options.")
                 self.error_trigger.emit("gog")

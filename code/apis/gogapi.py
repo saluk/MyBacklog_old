@@ -128,9 +128,6 @@ class Browser:
             self.text = d["text"]
             self.url = d["url"]
 
-class BadAccount(Exception):
-    pass
-
 #Format:
 """{"products":[
     {"isGalaxyCompatible":true,
@@ -153,90 +150,57 @@ class BadAccount(Exception):
     "isHidden":false}
 ]}"""
 
+class BadAccount(Exception):
+    pass
+
 class Gog:
     def __init__(self,app,username,password):
         self.app = app
         self.username = username
         self.password = password
-    def better_get_shelf(self,multipack):
+        
+    def get_shelf(self,multipack,gog_cookie_info):
         if not self.username or not self.password:
             raise BadAccount()
         print(time.time())
+        
+        
+        
         b = Browser()
         #Try cookies
         logged_in = False
+        #shelf: https://www.gog.com/account/getFilteredProducts?hiddenFlag=0&mediaType=1&page=2&sortBy=date_purchased&totalPages=7
         try:
-            f = open(self.app.config["root"]+"/cache/cookies","r")
-            b.cookies = eval(f.read())
-            f.close()
-            b.get("https://www.gog.com/account/ajax",params={
-                "a":"gamesShelfMore",
-                "p":0,
-                "s":"date_purchased",
-                "h":0,
-                "q":"",
-                "t":"%d"%time.time()*100
+            b.headers["User-Agent"] = gog_cookie_info["user_agent"]
+            b.cookies = gog_cookie_info["cookies"]
+            print("accessing gog with cookies:",b.cookies)
+            
+            import sqlite3
+            conn = sqlite3.connect(self.app.config["root"]+"/cache/browser/Cookies")
+            for cookie in conn.execute("select * from cookies"):
+                b.cookies[cookie[2]] = cookie[3]
+            print(b.cookies)
+            conn.close()
+            b.get("https://www.gog.com/account/getFilteredProducts",params={
+                "hiddenFlag":1,
+                "mediaType":1,
+                "page":1,
+                "sortBy":"date_purchased"
                 })
-            assert b.json["count"]
+            print(b.json)
+            assert b.json["totalProducts"]
             print("Logged in")
             logged_in = True
         except:
             print("Not logged in")
+            import traceback
+            traceback.print_exc()
             pass
 
         if not logged_in:
-            self.app.log.write("gog logging in...")
-            b.get("https://www.gog.com/")
-            login_auth = re.findall("(https\:\/\/auth\.gog\.com.*?)(\"|')",b.text)
-            print(login_auth)
-            b.get(login_auth[0][0])
-            f = open(self.app.config["root"]+"/cache/goglogin.html","w",encoding="utf8")
-            f.write(b.text)
-            f.close()
-            if(re.findall("recaptcha",b.text)):
-                crash
-            token = re.findall("login\[\_token\].*?>",b.text)
-            print("token:",token)
-            token_value = re.findall("value\=\"(.*?)\"",token[0])[0]
-            login_id = re.findall("login\[id\].*?>",b.text) + [""]
-            login_id_values = re.findall("value\=\"(.*?)\"",login_id[0]) + [None]
-            login_id_value = login_id_values[0]
-            print("token_value:",token_value)
-            print("login_id_value:",login_id_value)
-            print("cur url:",b.url)
-            postdat = {
-                "login[username]":self.username,
-                "login[password]":self.password,
-                "login[_token]":token_value,
-                #~ "register[email]":"",
-                #~ "register[password]":"",
-                #~ "register[_token]":token_value,
-                "login[login]":"",
-                }
-            if login_id_value:
-                postdat.update({"login[_id]":login_id_value})
-            b.post("https://login.gog.com/login_check",postdat)
-            print("new url:",b.url)
-
-            #Properly follow redirect!
-            #print(b.answer.history[1].content)
-            print(b.answer.history[0].content)
-            link = re.findall(b"content\=.*?https(.*?)\"",b.answer.history[0].content)
-            print(link)
-            linknice = "https"+link[0].decode("utf8").replace("auth?amp;","auth?").replace("%22&amp;amp;","&").replace("https%3A%2F%2F","https://").replace("%2F","/").replace("&amp;amp;","&").replace("&amp;","&")
-            print(linknice)
-            b.get(linknice)
-            print(b.url)
-            if "login" in b.url.replace("on_login_success",""):
-                raise BadAccount()
-            print(b.cookies)
+            raise BadAccount()
             
         self.app.log.write("gog logged in: success")
-
-        #Should be logged in now
-        f = open(self.app.config["root"]+"/cache/cookies","w")
-        f.write(repr(b.cookies))
-        f.close()
 
         url = "https://www.gog.com/account/getFilteredProducts?mediaType=1&page=%(page)s&sortBy=date_purchased"
 
@@ -260,7 +224,7 @@ class Gog:
                 gameicon = "http:"+game_data["image"].replace("\\/","/")+"_392.jpg"
                 genre = game_data["category"].lower()
                 game = games.Game(name=gamename,icon_url=gameicon,import_date=games.now(),genre=genre)
-                game.sources = [{"source":"gog","id":gameid,"id2":gameid2}]
+                game.sources = [{"source":"gog","id":gameid,"id2":gameid2,"gog_data":game_data}]
 
                 if gameid in multipack:
                     if gameid not in packs:
