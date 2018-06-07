@@ -2,6 +2,7 @@
 import re,os,time
 import random
 from concurrent import futures
+import codecs
 
 import requests
 from bs4 import BeautifulSoup
@@ -21,15 +22,40 @@ MY_STEAM_ID = ""
 STEAM_GAMES_URL = "http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=%(apikey)s&steamid=%(steamid)s&format=json&include_appinfo=1&include_played_free_games=1"
 USER_DATA_URL = "http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=%(apikey)s&steamids=%(steamid)s&format=json"
 
-def get_vdf_url(dat,*keys):
-    o = dat
-    traverse = list(keys)
-    while traverse:
-        k = traverse.pop(0)
-        if k not in o:
-            k = k.lower()
-        o = o[k]
-    return o
+def vg(dat,key):
+    try:
+        return dat[key]
+    except:
+        for real_key in dat.keys():
+            if real_key.lower()==key.lower():
+                return dat[real_key]
+        raise KeyError("Could not find key %s"%(key))
+class ParsedVdf:
+    def __init__(self,file_name=None,parsed_data=None):
+        if parsed_data:
+            self.parsed = parsed_data
+        else:
+            with codecs.open(file_name,encoding="utf8",errors="ignore") as f:
+                self.parsed = vdf.parse(f,mapper=vdf.VDFDict,key_lower=False)
+    def __contains__(self, key):
+        if self.parsed.__contains__(key):
+            return True
+        for real_key in self.parsed.keys():
+            if real_key.lower()==key.lower():
+                return True
+    def __getitem__(self, key):
+        print("GETITEM",repr(key))
+        val = vg(self.parsed, key)
+        if isinstance(val,vdf.VDFDict):
+            return ParsedVdf(parsed_data=val)
+        return val
+    def get(self, key, default=None):
+        try:
+            return self[key]
+        except:
+            return default
+    def __getattr__(self, key):
+        return getattr(self.parsed, key)
 
 def login_for_chat():
     sess = requests.session()
@@ -219,10 +245,11 @@ def import_steam(apikey=MY_API_KEY,userid=MY_STEAM_ID,cache_root=".",user_data=N
         if "img_logo_url" in g and g["img_logo_url"].strip():
             logo_url = "http://media.steampowered.com/steamcommunity/public/images/apps/%(appid)s/%(img_logo_url)s.jpg"%g
         lastplayed = None
-        if str(g["appid"]) in apps:
-            app = apps[str(g["appid"])]
-            if "lastplayed" in app:
-                lastplayed=games.sec_to_ts(int(app["lastplayed"]))
+        app = apps.get(str(g["appid"]),None)
+        if app:
+            lp = app.get("lastplayed",None)
+            if lp:
+                lastplayed=games.sec_to_ts(int(lp))
         #print(g)
         game = games.Game(name=g["name"],
                             minutes=g["playtime_forever"],
@@ -277,9 +304,7 @@ def load_userdata(path=""):
     if path in load_userdata.cache and (time.time()-load_userdata.cache["_time_"])<10:
         return load_userdata.cache[path]
 
-    f = open(systems.fullpath(path),encoding="utf8")
-    data = vdf.parse(f,mapper=vdf.VDFDict)
-    f.close()
+    data = ParsedVdf(systems.fullpath(path))
 
     load_userdata.cache[path] = data
     load_userdata.cache["_time_"] = time.time()
@@ -298,9 +323,10 @@ def find_steam_files():
             lc = p3+"/localconfig.vdf"
             if not os.path.exists(p3):
                 continue
-            f = open(lc)
-            dat = vdf.parse(f,mapper=vdf.VDFDict)
-            f.close()
+            if not os.path.exists(lc):
+                continue
+            print("Check user",user_id,p3,lc)
+            dat = ParsedVdf(lc)
             username = dat["userlocalconfigStore"]["friends"][user_id]["name"]
             users[username] = {"local":lc,"shortcut":p3+"/shortcuts.vdf","account_id":int(user_id)+76561197960265728}
     return users
@@ -316,8 +342,11 @@ class Steam:
         self.userfile = userfile
         self.shortcut_folder = shortcut_folder
         self.userdata = load_userdata(self.userfile)
-        #self.installed_apps = self.userdata.get("UserLocalConfigStore",{}).get("Software",{}).get("Valve",{}).get("Steam",{}).get("apps",{})
-
+        path = os.path.split(self.userfile)[0]
+        path = os.path.split(path)[0]
+        path = os.path.join(path,"7")
+        path = os.path.join(path,"remote")
+        self.shared_config = os.path.join(path,"sharedconfig.vdf")
         self.installed_apps = {}
         self.last_install_search = 0
     def get_steamapp_paths(self):
@@ -329,9 +358,7 @@ class Steam:
         path = os.path.join(path,"SteamApps")
         paths = [path]
         if os.path.exists(path+"/libraryfolders.vdf"):
-            f = open(path+"/libraryfolders.vdf")
-            libraryfolders = vdf.parse(f,mapper=vdf.VDFDict)
-            f.close()
+            libraryfolders = ParsedVdf(path+"/libraryfolders.vdf")
             print(libraryfolders)
             i = 1
             while 1:
@@ -358,10 +385,8 @@ class Steam:
             for p in os.listdir(path):
                 if "appmanifest" in p:
                     print("Scanning",os.path.join(path,p))
-                    f = open(os.path.join(path,p))
-                    vdf_data = vdf.parse(f,mapper=vdf.VDFDict)
-                    f.close()
-                    appid = get_vdf_url(vdf_data,"AppState","appID")
+                    vdf_data = ParsedVdf(os.path.join(path,p))
+                    appid = vdf_data["AppState"]["appID"]
                     name = vdf_data["appstate"].get("name","")
                     if not name:
                         name = vdf_data["appstate"].get("userconfig",{}).get("name","")
@@ -375,6 +400,8 @@ class Steam:
         self.installed_apps = {}
         for path in paths:
             print("checking path",path)
+            if not os.path.isdir(path):
+                continue
             for f in os.listdir(path):
                 print(f)
                 if "appmanifest" in f:
@@ -393,22 +420,14 @@ class Steam:
         if str(steamid) in self.installed_apps:
             return True
     def export(self):
-        path = os.path.split(self.userfile)[0]
-        path = os.path.split(path)[0]
-        path = os.path.join(path,"7")
-        path = os.path.join(path,"remote")
-        path = os.path.join(path,"sharedconfig.vdf")
-        with open(path) as f:
-            vdict = vdf.parse(f,mapper=vdf.VDFDict,key_lower=False)
+        print(self.shared_config)
+        vdict = ParsedVdf(self.shared_config)
         for game in self.app.games.list():
             if game.get_source("steam"):
-                export_game(game,vdict)
-        with open(path,"w") as f:
-            vdf.dump(vdict,f,pretty=True)
-        
-        path = os.path.split(self.userfile)[0]
-        path = os.path.join(path,"shortcuts.vdf")
-        create_nonsteam_shortcuts(self.app.games.list(None),path,self.app.config["root"])
+                export_game_category(game,vdict)
+        with open(self.shared_config,"w") as f:
+            vdf.dump(vdict.parsed,f,pretty=True)
+        create_nonsteam_shortcuts(self.app.games.list(None),self.shortcut_folder,self.app.config["root"])
     def running_game_id(self):
         url = USER_DATA_URL%{"apikey":self.api_key,"steamid":self.user_id}
         print(url)
@@ -508,9 +527,10 @@ def create_nonsteam_shortcuts(gamelist,shortcutpath,filecache_root=""):
     with open(shortcutpath,"wb") as f:
         f.write(vdf.binary_dumps(vdf.VDFDict({"shortcuts":toklist(current_cuts)})))
     print ("saved")
-def export_game(game,vdict):
+def export_game_category(game,vdict):
     """Exports attributes from mybacklog into steam"""
     steamid = str(game.get_source("steam")["id"])
+    apps = vdict["UserRoamingConfigStore"]["Software"]["Valve"]["Steam"]["apps"]
     
     set_category = []
     clear_category = []
@@ -528,22 +548,21 @@ def export_game(game,vdict):
         k = int(k)+1
         d[k]=c
     
-    apps = vdict["UserRoamingConfigStore"]["Software"]["Valve"]["Steam"]["apps"]
-    if not steamid in apps:
-        apps[steamid] = vdf.VDFDict({"tags":{}})
-    if not "tags" in apps[steamid]:
-        apps[steamid]["tags"] = vdf.VDFDict({})
-    cats = tolist(apps[steamid]["tags"])
+    if not steamid in apps.parsed:
+        apps.parsed[steamid] = vdf.VDFDict({"tags":{}})
+    if not "tags" in apps.parsed[steamid]:
+        apps.parsed[steamid]["tags"] = vdf.VDFDict({})
+    cats = tolist(apps.parsed[steamid]["tags"])
     for cat in set_category:
         if cat not in cats:
             cats.append(cat)
     for cat in clear_category:
         if cat in cats:
             cats.remove(cat)
-    apps[steamid][(0,"tags")] = toklist(cats)
-    
-    if "Hidden" in apps[steamid]:
-        del apps[steamid]["Hidden"]
+    apps.parsed[steamid][(0,"tags")] = toklist(cats)
+
+    if "Hidden" in apps.parsed[steamid]:
+        del apps.parsed[steamid]["Hidden"]
     if game.hidden:
-        apps[steamid]["Hidden"] = "1"
+        apps.parsed[steamid]["Hidden"] = "1"
         
