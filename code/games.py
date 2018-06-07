@@ -3,6 +3,8 @@ import os
 import time
 import datetime
 import json
+import ubjson
+import gzip
 import hmac
 import copy
 from code import sources,syslog
@@ -463,13 +465,19 @@ class Games:
         if not os.path.exists(file):
             print("Warning, no save file to load:",file)
             return
-        f = open(file,"r")
+        f = gzip.open(file,"rb")
         d = f.read()
         f.close()
         self.translate_json(d)
     def translate_json(self,d):
         self.games = {}
-        load_data = json.loads(d)
+        #Attempt to read bjson
+        try:
+            load_data = ubjson.loadb(d)
+        except:
+            import traceback
+            traceback.print_exc()
+            load_data = json.loads(d)
         for k in load_data["games"]:
             self.games[k] = Game(**load_data["games"][k])
             self.games[k].games = self
@@ -504,10 +512,11 @@ class Games:
             self.games[k].update_local_data(self.local["game_data"])
         save_data["multipack"] = self.multipack
         save_data["source_definitions"] = self.source_definitions
-        return json.dumps(save_data)
+        #return json.dumps(save_data)
+        return ubjson.dumpb(save_data)
     def save(self,game_db_file,local_db_file):
         sd = self.save_games_data()
-        with open(game_db_file,"w") as f:
+        with gzip.open(game_db_file,"wb") as f:
             f.write(sd)
         sl = json.dumps(self.local)
         with open(local_db_file,"w") as f:

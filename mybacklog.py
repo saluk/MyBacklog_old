@@ -420,11 +420,6 @@ class GamelistForm(QWidget):
         self.path_base = appdirs.user_data_dir("MyBacklog").replace("\\","/")
         if not os.path.exists(self.path_base):
             os.makedirs(self.path_base)
-        #~ root = {"games":self.path_base+"/games.json",
-                    #~ "local":self.path_base+"/local.json",
-                    #~ "accounts":self.path_base+"/accounts.json",
-                    #~ "root_config":self.path_base+"/root.json",
-                    #~ "root":self.path_base}
         root = {"games":"",
                     "local":self.path_base+"/local.json",
                     "accounts":self.path_base+"/accounts.json",
