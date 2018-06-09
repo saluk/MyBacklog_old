@@ -6,14 +6,14 @@ import os
 import time
 import threading
 
-from code import sync
+from mblib import sync
 
 #backloglib
-from code.apis import giantbomb, steamapi, gogapi, humbleapi, thegamesdb
-from code.interface import account, gameoptions, base_paths, logwindow, sourcesform, emulatorform
-from code import games,syslog
+from mblib.apis import giantbomb, steamapi, gogapi, humbleapi, thegamesdb
+from mblib.interface import account, gameoptions, base_paths, logwindow, sourcesform, emulatorform
+from mblib import games,syslog
 
-from code.resources import icons,enc
+from mblib.resources import icons,enc
 
 #os.environ["QT_QPA_PLATFORM_PLUGIN_PATH"] = "C:\\Python33\\Lib\\site-packages\\PyQt5\\plugins\\platforms"
 VERSION = "0.26 alpha"
@@ -396,7 +396,7 @@ class GamelistForm(QWidget):
         
     def init_config(self):
         self.crypter = enc.Crypter()
-        from code.appdirs import appdirs
+        from mblib.appdirs import appdirs
         self.path_base = appdirs.user_data_dir("MyBacklog").replace("\\","/")
         if not os.path.exists(self.path_base):
             os.makedirs(self.path_base)

@@ -4,7 +4,7 @@ from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 
-from code.apis import steamapi
+from mblib.apis import steamapi
 
 def make_callback(f, *args):
     return lambda: f(*args)

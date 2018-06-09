@@ -1,7 +1,7 @@
 import requests
 import shutil, os
 
-from code import games
+from mblib import games
 
 app = None
 user = "saluk"

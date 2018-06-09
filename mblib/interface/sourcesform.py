@@ -5,7 +5,7 @@ from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 
-from code import sources
+from mblib import sources
 
 def make_callback(f, *args):
     return lambda: f(*args)

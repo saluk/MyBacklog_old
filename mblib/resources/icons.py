@@ -16,7 +16,7 @@ try:
 except:
     pass
 
-from code.resources import extract_icons
+from mblib.resources import extract_icons
 
 headers = {
     'User-Agent': 'MyBacklog Game tracker and launcher v1.0',

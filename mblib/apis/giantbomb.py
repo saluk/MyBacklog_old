@@ -4,7 +4,7 @@ import json
 import difflib
 import requests
 import time
-from code.resources import icons
+from mblib.resources import icons
 import xml.etree.cElementTree as etree
 
 apikey = "a4232ea9aea488fe5fe90f3a7c89c33439d569e2"

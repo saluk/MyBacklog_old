@@ -4,8 +4,8 @@ from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 
-from code.resources import icons
-from code import games
+from mblib.resources import icons
+from mblib import games
 
 def make_callback(f, *args):
     return lambda: f(*args)

@@ -7,12 +7,12 @@ import codecs
 import requests
 from bs4 import BeautifulSoup
 
-from code.apis import vdf
-from code.resources import icons
+from mblib.apis import vdf
+from mblib.resources import icons
 
 try:
     from .. import games
-    from code import systems
+    from mblib import systems
 except:
     pass
 

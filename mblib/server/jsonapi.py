@@ -1,8 +1,9 @@
 import hug
 import sys,os,traceback
 import base64
-sys.path.insert(0,"..\\..")
-from code import games
+sys.path.insert(0,"../..")
+import mblib
+from mblib import games
 
 def nice_user(user):
     fixed_user = "".join([x for x in user if x in "abcdefghijklmnopqrstuvwxyz0123456789"])
@@ -18,6 +19,8 @@ class User:
     def is_ready(self):
         return os.path.exists(self.game_path)
     def make_ready(self):
+        if not os.path.exists("__users__"):
+            os.mkdir("__users__")
         if not os.path.exists(self.up):
             os.mkdir(self.up)
 

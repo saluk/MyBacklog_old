@@ -2,7 +2,10 @@ import os
 import sys
 import subprocess
 import webbrowser
-import psutil
+
+def psutil():
+    import psutil
+    return psutil
 
 run_with_steam = 1
 #   NEW METHOD TO RUN THROUGH STEAM:
@@ -101,7 +104,7 @@ class ExeSource(Source):
     def game_is_running(self, game, data, app):
         args,folder,search = self.get_run_args(game,data,"",write_batch=False)
         print("search:",search)
-        procs = [proc.name() for proc in psutil.process_iter() if search.lower() in proc.name().lower()]
+        procs = [proc.name() for proc in psutil().process_iter() if search.lower() in proc.name().lower()]
         return bool(procs)
             
 class HumbleSource(ExeSource):
@@ -184,7 +187,7 @@ class GogSource(ExeSource):
                 continue
             cwd,exe = os.path.split(winreg.QueryValueEx(gamereg,"EXE")[0])
         print("EXE",exe,"cwd",cwd)
-        procs = [proc for proc in psutil.process_iter() if exe.lower() in proc.name().lower() and proc.cwd()==cwd]
+        procs = [proc for proc in psutil().process_iter() if exe.lower() in proc.name().lower() and proc.cwd()==cwd]
         if procs:
             print(dir(procs[0]))
             print(procs[0].environ())

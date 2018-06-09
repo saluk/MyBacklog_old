@@ -8,7 +8,7 @@ import gzip
 import hmac
 import copy
 import io
-from code import sources,syslog,sync
+from mblib import sources,syslog
 
 fmt = "%H:%M:%S %Y-%m-%d"
 def now():

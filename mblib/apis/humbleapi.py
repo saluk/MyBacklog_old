@@ -3,7 +3,7 @@ import time
 import requests
 import re
 import os
-from code import games
+from mblib import games
 import json
 
 class ApiError(Exception):

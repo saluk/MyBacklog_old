@@ -13,3 +13,4 @@ icons/Thumbs.db
 mybacklog_setup*.exe
 data/goghtml/*
 build/exe.win32-3.6/*
+.env/*
