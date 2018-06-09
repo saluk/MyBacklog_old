@@ -7,7 +7,8 @@ import ubjson
 import gzip
 import hmac
 import copy
-from code import sources,syslog
+import io
+from code import sources,syslog,sync
 
 fmt = "%H:%M:%S %Y-%m-%d"
 def now():
@@ -41,10 +42,16 @@ def get_source(s):
     return sources.all[s]
     
 def source_id(s):
-    return s["source"] + "_" + str(s.get("id2",s.get("id","")))
-    
-def operation(f):
-    return f
+    id = (0, "")
+    for k in s:
+        if k.startswith("id"):
+            idpart = k
+            restpart = k.replace("id","")
+            if not restpart: restpart = "1"
+            restpart = int(restpart)
+            if restpart>id[0]:
+                id = (restpart,k)
+    return s["source"] + "_" + s.get(id[1],"")
 
 class Game:
     args = [("name","s"),("playtime","f"),("lastplayed","d"),("genre","s"),("icon_url","s"),("logo_url","s"),
@@ -84,7 +91,6 @@ class Game:
         self.games = None
         if "games" in kwargs:
             self.games = kwargs["games"]
-    @operation
     def set(self, key, value):
         if key=="hidden" and value not in [0,1]:
             return False,[0,1]
@@ -170,17 +176,14 @@ class Game:
         for s in self.sources:
             if get_source(s["source"]).needs_download(self,s):
                 return True
-    @operation
     def played(self,elapsed_time=None):
         """Resets lastplayed to now and updates playtime"""
         self.lastplayed = now()
         self.playtime += elapsed_time
         self.priority = -1
-    @operation
     def finish(self):
         self.finished = 1
         self.finish_date = games.now()
-    @operation
     def unfinish(self):
         self.finished = 0
         self.finish_date = ""
@@ -248,9 +251,9 @@ class Game:
     def run_game(self,cache_root):
         source,data = self.running_source
         return source.run_game(self,data,cache_root)
-    def game_is_running(self):
+    def game_is_running(self,app):
         source,data = self.running_source
-        return source.game_is_running(self,data)
+        return source.game_is_running(self,data,app)
     @property
     def rom_extension(self):
         """What extensions roms have"""
@@ -441,6 +444,7 @@ def nicediff(diff):
 
 class Games:
     def __init__(self,log=None):
+        self.revision = 0
         self.games = {}
         self.source_map = {}
         self.multipack = {}
@@ -457,18 +461,22 @@ class Games:
         print(possible)
         if possible:
             return possible[0]
-    def load(self,game_db_file,local_db_file,app):
-        self.load_local(local_db_file)
+    def load(self,game_db_file,local_db_file=None):
+        if local_db_file:
+            self.load_local(local_db_file)
         self.load_games(game_db_file)
-        sources.register_sources(self.source_definitions,app)
-    def load_games(self,file):
-        if not os.path.exists(file):
-            print("Warning, no save file to load:",file)
+    def load_games(self,filename=None,filedata=None):
+        if filename and not os.path.exists(filename):
+            print("Warning, no save file to load:",filename)
             return
+        file = filename
+        if filedata and not filename:
+            file = io.BytesIO(filedata)
         f = gzip.open(file,"rb")
         d = f.read()
         f.close()
         self.translate_json(d)
+        sources.register_sources(self.source_definitions)
     def translate_json(self,d):
         self.games = {}
         #Attempt to read bjson
@@ -481,7 +489,7 @@ class Games:
         for k in load_data["games"]:
             self.games[k] = Game(**load_data["games"][k])
             self.games[k].games = self
-            self.games[k].inject_local_data(self.local["game_data"])
+            self.games[k].inject_local_data(self.local.get("game_data",{}))
         if not self.multipack:
             self.multipack = load_data.get("multipack",{})
         self.source_definitions.update(sources.default_definitions.copy())
@@ -491,6 +499,7 @@ class Games:
                 self.source_definitions[source] = loaded_defs[source]
             self.source_definitions[source].update(loaded_defs[source])
         self.log.write("source definitions: ",self.source_definitions)
+        self.revision = load_data.get("revision",self.revision)
     def load_local(self,file):
         if not os.path.exists(file):
             print("Warning, no local save file to load:",file)
@@ -509,18 +518,20 @@ class Games:
             if k == BAD_GAMEID:
                 continue
             save_data["games"][k] = self.games[k].dict()
-            self.games[k].update_local_data(self.local["game_data"])
+            self.games[k].update_local_data(self.local.get("game_data",{}))
         save_data["multipack"] = self.multipack
         save_data["source_definitions"] = self.source_definitions
+        save_data["revision"] = self.revision
         #return json.dumps(save_data)
         return ubjson.dumpb(save_data)
-    def save(self,game_db_file,local_db_file):
+    def save(self,game_db_file,local_db_file=None):
         sd = self.save_games_data()
         with gzip.open(game_db_file,"wb") as f:
             f.write(sd)
-        sl = json.dumps(self.local)
-        with open(local_db_file,"w") as f:
-            f.write(sl)
+        if local_db_file:
+            sl = json.dumps(self.local)
+            with open(local_db_file,"w") as f:
+                f.write(sl)
     def build_source_map(self):
         """Builds a dictionary map of source_id:game to make it easier to search for a game from
         a given source"""
@@ -591,6 +602,7 @@ class Games:
             return newid
         return self.correct_gameid(oldid,newid)
     def find_matching_game(self,game):
+        print("Finding existing game",game)
         for g in self.get_similar_games(game):
             if g.same_game(game):
                 return g

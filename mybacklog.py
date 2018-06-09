@@ -6,7 +6,7 @@ import os
 import time
 import threading
 
-import requests
+from code import sync
 
 #backloglib
 from code.apis import giantbomb, steamapi, gogapi, humbleapi, thegamesdb
@@ -26,29 +26,6 @@ from PyQt5.QtGui import *
 from PyQt5.QtNetwork import *
 
 #steam_session = steamapi.login_for_chat()
-
-def playrequest(game):
-    try:
-        r = requests.post("http://dawnsoft.org:9600/users/saluk/play",data={"game":game.name})
-    except:
-        pass
-    #steamapi.set_username(steam_session,"saluk [Playing %s]"%game.name)
-def stoprequest():
-    try:
-        r = requests.post("http://dawnsoft.org:9600/users/saluk/play",data={"game":""})
-    except:
-        pass
-    #steamapi.set_username(steam_session,"saluk")
-def uploadrequest(games):
-    try:
-        r = requests.post("http://dawnsoft.org:9600/users/saluk/upload_games",data={"games":games.save_data()})
-    except:
-        pass
-def downloadrequest():
-    r = requests.get("http://dawnsoft.org:9600/users/saluk/download_games")
-    j = r.json()
-    return j["games"]
-
 
 class RunGameThread(QThread):
     process = None
@@ -267,6 +244,9 @@ class GamelistForm(QWidget):
     def __init__(self, parent=None):
         print(QImageReader.supportedImageFormats())
         super(GamelistForm, self).__init__(parent)
+        
+        sync.app = self
+        
         self.browser = None
         self.cookies = {}
         
@@ -420,7 +400,7 @@ class GamelistForm(QWidget):
         self.path_base = appdirs.user_data_dir("MyBacklog").replace("\\","/")
         if not os.path.exists(self.path_base):
             os.makedirs(self.path_base)
-        root = {"games":"",
+        root = {"games":self.path_base+"/games.ubjson",
                     "local":self.path_base+"/local.json",
                     "accounts":self.path_base+"/accounts.json",
                     "root_config":self.path_base+"/root.json",
@@ -464,7 +444,8 @@ class GamelistForm(QWidget):
         self.games = games.Games(self.log)
         self.games_lock = threading.Lock()
         print("loading games",self.config["games"])
-        self.games.load(self.config["games"],self.config["local"],self)
+        self.games.load(self.config["games"],self.config["local"])
+        sync.download()
         self.gamelist = []
         self.update_gamelist_widget()
         
@@ -504,9 +485,6 @@ class GamelistForm(QWidget):
         #self.changed = []
         #self.enable_edit_notify()
 
-    def file_save(self):
-        self.save()
-
     def file_options(self):
         print("start","SELF=",self)
         self.edit_account = account.AccountForm(self,dock=True)
@@ -537,7 +515,7 @@ class GamelistForm(QWidget):
         
 
     def detect_game_end(self):
-        currently_running = self.running.game_is_running()
+        currently_running = self.running.game_is_running(self)
         if not self.detected_game_start and currently_running:
             self.detected_game_start = True
         elif self.detected_game_start and not currently_running:
@@ -855,15 +833,19 @@ class GamelistForm(QWidget):
         self.running = game
         if launch:
             game.run_game(self.config["root"])
-        playrequest(game)
         
     def operation(self,message,game,*args):
+        sync.download()
         getattr(game,message)(*args)
+        self.games.revision += 1
         self.save()
+        self.upload_thread = QThread()
+        self.upload_thread.run = lambda: sync.upload()
+        self.upload_thread.start()
         self.update_gamelist_widget()
         if self.game_options:
             self.update_game_options(game)
-
+            
     def stop_playing(self,game):
         self.parent().setStyleSheet(self.old_style)
         self.parent().setWindowIcon(QIcon(QPixmap("icons/main.png")))

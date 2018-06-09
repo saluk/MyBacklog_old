@@ -15,10 +15,9 @@ class Source:
     source_args = []
     generate_website = None
     runnable = True
-    def __init__(self,name,app):
+    def __init__(self,name):
         """app = app should contain fields for api's sources may need"""
         self.name = name
-        self.app = app
     def args(self):
         return self.extra_args
     def is_installed(self,game,source):
@@ -38,7 +37,7 @@ class Source:
         return
     def rom_extension(self,game):
         return ""
-    def game_is_running(self, game, data):
+    def game_is_running(self, game, data, app):
         """By default return true and force user to control when to stop the timer"""
         return True
 
@@ -99,7 +98,7 @@ class ExeSource(Source):
             self.running = subprocess.Popen(args, cwd=folder, stdout=sys.stdout, stderr=sys.stderr, creationflags=creationflags, shell=shell)
             print("subprocess open")
             os.chdir(curdir)
-    def game_is_running(self, game, data):
+    def game_is_running(self, game, data, app):
         args,folder,search = self.get_run_args(game,data,"",write_batch=False)
         print("search:",search)
         procs = [proc.name() for proc in psutil.process_iter() if search.lower() in proc.name().lower()]
@@ -134,8 +133,8 @@ class SteamSource(Source):
         if "id" in source:
             return "http://store.steampowered.com/app/%s"%source["id"]
         return ""
-    def game_is_running(self, game, data):
-        if self.app.steam.running_game_id() == data["id"]:
+    def game_is_running(self, game, data, app):
+        if app.steam.running_game_id() == data["id"]:
             return True
 
 class GogSource(ExeSource):
@@ -174,7 +173,7 @@ class GogSource(ExeSource):
             if winreg.QueryValueEx(gamereg,"gameID")[0] != source["id2"]:
                 continue
             return True
-    def game_is_running(self, game, data):
+    def game_is_running(self, game, data, app):
         import winreg
         with winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, "SOFTWARE\\WOW6432Node\\GOG.com\\Games") as key:
             gog_games = [winreg.EnumKey(key,i) for i in range(winreg.QueryInfoKey(key)[0])]
@@ -268,11 +267,11 @@ default_definitions = {
     }
 }
 all = {}
-def register_sources(definitions,app):
+def register_sources(definitions):
     for sourcekey in definitions:
         source = definitions[sourcekey]
         cls = eval(source["class"])
-        inst = cls(name=sourcekey,app=app)
+        inst = cls(name=sourcekey)
         for key in source:
             if key in ["class"]:
                 continue
