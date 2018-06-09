@@ -5,7 +5,7 @@ from code import games
 
 app = None
 user = "saluk"
-host = "localhost:8000"
+host = "dawnsoft.org:8000"
 
 def get_server_revision():
     r = requests.get("http://%s/games_revision?user=%s"%(host,user))
@@ -50,6 +50,8 @@ def download():
         return
     games = app.games
     revision = get_server_revision()
+    if not revision:
+        return
     if revision < games.revision:
         raise Exception("MAJOR ERROR, server is older than client. shouldn't happen")
     if revision == games.revision:

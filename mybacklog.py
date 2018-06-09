@@ -834,17 +834,23 @@ class GamelistForm(QWidget):
         if launch:
             game.run_game(self.config["root"])
         
-    def operation(self,message,game,*args):
+    def operation(self,message,obj,*args):
         sync.download()
-        getattr(game,message)(*args)
+        getattr(obj,message)(*args)
         self.games.revision += 1
         self.save()
         self.upload_thread = QThread()
         self.upload_thread.run = lambda: sync.upload()
         self.upload_thread.start()
         self.update_gamelist_widget()
-        if self.game_options:
+        if isinstance(obj,games.Game) and self.game_options:
             self.update_game_options(game)
+            self.select_game(game)
+            
+    def force_update(self,game,oldid):
+        updated_game = self.games.force_update_game(oldid,game)
+        #self.app.update_game_row(updated_game)
+        self.changed.append(updated_game.gameid)
             
     def stop_playing(self,game):
         self.parent().setStyleSheet(self.old_style)

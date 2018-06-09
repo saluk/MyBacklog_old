@@ -282,17 +282,11 @@ class EditGame(QWidget):
         if self.oldid and self.oldid in self.games.games:
             print("Updated old:",game.priority,self.games.games[self.oldid].priority)
         print(game in self.games.games.values())
-        updated_game = self.games.force_update_game(self.oldid,game)
-        #self.app.update_game_row(updated_game)
-        self.app.changed.append(updated_game.gameid)
-        self.app.update_gamelist_widget()
-        self.app.save()
+        self.app.operation("force_update",self.app,game,self.oldid)
 
         if not self.parented:
             self.deleteLater()
             self.parent().deleteLater()
-        else:
-            self.app.select_game(updated_game)
     def save_prop(self,field,props):
         t = props["t"]
         w = props["w"]
