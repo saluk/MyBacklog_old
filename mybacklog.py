@@ -844,8 +844,8 @@ class GamelistForm(QWidget):
         self.upload_thread.start()
         self.update_gamelist_widget()
         if isinstance(obj,games.Game) and self.game_options:
-            self.update_game_options(game)
-            self.select_game(game)
+            self.update_game_options(obj)
+            self.select_game(obj)
             
     def force_update(self,game,oldid):
         updated_game = self.games.force_update_game(oldid,game)

@@ -9,7 +9,7 @@ import sys
 import struct
 from binascii import crc32
 from io import StringIO as unicodeIO
-from code.apis.vdf.vdict import VDFDict
+from mblib.apis.vdf.vdict import VDFDict
 
 # Py2 & Py3 compatibility
 if sys.version_info[0] >= 3:
